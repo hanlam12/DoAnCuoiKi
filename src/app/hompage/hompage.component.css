@@ -1,3 +1,7 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+
 .homepage{
   position: absolute;
 }
@@ -17,7 +21,7 @@
   position: relative;
 }
 .mt160{
-  padding-top: 130px;
+  padding-top: 120px;
 }
 .homepage-banner-content h3 {
   margin: 10px;
@@ -91,10 +95,10 @@
 .box-content_left {
   border-radius: 3px;
   background-color: aliceblue;
-  flex-basis: 62%;
+  flex-basis: 60%;
 }
 .box-content_right {
-  flex-basis: 32%;
+  flex-basis: 30%;
 }
 .box-content_right_top {
   border-radius: 3px;
@@ -155,8 +159,7 @@
   color: #0e3680;
 }
 #apply {
-  margin-bottom: 15px;
-  width: 80%;
+  margin-top: 15px;
   height: 40%;
   border-radius: 5px;
   border: none;

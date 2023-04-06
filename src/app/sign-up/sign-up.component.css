@@ -1,3 +1,6 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+
 .is-display-none {
   display: none !important;
 }
@@ -89,7 +92,7 @@
 }
 .btn-login-other {
   border-radius: 5px;
-
+  background-color: #ebe7e7;
   margin: 5px 0;
   border-color: #fff0;
   padding: 0.6rem 0.75rem;
