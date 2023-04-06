@@ -1,5 +1,6 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
 .homepage{
   position: absolute;
 }
@@ -19,7 +20,7 @@
   position: relative;
 }
 .mt160{
-  padding-top: 160px;
+  padding-top: 130px;
 }
 .homepage-banner-content h3 {
   margin: 10px;
@@ -345,7 +346,7 @@ ul {
   padding-top: 5px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .box1 {
   background-color: aliceblue;
@@ -354,13 +355,12 @@ ul {
 }
 .box1:hover {
   border-radius: 2px;
-  border: #48c0fd 2px dashed;
-  padding: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 .box1 a .img {
   display: block;
   width: 80%;
-  height: 130px;
+  height: 110px;
   margin: auto;
 }
 .box1 a div {
