@@ -16,6 +16,8 @@
 .homepage-banner-content {
   width: 100%;
   position: relative;
+}
+.mt160{
   padding-top: 160px;
 }
 .homepage-banner-content h3 {
@@ -29,7 +31,7 @@
   display: flex;
   justify-content: space-between;
   padding: 20px 0;
-  width: 70%;
+  width: 75%;
   margin: auto;
 }
 .homepage-input {
@@ -83,14 +85,14 @@
 /* new */
 .box-content {
   margin: auto;
-  width: 85%;
+  width: 75%;
   display: flex;
   justify-content: space-between;
 }
 .box-content_left {
   border-radius: 3px;
   background-color: aliceblue;
-  flex-basis: 66%;
+  flex-basis: 62%;
 }
 .box-content_right {
   flex-basis: 32%;
@@ -110,10 +112,10 @@
   padding: 10px 0;
 }
 .head {
-  width: 100%;
+  width: 98%;
   font-size: 20px;
   font-weight: bold;
-  padding: 15px 20px;
+  padding: 15px 0 10px 20px;
 }
 .content-hot {
   padding: 20px;
@@ -153,62 +155,6 @@
 .hover2:hover {
   color: #0e3680;
 }
-/* luu */
-#boluu7,
-#boluu8,
-#boluu9,
-#boluu10,
-#boluu11,
-#boluu12,
-#boluu13 {
-  display: none;
-}
-#boluu7 .fa-heart,
-#boluu8 .fa-heart,
-#boluu9 .fa-heart,
-#boluu10 .fa-heart,
-#boluu11 .fa-heart,
-#boluu12 .fa-heart,
-#boluu13 .fa-heart {
-  color: #0075ff;
-}
-#luu7,
-#luu8,
-#luu9,
-#luu10,
-#luu11,
-#luu12,
-#luu13,
-#boluu7,
-#boluu8,
-#boluu9,
-#boluu10,
-#boluu11,
-#boluu12,
-#boluu13 {
-  width: 80%;
-  margin-top: 10px;
-  border-radius: 5px;
-  border: 0.5px solid rgb(202, 185, 172);
-  padding: 8px 0;
-}
-#luu7:hover,
-#luu8:hover,
-#luu9:hover,
-#luu10:hover,
-#luu11:hover,
-#luu12:hover,
-#luu13:hover,
-#boluu7:hover,
-#boluu8:hover,
-#boluu9:hover,
-#boluu10:hover,
-#boluu11:hover,
-#boluu12:hover,
-#boluu13:hover {
-  background-color: #ebdddd;
-}
-/*  luu*/
 #apply {
   margin-bottom: 15px;
   width: 80%;
@@ -291,7 +237,7 @@ ul {
   padding-top: 30px;
 }
 .container-row-top {
-  width: 85%;
+  width: 75%;
   margin: auto;
 }
 /* joblastest */
@@ -424,7 +370,7 @@ ul {
   margin: auto;
 }
 .container-row-top1 {
-  width: 85%;
+  width: 75%;
   margin: auto;
   background-color: aliceblue;
 }
@@ -483,7 +429,7 @@ ul {
   margin: auto;
 }
 .container-row-top2 {
-  width: 85%;
+  width: 75%;
   margin: auto;
   margin-top: 30px;
   margin-bottom: 30px;
@@ -506,7 +452,7 @@ ul {
 }
 
 .container-row-top3 {
-  width: 85%;
+  width: 75%;
   margin: auto;
 }
 
@@ -548,14 +494,4 @@ ul {
   -webkit-box-orient: vertical;
 }
 
-@media screen and (max-width: 1200px) {
-  .box-content {
-    flex-direction: column;
-  }
-  h2 {
-    display: none;
-  }
-  .box-content_right {
-    margin-top: 20px;
-  }
-}
+
