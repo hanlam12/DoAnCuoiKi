@@ -81,26 +81,9 @@
   font-size: larger;
   padding-left: 0;
 }
-.homepage-box-content{
-  width: 80%;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.homepage-box-content-left{
-  background-color: white;
-  flex-basis: 25%;
-}
-.homepage-box-content-right{
-  background-color: white;
-  flex-basis: 70%;
-}
+
 a {
   text-decoration: none;
   color: black;
 }
-.catelog-list {
-  width: 100%;
-  overflow: hidden;
-}
+
