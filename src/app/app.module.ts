@@ -10,6 +10,7 @@ import { TStestingComponent } from './tstesting/tstesting.component';
 import { ThongtinComponent } from './thongtin/thongtin.component';
 import { LoginComponent } from './login/login.component';
 import { DieukhoandichvuComponent } from './dieukhoandichvu/dieukhoandichvu.component';
+import { SupportComponent } from './support/support.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DieukhoandichvuComponent } from './dieukhoandichvu/dieukhoandichvu.comp
     TStestingComponent,
     ThongtinComponent,
     LoginComponent,
-    DieukhoandichvuComponent
+    DieukhoandichvuComponent,
+    SupportComponent
   ],
   imports: [
     BrowserModule,
