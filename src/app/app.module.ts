@@ -7,6 +7,7 @@ import { ContactComponent } from './contact/contact.component';
 import { HompageComponent } from './hompage/hompage.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { TStestingComponent } from './tstesting/tstesting.component';
+import { ThongtinComponent } from './thongtin/thongtin.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { TStestingComponent } from './tstesting/tstesting.component';
     ContactComponent,
     HompageComponent,
     SignUpComponent,
-    TStestingComponent
+    TStestingComponent,
+    ThongtinComponent
   ],
   imports: [
     BrowserModule,
