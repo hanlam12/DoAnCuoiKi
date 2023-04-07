@@ -6,5 +6,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./search-job.component.css']
 })
 export class SearchJobComponent {
+  showText = true;
+  showText1 = true;
+  showText2 = true;
+  showText3 = true;
+  showText4 = true;
 
+  toggleText() {
+    this.showText = !this.showText;
+  }
+  toggleText1() {
+    this.showText1 = !this.showText1;
+  }
+  toggleText2() {
+    this.showText2 = !this.showText2;
+  }
+  toggleText3() {
+    this.showText3 = !this.showText3;
+  }
+  toggleText4() {
+    this.showText4 = !this.showText4;
+  }
 }
