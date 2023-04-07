@@ -6,6 +6,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { ThongtinComponent } from './thongtin/thongtin.component';
 import { LoginComponent } from './login/login.component';
 import { DieukhoandichvuComponent } from './dieukhoandichvu/dieukhoandichvu.component';
+import { CongtyComponent } from './congty/congty.component';
 
 const routes: Routes = [
   {path:"contact",component:ContactComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path:"",component:HompageComponent},
   { path: "thongtin", component: ThongtinComponent },
   {path: "login", component: LoginComponent},
-  {path: "dieukhoandichvu", component: DieukhoandichvuComponent}
+  {path: "dieukhoandichvu", component: DieukhoandichvuComponent},
+  {path: "congty", component: CongtyComponent}
 ];
 
 @NgModule({
@@ -27,5 +29,6 @@ export const RoutingComponent={
   SignUpComponent,
   ThongtinComponent,
   LoginComponent,
-  DieukhoandichvuComponent
+  DieukhoandichvuComponent,
+  CongtyComponent
 }
