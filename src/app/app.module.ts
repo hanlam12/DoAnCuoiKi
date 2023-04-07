@@ -9,6 +9,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { TStestingComponent } from './tstesting/tstesting.component';
 import { ThongtinComponent } from './thongtin/thongtin.component';
 import { LoginComponent } from './login/login.component';
+import { DieukhoandichvuComponent } from './dieukhoandichvu/dieukhoandichvu.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LoginComponent } from './login/login.component';
     SignUpComponent,
     TStestingComponent,
     ThongtinComponent,
-    LoginComponent
+    LoginComponent,
+    DieukhoandichvuComponent
   ],
   imports: [
     BrowserModule,
