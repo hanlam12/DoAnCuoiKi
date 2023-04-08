@@ -7,6 +7,7 @@ import { ThongtinComponent } from './thongtin/thongtin.component';
 import { LoginComponent } from './login/login.component';
 import { DieukhoandichvuComponent } from './dieukhoandichvu/dieukhoandichvu.component';
 import { SupportComponent } from './support/support.component';
+import { ThaydoimatkhauComponent } from './thaydoimatkhau/thaydoimatkhau.component';
 
 const routes: Routes = [
   {path:"contact",component:ContactComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: "thongtin", component: ThongtinComponent },
   {path: "login", component: LoginComponent},
   {path: "dieukhoandichvu", component: DieukhoandichvuComponent},
-  { path:"support", component:SupportComponent}
+  { path:"support", component:SupportComponent},
+  { path:"thaydoimatkhau", component:ThaydoimatkhauComponent}
 ];
 
 @NgModule({
@@ -30,5 +32,6 @@ export const RoutingComponent={
   ThongtinComponent,
   LoginComponent,
   DieukhoandichvuComponent,
-  SupportComponent
+  SupportComponent,
+  ThaydoimatkhauComponent
 }

@@ -11,6 +11,7 @@ import { ThongtinComponent } from './thongtin/thongtin.component';
 import { LoginComponent } from './login/login.component';
 import { DieukhoandichvuComponent } from './dieukhoandichvu/dieukhoandichvu.component';
 import { SupportComponent } from './support/support.component';
+import { ThaydoimatkhauComponent } from './thaydoimatkhau/thaydoimatkhau.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SupportComponent } from './support/support.component';
     ThongtinComponent,
     LoginComponent,
     DieukhoandichvuComponent,
-    SupportComponent
+    SupportComponent,
+    ThaydoimatkhauComponent
   ],
   imports: [
     BrowserModule,
