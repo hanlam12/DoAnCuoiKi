@@ -1,0 +1,20 @@
+<div class="background">
+  <div class="container">
+    <h4>Nhập mật khẩu mới</h4>
+    <hr/>
+    <p>Vui lòng nhập mật khẩu mới</p>
+    <div class="input-">
+      <input class="form-control" type="password" [(ngModel)]="newPassword" name="newPassword" placeholder="Nhập mật khẩu mới">
+    </div>
+    <br/>
+    <p>Vui lòng nhập lại mật khẩu mới lần nữa</p>
+    <div class="input-">
+      <input class="form-control" type="password" [(ngModel)]="confirmPassword" name="confirmPassword" placeholder="Nhập lại mật khẩu mới">
+    </div>
+
+    <hr/>
+    <button (click)="goBack()" class="btn btn-secondary aa">Hủy</button>&nbsp;
+    <button class="btn btn-primary" type="button" id="timkiem" (click)="changePassword()">Xác nhận</button>
+
+  </div>
+</div>

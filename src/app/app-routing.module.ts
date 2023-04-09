@@ -8,6 +8,10 @@ import { LoginComponent } from './login/login.component';
 import { DieukhoandichvuComponent } from './dieukhoandichvu/dieukhoandichvu.component';
 import { SupportComponent } from './support/support.component';
 import { ThaydoimatkhauComponent } from './thaydoimatkhau/thaydoimatkhau.component';
+import { QuenmatkhauComponent } from './quenmatkhau/quenmatkhau.component';
+import { Quenmatkhau1Component } from './quenmatkhau1/quenmatkhau1.component';
+import { Quenmatkhau2Component } from './quenmatkhau2/quenmatkhau2.component';
+import { Quenmatkhau3Component } from './quenmatkhau3/quenmatkhau3.component';
 
 const routes: Routes = [
   {path:"contact",component:ContactComponent},
@@ -17,7 +21,11 @@ const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "dieukhoandichvu", component: DieukhoandichvuComponent},
   { path:"support", component:SupportComponent},
-  { path:"thaydoimatkhau", component:ThaydoimatkhauComponent}
+  { path:"thaydoimatkhau", component:ThaydoimatkhauComponent},
+  { path:"quenmatkhau", component: QuenmatkhauComponent},
+  { path:"quenmatkhau1", component: Quenmatkhau1Component},
+  { path:"quenmatkhau2", component:Quenmatkhau2Component},
+  { path:"quenmatkhau3", component:Quenmatkhau3Component}
 ];
 
 @NgModule({
@@ -33,5 +41,9 @@ export const RoutingComponent={
   LoginComponent,
   DieukhoandichvuComponent,
   SupportComponent,
-  ThaydoimatkhauComponent
+  ThaydoimatkhauComponent,
+  QuenmatkhauComponent,
+  Quenmatkhau1Component,
+  Quenmatkhau2Component,
+  Quenmatkhau3Component
 }

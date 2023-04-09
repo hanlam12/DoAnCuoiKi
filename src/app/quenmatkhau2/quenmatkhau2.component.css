@@ -1,0 +1,22 @@
+input{
+  width: 40px;
+}
+.form-group{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.container{
+  width: 900px;
+  margin-top: 50px;
+  border-radius: 10px;
+}
+.background{
+  background-color: #E9E9EA;
+  height: 400px;
+  position: absolute;
+  width: 100%;
+}
+.aa{
+  margin-left: 230px;
+}
