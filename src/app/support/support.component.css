@@ -12,7 +12,7 @@ html,body{
 .hotro {
   flex: 1;
   text-align: center;
-  padding-top: 33px;
+  padding-top: 20px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
@@ -24,7 +24,7 @@ html,body{
   flex: 1;
   text-decoration: none;
   text-align: center;
-  padding-top: 33px;
+  padding-top: 20px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
@@ -43,7 +43,6 @@ html,body{
 }
 .col-md-12:last-child{
   text-align: center;
-  margin-top: 50px;
 }
 
 h1{
@@ -72,8 +71,13 @@ button{
 }
 .card{
   margin-top: 50px;
+  width: 400px;
+  margin-left: 50px;
 }
 .card-body:hover{
   background: grey;
   color: white;
+}
+.container{
+  max-width: 1540px;
 }
