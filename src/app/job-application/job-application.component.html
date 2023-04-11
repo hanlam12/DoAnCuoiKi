@@ -22,8 +22,14 @@
         <div><i class="fa-regular fa-circle-user"></i></div>
         <div class="text_cbtl">Chào bạn trở lại <br>
         <b>TÊN NGƯỜI DÙNG</b></div>
-        <div class="text_status-on" id="text_status-on"><div class="st-on-off-on"><button (click)="status()" class="on-off-on"></button></div> Trạng thái làm việc đang bật</div>
-        <div class="text_status-off" id="text_status-off"><div class="st-on-off-off"><button (click)="status()" class="on-off-off"></button></div> Trạng thái làm việc đang tắt</div>
+        <div *ngIf="statusOn; else statusOffBlock">
+          <div class="st-on-off-on"><button class="on-off-on"></button></div>
+          <div class="text_status-on" id="text_status-on">Trạng thái làm việc đang bật</div>
+      </div>
+      <ng-template #statusOffBlock>
+          <div class="st-on-off-off"><button class="on-off-off"></button></div>
+          <div class="text_status-off" id="text_status-off">Trạng thái làm việc đang tắt</div>
+      </ng-template>
         <div class="text_text">Bật tìm việc để nhận được nhiều cơ hội việc làm tốt nhất từ WorkZone.</div>
     </div>
     <div id="body_left">

@@ -6,12 +6,5 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   styleUrls: ['./job-application.component.css']
 })
 export class JobApplicationComponent {
-  @ViewChild('text_status-off')
-  textStatusOff!: ElementRef;
-  @ViewChild('text_status-on')
-  textStatusOn!: ElementRef;
-  status() {
-    this.textStatusOff.nativeElement.classList.toggle('display');
-    this.textStatusOn.nativeElement.classList.toggle('is-display-none');
-  }
+  statusOn: boolean = true;
 }

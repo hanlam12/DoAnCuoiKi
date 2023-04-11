@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,11 +24,15 @@ import { FooterNotLogInComponent } from './footer-not-log-in/footer-not-log-in.c
     JobApplicationComponent,
     AppliedJobComponent,
     FooterLoggedComponent,
-    FooterNotLogInComponent
+    FooterNotLogInComponent,
+    AppComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ModalModule.forRoot(),
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

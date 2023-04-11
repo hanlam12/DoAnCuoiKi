@@ -16,9 +16,8 @@
         <p><i class="bi bi-clock"></i>&ensp;Hạn nộp: 02/12/2022</p>
       </div>
       <div class="container__content--right1">
-        <button id="myBtn" (click)=" openModal()">Nộp đơn</button>
+        <button id="myBtn" (click)=" openModal(template)">Nộp đơn</button>
       </div>
-      <!-- The Modal -->
       <div id="myModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
         <!-- Modal content -->
         <div class="modal-content">
@@ -58,7 +57,7 @@
           </div>
           <div class="modal-footer">
             <button id="myBtn2">Nộp CV</button>
-            <button class="close">Đóng lại</button>
+            <button (click)="modalRef.hide()" class="close">Đóng lại</button>
           </div>
         </div>
       </div>
