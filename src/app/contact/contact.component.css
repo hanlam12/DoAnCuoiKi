@@ -9,7 +9,7 @@
 .lienhe {
   flex: 1;
   text-align: center;
-  padding-top: 33px;
+  padding-top: 21px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
@@ -21,12 +21,17 @@
   flex: 1;
   text-decoration: none;
   text-align: center;
-  padding-top: 33px;
+  padding-top: 21px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 35px;
+}
+.hotro:hover{
+  font-weight: 700;
+  color: #2f55d4;
+  cursor: pointer;
 }
 .container{
   margin-top: 50px;
@@ -71,4 +76,7 @@ button{
 .img-fluid{
   width: 600px;
   height: 260px;
+}
+.text{
+  color: red;
 }

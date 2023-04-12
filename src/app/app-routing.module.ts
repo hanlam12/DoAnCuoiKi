@@ -12,6 +12,7 @@ import { QuenmatkhauComponent } from './quenmatkhau/quenmatkhau.component';
 import { Quenmatkhau1Component } from './quenmatkhau1/quenmatkhau1.component';
 import { Quenmatkhau2Component } from './quenmatkhau2/quenmatkhau2.component';
 import { Quenmatkhau3Component } from './quenmatkhau3/quenmatkhau3.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {path:"contact",component:ContactComponent},
@@ -29,7 +30,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), FormsModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

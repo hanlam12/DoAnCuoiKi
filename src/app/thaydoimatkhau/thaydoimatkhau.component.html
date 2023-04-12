@@ -1,10 +1,10 @@
-<div class="box-menu-pc">
+<!-- <div class="box-menu-pc">
   <label>Tài khoản</label>
   <label>Hồ sơ xin việc (3)</label>
   <label>Việc đã lưu (5)</label>
   <label>Việc đã ứng tuyển (7)</label>
   <label>Thông báo việc làm (0)</label>
-</div>
+</div> -->
 <div class="row">
 <div class="col-md-3 col-12">
   <div class="taikhoan" id="taikhoan">
@@ -27,23 +27,39 @@
     <div class="name-pass">
     <label>Mật khẩu hiện tại</label><span class="red">&nbsp;*</span>
     </div>
-    <input type="password" class="input form-control" />
+    <input type="password" class="input form-control" name="password" id="password" required minlength="5"
+    [(ngModel)]="model.Password" name="password"
+    #password="ngModel"/>
+    <div class="text" [hidden]="!password.hasError('minlength')">Password must contain at least 5 characters</div>
+    <div class="text" [hidden]="password.valid || password.pristine">
+      Password is required
+   </div>
   </div>
   <div class="row-pass">
     <div class="name-pass">
      <label>Mật khẩu mới</label>  <span class="red">&nbsp;*</span>
     </div>
-    <input type="password" class="input form-control" />
+    <input type="password" class="input form-control" name="newPassword" id="newPassword" required minlength="5"
+    [(ngModel)]="newPass" name="newpassword"
+    #newpassword="ngModel"/>
+    <div class="text" [hidden]="!newpassword.hasError('minlength')">Password must contain at least 5 characters</div>
+    <div class="text" [hidden]="newpassword.valid || newpassword.pristine">
+      Password is required
+   </div>
   </div>
   <div class="row-pass">
     <div class="name-pass">
      <label>Nhập lại mật khẩu mới</label>  <span class="red">&nbsp;*</span>
     </div>
-    <input type="password" class="input form-control" />
+    <input type="password" class="input form-control" name="retypepassword" id="retypepassword" required [(ngModel)]="retypePass"
+    #retypepassword="ngModel"/>
+    <div class="text" [hidden]="retypepassword.valid || retypepassword.pristine">
+      Password is required
+   </div>
   </div>
   <div class="row-pass relative">
     <input type="checkbox" class="check" />&nbsp;&nbsp;Hiển thị mật khẩu
   </div>
-  <button class="btn-mk" type="submit">Cập nhật mật khẩu</button>
+  <button class="btn-mk" type="submit" (click)="changePassword()">Cập nhật mật khẩu</button>
 </form>
 </div>
