@@ -12,6 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { DieukhoandichvuComponent } from './dieukhoandichvu/dieukhoandichvu.component';
 import { CongtyComponent } from './congty/congty.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,11 +24,13 @@ import { CongtyComponent } from './congty/congty.component';
     ThongtinComponent,
     LoginComponent,
     DieukhoandichvuComponent,
-    CongtyComponent
+    CongtyComponent,
+  
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
