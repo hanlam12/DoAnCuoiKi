@@ -14,7 +14,7 @@ import { SearchJobComponent } from './search-job/search-job.component';
     ContactComponent,
     HompageComponent,
     SignUpComponent,
-    SearchJobComponent
+    SearchJobComponent,
   ],
   imports: [
     BrowserModule,
