@@ -104,7 +104,7 @@ ul li{
     background-color: greenyellow;
     text-align: center;
     font-size: 13px;
-    width:80%;
+    width:70px;
     margin-left: 5%;
   }
   #chitiet:hover{
@@ -133,11 +133,39 @@ ul li{
     border: 1px solid black;
     height: 200px;
   }
-  .body_right-bottom{
+  .body_right-bottom {
     margin-top: 20px;
-    height: 30px;
+    height: 60px;
     border-radius: 5px;
-    border: 1px solid black;
+    border: 1px solid darkgreen;
+    padding: 5px;
+    font-size: 16px;
+    background-color: #f7f7f7;
+  }
+
+  .file-upload {
+    display: flex;
+    align-items: center;
+  }
+
+  .file-upload label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+
+  .file-input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #fff;
+    font-size: 16px;
+    color: #444;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .file-input:focus {
+    outline: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
   .body_right .fa-circle-user{
     font-size: 60px;
