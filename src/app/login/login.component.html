@@ -4,11 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link
-      rel="shortcut icon"
-      type="image/png"
-      href="./media/logo-tab-icon.png"
-    /> -->
+    
     <title>WorkZone - Login</title>
     <link rel="stylesheet" href="login.component.html" />
 
@@ -37,7 +33,7 @@
             </div>
           </div>
           <div class="col-md-6 col-12">
-            <form class="form-login">
+            <form  class="form-login" [formGroup]="lgForm">
               <div class="header-login">
                 <h1>Đăng Nhập</h1>
               </div>
@@ -47,30 +43,32 @@
                     type="email"
                     placeholder="Username*"
                     class="input form-control-lgin"
-                    required
                     formControlName="email"
+                    [class.error] = "error"
                   />
                 </div>
+                
               </div>
 
               <div class="input-login pass">
                 <div>
                   <input
-                    type="password"
+                  type="{{ showPassword ? 'text' : 'password' }}" [(ngModel)]="password"
                     placeholder="Password*"
                     class="input form-control-lgin"
-                    required
-                
+                    formControlName="password"
+                    [class.error] = "error"
                   />
                 </div>
               </div>
+              <div class="error-infor" *ngIf="error" >Email hoặc Mật khẩu không hợp lệ</div>
               <div>
-                <input type="checkbox" class="check" /> Hiển thị mật khẩu
+                <input type="checkbox" class="check" formControlName="checkbox" [(ngModel)]="showPassword"   /> Hiển thị mật khẩu
               <a href="#"> <span class="blue forgot float">Quên mật khẩu?</span></a> 
               </div>
 
               <a class="blue center mg-top" routerLink="/sign-up">Bạn chưa có tài khoản? Đăng ký</a>
-              <button type="submit" class="btn-login">Đăng Nhập</button>
+              <button type="submit" class="btn-login" (click)="onSubmit()" >Đăng Nhập</button>
               <div class="">
                 <div class="text center">
                   <span>Hoặc</span>
