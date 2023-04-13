@@ -1,0 +1,59 @@
+<div class="container">
+
+
+<div class="row-item invite" (click)="myFunction('interview')" [ngClass]="{'selected': selectedRowItem === 'interview'}">
+  <p>Lời mời phỏng vấn
+   <span>(1)</span></p>
+  <div class="notify" [ngClass]="{'is-display-none': selectedRowItem !== 'interview'}" >
+    <div class="row-notify">
+      <div class="time">
+    <p> Initiated <span>{{ currentDate | date:'EEEE, MMMM d, y' }}</span></p>
+        <p>{{ currentDate | date:'h:mm a' }}</p>
+      </div>
+      <div class="job">
+        <p><a href="">Documents retyping / simple typing text</a></p>
+      </div>
+      <div class="profile">
+        <p>Profile</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row-item active" (click)="myFunction('proposal')" [ngClass]="{'selected': selectedRowItem === 'proposal'}">
+  <p>Việc đã ứng tuyển
+
+    <span>(1)</span></p>
+  <div class="notify" [ngClass]="{'is-display-none': selectedRowItem !== 'proposal'}" >
+    <div class="row-notify">
+      <div class="time">
+    <p> Initiated <span>{{ currentDate | date:'EEEE, MMMM d, y' }}</span></p>
+        <p>{{ currentDate | date:'h:mm a' }}</p>
+      </div>
+      <div class="job">
+        <p><a href="">Documents retyping / simple typing text</a></p>
+      </div>
+      <div class="profile">
+        <p>Profile</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row-item submit" (click)="myFunction('submitted')" [ngClass]="{'selected': selectedRowItem === 'submitted'}">
+  <p>Thông báo khác
+   <span>(1)</span></p>
+  <div class="notify" id="noti" [ngClass]="{'is-display-none': selectedRowItem !== 'submitted'}">
+    <div class="row-notify">
+      <div class="time">
+    <p> Initiated <span>{{ currentDate | date:'EEEE, MMMM d, y' }}</span></p>
+        <p>{{ currentDate | date:'h:mm a' }}</p>
+      </div>
+      <div class="job">
+        <p><a href="">Documents retyping / simple typing text</a></p>
+      </div>
+      <div class="profile">
+        <p>Profile</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

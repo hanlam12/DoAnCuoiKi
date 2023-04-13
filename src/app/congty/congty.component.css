@@ -1,0 +1,161 @@
+html, body {
+   margin: 0;
+   padding: 0;
+}
+.container-header{
+   
+    display: flex;
+    flex-wrap: wrap;
+    background-color: white;
+    margin: 0;
+    width: 100%;
+}
+ #logo-image{
+     margin-top: -70px;
+    border-radius: 10%;
+    margin-left: 15px;
+    flex-basis: 30%;
+    border: 1px solid lightgrey;
+    width: 150px;
+    height: 150px;
+ }
+ .header-header{
+    display: flex;
+    width: auto;
+    flex-basis: 80%;
+    padding: 10px;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+ }
+ .header-header-infor{
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 60%;
+ }
+ .header-title{
+    flex-basis: 100%;
+    font-size: large;
+    font-weight:400;
+ }
+ .header-follow{
+    display: flex;
+    flex-basis: 40%;
+    align-items: center;
+    justify-content:flex-end;
+ }
+ .header-infor{
+    display: flex;
+    width: 100%;
+ }
+ .main-link{
+    flex-basis: 50%;
+ }
+ .nhanvien{
+    flex-basis: 50%;
+ }
+ #btn-follow{
+    text-decoration: none;
+    background-color: green;
+    border: 1px solid snow;
+    color: aliceblue;
+    border-radius: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: small;
+ }
+ .container{
+   background-color: #D9D9D9;
+   display: flex;
+   justify-content: space-between;
+   flex-wrap:wrap !important;
+   padding-right: 0;
+   padding-left: 0;
+ }
+ .container-infor{
+   background-color: D9D9D9;
+   width: 100%;
+   margin-top: 1%;
+   display: flex;
+   justify-content: space-between;
+ }
+ .infor-gioithieu{
+   background-color: white;
+   flex-basis: 69%;
+   padding: 2%;
+   border-radius: 5px;
+
+ }
+ .infor-diachi{
+   flex-basis: 30%;
+   background-color: white;
+   padding: 2%;
+   border-radius: 5px;
+ }
+ .container-function{
+   background-color:#D9D9D9;
+   display: flex;
+   flex-wrap: nowrap;
+   justify-content: space-between;
+   width: 100%;
+   margin-top: 1%;
+ }
+ .function-tuyendung{
+   background-color: white;
+   flex-basis: 69%;
+   padding: 2%;
+   border-radius: 5px;
+ }
+ .function-share{
+   background-color: white;
+   flex-basis: 30%;
+   padding: 2%;
+   border-radius: 5px;
+ }
+ #lable-link{
+   background-color: aliceblue;
+   padding: 1%;
+   width: 80%;
+   border-radius: 5px;
+ }
+ .function-copy{
+   display: flex;
+   justify-content: space-between;
+ }
+ .btn-copy{
+   background-color: aliceblue;
+   border: px solid white;
+   border-radius: 5px;
+   text-align: center;
+   width: 30px;
+   cursor: pointer;
+ }
+ .function-click{
+   display: flex;
+   justify-content: space-evenly;
+   width: 100%;
+ }
+ .click{
+   cursor: pointer;
+ }
+ table{
+   width: 100%;
+   margin-top: 2%;
+ }
+ #table-image{
+   border-radius: 10%;
+    margin-left: 15px;
+    flex-basis: 30%;
+    border: 1px solid lightgrey;
+    width: 100px;
+    height: 100px;
+    
+ }
+ .job-details{
+   cursor: pointer;
+ }
+ .job-details:hover{
+   background-color: aliceblue;
+ }
