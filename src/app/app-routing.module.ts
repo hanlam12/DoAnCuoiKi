@@ -7,6 +7,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { ThongtinComponent } from './thongtin/thongtin.component';
 import { LoginComponent } from './login/login.component';
 import { DieukhoandichvuComponent } from './dieukhoandichvu/dieukhoandichvu.component';
+import { CongtyComponent } from './congty/congty.component';
 
 const routes: Routes = [
 
@@ -15,7 +16,9 @@ const routes: Routes = [
   {path:"",component:HompageComponent},
   { path: "thongtin", component: ThongtinComponent },
   {path: "login", component: LoginComponent},
-  {path: "dieukhoandichvu", component: DieukhoandichvuComponent}
+
+  {path: "dieukhoandichvu", component: DieukhoandichvuComponent},
+  {path: "congty", component: CongtyComponent}
 
 ];
 
@@ -31,5 +34,6 @@ export const RoutingComponent={
   SignUpComponent,
   ThongtinComponent,
   LoginComponent,
-  DieukhoandichvuComponent
+  DieukhoandichvuComponent,
+  CongtyComponent
 }

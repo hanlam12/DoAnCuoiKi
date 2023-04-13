@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-thongtin',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./thongtin.component.css']
 })
 export class ThongtinComponent {
-
+  
 }
