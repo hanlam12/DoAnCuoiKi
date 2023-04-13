@@ -22,6 +22,11 @@
         <div><i class="fa-regular fa-circle-user"></i></div>
         <div class="text_cbtl">Chào bạn trở lại <br>
         <b>TÊN NGƯỜI DÙNG</b></div>
+            <div>
+      Chọn CV
+      <span><input type="file" class="file-input"name="image" id="image"/></span>
+
+    </div>
         <div *ngIf="statusOn; else statusOffBlock">
           <div class="st-on-off-on"><button class="on-off-on"></button></div>
           <div class="text_status-on" id="text_status-on">Trạng thái làm việc đang bật</div>
@@ -32,6 +37,7 @@
       </ng-template>
         <div class="text_text">Bật tìm việc để nhận được nhiều cơ hội việc làm tốt nhất từ WorkZone.</div>
     </div>
+
     <div id="body_left">
       <div id="content_body_left">
         <div id="file_created"> <p>Hồ sơ đã tạo</p> </div>

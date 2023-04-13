@@ -130,6 +130,7 @@ ul li{
     height: 200px;
     margin-top: 20px;
     justify-content: center;
+    padding-left: 10px;
   }
   .body_right .fa-circle-user{
     font-size: 60px;
