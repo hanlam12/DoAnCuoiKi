@@ -1,0 +1,43 @@
+
+<div class="container" >
+  <div class="main-menu">
+    <div class="left-main-menu">
+      <div class="row">
+        <div class="col-md-3">
+          <a class="logo" href="#"
+            ><img src="assets/media/logo.png" alt="Logo"
+          /></a>
+        </div>
+        <div class="col-md-6">
+          <ul class="nav-pc">
+            <li><a href="timkiemvieclam.html">Tìm việc</a></li>
+            <li><a href="#">Công việc</a></li>
+            <li><a href="thongtin.html">Về WorkZone</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="right-main-menu">
+      <a href="sign-up" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ĐĂNG KÝ</a>
+      <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ĐĂNG NHẬP</a>
+      <a href="#" class="btn btn-primary btn-lg active ntd" role="button" aria-pressed="true">NHÀ TUYỂN DỤNG</a>
+    </div>
+  </div>
+</div>
+<hr>
+
+<div id="nav-mb">
+  <button (click)="menu()">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+</div>
+
+
+<ul class="list-menu-mb-login" [ngClass]="{'is-left-default': isLeftDefault}">
+  <li><a href="timkiemvieclam.html">Tìm việc</a></li>
+  <li><a href="#">Công việc</a></li>
+  <li><a href="thongtin.html">Về WorkZone</a></li>
+  <a href="sign-up" class="btn-nav" role="button" aria-pressed="true">ĐĂNG KÝ</a>
+  <a href="#" class="btn-nav" role="button" aria-pressed="true">ĐĂNG NHẬP</a>
+  <a href="#" class="btn-nav ntd" role="button" aria-pressed="true">NHÀ TUYỂN DỤNG</a>
+</ul>
