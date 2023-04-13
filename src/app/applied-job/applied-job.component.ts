@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-applied-job',
@@ -6,5 +6,9 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   styleUrls: ['./applied-job.component.css']
 })
 export class AppliedJobComponent {
-  statusOn: boolean = true;
+  isOn: boolean = true;
+
+  status() {
+    this.isOn = !this.isOn;
+  }
 }

@@ -1,6 +1,4 @@
 <body>
-  <!-- main -->
- <!-- menu-account -->
  <div class="container">
    <div class="row">
      <div class="col-md-12 col-12">
@@ -16,20 +14,17 @@
        <div class="box-menu-mb"><a href="viecdaungtuyen.html"><b> Việc đã ứng tuyển (7)</b></a></div>
      </div>
    </div>
- <!-- body -->
  <div id="body">
       <div class="body_right ">
      <div><i class="fa-regular fa-circle-user"></i></div>
      <div class="text_cbtl">Chào bạn trở lại <br>
-     <b>TÊN NGƯỜI DÙNG</b></div>
-     <div *ngIf="statusOn; else statusOffBlock">
-      <div class="st-on-off-on"><button class="on-off-on"></button></div>
-      <div class="text_status-on" id="text_status-on">Trạng thái làm việc đang bật</div>
-  </div>
-  <ng-template #statusOffBlock>
-      <div class="st-on-off-off"><button class="on-off-off"></button></div>
-      <div class="text_status-off" id="text_status-off">Trạng thái làm việc đang tắt</div>
-  </ng-template>
+     <b>NGUYỄN THU HẰNG</b></div>
+     <div class="text_status" [ngClass]="{'text_status-on': isOn, 'text_status-off': !isOn}">
+      <div class="st-on-off" [ngClass]="{'st-on-off-on': isOn, 'st-on-off-off': !isOn}">
+        <div (click)="status()" class="on-off" [ngClass]="{'on-off-on': isOn, 'on-off-off': !isOn}"></div>
+      </div>
+      {{ isOn ? 'Trạng thái làm việc đang bật' : 'Trạng thái làm việc đang tắt' }}
+    </div>
      <div class="text_text">Bật tìm việc để nhận được nhiều cơ hội việc làm tốt nhất từ WorkZone.</div>
  </div>
  <div id="body_left">

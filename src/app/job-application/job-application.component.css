@@ -124,13 +124,20 @@ ul li{
   .body_right{
 
     width: 310px;
-    border-radius: 15px;
-    border: 1px solid black;
     margin-left: 20px;
-    height: 200px;
     margin-top: 20px;
     justify-content: center;
-    padding-left: 10px;
+  }
+  .body_right-top{
+    border-radius: 15px;
+    border: 1px solid black;
+    height: 200px;
+  }
+  .body_right-bottom{
+    margin-top: 20px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid black;
   }
   .body_right .fa-circle-user{
     font-size: 60px;
@@ -142,59 +149,43 @@ ul li{
     margin-top: 20px;
     margin-left: 100px;
   }
-  .text_status-on{
+  .text_status {
     margin-left: 8%;
     margin-top: 30px;
     font-weight: bolder;
     line-height: 35px;
   }
-  .text_text{
-    margin-left: 8%;
-    line-height: 18px;
-    font-size: small;
-  }
-  .st-on-off-on{
-    width:46px;
+  .st-on-off {
+    width: 46px;
     height: 20px;
-    background-color: greenyellow;
     float: left;
     margin-top: 10px;
     border-radius: 100px;
     border: 1px solid;
   }
-  .on-off-on{
+  .st-on-off-on {
+    background-color: greenyellow;
+  }
+  .st-on-off-off {
+    background-color: red;
+  }
+  .on-off {
     width: 20px;
     height: 20px;
     background-color: #ffffff;
     border-radius: 100px;
     border: 1px solid;
     margin-top: -1px;
+    cursor: pointer;
+  }
+  .on-off-on {
     margin-left: 26px;
   }
-  .text_status-off{
-    margin-left: 8%;
-    margin-top: 30px;
-    font-weight: bolder;
-    line-height: 35px;
-    display: none;
-  }
-  .st-on-off-off{
-    width:46px;
-    height: 20px;
-    background-color: red;
-    float: left;
-    margin-top: 10px;
-    border-radius: 100px;
-    border: 1px solid;
-  }
-  .on-off-off{
-    width: 20px;
-    height: 20px;
-    background-color: #ffffff;
-    border-radius: 100px;
-    border: 1px solid;
-    margin-top: -1px;
+  .on-off-off {
     margin-left: -1px;
+  }
+  .text_text{
+    padding-left: 15px;
   }
   @media (min-width: 1200px)
   {
