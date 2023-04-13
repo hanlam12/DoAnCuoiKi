@@ -181,6 +181,7 @@
 }
 hr {
   width: 80%;
+  margin: auto;
   border: 0.05px solid gray;
 }
 .more {
@@ -498,4 +499,71 @@ ul {
   -webkit-box-orient: vertical;
 }
 
+@media screen and (max-width: 480px) {
+  .hompage-main-banner{
+    display: none;
+  }
+  .homepage-banner-content{
+    background-color: #d6d7d8;
+    margin: 0;
+  }
+  .mt160{
+    padding-top: 10px;
+    margin: 0;
+    padding-bottom: 0;
+  }
+  .homepage-banner-content h3{
+    font-size: 15px;
+    color: black;
+  }
+  .homepage-box-input{
+    display: block;
+    width: 90%;
+  }
+  .homepage-input {
+    margin-top: 10px;
+  }
+  #search{
+    height: 45px;
+    margin-top: 10px;
+    font-size: 17px;
+    font-weight: normal;
+  }
+  .content-hot-infor a div:nth-child(1) {
+    font-size: 14px;
+  }
+  .content-hot-infor{
+    flex-basis: 80%;
+    font-size: 13px;
+  }
+  .content-hot-input{
+    display: none;
+  }
+  .box-content{
+    display: block;
+    margin: 0 auto;
+    width: 90%;
+  }
+  .head, .top-head, .head2, .box3-item2-content2{
+    font-size: 15px;
+  }
+  .catelog-list p{
+    font-size: 14px;
+  }
+  .box-content_right_top{
+    margin-top: 20px;
+  }
+  .top-cent,.content-row, .top-cent1{
+    display: block;
+  }
+  .box1{
+    background-color: white;
+  }
+  .box1 a .img{
+    height: auto;
+  }
+  .top-cent1-box1{
+    margin-bottom: 20px;
+  }
 
+}

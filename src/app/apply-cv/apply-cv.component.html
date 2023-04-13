@@ -1,0 +1,64 @@
+<p>apply-cv works!</p>
+<h2 style="text-align: center;">Example of Ngx-Bootstrap Modal</h2>
+
+<div class="container__content--right1">
+  <button id="myBtn" (click)=" openModal()">Nộp đơn</button>
+</div>
+<ng-template #myModal>
+<div id="myModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>
+        Ứng tuyển
+        <span>Nhân viên Relationshop Manager</span>
+      </h2>
+    </div>
+    <div class="modal-body">
+      <p>Chọn CV:</p>
+      <input type="radio" name="send" id="1" class="cv ipcv" /><label
+        class="cv"
+        for="1"
+        >CV1 <a href="">(Xem)</a></label
+      >
+      <br />
+      <input class="cv ipcv" type="radio" name="send" id="2" /><label
+        class="cv"
+        for="2"
+        >CV2 <a href="">(Xem)</a></label
+      ><br /><input
+        class="cv ipcv"
+        type="radio"
+        name="send"
+        id="3"
+      /><label class="cv" for="3">Name <a href="">(Xem)</a></label
+      ><br />
+      <label for="Introducingletter" class="Introducingletter"
+        >Thư giới thiệu:</label
+      ><br />
+      <textarea
+        name="Introducingletter"
+        id="Introducingletter"
+        placeholder="Viết thư giới thiệu ngắn gọn về bản thân (điểm mạnh, điểm yếu) và nêu rõ mong muốn, lý do làm việc tại công ty này. Đây là cách gây ấn tượng với nhà tuyển dụng nếu bạn chưa có kinh nghiệm làm việc (hoặc CV không tốt)."
+      ></textarea>
+    </div>
+    <div class="modal-footer">
+      <button (click)="cvSuccess()" id="myBtn2">Nộp CV</button>
+      <button (click)="modalRef.hide()" class="close">Đóng lại</button>
+    </div>
+  </div>
+</div>
+</ng-template>
+
+<ng-template #myModal2>
+  <div id="myModal2" class="modal">
+
+    <div class="modal-content1">
+      <img id="check__successful" src="./media/check.png" alt="" />
+      <div>NỘP CV THÀNH CÔNG</div>
+      <div class="modal-footer1">
+        <button class="close2">OK</button>
+      </div>
+    </div>
+  </div>
+  </ng-template>

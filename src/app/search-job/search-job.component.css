@@ -97,8 +97,6 @@ a {
 }
 
 .search-main-content-left{
-  background-color: rgb(255, 255, 255);
-  border: 1px solid gray;
   padding-top: 20px;
   padding-left: 20px;
   padding-bottom: 10px;
@@ -108,8 +106,11 @@ a {
 }
 .search-main-content-right{
   flex-basis: 65%;
-  background-color: rgb(255, 255, 255);
+
+}
+.border{
   border: 1px solid gray;
+  background-color: rgb(255, 255, 255);
 }
 .search-main-content-left1{
   background-color: transparent;
@@ -239,4 +240,83 @@ a {
 }
 .more:hover {
   color: #0075ff;
+}
+@media screen and (max-width: 480px) {
+  .hompage-main-banner, .content-hot-input{
+    display: none;
+  }
+  .homepage-banner-content{
+    background-color: #d6d7d8;
+    margin: 0;
+  }
+  .mt160{
+    padding-top: 10px;
+    margin: 0;
+    padding-bottom: 0;
+  }
+  .homepage-banner-content h3{
+    font-size: 17px;
+    color: black;
+  }
+  .homepage-box-input{
+    display: block;
+    width: 90%;
+  }
+  .homepage-input {
+    margin-top: 10px;
+  }
+  #search{
+    height: 45px;
+    margin-top: 10px;
+    font-size: 17px;
+    font-weight: normal;
+  }
+  .search-main-content{
+    display: block;
+    width: 100%;
+    background-color: #d6d7d8;
+  }
+  .content-hot{
+    padding: 20px 20px 0 20px;
+  }
+  .search-main-content-left, .search-main-content-right{
+    margin: 0 25px;
+  }
+  .search-main-content-left{
+    padding-left: 0;
+    padding-top: 0px;
+  }
+  .search-main-content-right{
+    margin-top: 20px;
+  }
+  .search-filter{
+    font-size: 15px;
+    color: black;
+  }
+  .category{
+    margin-left: 10px;
+    font-size: 16px
+  }
+  .border{
+    margin-top: 10px;
+  }
+  .search-card{
+    margin-top: 10px;
+  }
+  .cate-right, .cate-left{
+    font-size: 14px;
+  }
+  .search-price, .search-rate{
+    margin-left: 20px;
+  }
+  .content-hot-infor{
+    flex-basis: 80%;
+  }
+  .content-hot-infor a div:nth-child(1){
+    font-size: 13px;
+  }
+  .content-hot-infor div{
+    font-size: 13px;
+  }
+
 }

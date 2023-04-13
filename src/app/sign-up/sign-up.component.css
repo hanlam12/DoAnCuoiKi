@@ -110,3 +110,11 @@
 .icon {
   padding-right: 5px;
 }
+@media (max-width: 480px) {
+  .left-lg{
+    display: none;
+  }
+  .login-main{
+    margin: 0;
+  }
+}

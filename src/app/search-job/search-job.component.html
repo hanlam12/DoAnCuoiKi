@@ -31,210 +31,205 @@
   </div>
 </div>
 <!-- new   -->
+
 <div class="search-main-content">
-  <div class="search-main-content-left1">
+  <div class="search-main-content-left">
     <button class="search-filter" (click)="toggleText()">
       <span *ngIf="showText"><i class="bi bi-x-lg"></i></span>
       <span *ngIf="!showText"><i class="bi bi-funnel-fill"></i></span>
       Filter & Refind
     </button>
-  </div>
-  <div class="search-main-content-right1">
-    <div class="search-filter">Đã tìm thấy x công việc</div>
-  </div>
-</div>
-<br>
-<div class="search-main-content">
-  <div class="search-main-content-left">
-    <div class="search-card" *ngIf="showText">
-      <div class="search-card">
-        <div (click)="toggleText1()">
-          <span class="cate-left category">Ngành nghề</span>
-          <span class="cate-right" *ngIf="showText1"><i class="bi bi-chevron-up"></i></span>
-          <span class="cate-right" *ngIf="!showText1"><i class="bi bi-chevron-down"></i></span>
-        </div><br>
-        <div class="search-card-item">
-          <p *ngIf="showText1">
-            <span class="cate-left mf10">Tất cả cấp bậc</span>
-            <span class="cate-right">(1,000)</span>
-          </p>
-          <p *ngIf="showText1">
-            <span class="cate-left mf10">Tất cả cấp bậc</span>
-            <span class="cate-right">(1,000)</span>
-          </p>
-          <p *ngIf="showText1">
-            <span class="cate-left mf10">Tất cả cấp bậc</span>
-            <span class="cate-right">(1,000)</span>
-          </p>
-          <p *ngIf="showText1">
-            <span class="cate-left mf10">Tất cả cấp bậc</span>
-            <span class="cate-right">(1,000)</span>
-          </p>
-          <p *ngIf="showText1">
-            <span class="cate-left mf10">Tất cả cấp bậc</span>
-            <span class="cate-right">(1,000)</span>
-          </p>
-          <p *ngIf="showText1">
-            <span class="cate-left mf10">Tất cả cấp bậc</span>
-            <span class="cate-right">(1,000)</span>
-          </p>
-          <p *ngIf="showText1">
-            <span class="cate-left mf10">Tất cả cấp bậc</span>
-            <span class="cate-right">(1,000)</span>
-          </p>
-          <p *ngIf="showText1">
-            <span class="cate-left mf10">Tất cả cấp bậc</span>
-            <span class="cate-right">(1,000)</span>
-          </p>
-          <p *ngIf="showText1">
-            <span class="cate-left mf10">Tất cả cấp bậc</span>
-            <span class="cate-right">(1,000)</span>
-          </p>
-          <p *ngIf="showText1">
-            <span class="cate-left mf10">Tất cả cấp bậc</span>
-            <span class="cate-right">(1,000)</span>
-          </p>
-          <p *ngIf="showText1">
-            <span class="cate-left mf10">Tất cả cấp bậc</span>
-            <span class="cate-right">(1,000)</span>
-          </p>
-          <p *ngIf="showText1">
-            <span class="cate-left mf10">Tất cả cấp bậc</span>
-            <span class="cate-right">(1,000)</span>
-          </p>
-          <p *ngIf="showText1">
-            <span class="cate-left mf10">Tất cả cấp bậc</span>
-            <span class="cate-right">(1,000)</span>
-          </p>
-          <p *ngIf="showText1">
-            <span class="cate-left mf10">Tất cả cấp bậc</span>
-            <span class="cate-right">(1,000)</span>
-          </p>
+    <div class="border">
+      <div class="search-card" *ngIf="showText">
+        <div class="search-card">
+          <div (click)="toggleText1()">
+            <span class="cate-left category">Ngành nghề</span>
+            <span class="cate-right" *ngIf="showText1"><i class="bi bi-chevron-up"></i></span>
+            <span class="cate-right" *ngIf="!showText1"><i class="bi bi-chevron-down"></i></span>
+          </div><br>
+          <div class="search-card-item">
+            <p *ngIf="showText1">
+              <span class="cate-left mf10">Tất cả cấp bậc</span>
+              <span class="cate-right">(1,000)</span>
+            </p>
+            <p *ngIf="showText1">
+              <span class="cate-left mf10">Tất cả cấp bậc</span>
+              <span class="cate-right">(1,000)</span>
+            </p>
+            <p *ngIf="showText1">
+              <span class="cate-left mf10">Tất cả cấp bậc</span>
+              <span class="cate-right">(1,000)</span>
+            </p>
+            <p *ngIf="showText1">
+              <span class="cate-left mf10">Tất cả cấp bậc</span>
+              <span class="cate-right">(1,000)</span>
+            </p>
+            <p *ngIf="showText1">
+              <span class="cate-left mf10">Tất cả cấp bậc</span>
+              <span class="cate-right">(1,000)</span>
+            </p>
+            <p *ngIf="showText1">
+              <span class="cate-left mf10">Tất cả cấp bậc</span>
+              <span class="cate-right">(1,000)</span>
+            </p>
+            <p *ngIf="showText1">
+              <span class="cate-left mf10">Tất cả cấp bậc</span>
+              <span class="cate-right">(1,000)</span>
+            </p>
+            <p *ngIf="showText1">
+              <span class="cate-left mf10">Tất cả cấp bậc</span>
+              <span class="cate-right">(1,000)</span>
+            </p>
+            <p *ngIf="showText1">
+              <span class="cate-left mf10">Tất cả cấp bậc</span>
+              <span class="cate-right">(1,000)</span>
+            </p>
+            <p *ngIf="showText1">
+              <span class="cate-left mf10">Tất cả cấp bậc</span>
+              <span class="cate-right">(1,000)</span>
+            </p>
+            <p *ngIf="showText1">
+              <span class="cate-left mf10">Tất cả cấp bậc</span>
+              <span class="cate-right">(1,000)</span>
+            </p>
+            <p *ngIf="showText1">
+              <span class="cate-left mf10">Tất cả cấp bậc</span>
+              <span class="cate-right">(1,000)</span>
+            </p>
+            <p *ngIf="showText1">
+              <span class="cate-left mf10">Tất cả cấp bậc</span>
+              <span class="cate-right">(1,000)</span>
+            </p>
+            <p *ngIf="showText1">
+              <span class="cate-left mf10">Tất cả cấp bậc</span>
+              <span class="cate-right">(1,000)</span>
+            </p>
+          </div>
+          <hr class="search-hr">
+          <!-- Mức lương -->
+          <div class="search-card-item" style="margin-bottom: 30px;">
+            <div (click)="toggleText2()">
+              <span class="cate-left category">Mức lương</span>
+              <span class="cate-right" *ngIf="showText2"><i class="bi bi-chevron-up"></i></span>
+              <span class="cate-right" *ngIf="!showText2"><i class="bi bi-chevron-down"></i></span>
+            </div><br>
+            <div *ngIf="showText2">
+              <div>
+                <form action="">
+                  <input type="number" class="search-price" placeholder="1.000.000"  name="" id="">
+                  -
+                  <input type="number" class="search-price" placeholder="5.000.000" name="" id="">
+                  <button type="submit" class="btn-price"><i class="bi bi-chevron-right"></i></button>
+                </form>
+              </div>
+            </div>
         </div>
         <hr class="search-hr">
-        <!-- Mức lương -->
+        <!-- Đánh giá -->
         <div class="search-card-item" style="margin-bottom: 30px;">
-          <div (click)="toggleText2()">
-            <span class="cate-left category">Mức lương</span>
-            <span class="cate-right" *ngIf="showText2"><i class="bi bi-chevron-up"></i></span>
-            <span class="cate-right" *ngIf="!showText2"><i class="bi bi-chevron-down"></i></span>
+          <div (click)="toggleText3()">
+            <span class="cate-left category">Đánh giá</span>
+            <span class="cate-right" *ngIf="showText3"><i class="bi bi-chevron-up"></i></span>
+            <span class="cate-right" *ngIf="!showText3"><i class="bi bi-chevron-down"></i></span>
           </div><br>
-          <div *ngIf="showText2">
-            <div>
-              <form action="">
-                <input type="number" class="search-price" placeholder="1.000.000"  name="" id="">
-                -
-                <input type="number" class="search-price" placeholder="5.000.000" name="" id="">
-                <button type="submit" class="btn-price"><i class="bi bi-chevron-right"></i></button>
-              </form>
+          <div *ngIf="showText3">
+            <div class="search-rate">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              (từ 5 sao)
+            </div>
+            <div class="search-rate">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star"></i>
+              (từ 4 sao)
+            </div>
+            <div class="search-rate">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star"></i>
+              <i class="bi bi-star"></i>
+              (từ 3 sao)
             </div>
           </div>
-      </div>
-      <hr class="search-hr">
-      <!-- Đánh giá -->
-      <div class="search-card-item" style="margin-bottom: 30px;">
-        <div (click)="toggleText3()">
-          <span class="cate-left category">Đánh giá</span>
-          <span class="cate-right" *ngIf="showText3"><i class="bi bi-chevron-up"></i></span>
-          <span class="cate-right" *ngIf="!showText3"><i class="bi bi-chevron-down"></i></span>
-        </div><br>
-        <div *ngIf="showText3">
-          <div class="search-rate">
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            (từ 5 sao)
-          </div>
-          <div class="search-rate">
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star"></i>
-            (từ 4 sao)
-          </div>
-          <div class="search-rate">
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star"></i>
-            <i class="bi bi-star"></i>
-            (từ 3 sao)
-          </div>
-        </div>
-    </div><hr class="search-hr">
-    <div (click)="toggleText4()">
-      <span class="cate-left category">Cấp bậc</span>
-      <span class="cate-right" *ngIf="showText4"><i class="bi bi-chevron-up"></i></span>
-      <span class="cate-right" *ngIf="!showText4"><i class="bi bi-chevron-down"></i></span>
-    </div><br>
-    <div class="search-card-item">
+      </div><hr class="search-hr">
+      <div (click)="toggleText4()">
+        <span class="cate-left category">Cấp bậc</span>
+        <span class="cate-right" *ngIf="showText4"><i class="bi bi-chevron-up"></i></span>
+        <span class="cate-right" *ngIf="!showText4"><i class="bi bi-chevron-down"></i></span>
+      </div><br>
+      <div class="search-card-item">
 
-      <p *ngIf="showText4">
-        <span class="cate-left mf10">Tất cả ngành nghề</span>
-        <span class="cate-right">(1,000)</span>
-      </p>
-      <p *ngIf="showText4">
-        <span class="cate-left mf10">Tất cả ngành nghề</span>
-        <span class="cate-right">(1,000)</span>
-      </p>
-      <p *ngIf="showText4">
-        <span class="cate-left mf10">Tất cả ngành nghề</span>
-        <span class="cate-right">(1,000)</span>
-      </p>
-      <p *ngIf="showText4">
-        <span class="cate-left mf10">Tất cả ngành nghề</span>
-        <span class="cate-right">(1,000)</span>
-      </p>
-      <p *ngIf="showText4">
-        <span class="cate-left mf10">Tất cả ngành nghề</span>
-        <span class="cate-right">(1,000)</span>
-      </p>
-      <p *ngIf="showText4">
-        <span class="cate-left mf10">Tất cả ngành nghề</span>
-        <span class="cate-right">(1,000)</span>
-      </p>
-      <p *ngIf="showText1">
-        <span class="cate-left mf10">Tất cả ngành nghề</span>
-        <span class="cate-right">(1,000)</span>
-      </p>
-      <p *ngIf="showText4">
-        <span class="cate-left mf10">Tất cả ngành nghề</span>
-        <span class="cate-right">(1,000)</span>
-      </p>
-      <p *ngIf="showText4">
-        <span class="cate-left mf10">Tất cả ngành nghề</span>
-        <span class="cate-right">(1,000)</span>
-      </p>
-      <p *ngIf="showText4">
-        <span class="cate-left mf10">Tất cả ngành nghề</span>
-        <span class="cate-right">(1,000)</span>
-      </p>
-      <p *ngIf="showText4">
-        <span class="cate-left mf10">Tất cả ngành nghề</span>
-        <span class="cate-right">(1,000)</span>
-      </p>
-      <p *ngIf="showText4">
-        <span class="cate-left mf10">Tất cả ngành nghề</span>
-        <span class="cate-right">(1,000)</span>
-      </p>
-      <p *ngIf="showText4">
-        <span class="cate-left mf10">Tất cả ngành nghề</span>
-        <span class="cate-right">(1,000)</span>
-      </p>
-      <p *ngIf="showText4">
-        <span class="cate-left mf10">Tất cả ngành nghề</span>
-        <span class="cate-right">(1,000)</span>
-      </p>
+        <p *ngIf="showText4">
+          <span class="cate-left mf10">Tất cả ngành nghề</span>
+          <span class="cate-right">(1,000)</span>
+        </p>
+        <p *ngIf="showText4">
+          <span class="cate-left mf10">Tất cả ngành nghề</span>
+          <span class="cate-right">(1,000)</span>
+        </p>
+        <p *ngIf="showText4">
+          <span class="cate-left mf10">Tất cả ngành nghề</span>
+          <span class="cate-right">(1,000)</span>
+        </p>
+        <p *ngIf="showText4">
+          <span class="cate-left mf10">Tất cả ngành nghề</span>
+          <span class="cate-right">(1,000)</span>
+        </p>
+        <p *ngIf="showText4">
+          <span class="cate-left mf10">Tất cả ngành nghề</span>
+          <span class="cate-right">(1,000)</span>
+        </p>
+        <p *ngIf="showText4">
+          <span class="cate-left mf10">Tất cả ngành nghề</span>
+          <span class="cate-right">(1,000)</span>
+        </p>
+        <p *ngIf="showText1">
+          <span class="cate-left mf10">Tất cả ngành nghề</span>
+          <span class="cate-right">(1,000)</span>
+        </p>
+        <p *ngIf="showText4">
+          <span class="cate-left mf10">Tất cả ngành nghề</span>
+          <span class="cate-right">(1,000)</span>
+        </p>
+        <p *ngIf="showText4">
+          <span class="cate-left mf10">Tất cả ngành nghề</span>
+          <span class="cate-right">(1,000)</span>
+        </p>
+        <p *ngIf="showText4">
+          <span class="cate-left mf10">Tất cả ngành nghề</span>
+          <span class="cate-right">(1,000)</span>
+        </p>
+        <p *ngIf="showText4">
+          <span class="cate-left mf10">Tất cả ngành nghề</span>
+          <span class="cate-right">(1,000)</span>
+        </p>
+        <p *ngIf="showText4">
+          <span class="cate-left mf10">Tất cả ngành nghề</span>
+          <span class="cate-right">(1,000)</span>
+        </p>
+        <p *ngIf="showText4">
+          <span class="cate-left mf10">Tất cả ngành nghề</span>
+          <span class="cate-right">(1,000)</span>
+        </p>
+        <p *ngIf="showText4">
+          <span class="cate-left mf10">Tất cả ngành nghề</span>
+          <span class="cate-right">(1,000)</span>
+        </p>
+      </div>
+      </div>
     </div>
     </div>
-  </div>
 </div>
 <div class="search-main-content-right">
-
-
+  <div class="search-filter">Đã tìm thấy x công việc</div>
+  <div class="border">
     <div class="content-hot">
       <div class="content-img">
         <a href="motacongviec.html" target="_bank"
@@ -459,6 +454,11 @@
     <a href="timkiemvieclam.html" target="_bank"
       ><div class="more">Xem tất cả</div></a
     ><br />
+  </div>
+
+
+
+
 
 
 </div>
