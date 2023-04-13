@@ -1,3 +1,6 @@
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-utils-pagination/0.4.0/dirPagination.js"></script>
+</head>
 <body>
  <div class="container">
    <div class="row">
@@ -48,30 +51,12 @@
          <th>Ngày ứng tuyển</th>
          <th class="text-center ">Trạng thái</th>
      </tr>
-     <tr>
+     <tr *ngFor="let item of data | slice:(page-1)*pageSize:page*pageSize">
          <td class="picture_company image"><img src="assets/media/aia.png" alt="Picture of Company" width="100%" ></td>
-         <td >Frontend Developer (JavaScript, ReactJS)</td>
-         <td>11/12/2022</td>
-         <td> <div id="chitiet" class="text-center ">Đang chờ</div></td>
+         <td >{{item.name_company}}</td>
+         <td>{{item.date_Created}}</td>
+         <td> <div id="chitiet" class="text-center ">{{item.status}}</div></td>
      </tr>
-     <tr>
-      <td class="picture_company"><img src="assets/media/aia.png" alt="Picture of Company" width="100%"></td>
-      <td>Frontend Developer (JavaScript, ReactJS)</td>
-      <td>11/12/2022</td>
-      <td> <div id="chitiet">Đang chờ</div></td>
-  </tr>
-  <tr>
-    <td class="picture_company"><img src="assets/media/aia.png" alt="Picture of Company" width="100%" ></td>
-    <td>Frontend Developer (JavaScript, ReactJS)</td>
-    <td>11/12/2022</td>
-    <td> <div id="chitiet">Đang chờ</div></td>
-</tr>
-<tr>
-  <td class="picture_company" ><img src="assets/media/aia.png" alt="Picture of Company" width="100%" ></td>
-  <td>Frontend Developer (JavaScript, ReactJS)</td>
-  <td>11/12/2022</td>
-  <td> <div id="chitiet">Đang chờ</div></td>
-</tr>
  </table>
  </div>
  </div>

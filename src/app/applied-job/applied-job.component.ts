@@ -11,4 +11,21 @@ export class AppliedJobComponent {
   status() {
     this.isOn = !this.isOn;
   }
+
+    data = [
+      { "id": "job0001", "name_company": "Frontend Developer (JavaScript, ReactJS)", "date_Created": "11/12/2022", "status":"Đang chờ"},
+      { "id": "job0002", "name_company": "Frontend Developer (JavaScript, ReactJS)", "date_Created": "11/12/2022", "status":"Đang chờ"},
+      { "id": "job0003", "name_company": "Frontend Developer (JavaScript, ReactJS)", "date_Created": "11/12/2022", "status":"Đang chờ"},
+      { "id": "job0004", "name_company": "Frontend Developer (JavaScript, ReactJS)", "date_Created": "11/12/2022", "status":"Đang chờ"},
+      { "id": "job0005", "name_company": "Frontend Developer (JavaScript, ReactJS)", "date_Created": "11/12/2022", "status":"Đang chờ"},
+      { "id": "job0006", "name_company": "Frontend Developer (JavaScript, ReactJS)", "date_Created": "11/12/2022", "status":"Đang chờ"},
+      { "id": "job0007", "name_company": "Frontend Developer (JavaScript, ReactJS)", "date_Created": "11/12/2022", "status":"Đang chờ"},
+      { "id": "job0008", "name_company": "Frontend Developer (JavaScript, ReactJS)", "date_Created": "11/12/2022", "status":"Đang chờ"}
+    ];
+
+    page = 1;
+    pageSize = 4;
+    collectionSize = this.data.length;
+
+    constructor() { }
 }
