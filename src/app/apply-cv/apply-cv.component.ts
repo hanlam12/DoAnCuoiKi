@@ -6,6 +6,11 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./apply-cv.component.css']
 })
 export class ApplyCVComponent   {
+  show=false
+  tonggle(){
+    this.show=!this.show
+  }
+
   @ViewChild('myModal') modal!: TemplateRef<any>;
   modalRef!: BsModalRef;
   @ViewChild('myModal2') modal2!: TemplateRef<any>;
@@ -18,5 +23,8 @@ export class ApplyCVComponent   {
   cvSuccess() {
     this.modal2Ref = this.modalService.show(this.modal2);
     this.modalRef.hide()
+  }
+  cvSuccess2() {
+    this.modal2Ref.hide()
   }
 }
