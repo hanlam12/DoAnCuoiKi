@@ -9,12 +9,12 @@
           <p>Vui lòng kiểm tra tin nhắn và nhập mã OTP.</p>
           <p>Mã OTP của bạn có 6 ký tự.</p>
           <div class="form-group">
-            <input type="text" class="form-control" id="ist" maxlength="1" onkeyup="clickEvent(this,'sec')">
-            <input type="text" class="form-control" id="sec" maxlength="1" onkeyup="clickEvent(this,'third')">
-            <input type="text" class="form-control" id="third" maxlength="1" onkeyup="clickEvent(this,'fourth')">
-            <input type="text" class="form-control" id="fourth" maxlength="1" onkeyup="clickEvent(this,'fifth')">
-            <input type="text" class="form-control" id="fifth" maxlength="1" onkeyup="clickEvent(this,'sixth')">
-            <input type="text" class="form-control" id="sixth" maxlength="1">
+            <input type="text" class="form-control" id="ist" maxlength="1" onkeyup="clickEvent(this,'sec')" (keypress)="numberOnly($event)">
+            <input type="text" class="form-control" id="sec" maxlength="1" onkeyup="clickEvent(this,'third')" (keypress)="numberOnly($event)">
+            <input type="text" class="form-control" id="third" maxlength="1" onkeyup="clickEvent(this,'fourth')" (keypress)="numberOnly($event)">
+            <input type="text" class="form-control" id="fourth" maxlength="1" onkeyup="clickEvent(this,'fifth')" (keypress)="numberOnly($event)">
+            <input type="text" class="form-control" id="fifth" maxlength="1" onkeyup="clickEvent(this,'sixth')" (keypress)="numberOnly($event)">
+            <input type="text" class="form-control" id="sixth" maxlength="1" (keypress)="numberOnly($event)">
           </div>
           <hr>
           <div class="row justify-content-between">

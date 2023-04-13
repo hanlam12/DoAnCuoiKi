@@ -43,15 +43,6 @@
   cursor: pointer;
   background-color: #edf9ff;
 }
-/* .box-menu-pc {
-  width: 100%;
-  height: 50px;
-  padding-top: 15px;
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-evenly;
-  background-color: #DEEFFF;
-} */
 label:first-child{
   font-weight: 700;
 }
