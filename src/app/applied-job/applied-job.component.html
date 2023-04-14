@@ -58,6 +58,10 @@
          <td> <div id="chitiet" class="text-center ">{{item.status}}</div></td>
      </tr>
  </table>
+ <div>
+  <button [disabled]="page === 1" (click)="page = page - 1" class="disabled"><</button>
+  <button [disabled]="page * pageSize >= collectionSize" (click)="page = page + 1">></button>
+</div>
  </div>
  </div>
  </div>

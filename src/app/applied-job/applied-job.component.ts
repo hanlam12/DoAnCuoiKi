@@ -14,13 +14,11 @@ export class AppliedJobComponent {
 
     data = [
       { "id": "job0001", "name_company": "Frontend Developer (JavaScript, ReactJS)", "date_Created": "11/12/2022", "status":"Đang chờ"},
-      { "id": "job0002", "name_company": "Frontend Developer (JavaScript, ReactJS)", "date_Created": "11/12/2022", "status":"Đang chờ"},
-      { "id": "job0003", "name_company": "Frontend Developer (JavaScript, ReactJS)", "date_Created": "11/12/2022", "status":"Đang chờ"},
-      { "id": "job0004", "name_company": "Frontend Developer (JavaScript, ReactJS)", "date_Created": "11/12/2022", "status":"Đang chờ"},
-      { "id": "job0005", "name_company": "Frontend Developer (JavaScript, ReactJS)", "date_Created": "11/12/2022", "status":"Đang chờ"},
-      { "id": "job0006", "name_company": "Frontend Developer (JavaScript, ReactJS)", "date_Created": "11/12/2022", "status":"Đang chờ"},
-      { "id": "job0007", "name_company": "Frontend Developer (JavaScript, ReactJS)", "date_Created": "11/12/2022", "status":"Đang chờ"},
-      { "id": "job0008", "name_company": "Frontend Developer (JavaScript, ReactJS)", "date_Created": "11/12/2022", "status":"Đang chờ"}
+      { "id": "job0002", "name_company": "CÔNG TY CỔ PHẦN CÔNG NGHIỆP WELDCOM", "date_Created": "11/12/2022", "status":"Đang chờ"},
+      { "id": "job0003", "name_company": "BIM Group", "date_Created": "11/12/2022", "status":"Đang chờ"},
+      { "id": "job0004", "name_company": "CÔNG TY CỔ PHẦN THƯƠNG MẠI TIN HỌC HƯNG LONG", "date_Created": "11/12/2022", "status":"Đang chờ"},
+      { "id": "job0005", "name_company": "CÔNG TY TNHH ECOBA CÔNG NGHỆ MÔI TRƯỜNG", "date_Created": "11/12/2022", "status":"Đang chờ"},
+      { "id": "job0006", "name_company": "CÔNG TY TNHH BẢO HIỂM NHÂN THỌ MB AGEAS", "date_Created": "11/12/2022", "status":"Đang chờ"}
     ];
 
     page = 1;

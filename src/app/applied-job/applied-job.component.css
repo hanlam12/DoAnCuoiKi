@@ -173,6 +173,11 @@ ul li{
   .text_text{
     padding-left: 15px;
   }
+  .disabled{
+    margin-top: 20px;
+    margin-left: 48%;
+    margin-bottom: 20px;
+  }
   @media (min-width: 1200px)
   {
     .container{
