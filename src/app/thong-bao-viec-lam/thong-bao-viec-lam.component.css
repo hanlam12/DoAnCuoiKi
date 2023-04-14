@@ -1,0 +1,56 @@
+.row-item{
+  border: 1px solid black;
+  border-radius: 12px;
+  padding: 25px;
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+.row-notify {
+display: flex;
+
+align-items: center;
+}
+
+.time{
+  width: 30%;
+}
+.job{
+  width: 40%
+}
+
+.profile{
+  width: 30%
+}
+.time p {
+  font-size: 15px;
+  line-height: 5px;
+}
+.time p:last-child {
+font-size: 13px;
+color: rgb(94, 109, 85)
+}
+.job p a {
+  color: #14a800;
+  font-size: 15px;
+}
+.job p a:hover{
+  text-decoration: underline;
+}
+.profile p {
+  font-size: 15px;
+  color: rgb(94, 109, 85)
+}
+.is-display-none{
+  display: none;
+}
+.is-display-none2 {
+  display: none;
+}
+.is-display-none3 {
+  display: none;
+}
+.is-display-none4 {
+  display: none;
+}
