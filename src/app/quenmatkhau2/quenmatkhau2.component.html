@@ -1,0 +1,33 @@
+<div class="background">
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Nhập mã bảo mật</h4>
+          <hr>
+          <p>Vui lòng kiểm tra tin nhắn và nhập mã OTP.</p>
+          <p>Mã OTP của bạn có 6 ký tự.</p>
+          <div class="form-group">
+            <input type="text" class="form-control" id="ist" maxlength="1" onkeyup="clickEvent(this,'sec')" (keypress)="numberOnly($event)">
+            <input type="text" class="form-control" id="sec" maxlength="1" onkeyup="clickEvent(this,'third')" (keypress)="numberOnly($event)">
+            <input type="text" class="form-control" id="third" maxlength="1" onkeyup="clickEvent(this,'fourth')" (keypress)="numberOnly($event)">
+            <input type="text" class="form-control" id="fourth" maxlength="1" onkeyup="clickEvent(this,'fifth')" (keypress)="numberOnly($event)">
+            <input type="text" class="form-control" id="fifth" maxlength="1" onkeyup="clickEvent(this,'sixth')" (keypress)="numberOnly($event)">
+            <input type="text" class="form-control" id="sixth" maxlength="1" (keypress)="numberOnly($event)">
+          </div>
+          <hr>
+          <div class="row justify-content-between">
+            <div class="col-auto">
+              <button (click)="goBack()" class="btn btn-secondary aa">Hủy</button>
+            </div>
+            <div class="col-auto">
+              <button (click)="openPage()" class="btn btn-primary">Tiếp tục</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
