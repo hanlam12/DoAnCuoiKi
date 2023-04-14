@@ -28,14 +28,53 @@
     </div>
         <div class="text_text">Bật tìm việc để nhận được nhiều cơ hội việc làm tốt nhất từ WorkZone.</div>
     </div>
-    <div class="body_right-bottom">
-      <div class="file-upload">
-        <label for="cv">Tải CV lên từ máy tính:</label>
-        <input type="file" class="file-input" name="cv" id="cv" />
-      </div>
-    </div>
   </div>
     <div id="body_left">
+      <div id="body_left-top" >
+        <div id="cv-upload-list" class="box-block" *ngIf="!showCv">
+          <div class="box-header">
+            <h1 class="title">CV đã tải lên WorkZone</h1>
+            <button (click)="toggle()" class="btn btn-upload-cv btn-primary-hover ">
+              <i class="fa-solid fa-upload"></i>Tải CV lên
+            </button>
+          </div>
+          <div class="box-conten box-no-cv">
+            <img src="assets/media/uploadCv.png" class="box-no-cv-img">
+            <p>Bạn chưa tải lên CV nào</p>
+          </div>
+        </div>
+      <div  id="cv-upload-list" class="box-block" *ngIf="showCv">
+        <p class="title"> <b>Upload CV để các cơ hội việc làm tự tìm đến bạn</b>  </p>
+        <p>Bạn đã có sẵn CV của mình, chỉ cần tải CV lên, hệ thống sẽ tự động đề xuất CV của bạn tới những nhà tuyển dụng uy tín.
+          Tiết kiệm thời gian, tìm việc thông minh, nắm bắt cơ hội và làm chủ đường đua nghề nghiệp của chính mình.</p>
+        <div class="box-upload">
+          <p class="icon">
+            <i class="fa-regular fa-cloud-arrow-up"></i>
+          </p>
+          <div class="not-cv">
+            <p>Kéo CV của bạn vào đây hoặc bấm để chọn file CV của bạn</p>
+          </div>
+          <div class="is-cv">
+            <p class="name-file"></p>
+            <p>Chọn tệp khác</p>
+          </div>
+          <form id="formUploadCv" action="" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="_token" value="20pu1kkykc56Qn6HmNsD1aSLoqXn4PUSjnxtNUpm">
+            <input type="file" name="file_upload_cv" class="file-upload-cv" id="file-upload-cv">
+          </form>
+        </div>
+        <div class="file-format">
+          <div>Files hỗ trợ: PDF, DOC, DOCX</div>
+          <div>File tải lên không quá: 5 MB</div>
+        </div>
+        <div class="box-btn-upload">
+          <button class="btn btn-primary-hover  btn-upload ">Tải CV lên</button>
+          <p class="text-highlight upload-process">Hệ thống đang xử lý CV của bạn thông thường mất từ 10 đến 15 giây, xin vui lòng đợi !!!</p>
+        </div>
+      </div>
+      </div>
+
+      <div id="body_left-bottom" >
       <div id="content_body_left">
         <div id="file_created"> <p>Hồ sơ đã tạo</p> </div>
         <div id="you_create_file"> <p>Bạn đã tạo 03 hồ sơ</p> </div>
@@ -81,6 +120,7 @@
     </table>
     </div>
     </div>
+  </div>
     </div>
     </div>
   </div>
