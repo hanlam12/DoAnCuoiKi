@@ -47,7 +47,7 @@ const routes: Routes = [
   { path:"quenmatkhau", component: QuenmatkhauComponent},
   { path:"quenmatkhau1", component: Quenmatkhau1Component},
   { path:"quenmatkhau2", component:Quenmatkhau2Component},
-  { path:"quenmatkhau3", component:Quenmatkhau3Component}
+  { path:"quenmatkhau3", component:Quenmatkhau3Component},
   {path: "dieukhoandichvu", component: DieukhoandichvuComponent},
   {path: "congty", component: CongtyComponent}
 ];
@@ -78,7 +78,7 @@ export const RoutingComponent={
   QuenmatkhauComponent,
   Quenmatkhau1Component,
   Quenmatkhau2Component,
-  Quenmatkhau3Component
+  Quenmatkhau3Component,
   CongtyComponent
 
 }
