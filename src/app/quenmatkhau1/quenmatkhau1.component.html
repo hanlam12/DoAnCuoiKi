@@ -1,0 +1,45 @@
+<div class="background">
+  <div class="container">
+    <h4>Đặt lại mật khẩu của bạn</h4>
+    <hr/>
+    <div class="rec30">
+      <div class="rec30-1">
+        <p>Bạn muốn nhận mã để đặt lại mật khẩu bằng cách nào?</p>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="input" id="radio-email" checked>
+          <label class="form-check-label" for="radio-email">
+            Gửi mã qua email
+            <p>*****@*******</p>
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="input" id="radio-sms">
+          <label class="form-check-label" for="radio-sms">
+            Gửi mã qua SMS
+            <p>+84123456789</p>
+          </label>
+        </div>
+      </div>
+      <div class="rec30-2">
+        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 100px;"
+  alt="Avatar" />
+        <p>User name</p>
+        <p>Người dùng WorkZone</p>
+      </div>
+    </div>
+    <hr/>
+    <div class="rec31">
+      <div class="rec31-1">
+        <a href="">Bạn không truy cập được email và số điện thoại này nữa?</a>
+      </div>
+      <div class="rec31-2">
+        <a>
+          <button (click)="goBack()" type="button" class="btn btn-secondary">Không phải là bạn?</button>
+        </a> &nbsp;
+        <a>
+          <button (click)="openPage()" type="button" class="btn btn-primary">Tiếp tục</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

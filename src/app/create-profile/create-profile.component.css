@@ -1,0 +1,155 @@
+.main {
+  margin: 50px 5%;
+}
+.method {
+  background-color: white;
+  margin: 5px 12px;
+  border: none;
+}
+.method > h5 {
+  text-align: left;
+  font-size: 15px;
+  margin-bottom: -8px;
+}
+.method > span {
+  font-size: 10px;
+}
+.taikhoan {
+  border-left: 1px solid black;
+  margin: 35% 10%;
+  padding-left: 5px;
+}
+.red {
+  color: red;
+}
+.name-user {
+  font-weight: 500;
+}
+.method:hover {
+  cursor: pointer;
+  background-color: #edf9ff;
+}
+
+.user {
+  width: 88%;
+  margin-right: 10px;
+}
+.save {
+  background-color: #48c0fd;
+  color: white;
+  width: 44px;
+  height: auto;
+  text-align: center;
+  border-radius: 2px;
+  border: 0px;
+}
+.border-user {
+  content: "";
+  height: 1px;
+  width: 100%;
+  background-color: #ccc;
+  margin: 10px 0px;
+  display: block;
+}
+.big {
+  margin: 20px 0;
+  height: 2px;
+}
+.birth-input {
+  width: 10%;
+  border-radius: 2px;
+  border: 1px solid #b6c0c5;
+}
+.date-signup {
+  width: 100%;
+  text-align: center;
+  background-color: #f4f4f4;
+  color: #9b9b9b;
+  border: none;
+  padding: 5px 0px;
+}
+.input {
+width: 90%;
+  border-radius: 2px;
+  border: 1px solid #b6c0c5;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+.img-profile {
+  width: 100%;
+}
+.img-profile > i {
+  margin: 0% 36%;
+
+  font-size: 70px;
+}
+
+
+
+
+
+@media (max-width: 480px) {
+  .nav-pc,
+  .btn-menu,
+  .account {
+    display: none;
+  }
+  .logo img {
+    width: 43% !important;
+  }
+  #nav-mb button {
+    position: absolute;
+    top: 25px;
+    right: 10px;
+    font-size: 20px;
+    display: block;
+    color: #48c0fd;
+    border: none;
+    background: none;
+  }
+  .main {
+    margin: 10px 5% !important;
+  }
+  .taikhoan {
+    margin: 0px !important;
+    border: none !important;
+  }
+  .method {
+    border-left: 1px solid black !important;
+  }
+  .emp-menu {
+    display: block !important;
+    width: 100%;
+    overflow-x: auto;
+  }
+  .box-menu-pc {
+    display: none !important;
+  }
+  .box-menu-mb {
+    display: block !important;
+    width: 823px;
+    margin-top: 10px;
+  }
+  .box-menu-mb > span {
+    margin: 0px 20px;
+  }
+  .user {
+    width: 81% !important;
+  }
+  .birth-input {
+    width: 26% !important;
+  }
+  .img-profile {
+    margin-top: 20px;
+  }
+  .pad0 {
+    padding: 0px !important;
+  }
+  .pd-left {
+    padding-left: 15px !important;
+  }
+   .border-menu {
+    display: none;
+  }
+}

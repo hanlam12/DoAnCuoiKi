@@ -1,0 +1,96 @@
+<div class="main">
+  <div class="row">
+    <div class="col-md-3 col-12">
+      <div class="taikhoan" id="taikhoan">
+        <button class="method" click="tab()">
+          <h5>Tài khoản</h5>
+          <span>Tùy chỉnh thông tin cá nhân</span>
+        </button>
+      </div>
+    </div>
+    <div class="col-md-6 col-12">
+      <form class="form-user" id="form-user">
+        <div class="header-change-pass">
+          <h1>Tài khoản</h1>
+        </div>
+        <div class="row-pass">
+          <div class="name-user">Họ và tên <span class="red">*</span></div>
+          <input type="text" class="input user" value="WorkZone" disabled />
+        </div>
+        <div class="border-user"></div>
+        <div class="row-pass">
+          <div class="name-user">
+            Địa chỉ email <span class="red">*</span>
+          </div>
+          <input
+            type="email"
+            class="input user"
+            value="workZone@gmail.com"
+            disabled
+          />
+        </div>
+        <div class="border-user"></div>
+        <div class="row-pass">
+          <div class="name-user">Giới tính</div>
+          <select name="gender" id="gender" class="input user">
+            <option value="0"></option>
+            <option value="1">Nam</option>
+            <option value="2">Nữ</option>
+            <option value="3">Khác</option>
+          </select>
+          <button class="save">Lưu</button>
+        </div>
+        <div class="border-user"></div>
+        <div class="row-pass">
+          <div class="name-user">Ngày sinh</div>
+          <input type="date" class="input user">
+          <button class="save">Lưu</button>
+        </div>
+        <div class="border-user"></div>
+        <div class="row-pass">
+          <div class="name-user">Số điện thoại</div>
+          <input
+            type="tel"
+            class="input user"
+            value="09876256152"
+            disabled
+          />
+        </div>
+        <div class="border-user big"></div>
+        <div class="row-pass mr-bot">
+          <div class="name-user">Địa chỉ <span class="red">*</span></div>
+        </div>
+        <div class="row-pass">
+          <div class="name-user">Địa chỉ cụ thể</div>
+          <input type="text" class="input user" />
+          <button class="save">Lưu</button>
+        </div>
+        <div class="row-pass">
+          <div class="name-user">Quận/Huyện</div>
+          <input type="text" class="input user" />
+          <button class="save">Lưu</button>
+        </div>
+        <div class="row-pass">
+          <div class="name-user">Tỉnh/Thành phố</div>
+          <input type="text" class="input user" />
+          <button class="save">Lưu</button>
+        </div>
+        <div class="border-user"></div>
+        <div class="row-pass">
+          <input
+            type="text"
+            class="date-signup"
+            placeholder="Đăng ký ngày 1/1/2023"
+          />
+        </div>
+      </form>
+    </div>
+    <div class="col-md-3 col-12">
+        <div class="img-profile" id="img-profile">
+          <i class="fa-regular fa-circle-user"> </i>
+          <input type="file" (change)="onFileSelected($event)">
+          <p>(JPEG/PNG/GIF, 1MB)</p>
+        </div>
+      </div>
+  </div>
+  </div>

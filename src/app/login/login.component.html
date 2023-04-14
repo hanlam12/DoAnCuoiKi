@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>WorkZone - Login</title>
+    <link rel="stylesheet" href="login.component.html" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+
+  </head>
+  <body>
+  
+    <div class="container">
+      <div class="login-main">
+        <div class="row">
+          <div class="col-md-6 col-12">
+            <div class="left-lg">
+              <h1 class="left-lg-text">WorkZone</h1>
+              <p>
+                WorkZone giúp bạn kết nối với nhà tuyển dụng với các cơ hội cơ
+                hội mới trong cuộc sống của bạn.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <form  class="form-login" [formGroup]="lgForm">
+              <div class="header-login">
+                <h1>Đăng Nhập</h1>
+              </div>
+              <div class="input-login user">
+                <div>
+                  <input
+                    type="email"
+                    placeholder="Username*"
+                    class="input form-control-lgin"
+                    formControlName="email"
+                    [class.error] = "error"
+                  />
+                </div>
+                
+              </div>
+
+              <div class="input-login pass">
+                <div>
+                  <input
+                  type="{{ showPassword ? 'text' : 'password' }}" [(ngModel)]="password"
+                    placeholder="Password*"
+                    class="input form-control-lgin"
+                    formControlName="password"
+                    [class.error] = "error"
+                  />
+                </div>
+              </div>
+              <div class="error-infor" *ngIf="error" >Email hoặc Mật khẩu không hợp lệ</div>
+              <div>
+                <input type="checkbox" class="check" formControlName="checkbox" [(ngModel)]="showPassword"   /> Hiển thị mật khẩu
+              <a href="#"> <span class="blue forgot float">Quên mật khẩu?</span></a> 
+              </div>
+
+              <a class="blue center mg-top" routerLink="/sign-up">Bạn chưa có tài khoản? Đăng ký</a>
+              <button type="submit" class="btn-login" (click)="onSubmit()" >Đăng Nhập</button>
+              <div class="">
+                <div class="text center">
+                  <span>Hoặc</span>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6 col-12">
+                    <button class="btn-login-other btn face">
+                      <i class="fa-brands fa-facebook icon"></i>
+                      <span class="blue">Đăng nhập bằng Facebook</span>
+                    </button>
+                  </div>
+                  <div class="col-sm-6 col-12">
+                    <button class="btn-login-other btn google">
+                      <i class="fa-brands fa-google icon"></i>
+                      <span class="blue">Đăng nhập bằng Google</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

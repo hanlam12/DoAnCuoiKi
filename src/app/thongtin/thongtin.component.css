@@ -1,0 +1,337 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+/* header */
+.main-menu {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.logo img {
+  width: 100%;
+}
+.nav-pc {
+  display: flex;
+  align-items: center;
+  height: 118%;
+  width: 30vw;
+}
+.nav-pc li {
+  margin-right: 30px;
+}
+.right-main-menu {
+  display: flex;
+}
+.right-main-menu button {
+  margin-left: 10px;
+}
+.btn-menu {
+  border-radius: 12px;
+  border: 1px solid rgba(36, 0, 255, 1);
+  font-size: 90%;
+  font-weight: bold;
+  color: #ffffff;
+  width: 150px;
+  background-color: #48c0fd;
+  padding: 15px 0px;
+}
+
+.btn-nav {
+  width: 50%;
+  font-weight: bold;
+  background: #48c0fd;
+  margin: 10px 10px;
+  color: #fff;
+  border-radius: 12px;
+}
+.relative {
+  position: relative;
+}
+.ntd {
+  padding: 15px 0px;
+  border-radius: 12px;
+  border: 1px solid rgba(36, 0, 255, 1);
+  font-size: 90%;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: blue;
+}
+
+.list-menu-mb-login {
+  padding-top: 10px;
+  position: fixed;
+  background: white;
+  font-size: 15px;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+  left: -2000px;
+  transition: 0.5s;
+}
+.list-menu-mb-login li {
+  margin-bottom: 10px;
+}
+.is-left-default {
+  left: 0px !important;
+}
+/*Responsive*/
+#nav-mb button {
+  display: none;
+}
+@media (max-width: 830px) {
+  .nav-pc,
+  .btn-menu,
+  .account {
+    display: none;
+  }
+  .logo img {
+    width: 43% !important;
+  }
+  #nav-mb button {
+    position: absolute;
+    top: 25px;
+    right: 10px;
+    font-size: 20px;
+    display: block;
+    color: #48c0fd;
+    border: none;
+    background: none;
+  }
+}
+/* INFO */
+.rec466 {
+  display: flex;
+  background-color: #deefff;
+  height: 66.7px;
+}
+.dieukhoan {
+  flex: 1;
+  text-align: center;
+  padding-top: 33px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 35px;
+}
+.dieukhoan:hover {
+  color: #2f55d4;
+  font-weight: 700;
+}
+.veWorkZone {
+  flex: 1;
+  text-align: center;
+  padding-top: 33px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 35px;
+  color: #2f55d4;
+}
+.line {
+  position: absolute;
+  width: 9%;
+  height: 0px;
+  left: 20vw;
+  top: 17vh;
+  background-color: #48c0fd;
+  border: 3px solid #48c0fd;
+}
+.vechungtoi {
+  margin-top: 30px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 35px;
+  line-height: 55px;
+
+  text-align: center;
+
+  color: #0075ff;
+}
+.img {
+  width: 450px;
+  height: auto;
+  padding-left: 30px;
+}
+.vechungtoi1 {
+  display: flex;
+  margin-top: 30px;
+}
+.vechungtoi1_1 {
+  flex: 70%;
+  width: 100px;
+  padding-left: 20px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 39px;
+  text-align: justify;
+  margin-right: 10px;
+}
+.vechungtoi1_2 {
+  flex: 30%;
+}
+.vechungtoi2 {
+  display: flex;
+  margin-top: 30px;
+}
+.vechungtoi2_1 {
+  flex: 70%;
+  width: 100px;
+  padding-left: 20px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 39px;
+  text-align: justify;
+  margin-right: 10px;
+}
+.vechungtoi2_2 {
+  flex: 30%;
+}
+.coso {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 50px;
+}
+.coso1 {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 50px;
+}
+.img1 {
+  width: 600px;
+  height: auto;
+}
+hr {
+  margin-top: 0px;
+  background-color: #0075ff;
+  border: 3px solid #0075ff;
+}
+.nhansu {
+  margin-top: 50px;
+}
+.rec {
+  width: 80%;
+  height: 333px;
+  background: #48c0fd;
+  border-radius: 30px;
+  margin-left: 10%;
+  margin-top: 30px;
+}
+.rec {
+  display: flex;
+  padding-top: 70px;
+}
+.ava_1 {
+  flex: 1;
+  padding-left: 15%;
+}
+.ava_2 {
+  flex: 1;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 35px;
+  color: white;
+}
+@media screen and (max-width: 480px) {
+  .veWorkZone,
+  .dieukhoan {
+    font-size: 13px;
+  }
+  .img {
+    width: 200px;
+    height: auto;
+    margin-right: 20px;
+  }
+  p {
+    font-size: 10px;
+    line-height: 15px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  .line {
+    position: absolute;
+    width: 19vw;
+    top: 29vh;
+    left: 15vw;
+  }
+  .img1 {
+    width: 200px;
+  }
+  .rec {
+    height: 150px;
+  }
+  .img2 {
+    width: 100px;
+    height: auto;
+    margin-top: -45px;
+  }
+  h3 {
+    font-size: 15px;
+  }
+  h4 {
+    font-size: 13px;
+  }
+  .ava_2 {
+    flex: 1.5;
+    text-align: center;
+    line-height: 15px;
+  }
+}
+/* footer */
+.logo-footer img {
+  width: 296px;
+  margin-bottom: 10px;
+  padding-left: 5%;
+}
+footer {
+  margin-top: 30px;
+  width: 100%;
+  padding-top: 20px;
+  background-color: #2a363b;
+  padding-left: 20px;
+}
+.container1 {
+  background-color: #2a363b;
+}
+.row {
+  padding-left: 10%;
+}
+.copyright {
+  text-align: center;
+}
+.content1_2 img {
+  width: 150px;
+  margin-left: -12px;
+}
+.blue {
+  color: #0075ff;
+}
+h3 {
+  color: white;
+}
+footer p {
+  color: white;
+}
+.hover:hover {
+  text-decoration: underline;
+}
+.staff{
+  margin: 5%;
+}
+.Workzone{
+  margin: 10%;
+}

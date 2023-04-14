@@ -1,0 +1,17 @@
+.container{
+  width: 550px;
+  height: 250px;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 75px;
+  padding-top: 10px;
+}
+.background{
+  background-color: #E9E9EA;
+  height: 400px;
+  position: absolute;
+  width: 100%;
+}
+.aa{
+  margin-left: 370px;
+}
