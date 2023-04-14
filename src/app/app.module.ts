@@ -6,6 +6,13 @@ import { AppComponent } from './app.component';
 import { ThongtinComponent } from './thongtin/thongtin.component';
 import { LoginComponent } from './login/login.component';
 import { DieukhoandichvuComponent } from './dieukhoandichvu/dieukhoandichvu.component';
+import { SupportComponent } from './support/support.component';
+import { ThaydoimatkhauComponent } from './thaydoimatkhau/thaydoimatkhau.component';
+import { QuenmatkhauComponent } from './quenmatkhau/quenmatkhau.component';
+import { Quenmatkhau1Component } from './quenmatkhau1/quenmatkhau1.component';
+import { Quenmatkhau2Component } from './quenmatkhau2/quenmatkhau2.component';
+import { Quenmatkhau3Component } from './quenmatkhau3/quenmatkhau3.component';
+import { FormsModule } from '@angular/forms';
 import { CongtyComponent } from './congty/congty.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -22,9 +29,6 @@ import { ThongBaoViecLamComponent } from './thong-bao-viec-lam/thong-bao-viec-la
 import { AccountMenuComponent } from './account-menu/account-menu.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,10 +40,15 @@ import { NotFoundComponent } from './not-found/not-found.component';
     SignUpComponent,
     SearchJobComponent,
     ApplyCVComponent,
-    TStestingComponent,
     ThongtinComponent,
     LoginComponent,
     DieukhoandichvuComponent,
+    SupportComponent,
+    ThaydoimatkhauComponent,
+    QuenmatkhauComponent,
+    Quenmatkhau1Component,
+    Quenmatkhau2Component,
+    Quenmatkhau3Component
     CongtyComponent,
     HeaderComponent,
     HeaderLoginComponent,
@@ -47,18 +56,19 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AccountMenuComponent,
     CreateProfileComponent,
     NotFoundComponent
-
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+ 
     ModalModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     CommonModule
-    FormsModule,
-    ReactiveFormsModule
+
+
     
+
 
   ],
   providers: [],
