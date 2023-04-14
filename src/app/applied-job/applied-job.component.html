@@ -1,0 +1,70 @@
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-utils-pagination/0.4.0/dirPagination.js"></script>
+</head>
+<body>
+ <div class="container">
+   <div class="row">
+     <div class="col-md-12 col-12">
+       <ul class="emp-menu">
+         <div class="box-menu-pc">
+           <li><a href="taohoso.html">Tài khoản</a></li>
+           <li><a href="hosoxinviec.html">Hồ sơ xin việc (3)</a></li>
+           <li><a href="vieclamdaluu.html">Việc đã lưu (5)</a></li>
+           <li class="under-link"><a href="viecdaungtuyen.html"><b> Việc đã ứng tuyển (7)</b></a></li>
+           <li><a href="thongbaovieclam.html">Thông báo việc làm (0)</a></li>
+         </div>
+       </ul>
+       <div class="box-menu-mb"><a href="viecdaungtuyen.html"><b> Việc đã ứng tuyển (7)</b></a></div>
+     </div>
+   </div>
+ <div id="body">
+      <div class="body_right ">
+     <div><i class="fa-regular fa-circle-user"></i></div>
+     <div class="text_cbtl">Chào bạn trở lại <br>
+     <b>NGUYỄN THU HẰNG</b></div>
+     <div class="text_status" [ngClass]="{'text_status-on': isOn, 'text_status-off': !isOn}">
+      <div class="st-on-off" [ngClass]="{'st-on-off-on': isOn, 'st-on-off-off': !isOn}">
+        <div (click)="status()" class="on-off" [ngClass]="{'on-off-on': isOn, 'on-off-off': !isOn}"></div>
+      </div>
+      {{ isOn ? 'Trạng thái làm việc đang bật' : 'Trạng thái làm việc đang tắt' }}
+    </div>
+     <div class="text_text">Bật tìm việc để nhận được nhiều cơ hội việc làm tốt nhất từ WorkZone.</div>
+ </div>
+ <div id="body_left">
+   <div id="content_body_left">
+     <div id="file_created"> <p>Công việc đã ứng tuyển</p> </div>
+     <div id="you_create_file"> <p>Bạn đã ứng tuyển 7 công việc</p> </div>
+     <div id="xapsep"> <p>Sắp xếp theo:
+       <input id="gandaynhat" name="sapxep" type="radio">
+       <label for="gandaynhat">Gần đây nhất</label>
+       <input id="1thangtruoc"  name="sapxep"type="radio">
+       <label for="1thangtruoc">1 tháng trước</label>
+       <input id="1namtruoc"  name="sapxep"type="radio">
+       <label for="1namtruoc">1 năm trước</label>
+       </p>
+     </div>
+     <div>
+     <table>
+     <tr>
+      <th></th>
+         <th>Công việc</th>
+         <th>Ngày ứng tuyển</th>
+         <th class="text-center ">Trạng thái</th>
+     </tr>
+     <tr *ngFor="let item of data | slice:(page-1)*pageSize:page*pageSize">
+         <td class="picture_company image"><img src="assets/media/aia.png" alt="Picture of Company" width="100%" ></td>
+         <td >{{item.name_company}}</td>
+         <td>{{item.date_Created}}</td>
+         <td> <div id="chitiet" class="text-center ">{{item.status}}</div></td>
+     </tr>
+ </table>
+ <div>
+  <button [disabled]="page === 1" (click)="page = page - 1" class="disabled"><</button>
+  <button [disabled]="page * pageSize >= collectionSize" (click)="page = page + 1">></button>
+</div>
+ </div>
+ </div>
+ </div>
+ </div>
+</div>
+</body>

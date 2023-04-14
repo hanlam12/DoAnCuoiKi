@@ -1,0 +1,87 @@
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-12">
+          <ul class="emp-menu">
+            <div class="box-menu-pc">
+              <li><a href="taohoso.html">Tài khoản</a></li>
+              <li class="under-link"><a href="hosoxinviec.html"><b>Hồ sơ xin việc (3)</b></a></li>
+              <li><a href="vieclamdaluu.html">Việc đã lưu (5)</a></li>
+              <li><a href="viecdaungtuyen.html">Việc đã ứng tuyển (7)</a></li>
+              <li><a href="thongbaovieclam.html">Thông báo việc làm (0)</a></li>
+            </div>
+          </ul>
+          <div class="box-menu-mb"><a href="hosoxinviec.html"><b>Hồ sơ xin việc (3)</b></a></div>
+        </div>
+      </div>
+    <div id="body">
+         <div class="body_right">
+          <div class="body_right-top">
+        <div><i class="fa-regular fa-circle-user"></i></div>
+        <div class="text_cbtl">Chào bạn trở lại <br>
+        <b>NGUYỄN THU HẰNG</b></div>
+    <div class="text_status" [ngClass]="{'text_status-on': isOn, 'text_status-off': !isOn}">
+      <div class="st-on-off" [ngClass]="{'st-on-off-on': isOn, 'st-on-off-off': !isOn}">
+        <div (click)="status()" class="on-off" [ngClass]="{'on-off-on': isOn, 'on-off-off': !isOn}"></div>
+      </div>
+      {{ isOn ? 'Trạng thái làm việc đang bật' : 'Trạng thái làm việc đang tắt' }}
+    </div>
+        <div class="text_text">Bật tìm việc để nhận được nhiều cơ hội việc làm tốt nhất từ WorkZone.</div>
+    </div>
+    <div class="body_right-bottom">
+      <div class="file-upload">
+        <label for="cv">Tải CV lên từ máy tính:</label>
+        <input type="file" class="file-input" name="cv" id="cv" />
+      </div>
+    </div>
+  </div>
+    <div id="body_left">
+      <div id="content_body_left">
+        <div id="file_created"> <p>Hồ sơ đã tạo</p> </div>
+        <div id="you_create_file"> <p>Bạn đã tạo 03 hồ sơ</p> </div>
+        <div id="xapsep"> <p>Sắp xếp theo:
+          <input id="gandaynhat" name="sapxep" type="radio">
+          <label for="gandaynhat">Gần đây nhất</label>
+          <input id="1thangtruoc"  name="sapxep"type="radio">
+          <label for="1thangtruoc">1 tháng trước</label>
+          <input id="1namtruoc"  name="sapxep"type="radio">
+          <label for="1namtruoc">1 năm trước</label>
+          </p>
+        </div>
+        <div>
+        <table>
+        <tr>
+            <th>STT</th>
+            <th>Tên hồ sơ</th>
+            <th>Số công ty đã nộp</th>
+            <th>Ngày tạo</th>
+            <th class="text-center ">Xem chi tiết</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Hồ sơ 1</td>
+            <td>1</td>
+            <td>11/12/2022</td>
+            <td>  <div id="chitiet" class="text-center "><a href="#" >Chi tiết</a></div></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Hồ sơ 2</td>
+            <td>2</td>
+            <td>12/12/2022</td>
+            <td><div id="chitiet" class="text-center "><a href="#">Chi tiết</a></div></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Hồ sơ 3</td>
+            <td>1</td>
+            <td>13/12/2022</td>
+            <td><div id="chitiet" class="text-center "><a href="#">Chi tiết</a></div></td>
+        </tr>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
+</body>

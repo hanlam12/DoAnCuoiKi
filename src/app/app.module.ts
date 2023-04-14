@@ -1,5 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { CommonModule } from '@angular/common';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +24,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ContactComponent } from './contact/contact.component';
 import { HompageComponent } from './hompage/hompage.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+
+import { JobDecriptionComponent } from './job-decription/job-decription.component';
+import { JobApplicationComponent } from './job-application/job-application.component';
+import { AppliedJobComponent } from './applied-job/applied-job.component';
+import { FooterLoggedComponent } from './footer-logged/footer-logged.component';
+import { FooterNotLogInComponent } from './footer-not-log-in/footer-not-log-in.component';
+
+
 import { SearchJobComponent } from './search-job/search-job.component';
 import { ApplyCVComponent } from './apply-cv/apply-cv.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -29,6 +42,7 @@ import { ThongBaoViecLamComponent } from './thong-bao-viec-lam/thong-bao-viec-la
 import { AccountMenuComponent } from './account-menu/account-menu.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +52,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ContactComponent,
     HompageComponent,
     SignUpComponent,
+
+    JobDecriptionComponent,
+    JobApplicationComponent,
+    AppliedJobComponent,
+    FooterLoggedComponent,
+    FooterNotLogInComponent,
+    AppComponent,
     SearchJobComponent,
     ApplyCVComponent,
     ThongtinComponent,
@@ -56,21 +77,19 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AccountMenuComponent,
     CreateProfileComponent,
     NotFoundComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
- 
     ModalModule.forRoot(),
+    CommonModule,
+    PaginationModule.forRoot()
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
-
-
-    
-
 
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
