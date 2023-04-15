@@ -70,7 +70,11 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    ModalModule.forRoot(),
+    CommonModule,
+    PaginationModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
   ],
 
   providers: [],
