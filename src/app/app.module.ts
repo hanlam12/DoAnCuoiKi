@@ -29,7 +29,10 @@ import { ThongBaoViecLamComponent } from './thong-bao-viec-lam/thong-bao-viec-la
 import { AccountMenuComponent } from './account-menu/account-menu.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +42,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ContactComponent,
     HompageComponent,
     SignUpComponent,
-
     JobDecriptionComponent,
     JobApplicationComponent,
     AppliedJobComponent,
@@ -64,7 +66,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AccountMenuComponent,
     CreateProfileComponent,
     NotFoundComponent
-
   ],
   imports: [
     BrowserModule,
