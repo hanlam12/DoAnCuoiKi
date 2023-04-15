@@ -1,0 +1,169 @@
+/* header */
+.main-menu {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.logo img {
+  width: 100%;
+}
+.nav-pc {
+  display: flex;
+  align-items: center;
+  height: 118%;
+}
+.nav-pc li {
+  margin-right: 30px;
+}
+.right-main-menu {
+  display: flex;
+  width: 554px;
+}
+.right-main-menu button {
+  margin-left: 10px;
+}
+.btn {
+  font-size: 1rem;
+  margin-left: 10px;
+  background-color: #48C0FD;
+  font-weight: bold;
+}
+.btn-nav{
+  font-size: 1rem;
+  background-color: #48C0FD;
+  font-weight: bold;
+  border-radius: 0.5rem ;
+
+}
+.account {
+  width: 180px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: -18px;
+  border-radius: 50px;
+  border: 1px solid black;
+}
+.account span {
+  margin: 0 25px;
+}
+.account .fa-circle-user {
+  font-size: 30px;
+  margin-left: -13px;
+}
+.account .fa-sort-down {
+  position: absolute;
+  top: 13px;
+  right: 9px;
+}
+
+.relative {
+  position: relative;
+}
+.ntd {
+padding: 12px;
+  border: 1px solid rgba(36, 0, 255, 1);
+color: white;
+ background-color: blue;
+}
+.list-menu-pc {
+  padding: 5px 0;
+  font-size: 15px;
+  border-radius: 12px;
+  background-color: white;
+  padding-left: 10px;
+  position: absolute;
+  right: 240px;
+  top: 70px;
+  width: 15%;
+  border: 1px solid black;
+  z-index: 1000;
+  margin-left: 10px;
+}
+.menu-list-row a i {
+  width: 15px;
+}
+.log-out {
+  margin-left: 50%;
+  margin-top: 10%;
+}
+.menu-list-row .fa-circle-user {
+  font-size: 20px;
+}
+.menu-list-row{
+  margin-bottom: 20px;
+}
+.name-account {
+  font-size: 15px;
+  font-weight: bold;
+}
+.name-account span {
+  font-weight: bold;
+  color: #0075ff;
+}
+.list-menu-pc span {
+  padding-left: 8px;
+}
+
+.border {
+  margin: 4px 0;
+  border: 0.5px solid black;
+  width: 94%;
+  background: black;
+}
+
+.list-menu-mb-login {
+  padding-top: 10px;
+  position: fixed;
+  background: white;
+  font-size: 15px;
+  text-align: center;
+  width: 51%;
+  height: 100vh;
+  z-index: 1000;
+  left: -2000px;
+  transition: 0.5s;
+}
+.list-menu-mb-login li {
+  margin-bottom: 10px;
+}
+.is-left-default {
+  left: 0px !important;
+}
+.is-display-none {
+  display: none !important;
+}
+.display {
+  display: block !important;
+}
+
+/*Responsive*/
+#nav-mb button {
+  display: none;
+}
+@media (max-width: 480px) {
+  .nav-pc,
+  .btn,
+  .account {
+    display: none;
+  }
+  .logo img {
+    width: 43% !important;
+  }
+  #nav-mb button {
+    position: absolute;
+    top: 13px;
+    right: 10px;
+    font-size: 20px;
+
+    display: block;
+    color: #48c0fd;
+    border: none;
+    background: none;
+
+  }
+
+
+}

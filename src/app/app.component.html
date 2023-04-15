@@ -1,9 +1,22 @@
-<button [routerLink]="'contact'" > Liên hệ </button>
-<button [routerLink]="'support'" > Hỗ trợ </button>
-<button [routerLink]="'thaydoimatkhau'" > Đổi mật khẩu </button>
-<button [routerLink]="'quenmatkhau'" > Quên mật khẩu </button>
-<button [routerLink]="'quenmatkhau1'" > Quên mật khẩu 1 </button>
-<button [routerLink]="'quenmatkhau2'" > Quên mật khẩu 2 </button>
-<button [routerLink]="'quenmatkhau3'" > Quên mật khẩu 3 </button>
-<router-outlet></router-outlet>
+
+
+
+<app-not-found *ngIf="currentRoute === '/404notfound'"></app-not-found>
+<div *ngIf="currentRoute !== '/404notfound'">
+  <ng-container *ngIf="!currentRoute.endsWith('sign-up')">
+    <app-header-login></app-header-login>
+  </ng-container>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="currentRoute.endsWith('thongbao')">
+    <app-account-menu></app-account-menu>
+  </ng-container>
+</div>
+<ng-container *ngIf="currentRoute === '/404notfound'">
+  <app-not-found></app-not-found>
+</ng-container>
+
+
+
+
+
 

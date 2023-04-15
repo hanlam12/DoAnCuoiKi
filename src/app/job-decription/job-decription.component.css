@@ -1,0 +1,220 @@
+body,
+html {
+  padding-top: 5px;
+  margin-top : 0;
+  font-family: roboto;
+  background-color: #e9e9ea;
+}
+/* body */
+.container__jobDecription {
+  width: 90%;
+  margin: 30px auto;
+  display: flex;
+  background-color: white;
+  padding: 30px;
+}
+.container__img--left {
+  width: 20%;
+  margin-right: 20px;
+}
+.container__img--left img {
+  width: 93%;
+  display: block;
+  margin: 5px auto;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.container__content--right {
+  display: flex;
+  width: 75%;
+}
+
+.container__content--right1:nth-child(1) {
+  flex-basis: 80%;
+}
+.container__content--right button {
+  margin-left: 10px;
+  width: 170px;
+  height: 50px;
+  border-radius: 5px;
+  border: none;
+  background-color: #2fd449;
+  color: white;
+  font-weight: bold;
+  margin-top: 50px;
+  font-size: 20px;
+}
+.container__jobDecription1 {
+  width: 90%;
+  margin: 30px auto;
+  display: flex;
+  justify-content: space-between;
+}
+.container__content--left {
+  background-color: white;
+  flex-basis: 58%;
+  padding: 30px;
+}
+.container__jobDecription1 .container__content--right {
+  flex-basis: 40%;
+  flex-direction: column;
+}
+.container__content--right-top {
+  background-color: white;
+  padding: 30px;
+}
+.container__content--right-bot {
+  background-color: white;
+  padding: 30px;
+  margin-top: 20px;
+}
+.name--company {
+  font-weight: bold;
+}
+.name--company {
+  margin-top: 5px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration: underline;
+}
+.container__content--right1 p {
+  margin: 5px 0;
+}
+.container__content--right-bot img {
+  width: 30%;
+  display: block;
+  margin: auto;
+}
+.content__information {
+  display: flex;
+}
+.content__information-left {
+  width: 40%;
+}
+.companyDetail {
+  display: flex;
+  justify-content: space-between;
+}
+.companyDetail > p {
+  margin: 10px 0;
+  width: 48%;
+}
+.container__content--right-bot .name--company {
+  text-align: center;
+  color: black;
+}
+.title__content {
+  color: #0075ff;
+  font-weight: bold;
+  margin: 20px 0 20px 0;
+}
+.content__jobDecription {
+  padding-bottom: 10px;
+}
+.container__content--right-top .title__content {
+  color: black;
+}
+
+/* The Modal (background) */
+.modal {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+.cv {
+  margin: 10px 5px;
+}
+.ipcv {
+  margin-left: 40px;
+  width: 20px;
+  height: 15px;
+}
+#Introducing letter {
+  padding: 20px;
+  width: 90%;
+  height: 150px;
+  margin-left: 40px;
+}
+/* The Close Button */
+.close {
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 10px !important;
+}
+#myBtn2 {
+  background-color: #0075ff;
+  margin-top: 10px;
+}
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+h2 > span {
+  color: #0075ff;
+  font-style: italic;
+}
+@media (max-width: 700px) {
+  .container__jobDecription {
+    flex-direction: column;
+  }
+  .container__img--left {
+    margin: 10px auto;
+    width: 40%;
+  }
+  .container__content--right {
+    flex-direction: column;
+    width: 100%;
+  }
+  .container__content--right button {
+    margin-left: 25%;
+    margin-top: 10px;
+  }
+  .container__jobDecription1 {
+    flex-direction: column;
+  }
+  .container__content--right-top {
+    margin-top: 20px;
+  }
+  .companyDetail {
+    display: block;
+  }
+  .companyDetail > p {
+    width: 100%;
+  }
+  .container__content--right button {
+    margin-left: 0;
+  }
+}
