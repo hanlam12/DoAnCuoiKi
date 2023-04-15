@@ -19,7 +19,7 @@
   position: relative;
 }
 .mt160{
-  padding-top: 120px;
+  padding-top: 100px;
 }
 .homepage-banner-content h3 {
   margin: 10px;
@@ -97,11 +97,7 @@ a {
 }
 
 .search-main-content-left{
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-bottom: 10px;
-  padding-right: 10px;
-  flex-basis: 28%;
+  flex-basis: 32%;
   border-radius: 3px;
 }
 .search-main-content-right{
@@ -111,6 +107,7 @@ a {
 .border{
   border: 1px solid gray;
   background-color: rgb(255, 255, 255);
+  border-radius:2px;
 }
 .search-main-content-left1{
   background-color: transparent;
@@ -131,6 +128,7 @@ a {
   font-size: 21px;
   font-weight: bold;
   color: white;
+  margin-bottom: 20px;
 }
 .mf10 {
   margin-left: 10px;

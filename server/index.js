@@ -24,3 +24,8 @@ app.listen(port,()=>{
   jobCollection = database.collection("job");
   userCollection = database.collection("user");
   companyCollection = database.collection("company");
+
+app.get("/job",cors(),async(req,res)=>{
+  const result = await jobCollection.find({}).toArray();
+  res.send(result)
+})

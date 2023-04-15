@@ -54,10 +54,11 @@ export class Company{
     public company_website:string=""
     ){}
 }
-  export interface category{
+export interface category{
    category_detail: string
-    }
+}
 
-    export interface cv{
-     cv_detail: string
-       }
+export interface cv{
+  cv_detail: string
+}
+

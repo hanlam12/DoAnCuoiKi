@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { AppRoutingModule } from './app-routing.module';
@@ -75,7 +76,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     PaginationModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-
+    HttpClientModule
   ],
 
   providers: [],
