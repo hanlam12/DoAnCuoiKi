@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 6868;
-const morgan=require("morgan")
+const morgan=require("morgan");
 app.use(morgan("combined"))
 const bodyParser=require("body-parser")
 app.use(bodyParser.json({ limit: '10mb' }));
@@ -24,3 +24,8 @@ app.listen(port,()=>{
   jobCollection = database.collection("job");
   userCollection = database.collection("user");
   companyCollection = database.collection("company");
+
+ app.get("/job", cors(), async (req, res)=>{
+  const result = await jobCollection.find({}).toArray();
+  res.send(result)
+ })
