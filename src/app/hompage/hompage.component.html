@@ -166,84 +166,12 @@
         NHỮNG CÔNG TY HÀNG ĐẦU
       </div>
       <div class="top-cent">
-        <div class="box1">
-          <a href="timkiemvieclam.html" target="_bank">
+        <div class="box1" *ngFor="let j of job8">
+          <a href="" target="_bank">
             <div class="img">
-              <img src="assets/media/grab-logo.png" alt="Grab-logo" />
+              <img src="{{j.image}}"  alt="FPT-logo" />
             </div>
-            <div>Grab (VietNam) Ltd.</div></a
-          >
-        </div>
-
-        <div class="box1">
-          <a href="timkiemvieclam.html" target="_bank">
-            <div class="img">
-              <img src="assets/media/fpt-logo.png" alt="FPT-logo" />
-            </div>
-            <div>FPT Software</div></a
-          >
-        </div>
-
-        <div class="box1">
-          <a href="timkiemvieclam.html" target="_bank">
-            <div class="img">
-              <img src="assets/media/toshiba-logo.png" alt="Toshiba-logo" />
-            </div>
-            <div>Toshiba VietNam</div></a
-          >
-        </div>
-
-        <div class="box1">
-          <a href="timkiemvieclam.html" target="_bank">
-            <div class="img">
-              <img
-                src="assets/media/luxoft-vietnam-logo.png"
-                alt="Luxoft-logo"
-              />
-            </div>
-            <div>Luxoft Software</div></a
-          >
-        </div>
-
-        <div class="box1">
-          <a href="timkiemvieclam.html" target="_bank">
-            <div class="img">
-              <img
-                src="assets/media/techcombank-logo.png"
-                alt="Techcombank-logo"
-              />
-            </div>
-            <div>Techcombank</div></a
-          >
-        </div>
-
-        <div class="box1">
-          <a href="timkiemvieclam.html" target="_bank">
-            <div class="img">
-              <img src="assets/media/logo-SMC-1.gif" alt="SCS-logo" />
-            </div>
-            <div>SMC Company</div></a
-          >
-        </div>
-
-        <div class="box1">
-          <a href="timkiemvieclam.html" target="_bank">
-            <div class="img">
-              <img
-                src="assets/media/home-credit-logo.png"
-                alt="Homecreadit-logo"
-              />
-            </div>
-            <div>Home Credit</div></a
-          >
-        </div>
-
-        <div class="box1">
-          <a href="timkiemvieclam.html" target="_bank">
-            <div class="img">
-              <img src="assets/media/alipay.png" alt="Alipay-logo" />
-            </div>
-            <div>ALIPAY Software</div></a
+            <div>{{j.company}}</div></a
           >
         </div>
       </div>

@@ -10,6 +10,7 @@ export class HompageComponent {
 
   job3:any;
   job6:any;
+  job8:any;
   jobs:any;
   errMessage:string=''
   constructor(public _service: WorkZoneService){
@@ -23,6 +24,10 @@ export class HompageComponent {
     })
     this._service.getJobs().subscribe({
       next:(data)=>{this.job3=data.slice(90,93)},
+      error:(err)=>{this.errMessage=err}
+    })
+    this._service.getJobs().subscribe({
+      next:(data)=>{this.job8=data.slice(12,20)},
       error:(err)=>{this.errMessage=err}
     })
   }

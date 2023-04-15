@@ -29,3 +29,7 @@ app.get("/job",cors(),async(req,res)=>{
   const result = await jobCollection.find({}).toArray();
   res.send(result)
 })
+app.get("/company",cors(),async(req,res)=>{
+  const result = await companyCollection.find({}).toArray();
+  res.send(result)
+})
