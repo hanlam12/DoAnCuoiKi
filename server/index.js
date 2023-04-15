@@ -40,7 +40,9 @@ app.listen(port,()=>{
   
     const token = jwt.sign({ email: email }, secretKey);
   
-    res.json({ token });
+    res.json({ token, userEmail: user.email });
+    
+    
   });
 
 

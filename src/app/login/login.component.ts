@@ -23,7 +23,11 @@ export class LoginComponent {
       checkbox: ['false']
     });
   }
+
+  
   error = false
+  
+
   login(): void{
     this._loginService.login(this.lgForm.get('email')?.value, this.lgForm.get('password')?.value).subscribe(data => {
       if (data.error) {
@@ -33,5 +37,7 @@ export class LoginComponent {
         this._loginService.navigateAfterLogin();
       }
     });
+    
   }
+  
 }

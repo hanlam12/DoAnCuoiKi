@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from'@angular/common/http';
 import { catchError, map, mapTo, Observable, of, retry, subscribeOn, tap, throwError } from 'rxjs';
 import { Job } from 'workzone';
@@ -13,13 +13,14 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class WorkZoneService {
-  private loginUrl = 'http://localhost:6868/login';
-
-  constructor(private _http:HttpClient, private router: Router) { }
 
   // login
-  
 
+  private loginUrl = 'http://localhost:6868/login';
+  public userEmail = localStorage.getItem('userEmail'); // đây là userEmail khi đăng nhập thành công, đứa nào muốn lấy truy xuất khi login thành công thì lấy thằng này.
+  userIdUpdated = new EventEmitter<string>();
+
+  constructor(private _http:HttpClient, private router: Router) { }
   navigateAfterLogin(): void {
     // Điều hướng đến trang mong muốn sau khi người dùng đăng nhập thành công
     
@@ -30,6 +31,8 @@ export class WorkZoneService {
     return this._http.post<any>(this.loginUrl, { email: email, password: password }).pipe(
       tap(data => {
         localStorage.setItem('token', data.token);
+        localStorage.setItem('userEmail', data.userEmail);
+        this.userIdUpdated.emit(data.userEmail);
       }),
       catchError(error => {
         return of({ error: error.error });
@@ -37,6 +40,7 @@ export class WorkZoneService {
     );
   }
 
+  
   isLoggedIn(): boolean {
     const token = localStorage.getItem('token');
     return !!token;
@@ -45,5 +49,6 @@ export class WorkZoneService {
   logout(): void {
     localStorage.removeItem('token');
   }
+  // end login
 
 }
