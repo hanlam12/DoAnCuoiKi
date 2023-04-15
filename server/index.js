@@ -21,6 +21,6 @@ app.listen(port,()=>{
   client = new MongoClient("mongodb://127.0.0.1:27017");
   client.connect();
   database = client.db("WorkZone");
-  fashionCollection = database.collection("job");
-  fashionCollection = database.collection("user");
-  fashionCollection = database.collection("company");
+  jobCollection = database.collection("job");
+  userCollection = database.collection("user");
+  companyCollection = database.collection("company");
