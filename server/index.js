@@ -45,5 +45,18 @@ app.listen(port,()=>{
     
   });
 
+  // API lấy thông tin công ty
+  const { ObjectId: objId } = require('mongodb');
+
+  app.get('/congty/:id', async (req, res) => {
+    const id = req.params.id;
+    const company = await companyCollection.findOne({ _id: objId.createFromHexString(id) });
+    if (!company) {
+      return res.status(404).send('Không tìm thấy công ty');
+    }
+    res.json(company);
+  });
+  
+
 
   

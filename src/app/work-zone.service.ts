@@ -51,4 +51,11 @@ export class WorkZoneService {
   }
   // end login
 
+  //thông tin công ty
+  private serverUrl = 'http://localhost:6868';
+  getCompany(id: string): Observable<Company> {
+    const url = `${this.serverUrl}/congty/${id}`;
+    return this._http.get<Company>(url);
+  }
+
 }
