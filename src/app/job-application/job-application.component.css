@@ -77,7 +77,6 @@ ul li{
     align-items: center;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 12px;
   }
   #body_left-top .box-block .box-header .title {
     color: #000;
@@ -98,6 +97,11 @@ ul li{
  margin: auto;
  width: 180px;
 }
+.box-block-img{
+  display: block;
+  margin: auto;
+  width: 100px;
+ }
 #body_left-top .box-no-cv p {
   margin-left: 41%;
 }
@@ -130,9 +134,8 @@ ul li{
   table, td, th {
     text-align: center;
   }
-  th{
+  th,td{
     background: white;
-    font-weight: 400;
   }
    table{
     width: 100%;
@@ -284,6 +287,100 @@ ul li{
   .text_text{
     padding-left: 15px;
   }
+  #exist-avatar .avatar {
+    align-items: center;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    filter: drop-shadow(-1px 3px 10px rgba(0,0,0,.08));
+    height: 150px;
+    justify-content: center;
+    overflow: hidden;
+    width: 150px;
+}
+.avatar, .d-flex {
+  display: flex;
+}
+.avatar>img {
+  width: 75%;
+}
+.btn-change-avatar {
+  background: #eee;
+  border-color: #eee;
+  border-radius: 5px;
+  padding: 6px 16px;
+}
+.mt-2 {
+  margin-top: 0.5rem!important;
+}
+.sub-content {
+  border-bottom: 1px solid #eee;
+  padding: 24px 24px 36px;
+}
+.mb-3 {
+  margin-bottom: 1rem!important;
+}
+.align-self-center {
+  align-self: center!important;
+}
+.form-group label {
+  color: #333;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: inherit;
+}
+.text-red {
+  color: red;
+}
+.content .form-control, .content textarea.form-control {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+div.radio .font-weight-normal {
+  align-items: center;
+  display: inline-flex;
+  margin-right: 40px;
+  padding-left: 26px;
+  position: relative;
+}
+.content .form-control {
+  box-shadow: none;
+  font-size: 15px;
+  height: 40px;
+  padding: 10px 11px;
+  vertical-align: middle;
+}
+select.form-control {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.content textarea.form-control {
+  min-height: 120px;
+  resize: none;
+}
+.my-5 {
+  margin-bottom: 3rem!important;
+  margin-top: 3rem!important;
+}
+.btn-cancel {
+  background: #eee;
+  border-color: #eee;
+  border-radius: 3px;
+  color: #999;
+}
+.mx-1 {
+  margin-left: 0.25rem!important;
+  margin-right: 0.25rem!important;
+}
+.btn-primary {
+  background-color: #00b14f;
+  border-color: #00b14f;
+  border-radius: 3px;
+  color: #fff;
+}
   @media (min-width: 1200px)
   {
     .container{
