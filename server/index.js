@@ -21,6 +21,16 @@ app.listen(port,()=>{
   client = new MongoClient("mongodb://127.0.0.1:27017");
   client.connect();
   database = client.db("WorkZone");
-  fashionCollection = database.collection("job");
-  fashionCollection = database.collection("user");
-  fashionCollection = database.collection("company");
+  jobCollection = database.collection("job");
+  userCollection = database.collection("user");
+  companyCollection = database.collection("company");
+
+  app.get("/users",cors(), async(req,res)=>{
+    const result = await userCollection.find({}).toArray();
+        res.send(result)
+  })
+  app.get("/users/:id",cors(), async(req,res)=>{
+    var o_id = new ObjectId(req.params["id"]);
+    const result = await userCollection.find({_id:o_id}).toArray();;
+    res.send(result)
+  })
