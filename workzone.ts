@@ -20,8 +20,9 @@ export interface IJob{
   position:string,
   gender:string,
   recruiting_amount:string,
-  work_form:string
+  work_form:string,
 }
+
 
 export class Job{
   constructor(

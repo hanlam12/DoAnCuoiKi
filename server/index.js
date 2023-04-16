@@ -29,3 +29,10 @@ app.listen(port,()=>{
   const result = await jobCollection.find({}).toArray();
   res.send(result)
  })
+
+ app.get("/job/:id",cors(),async (req,res)=>{
+  var o_id = new ObjectId(req.params["id"])
+  const result = await jobCollection.find({_id:o_id}).toArray();
+  res.send(result[0])
+})
+
