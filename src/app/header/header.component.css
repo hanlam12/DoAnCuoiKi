@@ -17,7 +17,7 @@
 }
 .right-main-menu {
   display: flex;
-width: 749px;
+width: 48%;
 }
 
 .btn {
@@ -25,6 +25,7 @@ width: 749px;
 margin-left: 10px;
   background-color: #48C0FD;
   font-weight: bold;
+  height: 42PX;
 }
 .account {
   width: 180px;

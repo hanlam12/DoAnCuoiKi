@@ -6,25 +6,18 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./apply-cv.component.css']
 })
 export class ApplyCVComponent   {
-  show=false
-  tonggle(){
+  show=false;
+  isSubmitted = false;
+  toggle(){
     this.show=!this.show
   }
 
-  @ViewChild('myModal') modal!: TemplateRef<any>;
-  modalRef!: BsModalRef;
-  @ViewChild('myModal2') modal2!: TemplateRef<any>;
-  modal2Ref!: BsModalRef;
-  constructor(private modalService: BsModalService) { }
 
-  openModal(){
-    this.modalRef = this.modalService.show(this.modal)
-  }
+  constructor(public bsModalRef: BsModalRef) {}
+
   cvSuccess() {
-    this.modal2Ref = this.modalService.show(this.modal2);
-    this.modalRef.hide()
+    this.isSubmitted = true;
+
   }
-  cvSuccess2() {
-    this.modal2Ref.hide()
-  }
+
 }

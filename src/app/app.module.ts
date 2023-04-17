@@ -33,6 +33,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SavedJobComponent } from './saved-job/saved-job.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +66,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ThongBaoViecLamComponent,
     AccountMenuComponent,
     CreateProfileComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SavedJobComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +81,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
 
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, JobDecriptionComponent],
+  entryComponents: [ApplyCVComponent]
 })
 export class AppModule { }
