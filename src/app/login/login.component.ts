@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { WorkZoneService } from '../work-zone.service';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +16,7 @@ export class LoginComponent {
   password = ''
   showPassword =""
 
-  constructor(private lg: FormBuilder) {
+  constructor(private lg: FormBuilder, private _loginService: WorkZoneService, private router: Router) {
     this.lgForm = this.lg.group({
       email: [''],
       password: [''],
@@ -21,17 +24,20 @@ export class LoginComponent {
     });
   }
 
+  
   error = false
   
-  
-  onSubmit() {
-   if (this.lgForm.get('email')?.value == '' || this.lgForm.get('password')?.value == '' || this.lgForm.get('email')?.value.indexOf('@') == -1  ) {
-    this.error = true
-   }
-   else {
-    console.log(this.lgForm.value);
-    this.error = false
-   }
+
+  login(): void{
+    this._loginService.login(this.lgForm.get('email')?.value, this.lgForm.get('password')?.value).subscribe(data => {
+      if (data.error) {
+        this.error = data.error;
+      } else {
+        this.error = true;
+        this._loginService.navigateAfterLogin();
+      }
+    });
     
   }
+  
 }

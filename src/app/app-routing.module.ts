@@ -45,7 +45,7 @@ const routes: Routes = [
   { path:"quenmatkhau2", component:Quenmatkhau2Component},
   { path:"quenmatkhau3", component:Quenmatkhau3Component},
   {path: "dieukhoandichvu", component: DieukhoandichvuComponent},
-  {path: "congty", component: CongtyComponent}
+  {path: "congty/:id", component: CongtyComponent}
 ];
 
 @NgModule({
