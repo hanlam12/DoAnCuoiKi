@@ -7,7 +7,11 @@ import { Component } from '@angular/core';
 })
 export class JobApplicationComponent {
   isOn: boolean = true;
+  showCv = false
 
+  toggle(){
+    this.showCv = !this.showCv
+  }
   status() {
     this.isOn = !this.isOn;
   }

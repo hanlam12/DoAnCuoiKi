@@ -70,14 +70,14 @@ color: white;
 }
 .list-menu-pc {
   padding: 5px 0;
-  font-size: 12px;
+  font-size: 15px;
   border-radius: 12px;
   background-color: white;
   padding-left: 10px;
   position: absolute;
-  right: 200px;
+  right: 240px;
   top: 70px;
-  width: 16%;
+  width: 15%;
   border: 1px solid black;
   z-index: 1000;
   margin-left: 10px;
