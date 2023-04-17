@@ -20,7 +20,8 @@ export class WorkZoneService {
   public userEmail = localStorage.getItem('userEmail'); // đây là userEmail khi đăng nhập thành công, đứa nào muốn lấy truy xuất khi login thành công thì lấy thằng này.
   userIdUpdated = new EventEmitter<string>();
 
-  constructor(private _http:HttpClient, private router: Router) { }
+  constructor(
+    private _http:HttpClient, private router: Router) { }
   navigateAfterLogin(): void {
     // Điều hướng đến trang mong muốn sau khi người dùng đăng nhập thành công
     
@@ -52,10 +53,22 @@ export class WorkZoneService {
   // end login
 
   //thông tin công ty
-  private serverUrl = 'http://localhost:6868';
-  getCompany(id: string): Observable<Company> {
-    const url = `${this.serverUrl}/congty/${id}`;
-    return this._http.get<Company>(url);
+  // private serverUrl = 'http://localhost:6868';
+  // getCompany(id: string): Observable<Company> {
+  //   const url = `${this.serverUrl}/congty/${id}`;
+  //   return this._http.get<Company>(url);
+  // }
+
+  //test
+  getCompanyData(companyId: string): Observable<any> {
+    return this._http.get<any>(`http://localhost:6868/companies/${companyId}`).pipe(
+      map(result => result),
+      catchError(error => {
+        console.error('Error getting company data:', error);
+        return throwError(error);
+      })
+    );
   }
+  
 
 }

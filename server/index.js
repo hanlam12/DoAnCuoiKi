@@ -46,15 +46,36 @@ app.listen(port,()=>{
   });
 
   // API lấy thông tin công ty
-  const { ObjectId: objId } = require('mongodb');
+  // const { ObjectId: objId } = require('mongodb');
 
-  app.get('/congty/:id', async (req, res) => {
-    const id = req.params.id;
-    const company = await companyCollection.findOne({ _id: objId.createFromHexString(id) });
-    if (!company) {
-      return res.status(404).send('Không tìm thấy công ty');
+  // app.get('/congty/:id', async (req, res) => {
+  //   const id = req.params.id;
+  //   const company = await companyCollection.findOne({ _id: objId.createFromHexString(id) });
+  //   if (!company) {
+  //     return res.status(404).send('Không tìm thấy công ty');
+  //   }
+  //   res.json(company);
+  // });
+  
+  //test
+  app.get('/companies/:companyId', async (req, res) => {
+    try {
+      const companyId = req.params.companyId;
+      
+      // Find company by name
+      const company = await companyCollection.findOne({ company_id: companyId });
+        
+      // Find jobs by company name
+      const jobs = await jobCollection.find({ company: company.company_name }).toArray();
+      
+      const companyData = { company, jobs };
+          
+      // Send company and job data in response
+      res.send(companyData);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Server error');
     }
-    res.json(company);
   });
   
 
