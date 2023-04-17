@@ -38,7 +38,7 @@ export class User{
     public district:string="",
     public city:string="",
     public password:string="",
-    public cv:string="",
+    public cv:Array<cv>,
     public image:string=""
     ){}
 }
@@ -58,3 +58,6 @@ export class Company{
    category_detail: string
     }
 
+    export interface cv{
+     cv_detail: string
+       }

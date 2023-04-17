@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { CommonModule } from '@angular/common';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,12 +14,9 @@ import { Quenmatkhau1Component } from './quenmatkhau1/quenmatkhau1.component';
 import { Quenmatkhau2Component } from './quenmatkhau2/quenmatkhau2.component';
 import { Quenmatkhau3Component } from './quenmatkhau3/quenmatkhau3.component';
 import { CongtyComponent } from './congty/congty.component';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
 import { ContactComponent } from './contact/contact.component';
 import { HompageComponent } from './hompage/hompage.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-
 import { JobDecriptionComponent } from './job-decription/job-decription.component';
 import { JobApplicationComponent } from './job-application/job-application.component';
 import { AppliedJobComponent } from './applied-job/applied-job.component';
@@ -37,7 +31,14 @@ import { ThongBaoViecLamComponent } from './thong-bao-viec-lam/thong-bao-viec-la
 import { AccountMenuComponent } from './account-menu/account-menu.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+
 import { HttpClientModule } from '@angular/common/http';
+
+
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -48,15 +49,14 @@ import { HttpClientModule } from '@angular/common/http';
     ContactComponent,
     HompageComponent,
     SignUpComponent,
-
-    // JobDecriptionComponent,
+    JobDecriptionComponent,
     JobApplicationComponent,
     AppliedJobComponent,
     FooterLoggedComponent,
     FooterNotLogInComponent,
     AppComponent,
     SearchJobComponent,
-    // ApplyCVComponent,
+    ApplyCVComponent,
     ThongtinComponent,
     LoginComponent,
     DieukhoandichvuComponent,
@@ -73,7 +73,6 @@ import { HttpClientModule } from '@angular/common/http';
     AccountMenuComponent,
     CreateProfileComponent,
     NotFoundComponent
-
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ContactComponent } from './contact/contact.component';
 import { HompageComponent } from './hompage/hompage.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-
 import { JobDecriptionComponent } from './job-decription/job-decription.component';
 import { JobApplicationComponent } from './job-application/job-application.component';
 import { AppliedJobComponent } from './applied-job/applied-job.component';
@@ -28,16 +27,13 @@ const routes: Routes = [
 
   {path:"contact",component:ContactComponent},
   {path:"sign-up",component:SignUpComponent},
-
   {path:"job-decription",component:JobDecriptionComponent},
   {path:"job-application",component:JobApplicationComponent},
   {path:"applied-job",component:AppliedJobComponent},
   {path:"footer-logged",component:FooterLoggedComponent},
   {path:"footer-not-log-in",component:FooterNotLogInComponent},
-
   {path:"search-job",component:SearchJobComponent},
   {path:"applycv",component:ApplyCVComponent},
-
   {path:"",component:HompageComponent},
   { path: "thongtin", component: ThongtinComponent },
   {path: "login", component: LoginComponent},

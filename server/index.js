@@ -27,6 +27,7 @@ app.listen(port,()=>{
   userCollection = database.collection("user");
   companyCollection = database.collection("company");
 
+
   // API Login
   
   app.post('/login', async (req, res) => {
@@ -80,4 +81,9 @@ app.listen(port,()=>{
   
 
 
+<<<<<<< HEAD
   
+=======
+  
+
+>>>>>>> fe4f40410c81ff2a5b3b910d8e43e5c5f1983deb
