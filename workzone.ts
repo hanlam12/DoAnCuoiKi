@@ -38,7 +38,7 @@ export class User{
     public district:string="",
     public city:string="",
     public password:string="",
-    public cv:string="",
+    public cv: Array<JobApplication>,
     public image:string=""
     ){}
 }
@@ -57,4 +57,18 @@ export class Company{
   export interface category{
    category_detail: string
     }
+export class JobApplication {
+  constructor (
+    public title: string="",
+    public YOB:string="",
+    public career:string="",
+    public experience:string="",
+    public qualification:string="",
+    public english_level:string="",
+    public work_location:string="",
+    public working_form:string="",
+    public desired_salary:string="",
+    public CV_chinh:string="",
+    ){}
+}
 

@@ -25,12 +25,9 @@ app.listen(port,()=>{
   userCollection = database.collection("user");
   companyCollection = database.collection("company");
 
-  app.get("/users",cors(), async(req,res)=>{
-    const result = await userCollection.find({}).toArray();
-        res.send(result)
-  })
-  app.get("/users/:id",cors(), async(req,res)=>{
-    var o_id = new ObjectId(req.params["id"]);
-    const result = await userCollection.find({_id:o_id}).toArray();;
-    res.send(result)
-  })
+  app.get("/users/:userID", cors(), async (req, res) => {
+    const userId = req.params.userID;
+    const result = await userCollection.find({ userID: userId }).toArray();
+    res.send(result);
+  });
+

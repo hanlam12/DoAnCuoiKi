@@ -15,5 +15,10 @@ export class WorkZoneService {
 
   constructor(private _http:HttpClient) { }
 
-
+  //thông tin người tìm việc
+  private serverUrl = 'http://localhost:6868';
+  getUser(userID: string): Observable<User> {
+    const url = `${this.serverUrl}/users/${userID}`;
+    return this._http.get<User>(url);
+  }
 }

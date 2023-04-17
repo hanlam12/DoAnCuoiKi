@@ -37,6 +37,7 @@ import { ThongBaoViecLamComponent } from './thong-bao-viec-lam/thong-bao-viec-la
 import { AccountMenuComponent } from './account-menu/account-menu.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     PaginationModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-
+    HttpClientModule
   ],
 
   providers: [],

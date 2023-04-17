@@ -30,7 +30,7 @@ const routes: Routes = [
   {path:"sign-up",component:SignUpComponent},
 
   {path:"job-decription",component:JobDecriptionComponent},
-  {path:"job-application",component:JobApplicationComponent},
+  {path:"job-application/:userID",component:JobApplicationComponent},
   {path:"applied-job",component:AppliedJobComponent},
   {path:"footer-logged",component:FooterLoggedComponent},
   {path:"footer-not-log-in",component:FooterNotLogInComponent},
