@@ -30,9 +30,22 @@ app.listen(port,()=>{
   res.send(result)
  })
 
- app.get("/job/:id",cors(),async (req,res)=>{
-  var o_id = new ObjectId(req.params["id"])
-  const result = await jobCollection.find({_id:o_id}).toArray();
-  res.send(result[0])
-})
+app.get("/job/:position", cors(), async (req, res) => {
+  const position = req.params.position;
+  const result = await jobCollection.find({ position: position }).toArray();
+  res.send(result);
+});
+
+app.get("/job/category/:categories", cors(), async (req, res) => {
+  const categories = req.params.categories.split(",");
+  const result = await jobCollection.find({ category: { $in: categories } }).toArray();
+  res.send(result);
+});
+
+// app.get("/job/:result", cors(), async (req, res) => {
+//   const position = req.params.position;
+//   const categories = req.params.categories.split(",");
+//   const result = await jobCollection.find({ position: position, category: { $in: categories } }).toArray();
+//   res.send(result);
+// });
 

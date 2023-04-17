@@ -59,60 +59,60 @@
           </div><br>
           <div class="search-card-item">
             <p *ngIf="showText1">
-              <span class="cate-left mf10">Tất cả cấp bậc</span>
+              <a (click)="getAll()"><span class="cate-left mf10">Tất cả cấp bậc</span></a>
               <span class="cate-right">(96)</span>
             </p>
             <p *ngIf="showText1">
-              <span class="cate-left mf10">Kế toán / Kiểm toán</span>
-              <span class="cate-right">(4)</span>
-            </p>
-            <p *ngIf="showText1">
-              <span class="cate-left mf10">Quản lý chất lượng (QA/QC)</span>
-              <span class="cate-right">(6)</span>
-            </p>
-            <p *ngIf="showText1">
-              <span class="cate-left mf10">Nhà hàng / Khách sạn</span>
-              <span class="cate-right">(2)</span>
-            </p>
-            <p *ngIf="showText1">
-              <span class="cate-left mf10">Dịch vụ khách hàng</span>
-              <span class="cate-right">(8)</span>
-            </p>
-            <p *ngIf="showText1">
-              <span class="cate-left mf10">Bán hàng / Kinh doanh</span>
-              <span class="cate-right">(6)</span>
-            </p>
-            <p *ngIf="showText1">
-              <span class="cate-left mf10">Cơ khí / Ô tô / Tự động hóa</span>
-              <span class="cate-right">(4)</span>
-            </p>
-            <p *ngIf="showText1">
-              <span class="cate-left mf10">Điện / Điện tử / Điện lạnh</span>
-              <span class="cate-right">(6)</span>
-            </p>
-            <p *ngIf="showText1">
-              <span class="cate-left mf10">Bán lẻ / Bán sỉ</span>
-              <span class="cate-right">(5)</span>
-            </p>
-            <p *ngIf="showText1">
-              <span class="cate-left mf10">Xây dựng</span>
+              <a (click)="getKiemToan()"><span class="cate-left mf10">Kế toán / Kiểm toán</span></a>
               <span class="cate-right">(3)</span>
             </p>
             <p *ngIf="showText1">
-              <span class="cate-left mf10">Bảo hiểm</span>
-              <span class="cate-right">(1,000)</span>
+              <a (click)="getQC()"><span class="cate-left mf10">Quản lý chất lượng (QA/QC)</span></a>
+              <span class="cate-right">(6)</span>
             </p>
             <p *ngIf="showText1">
-              <span class="cate-left mf10">Môi trường</span>
-              <span class="cate-right">(1,000)</span>
+              <a (click)="getNHKS()"><span class="cate-left mf10">Nhà hàng / Khách sạn</span></a>
+              <span class="cate-right">(2)</span>
             </p>
             <p *ngIf="showText1">
-              <span class="cate-left mf10">Giáo dục / Đào tạo</span>
-              <span class="cate-right">(1,000)</span>
+              <a (click)="getDVKH()"><span class="cate-left mf10">Dịch vụ khách hàng</span></a>
+              <span class="cate-right">(9)</span>
             </p>
             <p *ngIf="showText1">
-              <span class="cate-left mf10">Tài chính / Đầu tư</span>
-              <span class="cate-right">(1,000)</span>
+              <a (click)="getBHKD()"><span class="cate-left mf10">Bán hàng / Kinh doanh</span></a>
+              <span class="cate-right">(6)</span>
+            </p>
+            <p *ngIf="showText1">
+              <a (click)="getOTO()"><span class="cate-left mf10">Cơ khí / Ô tô / Tự động hóa</span></a>
+              <span class="cate-right">(4)</span>
+            </p>
+            <p *ngIf="showText1">
+              <a (click)="getDT()"><span class="cate-left mf10">Điện / Điện tử / Điện lạnh</span></a>
+              <span class="cate-right">(6)</span>
+            </p>
+            <p *ngIf="showText1">
+              <a (click)="getBL()"><span class="cate-left mf10">Bán lẻ / Bán sỉ</span></a>
+              <span class="cate-right">(4)</span>
+            </p>
+            <p *ngIf="showText1">
+             <a (click)="getXayDung()"><span class="cate-left mf10">Xây dựng</span></a>
+              <span class="cate-right">(3)</span>
+            </p>
+            <p *ngIf="showText1">
+              <a (click)="getBH()"><span class="cate-left mf10">Bảo hiểm</span></a>
+              <span class="cate-right">(2)</span>
+            </p>
+            <p *ngIf="showText1">
+              <a (click)="getBH()"><span class="cate-left mf10">Môi trường</span></a>
+              <span class="cate-right">(2)</span>
+            </p>
+            <p *ngIf="showText1">
+              <a (click)="getGD()"><span class="cate-left mf10">Giáo dục / Đào tạo</span></a>
+              <span class="cate-right">(2)</span>
+            </p>
+            <p *ngIf="showText1">
+              <a (click)="getTC()"><span class="cate-left mf10">Tài chính / Đầu tư</span></a>
+              <span class="cate-right">(4)</span>
             </p>
           </div>
           <hr class="search-hr">
@@ -136,39 +136,7 @@
         </div>
         <hr class="search-hr">
         <!-- Đánh giá -->
-        <div class="search-card-item" style="margin-bottom: 30px;">
-          <div (click)="toggleText3()">
-            <span class="cate-left category">Đánh giá</span>
-            <span class="cate-right" *ngIf="showText3"><i class="bi bi-chevron-up"></i></span>
-            <span class="cate-right" *ngIf="!showText3"><i class="bi bi-chevron-down"></i></span>
-          </div><br>
-          <div *ngIf="showText3">
-            <div class="search-rate">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              (từ 5 sao)
-            </div>
-            <div class="search-rate">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star"></i>
-              (từ 4 sao)
-            </div>
-            <div class="search-rate">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star"></i>
-              <i class="bi bi-star"></i>
-              (từ 3 sao)
-            </div>
-          </div>
-      </div><hr class="search-hr">
+
       <div (click)="toggleText4()">
         <span class="cate-left category">Cấp bậc</span>
         <span class="cate-right" *ngIf="showText4"><i class="bi bi-chevron-up"></i></span>
@@ -177,60 +145,32 @@
       <div class="search-card-item">
 
         <p *ngIf="showText4">
-          <span class="cate-left mf10">Tất cả cấp bậc</span>
-          <span class="cate-right">(1,000)</span>
+          <a (click)="getNhanVien()"><span class="cate-left mf10">Nhân viên</span></a>
+          <span class="cate-right">(80)</span>
         </p>
         <p *ngIf="showText4">
-          <span class="cate-left mf10">Tất cả ngành nghề</span>
-          <span class="cate-right">(1,000)</span>
+          <a (click)="getQuanLy()"><span class="cate-left mf10">Quản lý</span></a>
+          <span class="cate-right">(4)</span>
         </p>
         <p *ngIf="showText4">
-          <span class="cate-left mf10">Tất cả ngành nghề</span>
-          <span class="cate-right">(1,000)</span>
+          <a (click)="getTruongNhom()"><span class="cate-left mf10">Trưởng nhóm</span></a>
+          <span class="cate-right">(2)</span>
         </p>
         <p *ngIf="showText4">
-          <span class="cate-left mf10">Tất cả ngành nghề</span>
-          <span class="cate-right">(1,000)</span>
+          <a (click)="getQLGS()"><span class="cate-left mf10">Quản lý / Giám sát</span></a>
+          <span class="cate-right">(4)</span>
         </p>
         <p *ngIf="showText4">
-          <span class="cate-left mf10">Tất cả ngành nghề</span>
-          <span class="cate-right">(1,000)</span>
+          <a (click)="getTruongPhong()"><span class="cate-left mf10">Trưởng phòng</span></a>
+          <span class="cate-right">(2)</span>
         </p>
         <p *ngIf="showText4">
-          <span class="cate-left mf10">Tất cả ngành nghề</span>
-          <span class="cate-right">(1,000)</span>
+          <a (click)="getTNGS()"><span class="cate-left mf10">Trưởng nhóm / Giám sát</span></a>
+          <span class="cate-right">(2)</span>
         </p>
         <p *ngIf="showText1">
-          <span class="cate-left mf10">Tất cả ngành nghề</span>
-          <span class="cate-right">(1,000)</span>
-        </p>
-        <p *ngIf="showText4">
-          <span class="cate-left mf10">Tất cả ngành nghề</span>
-          <span class="cate-right">(1,000)</span>
-        </p>
-        <p *ngIf="showText4">
-          <span class="cate-left mf10">Tất cả ngành nghề</span>
-          <span class="cate-right">(1,000)</span>
-        </p>
-        <p *ngIf="showText4">
-          <span class="cate-left mf10">Tất cả ngành nghề</span>
-          <span class="cate-right">(1,000)</span>
-        </p>
-        <p *ngIf="showText4">
-          <span class="cate-left mf10">Tất cả ngành nghề</span>
-          <span class="cate-right">(1,000)</span>
-        </p>
-        <p *ngIf="showText4">
-          <span class="cate-left mf10">Tất cả ngành nghề</span>
-          <span class="cate-right">(1,000)</span>
-        </p>
-        <p *ngIf="showText4">
-          <span class="cate-left mf10">Tất cả ngành nghề</span>
-          <span class="cate-right">(1,000)</span>
-        </p>
-        <p *ngIf="showText4">
-          <span class="cate-left mf10">Tất cả ngành nghề</span>
-          <span class="cate-right">(1,000)</span>
+          <a (click)="getVuaTN()"><span class="cate-left mf10">Vừa tốt nghiệp</span></a>
+          <span class="cate-right">(1)</span>
         </p>
       </div>
       </div>
