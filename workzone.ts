@@ -21,6 +21,7 @@ export interface IJob{
   gender:string,
   recruiting_amount:string,
   work_form:string,
+  company_id:string
 }
 
 
@@ -47,7 +48,8 @@ export class Job{
   public position:string="",
   public gender:string="",
   public recruiting_amount:string="",
-  public work_form:string=""
+  public work_form:string="",
+  public company_id:string=""
   ){}
   }
 

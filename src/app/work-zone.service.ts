@@ -312,7 +312,7 @@ export class WorkZoneService {
       headers:headers,
       responseType:"text"
       }
-      return this._http.get<any>("/job/category/IT%20ph%E1%BA%A7n%20m%E1%BB%81m",requestOptions).pipe(
+      return this._http.get<any>("/job/category/CNTT%20-%20Ph%E1%BA%A7n%20m%E1%BB%81m",requestOptions).pipe(
         map(res=>JSON.parse(res) as Array<IJob>),
         retry(3),
         catchError(this.handleError))

@@ -27,7 +27,7 @@ const routes: Routes = [
 
   {path:"contact",component:ContactComponent},
   {path:"sign-up",component:SignUpComponent},
-  {path:"job-decription",component:JobDecriptionComponent},
+  {path:"job-decription/:jobJD",component:JobDecriptionComponent},
   {path:"job-application",component:JobApplicationComponent},
   {path:"applied-job",component:AppliedJobComponent},
   {path:"footer-logged",component:FooterLoggedComponent},
@@ -45,7 +45,7 @@ const routes: Routes = [
   { path:"quenmatkhau2", component:Quenmatkhau2Component},
   { path:"quenmatkhau3", component:Quenmatkhau3Component},
   {path: "dieukhoandichvu", component: DieukhoandichvuComponent},
-  {path: "congty", component: CongtyComponent}
+  {path: "companies/:companyId", component: CongtyComponent}
 ];
 
 @NgModule({

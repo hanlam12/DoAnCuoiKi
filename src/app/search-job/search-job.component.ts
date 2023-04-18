@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Job } from 'workzone';
 import { IJob } from 'workzone';
 import { WorkZoneService } from '../work-zone.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-search-job',
   templateUrl: './search-job.component.html',
@@ -16,11 +17,18 @@ export class SearchJobComponent {
   showText3 = true;
   showText4 = true;
 
-  constructor(private _service:WorkZoneService){
+  constructor(private _service:WorkZoneService,private router:Router){
     this._service.getJobs().subscribe({
       next:(data)=>{this.jobs=data},
       error:(err)=>{this.errMessage=err}
     })
+
+  }
+  goToCompany(companyId:string):void{
+    this.router.navigate(['/companies/'+companyId])
+  }
+  goToDescription(companyId:string){
+    this.router.navigate(['/job-decription/'+companyId])
   }
   toggleText() {
     this.showText = !this.showText;
@@ -216,5 +224,6 @@ export class SearchJobComponent {
       error:(err)=>{this.errMessage=err}
       })
   }
+
 
 }

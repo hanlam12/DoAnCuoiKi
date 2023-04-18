@@ -73,10 +73,20 @@ button{
   width: 100px;
   font-weight: 700;
 }
-.img-fluid{
-  width: 600px;
-  height: 260px;
-}
 .text{
   color: red;
+}
+@media screen and (max-width: 480px){
+  iframe{
+    width: 360px;
+  }
+  .col-md-6:first-child{
+    width: 430px;
+    margin-left: 20px;
+  }
+  .col-md-6:last-child{
+    max-width: 430px;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
 }

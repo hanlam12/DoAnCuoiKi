@@ -42,6 +42,8 @@ app.get("/job/category/:categories", cors(), async (req, res) => {
   res.send(result);
 });
 
+
+
 // app.get("/job/:result", cors(), async (req, res) => {
 //   const position = req.params.position;
 //   const categories = req.params.categories.split(",");
