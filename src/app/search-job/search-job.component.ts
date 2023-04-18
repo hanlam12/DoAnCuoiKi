@@ -182,4 +182,39 @@ export class SearchJobComponent {
       })
   }
 
+  getNH(){
+    this._service.getNH(this.jobs).subscribe({
+      next:(data)=>{this.jobs=data},
+      error:(err)=>{this.errMessage=err}
+      })
+  }
+
+  getCNTT(){
+    this._service.getCNTT(this.jobs).subscribe({
+      next:(data)=>{this.jobs=data},
+      error:(err)=>{this.errMessage=err}
+      })
+  }
+
+  getTT(){
+    this._service.getTT(this.jobs).subscribe({
+      next:(data)=>{this.jobs=data},
+      error:(err)=>{this.errMessage=err}
+      })
+  }
+
+  getIT(){
+    this._service.getIT(this.jobs).subscribe({
+      next:(data)=>{this.jobs=data},
+      error:(err)=>{this.errMessage=err}
+      })
+  }
+
+  getTV(){
+    this._service.getTV(this.jobs).subscribe({
+      next:(data)=>{this.jobs=data},
+      error:(err)=>{this.errMessage=err}
+      })
+  }
+
 }

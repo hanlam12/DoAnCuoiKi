@@ -269,4 +269,64 @@ export class WorkZoneService {
         retry(3),
         catchError(this.handleError))
     }
+
+    getNH(fNH:any):Observable<any>{
+      const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+      const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+      }
+      return this._http.get<any>("/job/category/Ng%C3%A2n%20h%C3%A0ng",requestOptions).pipe(
+        map(res=>JSON.parse(res) as Array<IJob>),
+        retry(3),
+        catchError(this.handleError))
+    }
+
+    getCNTT(fCNTT:any):Observable<any>{
+      const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+      const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+      }
+      return this._http.get<any>("/job/category/C%C3%B4ng%20ngh%E1%BB%87%20th%C3%B4ng%20tin",requestOptions).pipe(
+        map(res=>JSON.parse(res) as Array<IJob>),
+        retry(3),
+        catchError(this.handleError))
+    }
+
+    getTT(fTT:any):Observable<any>{
+      const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+      const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+      }
+      return this._http.get<any>("/job/category/Th%E1%BB%9Di%20trang",requestOptions).pipe(
+        map(res=>JSON.parse(res) as Array<IJob>),
+        retry(3),
+        catchError(this.handleError))
+    }
+
+    getIT(fIT:any):Observable<any>{
+      const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+      const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+      }
+      return this._http.get<any>("/job/category/IT%20ph%E1%BA%A7n%20m%E1%BB%81m",requestOptions).pipe(
+        map(res=>JSON.parse(res) as Array<IJob>),
+        retry(3),
+        catchError(this.handleError))
+    }
+
+    getTV(fTV:any):Observable<any>{
+      const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+      const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+      }
+      return this._http.get<any>("/job/category/T%C6%B0%20v%E1%BA%A5n",requestOptions).pipe(
+        map(res=>JSON.parse(res) as Array<IJob>),
+        retry(3),
+        catchError(this.handleError))
+    }
 }

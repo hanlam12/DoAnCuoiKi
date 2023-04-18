@@ -63,7 +63,27 @@
               <span class="cate-right">(96)</span>
             </p>
             <p *ngIf="showText1">
+              <a (click)="getIT()"><span class="cate-left mf10">IT phần mềm</span></a>
+              <span class="cate-right">(2)</span>
+            </p>
+            <p *ngIf="showText1">
               <a (click)="getKiemToan()"><span class="cate-left mf10">Kế toán / Kiểm toán</span></a>
+              <span class="cate-right">(3)</span>
+            </p>
+            <p *ngIf="showText1">
+              <a (click)="getTV()"><span class="cate-left mf10">Tư vấn</span></a>
+              <span class="cate-right">(13)</span>
+            </p>
+            <p *ngIf="showText1">
+              <a (click)="getNH()"><span class="cate-left mf10">Ngân hàng</span></a>
+              <span class="cate-right">(6)</span>
+            </p>
+            <p *ngIf="showText1">
+              <a (click)="getCNTT()"><span class="cate-left mf10">Công nghệ thông tin</span></a>
+              <span class="cate-right">(6)</span>
+            </p>
+            <p *ngIf="showText1">
+              <a (click)="getTT()"><span class="cate-left mf10">Thời trang</span></a>
               <span class="cate-right">(3)</span>
             </p>
             <p *ngIf="showText1">
@@ -116,25 +136,7 @@
             </p>
           </div>
           <hr class="search-hr">
-          <!-- Mức lương -->
-          <div class="search-card-item" style="margin-bottom: 30px;">
-            <div (click)="toggleText2()">
-              <span class="cate-left category">Mức lương</span>
-              <span class="cate-right" *ngIf="showText2"><i class="bi bi-chevron-up"></i></span>
-              <span class="cate-right" *ngIf="!showText2"><i class="bi bi-chevron-down"></i></span>
-            </div><br>
-            <div *ngIf="showText2">
-              <div>
-                <form action="">
-                  <input type="number" class="search-price" placeholder="1.000.000"  name="" id="">
-                  -
-                  <input type="number" class="search-price" placeholder="5.000.000" name="" id="">
-                  <button type="submit" class="btn-price"><i class="bi bi-chevron-right"></i></button>
-                </form>
-              </div>
-            </div>
-        </div>
-        <hr class="search-hr">
+
         <!-- Đánh giá -->
 
       <div (click)="toggleText4()">
@@ -180,24 +182,23 @@
 <div class="search-main-content-right">
   <div class="search-filter">Đã tìm thấy {{jobs.length}} công việc</div>
   <div class="border">
-  <tr *ngFor="let p of jobs; let i =index">
-    <td><div class="content-hot">
+    <div class="content-hot" style="margin-top: 10px;" *ngFor="let p of jobs; let i =index">
       <div class="content-img">
-        <a>
-          <img src="{{p.image}}"
+        <a><img src="{{p.image}}"
         /></a>
       </div>
       <div class="content-hot-infor">
         <a>
-          <div class="comp">{{p.job_name}}</div>
-        </a
-        >
+          <div class="comp">
+            {{p.job_name}}
+          </div>
+        </a>
         <div>
-          <a class="hover1">{{p.company}}</a>
+          <a class="hover1">{{p.company}}</a
+          >
           |
-          <a class="hover2">
-            <i class="bi bi-geo-alt-fill"></i>{{p.address}}
-            </a>
+          <a class="hover2"><i class="bi bi-geo-alt-fill"></i> {{p.address}}</a
+          >
         </div>
         <div>
           <i class="bi bi-briefcase-fill"></i>&nbsp;&nbsp;{{p.exprience}}
@@ -208,10 +209,5 @@
         <button id="apply">Apply Now</button>
       </div>
     </div>
-    </td>
-  </tr>
-
-
-
 </div>
 
