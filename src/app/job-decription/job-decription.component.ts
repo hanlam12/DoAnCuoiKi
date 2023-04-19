@@ -1,9 +1,6 @@
-
-import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Job } from 'workzone';
 import { WorkZoneService } from '../work-zone.service';
-
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService  } from 'ngx-bootstrap/modal';
 import { ApplyCVComponent } from '../apply-cv/apply-cv.component';
@@ -14,44 +11,40 @@ import { ApplyCVComponent } from '../apply-cv/apply-cv.component';
   templateUrl: './job-decription.component.html',
   styleUrls: ['./job-decription.component.css'],
 })
-export class JobDecriptionComponent{
+export class JobDecriptionComponent {
 
+  jobId: string = '';
+  jobData: any;
 
-//  job: Job | undefined
-jobJD:string=''
-jobData: any
-constructor(
-  private route: ActivatedRoute,
-  private jobsService: WorkZoneService
-) { }
-ngOnInit() {
-  this.route.paramMap.subscribe(params => {
-    this.jobJD = params.get('jobJD')!;
-    this.getjobDescription();
-  });
-}
+  constructor(
+    private route: ActivatedRoute,
+    private jobsService: WorkZoneService,
+    private modalService: BsModalService
+  ) { }
 
-getjobDescription() {
-  this.jobsService.getjobDescription(this.jobJD).subscribe({
-    next: result => {
-      this.jobData = result;
-      console.log(this.jobData);
-    },
-    error: error => {
-      console.error('Error getting company data:', error);
-    }
-  });
-}
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      if (params.has('jobId')) {
+        this.jobId = params.get('jobId')!;
+        this.getJobDescription();
+      }
+    });
+  }
 
-  show = false;
-
-  constructor(private modalService: BsModalService) {}
-
-
-  modalRef!: BsModalRef;
+  getJobDescription() {
+    this.jobsService.getjobDescription(this.jobId).subscribe({
+      next: result => {
+        this.jobData = result;
+        console.log(this.jobData);
+      },
+      error: error => {
+        console.error('Error getting job data:', error);
+      }
+    });
+  }
 
   showModal() {
-    this.modalRef = this.modalService.show(ApplyCVComponent);
+    this.modalService.show(ApplyCVComponent);
   }
 
 }
