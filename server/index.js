@@ -11,6 +11,8 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(express.json());
 const cors=require("cors");
 app.use(cors())
+const jwt = require('jsonwebtoken');
+const secretKey = 'ThisIsASecretKey';
 app.listen(port,()=>{
   console.log(`My Server listening on port ${port}`)
   })
@@ -24,6 +26,7 @@ app.listen(port,()=>{
   jobCollection = database.collection("job");
   userCollection = database.collection("user");
   companyCollection = database.collection("company");
+
 
  app.get("/job", cors(), async (req, res)=>{
   const result = await jobCollection.find({}).toArray();
@@ -50,4 +53,38 @@ app.get("/job/category/:categories", cors(), async (req, res) => {
 //   const result = await jobCollection.find({ position: position, category: { $in: categories } }).toArray();
 //   res.send(result);
 // });
+
+
+  // API Login
+  
+  app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    const user = await userCollection.findOne({ email: email });
+  
+    if (!user || user.password !== password) {
+      return res.status(401).send('Invalid email or password');
+    }
+  
+    const token = jwt.sign({ email: email }, secretKey);
+  
+    res.json({ token, userEmail: user.email });
+    
+    
+  });
+
+  // API lấy thông tin công ty
+  const { ObjectId: objId } = require('mongodb');
+
+  app.get('/congty/:id', async (req, res) => {
+    const id = req.params.id;
+    const company = await companyCollection.findOne({ _id: objId.createFromHexString(id) });
+    if (!company) {
+      return res.status(404).send('Không tìm thấy công ty');
+    }
+    res.json(company);
+  });
+  
+
+
 

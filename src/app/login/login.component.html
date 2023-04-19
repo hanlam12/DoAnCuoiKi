@@ -1,25 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <title>WorkZone - Login</title>
-    <link rel="stylesheet" href="login.component.html" />
+<div class="container" >
+  <div class="main-menu">
+    <div class="left-main-menu">
+      <div class="row">
+        <div class="col-md-3">
+          <a class="logo" href="#"
+            ><img src="assets/media/logo.png" alt="Logo"
+          /></a>
+        </div>
+      </div>
+    </div>
+    <div class="right-main-menu">
 
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-    />
+      <a href="#" class="btn btn-primary btn-lg active ntd" role="button" aria-pressed="true">NHÀ TUYỂN DỤNG</a>
 
-  </head>
-  <body>
-  
+    </div>
+  </div>
+</div>
+
     <div class="container">
       <div class="login-main">
         <div class="row">
@@ -47,7 +44,7 @@
                     [class.error] = "error"
                   />
                 </div>
-                
+
               </div>
 
               <div class="input-login pass">
@@ -64,11 +61,11 @@
               <div class="error-infor" *ngIf="error" >Email hoặc Mật khẩu không hợp lệ</div>
               <div>
                 <input type="checkbox" class="check" formControlName="checkbox" [(ngModel)]="showPassword"   /> Hiển thị mật khẩu
-              <a href="#"> <span class="blue forgot float">Quên mật khẩu?</span></a> 
+              <a routerLink="/quenmatkhau"> <span class="blue forgot float">Quên mật khẩu?</span></a>
               </div>
 
               <a class="blue center mg-top" routerLink="/sign-up">Bạn chưa có tài khoản? Đăng ký</a>
-              <button type="submit" class="btn-login" (click)="onSubmit()" >Đăng Nhập</button>
+              <button type="submit" class="btn-login" (click)="login()" >Đăng Nhập</button>
               <div class="">
                 <div class="text center">
                   <span>Hoặc</span>
@@ -95,5 +92,4 @@
       </div>
     </div>
 
-  </body>
-</html>
+

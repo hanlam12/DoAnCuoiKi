@@ -1,5 +1,5 @@
 
-  <ng-template #myModal>
+
     <div id="myModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModal">
       <!-- Modal content -->
       <div class="modal-content">
@@ -12,12 +12,12 @@
         <div class="modal-body">
           <div >
             <div class="top-modal-body">
-              <div *ngIf="show"  class="top-modal-body-right">
+              <div *ngIf="show" class="top-modal-body-right">
                 <strong>Tải lên CV từ máy tính</strong><br>
                 <span class="text-gray">File doc, docx, pdf. Tối đa 5MB.</span>
               </div>
               <div class="top-modal-body-left">
-                <a (click)="tonggle()" class="a_border">
+                <a (click)="toggle()" class="a_border">
                   <span *ngIf="!show"><i class="bi bi-upload"></i>Tải CV lên từ máy tính</span>
                   <span *ngIf="show"><i class="bi bi-globe"></i>Dùng CV online</span>
                 </a>
@@ -60,22 +60,25 @@
 
         </div>
         <div class="modal-footer">
-          <button (click)="modalRef.hide()" class="close">Đóng lại</button>
+          <button (click)="bsModalRef.hide()" class="close">Đóng lại</button>
           <button (click)="cvSuccess()" id="myBtn2">Nộp CV</button>
         </div>
       </div>
     </div>
-    </ng-template>
 
-    <ng-template #myModal2>
-      <div id="myModal2" class="modal">
-        <div class="modal-content1">
-          <div>NỘP CV THÀNH CÔNG</div>
-          <div class="modal-footer1">
-            <button class="close2" (click)="cvSuccess2()">OK</button>
-          </div>
+
+
+
+   <div *ngIf="isSubmitted">
+    <div id="myModal2" class="modal">
+      <div class="modal-content1">
+        <div>NỘP CV THÀNH CÔNG</div>
+        <div class="modal-footer1">
+          <button class="close2" (click)="bsModalRef.hide()">OK</button>
         </div>
       </div>
-    </ng-template>
+    </div>
+   </div>
+
 
 
