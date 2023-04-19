@@ -31,7 +31,6 @@ export class Job{
   public jobJD:string="",
   public image:string="",
   public job_name:string="",
-  public company_id:string="",
   public company:string="",
   public category: Array<category>,
   public address:string="",
@@ -67,11 +66,7 @@ export class User{
     public district:string="",
     public city:string="",
     public password:string="",
-
     public cv: Array<JobApplication>,
-
-    public cv:Array<cv>,
-
     public image:string=""
     ){}
 }
@@ -107,12 +102,6 @@ export class JobApplication {
     public your_wishes:string="",
     public introduce_yourself:string="",
     ){}
-}
-
-}
-
-export interface cv{
-  cv_detail: string
 }
 
 
