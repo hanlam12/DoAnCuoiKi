@@ -122,14 +122,11 @@ ul li{
     color: black;
     padding-top: 20px;
   }
-  #you_create_file, #xapsep, #file_created{
+  #you_create_file, #file_created{
     width: 100%;
     border-bottom: 0.5px solid rgba(0, 0, 0, 0.31);
     min-height: 40px;
     height: auto;
-  }
-  #xapsep input{
-    margin-left: 5%;
   }
   table, td, th {
     text-align: center;
@@ -394,9 +391,19 @@ select.form-control {
   border-radius: 3px;
   color: #fff;
 }
+.text-right{
+  text-align: right;
+}
+.text-left{
+  text-align: left;
+}
+.fw{
+  font-weight: bold;
+}
   @media (min-width: 1200px)
   {
     .container{
       max-width: 100%;
     }
   }
+

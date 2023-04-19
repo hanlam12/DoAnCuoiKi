@@ -19,7 +19,6 @@ export class JobApplicationComponent implements OnInit {
   taiCv = true
   showCv = false
   UpdateCv = false
-  hoSoChiTiet = false
 
 
   toggle(){
@@ -28,12 +27,12 @@ export class JobApplicationComponent implements OnInit {
     this.showCv = true;
 
   }
-//   updateCv(){
-//     this.taiCv = false;
-//     this.UpdateCv=true;
-//     this.showCv = false;
-//     this.hoSoDaTao = false
-// }
+  updateCv(){
+    this.taiCv = false;
+    this.UpdateCv=true;
+    this.showCv = false;
+    this.hoSoDaTao = false
+}
 cancel(){
   this.taiCv = true;
   this.UpdateCv=false;
@@ -41,9 +40,10 @@ cancel(){
   this.hoSoDaTao = true
 }
 chitiet(){
-  this.taiCv = true;
-  this.hoSoDaTao = false;
-  this.hoSoChiTiet = true
+  this.taiCv = false;
+  this.UpdateCv=true;
+  this.showCv = false;
+  this.hoSoDaTao = false
 }
 
 user: User | undefined
@@ -81,6 +81,7 @@ onFileSelected(event:any,newcv:JobApplication){
   };
 }
 public regForm: FormGroup = new FormGroup ({
+  title: new FormControl('', Validators.required),
   YOB: new FormControl('', Validators.required),
   career:  new FormControl('',Validators.required),
   experience:  new FormControl('',Validators.required),
@@ -90,6 +91,8 @@ public regForm: FormGroup = new FormGroup ({
   working_form:  new FormControl('',Validators.required),
   desired_salary:  new FormControl('',Validators.required),
   CV_chinh:  new FormControl('',Validators.required),
+  gender: new FormControl('',Validators.required),
+  fullname: new FormControl('',Validators.required),
 })
 
 updateTrinhDoEnglish(value: string) {
@@ -100,20 +103,10 @@ putInforCv(){
   this.usersService.putInforCv(this.newcv).subscribe({
     next:(data)=>{this.user=data},
   })
-  this.taiCv = false;
-  this.UpdateCv=true;
+  this.taiCv = true;
+  this.UpdateCv=false;
   this.showCv = false;
-  this.hoSoDaTao = false
-}
-
-
-
-// Khai báo biến đếm trong component
-public counter: number = 1;
-
-// Tăng biến đếm lên mỗi khi được gọi
-public increaseCounter(): void {
-  this.counter++;
+  this.hoSoDaTao = true
 }
 
 }

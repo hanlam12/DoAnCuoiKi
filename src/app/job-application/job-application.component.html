@@ -67,7 +67,7 @@
           <div>File tải lên không quá: 5 MB</div>
         </div>
         <div class="box-btn-upload">
-          <button (click)="putInforCv()" class="btn btn-primary-hover  btn-upload ">Tải CV lên</button>
+          <button (click)="updateCv()" class="btn btn-primary-hover  btn-upload ">Tải CV lên</button>
           <p class="text-highlight upload-process">Hệ thống đang xử lý CV của bạn thông thường mất từ 10 đến 15 giây, xin vui lòng đợi !!!</p>
         </div>
       </div>
@@ -106,63 +106,63 @@
             </div>
             <div class="col-md-9">
               <select type="text" class="form-control  select2-hidden-accessible" id="dob_selector" name="dob" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="YOB" [class.is-invalid]="regForm.controls['YOB'].invalid && regForm.controls['YOB'].touched">
-              <option value>-- Chọn năm sinh --</option>
-              <option value="2005">2005</option>
-              <option value="2005">2004</option>
-              <option value="2005">2003</option>
-              <option value="2005">2002</option>
-              <option value="2005">2001</option>
-              <option value="2005">2000</option>
-              <option value="2005">1999</option>
-              <option value="2005">1998</option>
-              <option value="2005">1997</option>
-              <option value="2005">1996</option>
-              <option value="2005">1995</option>
-              <option value="2005">1994</option>
-              <option value="2005">1993</option>
-              <option value="2005">1992</option>
-              <option value="2005">1991</option>
-              <option value="2005">1990</option>
-              <option value="2005">1989</option>
-              <option value="2005">1988</option>
-              <option value="2005">1987</option>
-              <option value="2005">1986</option>
-              <option value="2005">1985</option>
-              <option value="2005">1984</option>
-              <option value="2005">1983</option>
-              <option value="2005">1982</option>
-              <option value="2005">1981</option>
-              <option value="2005">1980</option>
-              <option value="2005">1979</option>
-              <option value="2005">1978</option>
-              <option value="2005">1977</option>
-              <option value="2005">1976</option>
-              <option value="2005">1975</option>
-              <option value="2005">1974</option>
-              <option value="2005">1973</option>
-              <option value="2005">1972</option>
-              <option value="2005">1971</option>
-              <option value="2005">1970</option>
-              <option value="2005">1969</option>
-              <option value="2005">1968</option>
-              <option value="2005">1967</option>
-              <option value="2005">1966</option>
-              <option value="2005">1965</option>
-              <option value="2005">1964</option>
-              <option value="2005">1963</option>
-              <option value="2005">1962</option>
-              <option value="2005">1961</option>
-              <option value="2005">1960</option>
-              <option value="2005">1959</option>
-              <option value="2005">1958</option>
-              <option value="2005">1957</option>
-              <option value="2005">1956</option>
-              <option value="2005">1955</option>
-              <option value="2005">1954</option>
-              <option value="2005">1953</option>
-              <option value="2005">1952</option>
-              <option value="2005">1951</option>
-              <option value="2005">1950</option>
+              <option value>{{c?.YOB}}</option>
+              <option value="1">2005</option>
+              <option value="2">2004</option>
+              <option value="3">2003</option>
+              <option value="4">2002</option>
+              <option value="5">2001</option>
+              <option value="6">2000</option>
+              <option value="7">1999</option>
+              <option value="8">1998</option>
+              <option value="9">1997</option>
+              <option value="10">1996</option>
+              <option value="11">1995</option>
+              <option value="12">1994</option>
+              <option value="13">1993</option>
+              <option value="14">1992</option>
+              <option value="15">1991</option>
+              <option value="16">1990</option>
+              <option value="17">1989</option>
+              <option value="18">1988</option>
+              <option value="19">1987</option>
+              <option value="20">1986</option>
+              <option value="21">1985</option>
+              <option value="22">1984</option>
+              <option value="23">1983</option>
+              <option value="24">1982</option>
+              <option value="25">1981</option>
+              <option value="26">1980</option>
+              <option value="27">1979</option>
+              <option value="28">1978</option>
+              <option value="29">1977</option>
+              <option value="30">1976</option>
+              <option value="31">1975</option>
+              <option value="32">1974</option>
+              <option value="33">1973</option>
+              <option value="34">1972</option>
+              <option value="35">1971</option>
+              <option value="36">1970</option>
+              <option value="37">1969</option>
+              <option value="38">1968</option>
+              <option value="39">1967</option>
+              <option value="40">1966</option>
+              <option value="41">1965</option>
+              <option value="42">1964</option>
+              <option value="43">1963</option>
+              <option value="44">1962</option>
+              <option value="45">1961</option>
+              <option value="46">1960</option>
+              <option value="47">1959</option>
+              <option value="48">1958</option>
+              <option value="49">1957</option>
+              <option value="51">1956</option>
+              <option value="52">1955</option>
+              <option value="53">1954</option>
+              <option value="54">1953</option>
+              <option value="55">1952</option>
+              <option value="56">1951</option>
+              <option value="57">1950</option>
               </select>
             </div>
           </div>
@@ -171,9 +171,12 @@
               <label for="">Giới tính <span class="text-red">*</span></label>
             </div>
             <div class="col-md-9 radio">
-              <label class="font-weight-normal"><input type="radio" name="gender" value="1"> <span class="icon-radio"> Nữ </span></label>
-              <label class="font-weight-normal"><input type="radio" name="gender" value="2"> <span class="icon-radio"> Nam </span></label>
-              <label class="font-weight-normal"> <input type="radio" name="gender" value="3"> <span class="icon-radio"> Không xác định</span></label>
+              <select type="text" class="form-control  select2-hidden-accessible" id="experience" name="experience" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="gender" [class.is-invalid]="regForm.controls['gender'].invalid && regForm.controls['gender'].touched">
+                <option value="">{{user?.gender}}</option>
+                <option value="1">Nam</option>
+                <option value="2">Nữ</option>
+                <option value="3">Không xác định</option>
+                </select>
             </div>
           </div>
           <div class="form-group row mb-3">
@@ -182,7 +185,7 @@
             </div>
             <div class="col-md-9 radio">
               <select type="text" class="form-control  select2-hidden-accessible" id="categoy" name="categoy" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="career" [class.is-invalid]="regForm.controls['career'].invalid && regForm.controls['career'].touched">
-              <option value>-- Chọn ngành nghề --</option>
+              <option value>{{c?.career}}</option>
               <option value="1001">Kinh doanh / Bán hàng</option>
               <option value="1002">Biên / Phiên dịch</option>
               <option value="1003">Báo chí / Truyền hình</option>
@@ -259,7 +262,7 @@
             </div>
             <div class="col-md-9">
               <select type="text" class="form-control  select2-hidden-accessible" id="experience" name="experience" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="experience" [class.is-invalid]="regForm.controls['experience'].invalid && regForm.controls['experience'].touched">
-              <option value>-- Thời gian làm việc ngành nghề đã chọn --</option>
+              <option value>{{c?.experience}}</option>
               <option value="1">Chưa có kinh nghiệm</option>
               <option value="2">Dưới 1 năm</option>
               <option value="3">1 năm</option>
@@ -277,7 +280,7 @@
             </div>
             <div class="col-md-9">
               <select type="text" class="form-control  select2-hidden-accessible" id="trinhDoChuyenMon" name="trinhDoChuyenMon" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="qualification" [class.is-invalid]="regForm.controls['qualification'].invalid && regForm.controls['qualification'].touched">
-              <option value>-- Chọn trình độ --</option>
+              <option value>{{c?.qualification}}</option>
               <option value="1">Sinh viên</option>
               <option value="2">Mới ra trường</option>
               <option value="3">Có kinh nghiệm</option>
@@ -294,7 +297,7 @@
             </div>
             <div class="col-md-9">
               <select type="text" class="form-control  select2-hidden-accessible" id="trinhDoEnglish" name="trinhDoEnglish" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="english_level" [class.is-invalid]="regForm.controls['english_level'].invalid && regForm.controls['english_level'].touched">
-              <option value>-- Chọn trình độ --</option>
+              <option value>{{c?.english_level}}</option>
               <option value="1">Không biết</option>
               <option value="2">Đọc hiểu cơ bản</option>
               <option value="3">Đọc/viết tốt tài liệu chuyên môn</option>
@@ -309,7 +312,7 @@
             </div>
             <div class="col-md-9">
               <select type="text" class="form-control  select2-hidden-accessible" id="address" name="address" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="work_location" [class.is-invalid]="regForm.controls['work_location'].invalid && regForm.controls['work_location'].touched">
-              <option value>-- Lựa chọn địa điểm bạn có thể làm việc --</option>
+              <option value="">{{c?.work_location}}</option>
               <option value="1">Hà Nội</option>
               <option value="2">Hồ Chí Minh</option>
               <option value="3">Bình Dương</option>
@@ -388,7 +391,7 @@
             </div>
             <div class="col-md-9">
               <select type="text" class="form-control  select2-hidden-accessible" id="hinhThucLamViec" name="hinhThucLamViec" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="working_form" [class.is-invalid]="regForm.controls['working_form'].invalid && regForm.controls['working_form'].touched">
-              <option value>-- Chọn hình thức làm việc mong muốn --</option>
+              <option value>{{c?.working_form}}</option>
               <option value="1">Toàn thời gian</option>
               <option value="2">Bán thời gian</option>
               <option value="3">Thực tập</option>
@@ -401,7 +404,7 @@
             </div>
             <div class="col-md-9">
               <select type="text" class="form-control  select2-hidden-accessible" id="mucLuongMongMuon" name="mucLuongMongMuon" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="desired_salary" [class.is-invalid]="regForm.controls['desired_salary'].invalid && regForm.controls['desired_salary'].touched">
-              <option value>-- Chọn mức lương mong muốn --</option>
+              <option value>{{c?.desired_salary}}</option>
               <option value="1">Dưới 5 triệu</option>
               <option value="2"> 5 - 10 triệu</option>
               <option value="3">10 - 15 triệu </option>
@@ -428,7 +431,7 @@
               <label for="">Mong muốn của bạn</label>
             </div>
             <div class="col-md-9">
-              <textarea class="form-control border-hover" name="expectation" placeholder="Mong muốn của bạn về các cơ hội việc làm phù hợp, về môi trường công ty hoặc thông tin công ty bạn muốn ứng tuyển"  cols="30" rows="10" style="height: 100px;"></textarea>
+              <textarea class="form-control border-hover" name="expectation" placeholder="Mong muốn của bạn về các cơ hội việc làm phù hợp, về môi trường công ty hoặc thông tin công ty bạn muốn ứng tuyển"  cols="30" rows="10" style="height: fit-content;">{{c?.your_wishes}} </textarea>
             </div>
           </div>
           <div class="form-group row mb-3">
@@ -436,7 +439,7 @@
               <label for="">Giới thiệu về bạn</label>
             </div>
             <div class="col-md-9">
-              <textarea class="form-control border-hover" name="note" placeholder="Giới thiệu ngắn gọn về bàn thân để tạo ấn tượng tốt với các nhà tuyển dụng" style="height: 100px;" cols="30" rows="10"></textarea>
+              <textarea class="form-control border-hover" name="note" placeholder="Giới thiệu ngắn gọn về bàn thân để tạo ấn tượng tốt với các nhà tuyển dụng" style="height: fit-content;" cols="30" rows="10"> {{c?.introduce_yourself}} </textarea>
             </div>
           </div>
         </div>
@@ -451,15 +454,6 @@
       <div id="content_body_left">
         <div id="file_created"> <p>Hồ sơ đã tạo</p> </div>
         <div id="you_create_file"> <p>Bạn đã tạo 03 hồ sơ</p> </div>
-        <div id="xapsep"> <p>Sắp xếp theo:
-          <input id="gandaynhat" name="sapxep" type="radio">
-          <label for="gandaynhat">  Gần đây nhất</label>
-          <input id="1thangtruoc"  name="sapxep"type="radio">
-          <label for="1thangtruoc"> 1 tháng trước</label>
-          <input id="1namtruoc"  name="sapxep"type="radio">
-          <label for="1namtruoc"> 1 năm trước</label>
-          </p>
-        </div>
         <div >
         <table>
         <tr>
@@ -469,7 +463,7 @@
             <th class="text-center ">Xem chi tiết</th>
         </tr>
         <tr *ngFor="let c of user?.cv">
-            <td>{{ counter }}</td>
+            <td>1</td>
             <td>{{c?.title}}</td>
             <td>11/12/2022</td>
             <td>  <div id="chitiet" class="text-center"><a (click)="chitiet()">Chi tiết</a></div></td>
@@ -477,12 +471,6 @@
     </table>
     </div>
     </div>
-  </div>
-  <div  id="cv-upload-list" class="box-block" *ngIf="hoSoChiTiet" >
-    <div *ngFor="let c of user?.cv">
-    <img src="{{c.CV_chinh}}" width="300px">
-
-  </div>
   </div>
     </div>
     </div>

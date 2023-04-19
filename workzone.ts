@@ -71,6 +71,8 @@ export class JobApplication {
     public working_form:string="",
     public desired_salary:string="",
     public CV_chinh:string="",
+    public your_wishes:string="",
+    public introduce_yourself:string="",
     ){}
 }
 
