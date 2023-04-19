@@ -1,19 +1,19 @@
 <body>
    <div class="container__jobDecription">
     <div class="container__img--left">
-      <img src="assets/media/aia.png" alt="AIA-Logo" />
+      <img src="{{jobData?.job?.image}}" alt="avata company" />
     </div>
     <div class="container__content--right">
       <div class="container__content--right1">
-        <div clang sẻss="name--job">
-          NHÂN VIÊN KẾ TOÁN
+        <div class="name--job">
+          {{ jobData?.job?.job_name }}
         </div>
-        <div class="name--company">CÔNG TY CỔ PHẦN THƯƠNG MẠI TIN HỌC HƯNG LONG</div>
-        <p><i class="bi bi-geo-alt-fill"></i>&ensp;Đà Nẵng</p>
-        <p><i class="bi bi-cash"></i>&ensp;15 - 30 Triệu</p>
-        <p><i class="bi bi-briefcase-fill"></i>&ensp;0 - 1 năm kinh nghiệm</p>
-        <p><i class="bi bi-briefcase-fill"></i>&ensp;  <a href="#">Kế toán</a>  <span style="padding: 20px;"><a href="#">Kiểm toán</a></span></p>
-        <p><i class="bi bi-clock"></i>&ensp;Hạn nộp: 02/12/2022</p>
+        <div class="name--company">{{jobData?.job?.company}}</div>
+        <p><i class="bi bi-geo-alt-fill"></i>&ensp; {{jobData?.job?.address}}</p>
+        <p><i class="bi bi-cash"></i>&ensp;{{jobData?.job?.salary}}</p>
+        <p><i class="bi bi-briefcase-fill"></i>&ensp;{{jobData?.job?.exprience}}</p>
+        <p><i class="bi bi-briefcase-fill"></i>  <a href="#">&ensp;{{jobData?.job?.category}}</a> </p>
+        <p><i class="bi bi-clock"></i>&ensp;Hạn nộp: {{jobData?.job?.dealine}}</p>
       </div>
       <div class="container__content--right1">
         <button id="myBtn" >Nộp đơn</button>
@@ -24,57 +24,28 @@
     <div class="container__content--left">
       <div class="title__content">PHÚC LỢI</div>
       <div class="content__jobDecription">
-        <p>Có cơ hội để phát triển.</p>
-        <p>Làm việc trong môi trường năng động, sáng tạo, thân thiện.</p>
-        <p>Mức lương cạnh tranh và các gói phúc lợi hấp dẫn.</p>
+        <p>{{jobData?.job?.welfare}}</p>
       </div>
       <div class="title__content">MÔ TẢ CÔNG VIỆC</div>
       <div class="content__jobDecription">
-        <p>
-          - Quảng bá hình ảnh, chia sẽ giá trị dịch vụ, công việc tại NEST BY
-          AIA đến các Khách hàng.
-        </p>
-        <p>
-          - Chăm sóc và theo dõi tình hình sử dụng dịch vụ của Khách hàng.
-        </p>
-        <p>
-          - Tổ chức các chương trình sự kiện, workshop định kỳ để chăm sóc
-          Khách hàng.
-        </p>
-        <p>- Lập kế hoạch, chiến lược mở rộng nguồn Khách hàng tiềm năng.</p>
-        <p>
-          - Thiết kế và tư vấn giải pháp Tài chính phù hợp với từng đối tượng
-          Khách hàng
-        </p>
+        <p>{{jobData?.job?.description}}</p>
       </div>
       <div class="title__content">YÊU CẦU CÔNG VIỆC</div>
       <div class="content__jobDecription">
-        <p>- Tốt nghiệp Cao Đẳng/ Đại học trở lên.</p>
-        <p>- Độ tuổi từ 23-30 tuổi</p>
-        <p>
-          - Kĩ năng: Sử dụng tốt các Ứng dụng công nghệ, mạng xã hội. Thành
-          thạo tin học văn phòng (Microsoft Office).
-        </p>
-        <p>- Kĩ năng Giao tiếp, thuyết phục và làm việc với con người tốt.</p>
-        <p>
-          - Có tư duy kinh doanh và làm việc với các con số tốt. Có chí cầu
-          tiến và có thể làm việc trong môi trường áp lực.
-        </p>
+        <p>{{jobData?.job?.job_requirement}}</p>
       </div>
       <div class="title__content
       ">THÔNG TIN LIÊN HỆ</div>
       <div class="content__jobDecription">
-        <p>Liên hệ: Ms Phụng</p>
+        <p>Liên hệ: {{jobData?.job?.contact_person}}</p>
         <p>
-          <i class="bi bi-telephone-fill"></i> &ensp; SĐT: 0123456789
+          <i class="bi bi-telephone-fill"></i> &ensp; SĐT: {{jobData?.job?.phone_person}}
         </p>
         <p>
-          <i class="bi bi-geo-alt-fill"></i>&ensp;67 Trương Định, P6 , Quận 3
-          , Hồ Chí Minh , Viet Nam
-        </p>
+          <i class="bi bi-geo-alt-fill"></i>&ensp;{{jobData?.job?.contact}}</p>
         <p>
           - Các ứng viên quan tâm vui lòng gửi hồ sơ trực tuyến qua
-          CareerLink, gửi kèm file hoặc trực tiếp đến tại công ty
+          WorkZone, gửi kèm file hoặc trực tiếp đến tại công ty
         </p>
       </div>
     </div>
@@ -92,35 +63,27 @@
             <p>Hình thức làm việc:</p>
           </div>
           <div class="content__information-right">
-            <p>Đại học</p>
-            <p>Không giới hạn</p>
-            <p>Nhân viên</p>
-            <p>Nam</p>
-            <p>5 - 10 người</p>
-            <p>Nhân viên chính thức</p>
+            <p>{{jobData?.job?.degree}}</p>
+            <p>{{jobData?.job?.age}}</p>
+            <p>{{jobData?.job?.position}}</p>
+            <p>{{jobData?.job?.gender}}</p>
+            <p>{{jobData?.job?.recruiting_amount}}</p>
+            <p>{{jobData?.job?.work_form}}</p>
           </div>
         </div>
       </div>
-      <div class="container__content--right-bot">
+      <div class="container__content--right-bot" *ngFor="let c of jobData?.company">
         <div class="title__content
         ">GIỚI THIỆU CÔNG TY</div>
-        <img src="assets/media/aia.png" alt="AIA-Logo" />
-        <div class="name--company">AIA VIETNAM - NEST BY AIA</div>
+        <img src="{{jobData?.job?.image}}" alt="logo company" />
+        <div class="name--company">{{c?.company_name}}</div>
         <div class="companyDetail">
-          <p><i class="bi bi-bezier"></i>&ensp;100 - 499 nhân viên</p>
+          <p><i class="bi bi-bezier"></i>&ensp;{{c?.company_scale}}</p>
           <p>
-            <i class="bi bi-telephone-fill"></i> &ensp;Tên liên hệ: Ms Phụng
-          </p>
+            <i class="bi bi-telephone-fill"></i> &ensp; {{jobData?.job?.contact_person}}</p>
         </div>
         <div class="companyDetail1">
-          <p>
-            AIA Việt Nam là thành viên của Tập đoàn AIA - tập đoàn bảo hiểm
-            nhân thọ độc lập, có nguồn gốc châu Á lớn nhất thế giới được niêm
-            yết<br /><br />
-            Được thành lập vào năm 2000 với mục tiêu bảo vệ sự phồn thịnh và
-            an toàn tài chính cho người dân Việt Nam, AIA Việt Nam hiện đang
-            là một trong những công ty bảo hiểm nhân thọ hàng đầu và là thương
-            hiệu được khách hàng và công chúng tin cậy.
+          <p>{{c?.company_intro}}
           </p>
         </div>
       </div>

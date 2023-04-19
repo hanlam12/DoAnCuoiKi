@@ -17,9 +17,9 @@
     <div id="body">
          <div class="body_right" ng-controller="myController">
           <div class="body_right-top">
-        <div><i class="fa-regular fa-circle-user"></i></div>
-        <div *ngIf="user" class="text_cbtl">Chào bạn trở lại <br>
-        <b>{{user.fullname}}</b></div>
+        <div><img src="{{user?.image}}" class="fa-circle-user" alt="avataUser"></div>
+        <div class="text_cbtl">Chào bạn trở lại <br>
+        <b style="text-transform: uppercase;">{{user?.fullname}}</b></div>
     <div class="text_status" [ngClass]="{'text_status-on': isOn, 'text_status-off': !isOn}">
       <div class="st-on-off" [ngClass]="{'st-on-off-on': isOn, 'st-on-off-off': !isOn}">
         <div (click)="status()" class="on-off" [ngClass]="{'on-off-on': isOn, 'on-off-off': !isOn}"></div>
@@ -49,7 +49,7 @@
           Tiết kiệm thời gian, tìm việc thông minh, nắm bắt cơ hội và làm chủ đường đua nghề nghiệp của chính mình.</p>
         <div class="box-upload">
           <p class="icon">
-            <i class="fa-regular fa-cloud-arrow-up"></i>
+            <i class="bi bi-cloud-arrow-up" style="font-size: 50px; color: #00A9FF;"></i>
           </p>
           <div class="not-cv">
             <p>Kéo CV của bạn vào đây hoặc bấm để chọn file CV của bạn</p>
@@ -74,15 +74,14 @@
       <div  id="cv-upload-list" class="box-block" *ngIf="UpdateCv">
           <p class="title"> <b>Cập nhật thông tin để WorkZone kết nối bạn với những cơ hội việc làm phù hợp nhất</b>  </p>
            <h4 class="text-center">Thông tin cá nhân</h4>
-        <div id="exist-avatar" class="upload-avatar                         d-flex
-        ">
+        <div id="exist-avatar" class="upload-avatar d-flex">
         <div class="avatar">
-          <img src="#" id="avatar-output">
+          <img src="{{user?.image}}" id="avatar-output">
         </div>
         <button class="btn btn-change-avatar btn-upload-avatar mt-2">
           <i class="fa-solid fa-camera"></i> Thay ảnh </button>
       </div>
-      <form action="post" method="POST" id="profile-form"  >
+      <form action="post" method="POST" id="profile-form" *ngFor="let c of user?.cv" >
         <input type="hidden" name="_token" value="xXre87L9abHsibbHUc6qqxvGChSCOxublrJK8lbZ">
         <div class="sub-content">
           <div class="form-group row mb-3">
@@ -90,7 +89,7 @@
               <label for="">Tiêu đề hồ sơ <span class="text-red">*</span></label>
             </div>
             <div class="col-md-9">
-              <input type="text" class="form-control border-hover" placeholder="Nhập tiêu đề hồ sơ" name="fulltitle" value="">
+              <input type="text" class="form-control border-hover" placeholder="Nhập tiêu đề hồ sơ" name="fulltitle" value="{{c?.title}}">
             </div>
           </div>
           <div class="form-group row mb-3">
@@ -98,7 +97,7 @@
               <label for="">Họ và Tên <span class="text-red">*</span></label>
             </div>
             <div class="col-md-9">
-              <input type="text" class="form-control border-hover" placeholder="Họ và tên đầy đủ của bạn" name="fullname" value="">
+              <input type="text" class="form-control border-hover" placeholder="Họ và tên đầy đủ của bạn" name="fullname" value="{{user?.fullname}}">
             </div>
           </div>
           <div class="form-group row mb-3">
@@ -429,7 +428,7 @@
               <label for="">Mong muốn của bạn</label>
             </div>
             <div class="col-md-9">
-              <textarea class="form-control border-hover" name="expectation" placeholder="Mong muốn của bạn về các cơ hội việc làm phù hợp, về môi trường công ty hoặc thông tin công ty bạn muốn ứng tuyển"  cols="30" rows="10"></textarea>
+              <textarea class="form-control border-hover" name="expectation" placeholder="Mong muốn của bạn về các cơ hội việc làm phù hợp, về môi trường công ty hoặc thông tin công ty bạn muốn ứng tuyển"  cols="30" rows="10" style="height: 100px;"></textarea>
             </div>
           </div>
           <div class="form-group row mb-3">
@@ -437,13 +436,13 @@
               <label for="">Giới thiệu về bạn</label>
             </div>
             <div class="col-md-9">
-              <textarea class="form-control border-hover" name="note" placeholder="Giới thiệu ngắn gọn về bàn thân để tạo ấn tượng tốt với các nhà tuyển dụng"  cols="30" rows="10"></textarea>
+              <textarea class="form-control border-hover" name="note" placeholder="Giới thiệu ngắn gọn về bàn thân để tạo ấn tượng tốt với các nhà tuyển dụng" style="height: 100px;" cols="30" rows="10"></textarea>
             </div>
           </div>
         </div>
         <div class="action text-center my-5">
           <button (click)="cancel()" class="btn btn-cancel mx-1">Bỏ qua</button>
-          <button type="submit" class="btn btn-primary mx-1">Cập nhật thông tin</button>
+          <button type="submit" class="btn btn-primary mx-1" (click)="increaseCounter()">Cập nhật thông tin</button>
         </div>
       </form>
       </div>
@@ -461,7 +460,7 @@
           <label for="1namtruoc"> 1 năm trước</label>
           </p>
         </div>
-        <div>
+        <div >
         <table>
         <tr>
             <th>STT</th>
@@ -469,15 +468,21 @@
             <th>Ngày tạo</th>
             <th class="text-center ">Xem chi tiết</th>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>Hồ sơ 1</td>
+        <tr *ngFor="let c of user?.cv">
+            <td>{{ counter }}</td>
+            <td>{{c?.title}}</td>
             <td>11/12/2022</td>
-            <td>  <div id="chitiet" class="text-center "><a href="#" >Chi tiết</a></div></td>
+            <td>  <div id="chitiet" class="text-center"><a (click)="chitiet()">Chi tiết</a></div></td>
         </tr>
     </table>
     </div>
     </div>
+  </div>
+  <div  id="cv-upload-list" class="box-block" *ngIf="hoSoChiTiet" >
+    <div *ngFor="let c of user?.cv">
+    <img src="{{c.CV_chinh}}" width="300px">
+
+  </div>
   </div>
     </div>
     </div>

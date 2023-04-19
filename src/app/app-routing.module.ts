@@ -29,7 +29,7 @@ const routes: Routes = [
   {path:"contact",component:ContactComponent},
   {path:"sign-up",component:SignUpComponent},
 
-  {path:"job-decription",component:JobDecriptionComponent},
+  {path:"job-decription/:jobJD",component:JobDecriptionComponent},
   {path:"job-application/:userID",component:JobApplicationComponent},
   {path:"applied-job",component:AppliedJobComponent},
   {path:"footer-logged",component:FooterLoggedComponent},

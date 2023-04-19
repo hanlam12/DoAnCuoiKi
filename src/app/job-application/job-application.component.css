@@ -145,10 +145,9 @@ ul li{
     border-radius: 25px;
     border: 1px solid greenyellow;
     background-color: greenyellow;
-    text-align: center;
     font-size: 13px;
+    margin: auto;
     width:70px;
-    margin-left: 5%;
   }
   #chitiet:hover{
     color: #ffffff;
@@ -240,10 +239,12 @@ ul li{
     height: 200px;
   }
   .body_right .fa-circle-user{
-    font-size: 60px;
+    width:60px;
+    height: 60px;
     margin-top: 20px;
     margin-left: 8%;
     float: left;
+    border-radius: 50px;
   }
   .text_cbtl{
     margin-top: 20px;
@@ -296,6 +297,18 @@ ul li{
     justify-content: center;
     overflow: hidden;
     width: 150px;
+    display: flex;
+    margin: auto;
+}
+.upload-avatar {
+  align-items: center;
+  display: none;
+  flex-direction: column;
+  margin-top: 16px;
+  text-align: center;
+}
+.d-flex {
+  display: flex!important;
 }
 .avatar, .d-flex {
   display: flex;

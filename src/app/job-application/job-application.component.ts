@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { WorkZoneService } from '../work-zone.service';
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'workzone';
+import { JobApplication, User } from 'workzone';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-job-application',
@@ -9,7 +10,6 @@ import { User } from 'workzone';
   styleUrls: ['./job-application.component.css']
 })
 export class JobApplicationComponent implements OnInit {
-[x: string]: any;
   isOn: boolean = true;
 
   status() {
@@ -19,6 +19,7 @@ export class JobApplicationComponent implements OnInit {
   taiCv = true
   showCv = false
   UpdateCv = false
+  hoSoChiTiet = false
 
 
   toggle(){
@@ -39,8 +40,14 @@ cancel(){
   this.showCv = false;
   this.hoSoDaTao = true
 }
+chitiet(){
+  this.taiCv = true;
+  this.hoSoDaTao = false;
+  this.hoSoChiTiet = true
+}
 
 user: User | undefined
+newcv=new JobApplication()
 
 constructor(
   private route: ActivatedRoute,
@@ -58,16 +65,20 @@ ngOnInit(): void {
 }
 
 
-// handleFileInput(event) {
-//   const file = event.target.files[0]; // Lấy ra file đầu tiên được chọn
-//   const reader = new FileReader();
-//   reader.readAsDataURL(file); // Đọc file dưới dạng base64
+putInforCv(){
+  this.usersService.putInforCv(this.newcv).subscribe({
+    next:(data)=>{this.user=data},
+  })
+}
 
-//   reader.onload = () => {
-//     const base64String = reader.result as string;
-//     // Gửi file lên server bằng một HTTP request ở đây
-//   };
-// }
 
+
+// Khai báo biến đếm trong component
+public counter: number = 1;
+
+// Tăng biến đếm lên mỗi khi được gọi
+public increaseCounter(): void {
+  this.counter++;
+}
 
 }

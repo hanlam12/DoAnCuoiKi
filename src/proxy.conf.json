@@ -19,5 +19,19 @@
     "secure":true,
     "changeOrigin":true,
     "logLevel":"debug"
+  },
+  {
+    "context" : ["/job-application/"],
+    "target" : "http://localhost:6868",
+    "secure":true,
+    "changeOrigin":true,
+    "logLevel":"debug"
+  },
+  {
+    "context" : ["/job-decription/"],
+    "target" : "http://localhost:6868",
+    "secure":true,
+    "changeOrigin":true,
+    "logLevel":"debug"
   }
 ]

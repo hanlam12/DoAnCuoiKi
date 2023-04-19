@@ -4,6 +4,7 @@ export class Job{
   public jobJD:string="",
   public image:string="",
   public job_name:string="",
+  public company_id:string="",
   public company:string="",
   public category: Array<category>,
   public address:string="",
@@ -46,6 +47,7 @@ export class User{
 export class Company{
   constructor(
     public _id:any=null,
+    public company_id:string="",
     public company_name:string="",
     public company_image:string="",
     public company_intro:string="",
