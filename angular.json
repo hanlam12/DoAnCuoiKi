@@ -65,6 +65,7 @@
             "browserTarget": "DoAnCuoiKi:build",
             "proxyConfig": "src/proxy.conf.json"
           },
+
           "configurations": {
             "production": {
               "browserTarget": "DoAnCuoiKi:build:production"
