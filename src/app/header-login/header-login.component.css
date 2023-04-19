@@ -52,15 +52,14 @@ width: 48%;
   border: 1px solid black;
 }
 .account span {
-  margin: 0px 20px 0px 32px;
+  margin: 0px 20px 0px 10px;
   font-size: 14px;
 }
 .account .fa-circle-user {
   font-size: 30px;
-  margin-left: 10px;
-  position: fixed;
-  top: 26px;
-  right: 432px
+  text-align: left;
+  position: relative;
+
 }
 .account .fa-sort-down {
   position: absolute;
