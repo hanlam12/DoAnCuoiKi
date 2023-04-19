@@ -36,10 +36,17 @@ const routes: Routes = [
   {path:"404notfound", component: NotFoundComponent},
   {path:"contact",component:ContactComponent},
   {path:"sign-up",component:SignUpComponent},
+
+
   {path:"job-decription/:jobJD",component:JobDecriptionComponent},
+  {path:"job-application/:userID",component:JobApplicationComponent},
+  {path:"applied-job/:userID",component:AppliedJobComponent},
+
+ 
   {path:"job-decription",component:JobDecriptionComponent},
   {path:"job-application",component:JobApplicationComponent},
   {path:"applied-job",component:AppliedJobComponent},
+
   {path:"footer-logged",component:FooterLoggedComponent},
   {path:"footer-not-log-in",component:FooterNotLogInComponent},
   {path:"search-job",component:SearchJobComponent},

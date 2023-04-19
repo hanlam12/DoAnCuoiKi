@@ -31,6 +31,7 @@ export class Job{
   public jobJD:string="",
   public image:string="",
   public job_name:string="",
+  public company_id:string="",
   public company:string="",
   public category: Array<category>,
   public address:string="",
@@ -66,7 +67,11 @@ export class User{
     public district:string="",
     public city:string="",
     public password:string="",
+
+    public cv: Array<JobApplication>,
+
     public cv:Array<cv>,
+
     public image:string=""
     ){}
 }
@@ -74,6 +79,7 @@ export class User{
 export class Company{
   constructor(
     public _id:any=null,
+    public company_id:string="",
     public company_name:string="",
     public company_image:string="",
     public company_intro:string="",
@@ -84,6 +90,23 @@ export class Company{
 }
 export interface category{
    category_detail: string
+
+    }
+export class JobApplication {
+  constructor (
+    public title: string="",
+    public YOB:string="",
+    public career:string="",
+    public experience:string="",
+    public qualification:string="",
+    public english_level:string="",
+    public work_location:string="",
+    public working_form:string="",
+    public desired_salary:string="",
+    public CV_chinh:string="",
+    ){}
+}
+
 }
 
 export interface cv{

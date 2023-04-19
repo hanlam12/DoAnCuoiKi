@@ -26,6 +26,84 @@ app.listen(port,()=>{
   companyCollection = database.collection("company");
 
 
+  app.get("/job-application/:userID", cors(), async (req, res) => {
+    const userId = req.params.userID;
+    const result = await userCollection.find({ userID: userId }).toArray();
+    res.send(result[0]);
+  });
+
+  app.put("/job-application/:userID", cors(), async (req, res) =>{
+    const userID = req.params.userID;
+    const image = req.body.image;
+    const title = req.body.cv[0].title;
+    const YOB = req.body.cv[0].YOB;
+    const career = req.body.cv[0].career;
+    const experience = req.body.cv[0].experience;
+    const qualification = req.body.cv[0].qualification;
+    const english_level = req.body.cv[0].english_level;
+    const work_location = req.body.cv[0].work_location;
+    const working_form = req.body.cv[0].working_form;
+    const desired_salary = req.body.cv[0].desired_salary;
+    const CV_chinh = req.body.cv[0].CV_chinh;
+    await userCollection.updateOne(
+      { userID: userID },
+      { $set: {
+        "image": image,
+        "cv.0.title": title,
+        "cv.0.YOB": YOB,
+        "cv.0.career": career,
+        "cv.0.experience": experience,
+        "cv.0.qualification": qualification,
+        "cv.0.english_level": english_level,
+        "cv.0.work_location": work_location,
+        "cv.0.working_form": working_form,
+        "cv.0.desired_salary": desired_salary,
+        "cv.0.CV_chinh": CV_chinh
+      }}
+    );
+    const updatedUser = await userCollection.findOne({ userID: userID });
+    res.send(updatedUser);
+  });
+
+//   app.post("/job-application/:userID", cors(), async(req, res) => {
+//     const userID = req.params.userID;
+//     const cv = req.body;
+//     const filter = { _id: ObjectId(userID) };
+//     const update = { $push: { cv: cv } };
+//     await userCollection.updateOne(filter, update);
+//     res.send(cv);
+// });
+
+// app.post("/job-application/:userID/cv", cors(), (req, res) => {
+//   const userID = req.params.userID;
+//   const newCv = req.body;
+//   const CvToUpdate = userCollection.find((cv) => cv.userID === userID);
+//   if (CvToUpdate) {
+//     CvToUpdate.cv.push(newCv);
+//     res.send(userCollection);
+//   } else {
+//     res.status(404).send("Cv not found.");
+//   }
+// });
+
+  app.get('/job-decription/:jobJD', cors(), async (req, res) => {
+    try {
+        const jobJD = req.params.jobJD;
+        const job = await jobCollection.findOne({ jobJD: jobJD });
+        const company = await companyCollection.find({ company_id: job.company_id }).toArray();
+        const jobData = { job, company };
+      res.send(jobData);
+
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Server error');
+    }
+  });
+
+
+
+
+
 app.get("/job",cors(),async(req,res)=>{
   const result = await jobCollection.find({}).toArray();
   res.send(result)
@@ -141,3 +219,4 @@ app.get('/user', async (req, res) => {
     }
     res.json(company);
   });
+

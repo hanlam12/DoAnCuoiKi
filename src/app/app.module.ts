@@ -30,6 +30,9 @@ import { ThongBaoViecLamComponent } from './thong-bao-viec-lam/thong-bao-viec-la
 import { AccountMenuComponent } from './account-menu/account-menu.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+
+import { HttpClientModule } from '@angular/common/http';
+
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';

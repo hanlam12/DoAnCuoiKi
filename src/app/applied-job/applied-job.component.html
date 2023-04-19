@@ -1,9 +1,9 @@
 
  <div id="body">
       <div class="body_right ">
-     <div><i class="fa-regular fa-circle-user"></i></div>
+        <div><img src="{{user?.image}}" class="fa-circle-user" alt="avataUser"></div>
      <div class="text_cbtl">Chào bạn trở lại <br>
-     <b>NGUYỄN THU HẰNG</b></div>
+     <b style="text-transform: uppercase;">{{user?.fullname}}</b></div>
      <div class="text_status" [ngClass]="{'text_status-on': isOn, 'text_status-off': !isOn}">
       <div class="st-on-off" [ngClass]="{'st-on-off-on': isOn, 'st-on-off-off': !isOn}">
         <div (click)="status()" class="on-off" [ngClass]="{'on-off-on': isOn, 'on-off-off': !isOn}"></div>
