@@ -19,7 +19,7 @@ const USER_API_URL = 'http://localhost:6868/user';
 })
 export class WorkZoneService {
 
-constructor(private _http:HttpClient) { }
+constructor(private _http:HttpClient, private router: Router) { }
 
 
  // thông tin hồ sơ xin việc
@@ -31,6 +31,8 @@ constructor(private _http:HttpClient) { }
       console.error('Error', error);
       return throwError(() => new Error('An error occurred while retrieving job application'));
     })
+    )}
+
 
   private loggedIn = false;
   public serverUrl = 'http://localhost:6868';
@@ -114,7 +116,6 @@ constructor(private _http:HttpClient) { }
   public userEmail = localStorage.getItem('userEmail'); // đây là userEmail khi đăng nhập thành công, đứa nào muốn lấy truy xuất khi login thành công thì lấy thằng này.
   userIdUpdated = new EventEmitter<string>();
 
-  constructor(private _http:HttpClient, private router: Router ) { }
 
   navigateAfterLogin(): void {
     // Điều hướng đến trang mong muốn sau khi người dùng đăng nhập thành công
@@ -432,9 +433,6 @@ getUserName() {
         catchError(this.handleError)
     )
   }
-
-  );
-}
  // thông tin mô tả công việc
   getjobDescription(jobJD: string): Observable<any> {
     const url = `http://localhost:6868/job-decription/${jobJD}`;
