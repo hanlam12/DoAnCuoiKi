@@ -43,11 +43,3 @@ app.get("/job/category/:categories", cors(), async (req, res) => {
 });
 
 
-
-// app.get("/job/:result", cors(), async (req, res) => {
-//   const position = req.params.position;
-//   const categories = req.params.categories.split(",");
-//   const result = await jobCollection.find({ position: position, category: { $in: categories } }).toArray();
-//   res.send(result);
-// });
-

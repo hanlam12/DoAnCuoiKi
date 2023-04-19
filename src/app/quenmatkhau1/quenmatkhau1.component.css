@@ -39,3 +39,15 @@ a:first-child{
 h4{
   padding-left: 20px;
 }
+@media screen and (max-width: 480px){
+  .container{
+    width: 450px;
+    height: 450px;
+  }
+  .btn:last-child{
+    width: 170px;
+
+  }.background{
+    height: 670px;
+}
+}
