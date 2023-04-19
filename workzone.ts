@@ -90,3 +90,16 @@ export interface cv{
   cv_detail: string
 }
 
+
+
+export class Users{
+  constructor(
+    public _id:any=null,
+    public name:string="",
+    public email:string="",
+    public phone:string="",
+    public username:string="",
+    public password:string="",
+    public retrypassword:string="",
+  ){}
+}

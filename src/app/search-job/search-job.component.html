@@ -51,7 +51,7 @@
     </button>
     <div class="border">
       <div class="search-card" *ngIf="showText">
-        <div class="search-card1" >
+        <div class="search-card">
           <div (click)="toggleText1()">
             <span class="cate-left category">Ngành nghề</span>
             <span class="cate-right" *ngIf="showText1"><i class="bi bi-chevron-up"></i></span>
@@ -139,64 +139,9 @@
 
           </div>
           <hr class="search-hr">
-
-          <!-- Mức lương -->
-          <div class="search-card-item" style="margin-bottom: 30px;">
-            <div (click)="toggleText2()">
-              <span class="cate-left category">Mức lương</span>
-              <span class="cate-right" *ngIf="showText2"><i class="bi bi-chevron-up"></i></span>
-              <span class="cate-right" *ngIf="!showText2"><i class="bi bi-chevron-down"></i></span>
-            </div><br>
-            <div *ngIf="showText2">
-              <div>
-                <form action="">
-                  <input type="number" class="search-price mf10" placeholder="1.000.000"  name="" id="">
-                  -
-                  <input type="number" class="search-price" placeholder="5.000.000" name="" id="">
-                  <button type="submit" class="btn-price"><i class="bi bi-chevron-right"></i></button>
-                </form>
-              </div>
-            </div>
-        </div>
-        <hr class="search-hr">
-        <!-- Đánh giá -->
-        <div class="search-card-item" style="margin-bottom: 30px;">
-          <div (click)="toggleText3()">
-            <span class="cate-left category">Đánh giá</span>
-            <span class="cate-right" *ngIf="showText3"><i class="bi bi-chevron-up"></i></span>
-            <span class="cate-right" *ngIf="!showText3"><i class="bi bi-chevron-down"></i></span>
-          </div><br>
-          <div *ngIf="showText3">
-            <div class="search-rate">
-              <i class="bi bi-star-fill "></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              (từ 5 sao)
-            </div>
-            <div class="search-rate">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star"></i>
-              (từ 4 sao)
-            </div>
-            <div class="search-rate">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star"></i>
-              <i class="bi bi-star"></i>
-              (từ 3 sao)
-            </div>
-          </div>
-      </div><hr class="search-hr">
-
       <div (click)="toggleText4()">
         <span class="cate-left category">Cấp bậc</span>
-        <span class="cate-right mf10" *ngIf="showText4"><i class="bi bi-chevron-up"></i></span>
+        <span class="cate-right" *ngIf="showText4"><i class="bi bi-chevron-up"></i></span>
         <span class="cate-right" *ngIf="!showText4"><i class="bi bi-chevron-down"></i></span>
       </div><br>
       <div class="search-card-item">
@@ -236,104 +181,7 @@
 <div class="search-main-content-right">
   <div class="search-filter">Đã tìm thấy {{jobs.length}} công việc</div>
   <div class="border">
-
-    <div class="content-hot" style="margin-top: 10px;">
-      <div class="content-img">
-        <a href="motacongviec.html" target="_bank"
-          ><img src="assets/media/fpt-logo.png" alt="FPT-logo"
-        /></a>
-      </div>
-      <div class="content-hot-infor">
-        <a href="motacongviec.html" target="_bank">
-          <div class="comp">
-            [HCM] 02 Solution Architects-Up to $2000
-          </div></a
-        >
-        <div>
-          <a href="motacongviec.html" target="_bank" class="hover1"
-            >Fpt Software</a
-          >
-          |
-          <a href="timkiemvieclam.html" target="_bank" class="hover2"
-            ><i class="bi bi-geo-alt-fill"></i> TP Hồ Chí Minh</a
-          >
-        </div>
-        <div>
-          <i class="bi bi-briefcase-fill"></i> Từ 1-3 năm
-          &nbsp;&nbsp;&nbsp;&nbsp; <i class="bi bi-clock"></i> Hạn nộp:
-          1/11/2022
-        </div>
-      </div>
-      <div class="content-hot-input">
-        <button id="apply">Apply Now</button>
-      </div>
-    </div>
-    <hr />
-
-    <div class="content-hot">
-      <div class="content-img">
-        <a href="motacongviec.html" target="_bank">
-          <img src="assets/media/hdbank-logo.png" alt="HD-Bank-logo"
-        /></a>
-      </div>
-      <div class="content-hot-infor">
-        <a href="motacongviec.html" target="_bank"
-          ><div class="comp">[HCM] Business Development Manager</div></a
-        >
-        <div>
-          <a href="motacongviec.html" target="_bank" class="hover1"
-            >HD Bank</a
-          >
-          |
-          <a href="timkiemvieclam.html" target="_bank" class="hover2"
-            ><i class="bi bi-geo-alt-fill"></i> TP Hồ Chí Minh</a
-          >
-        </div>
-        <div>
-          <i class="bi bi-briefcase-fill"></i> Từ 6-7 năm
-          &nbsp;&nbsp;&nbsp;&nbsp; <i class="bi bi-clock"></i> Hạn nộp:
-          1/11/2022
-        </div>
-      </div>
-      <div class="content-hot-input">
-        <button id="apply">Apply Now</button>
-      </div>
-    </div>
-    <hr />
-
-    <div class="content-hot">
-      <div class="content-img">
-        <a href="motacongviec.html" target="_bank">
-          <img src="assets/media/fpt-logo.png" alt="FPT-logo"
-        /></a>
-      </div>
-      <div class="content-hot-infor">
-        <a href="motacongviec.html" target="_bank">
-          <div class="comp">[HN] Data Analyst</div></a
-        >
-        <div>
-          <a href="motacongviec.html" target="_bank" class="hover1">
-            Grab Ltd</a
-          >
-          |
-          <a href="timkiemvieclam.html" target="_bank" class="hover2"
-            ><i class="bi bi-geo-alt-fill"></i> Hà Nội</a
-          >
-        </div>
-        <div>
-          <i class="bi bi-briefcase-fill"></i> Từ 1-3 năm
-          &nbsp;&nbsp;&nbsp;&nbsp; <i class="bi bi-clock"></i> Hạn nộp:
-          1/11/2022
-        </div>
-      </div>
-      <div class="content-hot-input">
-        <button id="apply">Apply Now</button>
-      </div>
-    </div>
-    <hr />
-
     <div class="content-hot" style="margin-top: 10px;" *ngFor="let p of jobs; let i =index">
-
       <div class="content-img">
         <a><img src="{{p.image}}"
         /></a>
@@ -362,4 +210,4 @@
     </div>
 </div>
 </div>
-
+</div>
