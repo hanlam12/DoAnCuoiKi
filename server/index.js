@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 6868;
-const morgan=require("morgan")
+const morgan=require("morgan");
 app.use(morgan("combined"))
 const bodyParser=require("body-parser")
 app.use(bodyParser.json({ limit: '10mb' }));
@@ -26,6 +26,33 @@ app.listen(port,()=>{
   jobCollection = database.collection("job");
   userCollection = database.collection("user");
   companyCollection = database.collection("company");
+
+
+ app.get("/job", cors(), async (req, res)=>{
+  const result = await jobCollection.find({}).toArray();
+  res.send(result)
+ })
+
+app.get("/job/:position", cors(), async (req, res) => {
+  const position = req.params.position;
+  const result = await jobCollection.find({ position: position }).toArray();
+  res.send(result);
+});
+
+app.get("/job/category/:categories", cors(), async (req, res) => {
+  const categories = req.params.categories.split(",");
+  const result = await jobCollection.find({ category: { $in: categories } }).toArray();
+  res.send(result);
+});
+
+
+
+// app.get("/job/:result", cors(), async (req, res) => {
+//   const position = req.params.position;
+//   const categories = req.params.categories.split(",");
+//   const result = await jobCollection.find({ position: position, category: { $in: categories } }).toArray();
+//   res.send(result);
+// });
 
 
   // API Login
@@ -60,5 +87,4 @@ app.listen(port,()=>{
   
 
 
-  
 

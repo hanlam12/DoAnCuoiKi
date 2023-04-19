@@ -20,7 +20,7 @@
     <div class="name-pass">
     <label>Mật khẩu hiện tại</label><span class="red">&nbsp;*</span>
     </div>
-    <input type="password" class="input form-control" name="password" id="password" required minlength="5"
+    <input type="{{showPassword ? 'text' : 'password'}}" class="input form-control" name="password" id="password" required minlength="5"
     [(ngModel)]="model.Password" name="password"
     #password="ngModel"/>
     <div class="text" [hidden]="!password.hasError('minlength')">Password must contain at least 5 characters</div>
@@ -51,7 +51,7 @@
    </div>
   </div>
   <div class="row-pass relative">
-    <input type="checkbox" class="check" />&nbsp;&nbsp;Hiển thị mật khẩu
+    <input type="checkbox" class="check" [(ngModel)]="showPassword"/>&nbsp;&nbsp;Hiển thị mật khẩu
   </div>
   <button class="btn-mk" type="submit" (click)="changePassword()">Cập nhật mật khẩu</button>
 </form>
