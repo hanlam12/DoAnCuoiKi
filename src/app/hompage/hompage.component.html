@@ -57,9 +57,9 @@
             >
             |
             <a href="" target="_bank" class="hover2"
-              ><i class="bi bi-geo-alt-fill"></i> {{j.address}}</a
+              ><i class="bi bi-geo-alt-fill"></i> {{j.address}}</a>
 
-           
+
           </div>
           <div>
             <i class="bi bi-briefcase-fill"></i> Từ 1-3 năm
@@ -68,7 +68,7 @@
           </div>
         </div>
         <div class="content-hot-input">
-          <button (click)="showModal()" (click)="showModal()" id="apply" >Apply Now</button>
+          <button (click)="showModal()" id="apply" >Apply Now</button>
         </div>
       </div>
       <hr />
@@ -238,7 +238,7 @@
             <img src="assets/media/nvg-logo.png" alt="NVG-logo"
           /></a>
         </div>
-        <div class="content-hot-infor">
+        <div class="content-hot-infor" *ngFor="let j of job3">
           <a href=""> <div class="comp">IVI System Test Engineer</div></a>
           <div>
             <a routerLink="job-description" target="_blank" class="hover1">
@@ -261,9 +261,9 @@
       <hr />
       <br />
 
-      <a (click)="tonggle()" target="_bank"
+      <a (click)="toggle()" target="_bank"
 
-  
+
 
         ><div class="more">Xem tất cả</div></a
       ><br />
