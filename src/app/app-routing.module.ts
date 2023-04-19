@@ -21,13 +21,24 @@ import { Quenmatkhau2Component } from './quenmatkhau2/quenmatkhau2.component';
 import { Quenmatkhau3Component } from './quenmatkhau3/quenmatkhau3.component';
 import { FormsModule } from '@angular/forms';
 import { CongtyComponent } from './congty/congty.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { CreateProfileComponent } from './create-profile/create-profile.component';
+import { SavedJobComponent } from './saved-job/saved-job.component';
+import { ThongBaoViecLamComponent } from './thong-bao-viec-lam/thong-bao-viec-lam.component';
 
 
 const routes: Routes = [
-
+  {path:"profile", component: CreateProfileComponent},
+  {path:"saved", component: SavedJobComponent},
+  {path:"noti", component: ThongBaoViecLamComponent},
+  {path:"404notfound", component: NotFoundComponent},
   {path:"contact",component:ContactComponent},
   {path:"sign-up",component:SignUpComponent},
+
   {path:"job-decription/:jobJD",component:JobDecriptionComponent},
+
+  {path:"job-description",component:JobDecriptionComponent},
+
   {path:"job-application",component:JobApplicationComponent},
   {path:"applied-job",component:AppliedJobComponent},
   {path:"footer-logged",component:FooterLoggedComponent},
@@ -45,7 +56,12 @@ const routes: Routes = [
   { path:"quenmatkhau2", component:Quenmatkhau2Component},
   { path:"quenmatkhau3", component:Quenmatkhau3Component},
   {path: "dieukhoandichvu", component: DieukhoandichvuComponent},
+
   {path: "companies/:companyId", component: CongtyComponent}
+
+  {path: "congty", component: CongtyComponent},
+   {path: "congty/:id", component: CongtyComponent}
+
 ];
 
 @NgModule({

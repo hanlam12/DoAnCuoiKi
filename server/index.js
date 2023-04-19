@@ -11,6 +11,8 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(express.json());
 const cors=require("cors");
 app.use(cors())
+const jwt = require('jsonwebtoken');
+const secretKey = 'ThisIsASecretKey';
 app.listen(port,()=>{
   console.log(`My Server listening on port ${port}`)
   })
@@ -24,6 +26,7 @@ app.listen(port,()=>{
   jobCollection = database.collection("job");
   userCollection = database.collection("user");
   companyCollection = database.collection("company");
+
 
  app.get("/job", cors(), async (req, res)=>{
   const result = await jobCollection.find({}).toArray();
