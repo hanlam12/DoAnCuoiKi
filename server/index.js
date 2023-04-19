@@ -29,21 +29,21 @@ app.listen(port,()=>{
 
 
   // API Login
-  
+
   app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     const user = await userCollection.findOne({ email: email });
-  
+
     if (!user || user.password !== password) {
       return res.status(401).send('Invalid email or password');
     }
-  
+
     const token = jwt.sign({ email: email }, secretKey);
-  
+
     res.json({ token, userEmail: user.email });
-    
-    
+
+
   });
 
   // API lấy thông tin công ty
@@ -57,8 +57,29 @@ app.listen(port,()=>{
     }
     res.json(company);
   });
-  
 
+// API lấy tên người dùng
 
-  
+app.get('/user', async (req, res) => {
+  const token = req.headers.authorization.split(' ')[1]
+  if (!token) {
+    return res.status(401).send('Unauthorized');
+  }
+  try {
+    const decodedToken = jwt.verify(token, secretKey);
+    const email = decodedToken.email;
+    const user = await userCollection.findOne({ email: email });
+    console.log('decodedToken:', decodedToken);
+    console.log('user:', user);
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+    res.json(user.fullname);
+  } catch (error) {
+    console.error(error);
+    return res.status(401).send(` ${error.message}`);
+  }
+
+});
+
 

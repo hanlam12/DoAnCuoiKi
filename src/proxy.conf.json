@@ -6,14 +6,7 @@
     "changeOrigin":true,
     "logLevel":"debug"
   },
-  {
-    "context" : ["/company"],
-    "target" : "http://localhost:6868",
-    "secure":true,
-    "changeOrigin":true,
-    "logLevel":"debug"
-  },
-  {
+   {
     "context" : ["/user"],
     "target" : "http://localhost:6868",
     "secure":true,
