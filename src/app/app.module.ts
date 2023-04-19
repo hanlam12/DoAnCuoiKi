@@ -22,6 +22,7 @@ import { JobApplicationComponent } from './job-application/job-application.compo
 import { AppliedJobComponent } from './applied-job/applied-job.component';
 import { FooterLoggedComponent } from './footer-logged/footer-logged.component';
 import { FooterNotLogInComponent } from './footer-not-log-in/footer-not-log-in.component';
+
 import { SearchJobComponent } from './search-job/search-job.component';
 import { ApplyCVComponent } from './apply-cv/apply-cv.component';
 import { HeaderComponent } from './header/header.component';
@@ -34,6 +35,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SavedJobComponent } from './saved-job/saved-job.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +69,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ThongBaoViecLamComponent,
     AccountMenuComponent,
     CreateProfileComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SavedJobComponent
   ],
   imports: [
     BrowserModule,
@@ -77,9 +81,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
+
   ],
 
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, JobDecriptionComponent],
+  entryComponents: [ApplyCVComponent]
 })
 export class AppModule { }
