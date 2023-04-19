@@ -1,3 +1,30 @@
+export interface IJob{
+  _id:any,
+  jobJD:string,
+  image:string,
+  job_name:string,
+  company:string,
+  category: Array<category>,
+  address:string,
+  salary:string,
+  exprience:string,
+  dealine:string,
+  welfare:string,
+  description:string,
+  job_requirement:string,
+  contact:string,
+  contact_person:string,
+  phone_person:number,
+  degree:string,
+  age:string,
+  position:string,
+  gender:string,
+  recruiting_amount:string,
+  work_form:string,
+  company_id:string
+}
+
+
 export class Job{
   constructor(
   public _id:any=null,
@@ -21,7 +48,8 @@ export class Job{
   public position:string="",
   public gender:string="",
   public recruiting_amount:string="",
-  public work_form:string=""
+  public work_form:string="",
+  public company_id:string=""
   ){}
   }
 
@@ -54,10 +82,11 @@ export class Company{
     public company_website:string=""
     ){}
 }
-  export interface category{
+export interface category{
    category_detail: string
-    }
+}
 
-    export interface cv{
-     cv_detail: string
-       }
+export interface cv{
+  cv_detail: string
+}
+

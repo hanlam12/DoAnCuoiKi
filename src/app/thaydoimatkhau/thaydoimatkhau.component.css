@@ -97,3 +97,14 @@ span{
 .text{
   color: red;
 }
+@media screen and (max-width: 480px){
+  .taikhoan{
+    margin-left: 20px;
+  }
+  .form-control{
+    width: 250px;
+  }
+  form{
+    margin-left: 120px;
+  }
+}
