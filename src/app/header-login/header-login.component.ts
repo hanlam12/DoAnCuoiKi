@@ -23,7 +23,7 @@ export class HeaderLoginComponent implements OnInit {
   ngOnInit() {
     this.login.getUserName().subscribe(data => {
       this.fullname = data;
-      console.log (this.fullname)
+
     });
   }
 

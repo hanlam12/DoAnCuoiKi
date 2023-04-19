@@ -22,7 +22,6 @@ import { JobApplicationComponent } from './job-application/job-application.compo
 import { AppliedJobComponent } from './applied-job/applied-job.component';
 import { FooterLoggedComponent } from './footer-logged/footer-logged.component';
 import { FooterNotLogInComponent } from './footer-not-log-in/footer-not-log-in.component';
-
 import { SearchJobComponent } from './search-job/search-job.component';
 import { ApplyCVComponent } from './apply-cv/apply-cv.component';
 import { HeaderComponent } from './header/header.component';
@@ -36,6 +35,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SavedJobComponent } from './saved-job/saved-job.component';
+
 
 @NgModule({
   declarations: [
@@ -69,7 +69,8 @@ import { SavedJobComponent } from './saved-job/saved-job.component';
     AccountMenuComponent,
     CreateProfileComponent,
     NotFoundComponent,
-    SavedJobComponent
+    SavedJobComponent,
+
   ],
   imports: [
     BrowserModule,

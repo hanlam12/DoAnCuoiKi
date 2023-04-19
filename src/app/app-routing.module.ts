@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContactComponent } from './contact/contact.component';
 import { HompageComponent } from './hompage/hompage.component';
@@ -27,6 +27,8 @@ import { SavedJobComponent } from './saved-job/saved-job.component';
 import { ThongBaoViecLamComponent } from './thong-bao-viec-lam/thong-bao-viec-lam.component';
 
 
+
+
 const routes: Routes = [
   {path:"profile", component: CreateProfileComponent},
   {path:"saved", component: SavedJobComponent},
@@ -34,11 +36,8 @@ const routes: Routes = [
   {path:"404notfound", component: NotFoundComponent},
   {path:"contact",component:ContactComponent},
   {path:"sign-up",component:SignUpComponent},
-
   {path:"job-decription/:jobJD",component:JobDecriptionComponent},
-
   {path:"job-decription",component:JobDecriptionComponent},
-
   {path:"job-application",component:JobApplicationComponent},
   {path:"applied-job",component:AppliedJobComponent},
   {path:"footer-logged",component:FooterLoggedComponent},
@@ -55,7 +54,6 @@ const routes: Routes = [
   { path:"quenmatkhau1", component: Quenmatkhau1Component},
   { path:"quenmatkhau2", component:Quenmatkhau2Component},
   { path:"quenmatkhau3", component:Quenmatkhau3Component},
-  {path: "dieukhoandichvu", component: DieukhoandichvuComponent},
 
   {path: "companies/:companyId", component: CongtyComponent},
 
@@ -79,7 +77,6 @@ export const RoutingComponent={
   AppliedJobComponent,
   FooterLoggedComponent,
   FooterNotLogInComponent,
-
   SearchJobComponent,
   ApplyCVComponent,
   ThongtinComponent,

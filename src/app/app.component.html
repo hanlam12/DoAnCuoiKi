@@ -1,10 +1,6 @@
-
-
-
 <app-not-found *ngIf="currentRoute === '/404notfound'"></app-not-found>
 
 <div *ngIf="currentRoute !== '/404notfound'">
-
   <ng-container *ngIf="!currentRoute.endsWith('sign-up') && !currentRoute.endsWith('login') ">
     <app-header-login></app-header-login>
   </ng-container>
