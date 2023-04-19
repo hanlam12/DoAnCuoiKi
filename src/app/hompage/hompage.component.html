@@ -1,4 +1,3 @@
-
 <div class="homepage">
   <div class="hompage-main-banner">
     <div class="hompage-banner-image">
@@ -8,6 +7,7 @@
 </div>
 <div class="homepage-banner-content mt160">
   <h3>1000+ Jobs For Candidate</h3>
+
 
   <div class="homepage-box-input">
     <div class="homepage-input">
@@ -24,6 +24,16 @@
       <span class="homepage-icon"><i class="fas fa-map-marker-alt"></i> </span>
       <select name="location" id="location">
         <option value="">Tất cả địa điểm</option>
+        <option value="">TP. Hồ Chí Minh</option>
+        <option value="">Hà Nội</option>
+        <option value="">Bình Dương</option>
+        <option value="">Hải Phòng</option>
+        <option value="">Quảng Ninh</option>
+        <option value="">Đồng Nai</option>
+        <option value="">Long An</option>
+        <option value="">Vũng Tàu</option>
+        <option value="">Cần Thơ</option>
+        <option value="">Bạc Liêu</option>
       </select>
     </div>
     <div class="homepage-input">
@@ -37,26 +47,26 @@
     <div class="box-content_left">
       <div class="head" id="hotjob" >HOT</div>
 
+
       <div class="content-hot" *ngFor="let j of job6">
         <div class="content-img">
-
-          <a routerLink="job-description" target="_blank"
+          <a href=""
             ><img src="{{j.image}}" alt="FPT-logo"
           /></a>
         </div>
         <div class="content-hot-infor">
-           <a routerLink="job-description" target="_blank">
+          <a href="" >
             <div class="comp">
               {{j.job_name}}
             </div></a
           >
           <div>
-
-            <a  routerLink="job-description" target="_bank" style="text-transform: uppercase;" class="hover1"
+            <a href=""  style="text-transform: uppercase;" class="hover1"
               >{{j.company}}</a
             >
             |
-            <a href="" target="_bank" class="hover2"
+
+            <a href=""  class="hover2"
               ><i class="bi bi-geo-alt-fill"></i> {{j.address}}</a>
 
 
@@ -246,6 +256,7 @@
             >|
             <a routerLink="search-job" target="_blank" class="hover2"
               ><i class="bi bi-geo-alt-fill"></i> Đà Nẵng</a
+
             >
           </div>
           <div>
@@ -261,73 +272,86 @@
       <hr />
       <br />
 
+      <a (click)="searchjob()"
+        ><div class="more">Xem tất cả <i class="bi bi-box-arrow-right"></i></div></a
+
+
       <a (click)="toggle()" target="_bank"
 
 
 
         ><div class="more">Xem tất cả</div></a
+
       ><br />
     </div>
+
 
     <div class="box-content_right">
       <div class="box-content_right_top">
         <div class="head">TỪ KHÓA TÌM KIẾM</div>
         <div class="catelog-list">
-
-          <a href="" target="_bank">
+          <a (click)="searchjob()">
             <div >
-              <div class="cate-left">Sản xuất / Vận hành sản xuất</div
-              ><div class="cate-right">(50)</div>
+              <div class="cate-left">Kế toán / Kiểm toán</div
+              ><div class="cate-right">(3)</div>
             </div>
           </a>
         </div>
         <div class="catelog-list">
-          <a href="" target="_bank">
+          <a (click)="searchjob()">
             <div >
               <div class="cate-left">Quản lý chất lượng (QA/QC)</div
-              ><div class="cate-right">(10)</div>
+              ><div class="cate-right">(6)</div>
             </div>
           </a>
         </div>
         <div class="catelog-list">
-          <a href="" target="_bank">
+          <a (click)="searchjob()" >
             <div >
-              <div class="cate-left">Điện, Sản xuất / Vận hành sản xuất</div
-              ><div class="cate-right">(10)</div>
+              <div class="cate-left">Nhà hàng / Khách sạn</div
+              ><div class="cate-right">(2)</div>
             </div>
           </a>
         </div>
         <div class="catelog-list">
-          <a href="" target="_bank">
+          <a (click)="searchjob()" >
+            <div >
+              <div class="cate-left">Dịch vụ khách hàng</div
+              ><div class="cate-right">(9)</div>
+            </div>
+          </a>
+        </div>
+        <div class="catelog-list">
+          <a (click)="searchjob()" >
             <div >
               <div class="cate-left">Bán hàng / Kinh doanh</div
-              ><div class="cate-right">(10)</div>
+              ><div class="cate-right">(6)</div>
             </div>
           </a>
         </div>
         <div class="catelog-list">
-          <a href="" target="_bank">
+          <a (click)="searchjob()" >
             <div >
-              <div class="cate-left">Xây dựng</div
-              ><div class="cate-right">(10)</div>
+              <div class="cate-left">Cơ khí / Ô tô / Tự động hóa</div
+              ><div class="cate-right">(4)</div>
             </div>
           </a>
         </div>
         <div class="catelog-list">
-          <a href="" target="_bank">
+          <a (click)="searchjob()" >
             <div >
-              <div class="cate-left">Nội ngoại thất</div
-              ><div class="cate-right">(10)</div>
+              <div class="cate-left">Điện / Điện tử / Điện lạnh</div
+              ><div class="cate-right">(6)</div>
             </div>
           </a>
-
         </div>
         <p>
-          <button  id="myBtn">
-            Xem thêm <i class="bi bi-chevron-compact-down"></i>
+          <button  id="myBtn" (click)="searchjob()">
+            Xem thêm <i class="bi bi-box-arrow-right"></i>
           </button>
         </p>
       </div>
+
 
       <div class="box-content_right_bot">
         <img src="assets/media/ads1.jpg" alt="advertisement" />
@@ -335,7 +359,9 @@
     </div>
   </div>
 
+
   <!-- lastestjob -->
+
 
   <div class="container-row-top bgcl">
     <div class="head" id="lastestjob">LASTEST JOB</div>
@@ -355,6 +381,7 @@
     </div>
   </div>
 
+
   <!-- lastest job -->
   <div class="container-row">
     <div class="container-row-top">
@@ -362,89 +389,12 @@
         NHỮNG CÔNG TY HÀNG ĐẦU
       </div>
       <div class="top-cent">
-
         <div class="box1" *ngFor="let j of job8">
-          <a routerLink="search-job" target="_bank">
-
+          <a href="" >
             <div class="img">
               <img src="{{j.image}}"  alt="FPT-logo" />
             </div>
-
             <div>{{j.company}}</div></a
-
-          >
-        </div>
-
-        <div class="box1">
-          <a routerLink="search-job" target="_blank">
-            <div class="img">
-              <img src="assets/media/fpt-logo.png" alt="FPT-logo" />
-            </div>
-            <div>FPT Software</div></a
-          >
-        </div>
-
-        <div class="box1">
-          <a routerLink="search-job" target="_blank">
-            <div class="img">
-              <img src="assets/media/toshiba-logo.png" alt="Toshiba-logo" />
-            </div>
-            <div>Toshiba VietNam</div></a
-          >
-        </div>
-
-        <div class="box1">
-          <a routerLink="search-job" target="_blank">
-            <div class="img">
-              <img
-                src="assets/media/luxoft-vietnam-logo.png"
-                alt="Luxoft-logo"
-              />
-            </div>
-            <div>Luxoft Software</div></a
-          >
-        </div>
-
-        <div class="box1">
-          <a routerLink="search-job" target="_blank">
-            <div class="img">
-              <img
-                src="assets/media/techcombank-logo.png"
-                alt="Techcombank-logo"
-              />
-            </div>
-            <div>Techcombank</div></a
-          >
-        </div>
-
-        <div class="box1">
-          <a routerLink="search-job" target="_blank">
-            <div class="img">
-              <img src="assets/media/logo-SMC-1.gif" alt="SCS-logo" />
-            </div>
-            <div>SMC Company</div></a
-          >
-        </div>
-
-        <div class="box1">
-          <a routerLink="search-job" target="_blank">
-            <div class="img">
-              <img
-                src="assets/media/home-credit-logo.png"
-                alt="Homecreadit-logo"
-              />
-            </div>
-            <div>Home Credit</div></a
-          >
-        </div>
-
-        <div class="box1">
-          <a routerLink="search-job" target="_blank">
-            <div class="img">
-              <img src="assets/media/alipay.png" alt="Alipay-logo" />
-            </div>
-            <div>ALIPAY Software</div></a
-
           >
         </div>
       </div>
@@ -455,28 +405,27 @@
         <i class="bi bi-briefcase-fill"></i> Việc làm hấp dẫn
       </div>
 
+
       <div class="content-row">
         <div class="box2" *ngFor="let j of jobs">
           <div class="box2-item">
-
-            <a routerLink="search-job" target="_bank">
+            <a href="" >
               <img src="{{j.image}}" alt="Fitech-logo"
-
             /></a>
           </div>
 
+
           <div class="box2-item">
             <div>
-
-              <a routerLink="job-description" target="_bank">
+              <a href="motacongviec.html" >
                 {{j.job_name}}</a
               >
             </div>
             <div>
-              <a routerLink="job-description" target="_bank">{{j.company}}</a>
-
+              <a href="motacongviec.html" >{{j.company}}</a>
             </div>
           </div>
+
 
           <div class="box2-item">
             <div><i class="bi bi-cash"></i> {{j.salary}}</div>
@@ -485,327 +434,20 @@
         </div>
 
 
-        <div class="box2">
-          <div class="box2-item">
-            <a routerLink="job-description" target="_blank">
-              <img src="assets/media/fitech-logo.jpg" alt="Fitech-logo"
-            /></a>
-          </div>
-
-          <div class="box2-item">
-            <div>
-              <a routerLink="job-description" target="_blank">
-                .NET/C# developer($1,000-$1,500 net)</a
-              >
-            </div>
-            <div><a href="">Fitech</a></div>
-          </div>
-
-          <div class="box2-item">
-            <div><i class="bi bi-cash"></i> 10-20 triệu</div>
-            <div><i class="bi bi-geo-alt-fill"></i> Hà Nội</div>
-          </div>
-        </div>
-
-        <div class="box2">
-          <div class="box2-item">
-            <a routerLink="job-description" target="_blank">
-              <img src="assets/media/fitech-logo.jpg" alt="Fitech-logo"
-            /></a>
-          </div>
-
-          <div class="box2-item">
-            <div>
-              <a routerLink="job-description" target="_blank">
-                .NET/C# developer($1,000-$1,500 net)</a
-              >
-            </div>
-            <div>
-              <a routerLink="job-description" target="_blank">Fitech</a>
-            </div>
-          </div>
-
-          <div class="box2-item">
-            <div><i class="bi bi-cash"></i> 10-20 triệu</div>
-            <div><i class="bi bi-geo-alt-fill"></i> Hà Nội</div>
-          </div>
-        </div>
-
-        <div class="box2">
-          <div class="box2-item">
-            <a routerLink="job-description" target="_blank">
-              <img src="assets/media/fitech-logo.jpg" alt="Fitech-logo"
-            /></a>
-          </div>
-
-          <div class="box2-item">
-            <div>
-              <a routerLink="job-description" target="_blank">
-                .NET/C# developer($1,000-$1,500 net)</a
-              >
-            </div>
-            <div>
-              <a routerLink="job-description" target="_blank">Fitech</a>
-            </div>
-          </div>
-
-          <div class="box2-item">
-            <div><i class="bi bi-cash"></i> 10-20 triệu</div>
-            <div><i class="bi bi-geo-alt-fill"></i> Hà Nội</div>
-          </div>
-        </div>
-
-        <div class="box2">
-          <div class="box2-item">
-            <a routerLink="job-description" target="_blank">
-              <img src="assets/media/fitech-logo.jpg" alt="Fitech-logo"
-            /></a>
-          </div>
-
-          <div class="box2-item">
-            <div>
-              <a routerLink="job-description" target="_blank">
-                .NET/C# developer($1,000-$1,500 net)</a
-              >
-            </div>
-            <div>
-              <a routerLink="job-description" target="_blank">Fitech</a>
-            </div>
-          </div>
-
-          <div class="box2-item">
-            <div><i class="bi bi-cash"></i> 10-20 triệu</div>
-            <div><i class="bi bi-geo-alt-fill"></i> Hà Nội</div>
-          </div>
-        </div>
-
-        <div class="box2">
-          <div class="box2-item">
-            <a routerLink="job-description" target="_blank">
-              <img src="assets/media/fitech-logo.jpg" alt="Fitech-logo"
-            /></a>
-          </div>
-
-          <div class="box2-item">
-            <div>
-              <a routerLink="job-description" target="_blank">
-                .NET/C# developer($1,000-$1,500 net)</a
-              >
-            </div>
-            <div>
-              <a routerLink="job-description" target="_blank">Fitech</a>
-            </div>
-          </div>
-
-          <div class="box2-item">
-            <div><i class="bi bi-cash"></i> 10-20 triệu</div>
-            <div><i class="bi bi-geo-alt-fill"></i> Hà Nội</div>
-          </div>
-        </div>
-
-        <div class="box2">
-          <div class="box2-item">
-            <a routerLink="job-description" target="_blank">
-              <img src="assets/media/fitech-logo.jpg" alt="Fitech-logo"
-            /></a>
-          </div>
-
-          <div class="box2-item">
-            <div>
-              <a routerLink="job-description" target="_blank">
-                .NET/C# developer($1,000-$1,500 net)</a
-              >
-            </div>
-            <div>
-              <a routerLink="job-description" target="_blank">Fitech</a>
-            </div>
-          </div>
-
-          <div class="box2-item">
-            <div><i class="bi bi-cash"></i> 10-20 triệu</div>
-            <div><i class="bi bi-geo-alt-fill"></i> Hà Nội</div>
-          </div>
-        </div>
-
-        <div class="box2">
-          <div class="box2-item">
-            <a routerLink="job-description" target="_blank">
-              <img src="assets/media/fitech-logo.jpg" alt="Fitech-logo"
-            /></a>
-          </div>
-
-          <div class="box2-item">
-            <div>
-              <a routerLink="job-description" target="_blank">
-                .NET/C# developer($1,000-$1,500 net)</a
-              >
-            </div>
-            <div>
-              <a routerLink="job-description" target="_blank">Fitech</a>
-            </div>
-          </div>
-
-          <div class="box2-item">
-            <div><i class="bi bi-cash"></i> 10-20 triệu</div>
-            <div><i class="bi bi-geo-alt-fill"></i> Hà Nội</div>
-          </div>
-        </div>
-
-        <div class="box2">
-          <div class="box2-item">
-            <a routerLink="job-description" target="_blank">
-              <img src="assets/media/fitech-logo.jpg" alt="Fitech-logo"
-            /></a>
-          </div>
-
-          <div class="box2-item">
-            <div>
-              <a routerLink="job-description" target="_blank">
-                .NET/C# developer($1,000-$1,500 net)</a
-              >
-            </div>
-            <div>
-              <a routerLink="job-description" target="_blank">Fitech</a>
-            </div>
-          </div>
-
-          <div class="box2-item">
-            <div><i class="bi bi-cash"></i> 10-20 triệu</div>
-            <div><i class="bi bi-geo-alt-fill"></i> Hà Nội</div>
-          </div>
-        </div>
-
-        <div class="box2">
-          <div class="box2-item">
-            <a routerLink="job-description" target="_blank">
-              <img src="assets/media/fitech-logo.jpg" alt="Fitech-logo"
-            /></a>
-          </div>
-
-          <div class="box2-item">
-            <div>
-              <a routerLink="job-description" target="_blank">
-                .NET/C# developer($1,000-$1,500 net)</a
-              >
-            </div>
-            <div>
-              <a routerLink="job-description" target="_blank">Fitech</a>
-            </div>
-          </div>
-
-          <div class="box2-item">
-            <div><i class="bi bi-cash"></i> 10-20 triệu</div>
-            <div><i class="bi bi-geo-alt-fill"></i> Hà Nội</div>
-          </div>
-        </div>
-
-        <div class="box2">
-          <div class="box2-item">
-            <a routerLink="job-description" target="_blank">
-              <img src="assets/media/fitech-logo.jpg" alt="Fitech-logo"
-            /></a>
-          </div>
-
-          <div class="box2-item">
-            <div>
-              <a routerLink="job-description" target="_blank">
-                .NET/C# developer($1,000-$1,500 net)</a
-              >
-            </div>
-            <div>
-              <a routerLink="job-description" target="_blank">Fitech</a>
-            </div>
-          </div>
-
-          <div class="box2-item">
-            <div><i class="bi bi-cash"></i> 10-20 triệu</div>
-            <div><i class="bi bi-geo-alt-fill"></i> Hà Nội</div>
-          </div>
-        </div>
-
-        <div class="box2">
-          <div class="box2-item">
-            <a routerLink="job-description" target="_blank">
-              <img src="assets/media/fitech-logo.jpg" alt="Fitech-logo"
-            /></a>
-          </div>
-
-          <div class="box2-item">
-            <div>
-              <a routerLink="job-description" target="_blank">
-                .NET/C# developer($1,000-$1,500 net)</a
-              >
-            </div>
-            <div>
-              <a routerLink="job-description" target="_blank">Fitech</a>
-            </div>
-          </div>
-
-          <div class="box2-item">
-            <div><i class="bi bi-cash"></i> 10-20 triệu</div>
-            <div><i class="bi bi-geo-alt-fill"></i> Hà Nội</div>
-          </div>
-        </div>
-
-        <div class="box2">
-          <div class="box2-item">
-            <a routerLink="job-description" target="_blank">
-              <img src="assets/media/fitech-logo.jpg" alt="Fitech-logo"
-            /></a>
-          </div>
-
-          <div class="box2-item">
-            <div>
-              <a routerLink="job-description" target="_blank">
-                .NET/C# developer($1,000-$1,500 net)</a
-              >
-            </div>
-            <div>
-              <a routerLink="job-description" target="_blank">Fitech</a>
-            </div>
-          </div>
-
-          <div class="box2-item">
-            <div><i class="bi bi-cash"></i> 10-20 triệu</div>
-            <div><i class="bi bi-geo-alt-fill"></i> Hà Nội</div>
-          </div>
-        </div>
-
-        <div class="box2">
-          <div class="box2-item">
-            <a href="">
-              <img src="assets/media/fitech-logo.jpg" alt="Fitech-logo"
-            /></a>
-          </div>
-
-          <div class="box2-item">
-            <div>
-              <a routerLink="job-description" target="_blank">
-                .NET/C# developer($1,000-$1,500 net)</a
-              >
-            </div>
-            <div>
-              <a routerLink="job-description" target="_blank">Fitech</a>
-            </div>
-          </div>
-
-          <div class="box2-item">
-            <div><i class="bi bi-cash"></i> 10-20 triệu</div>
-            <div><i class="bi bi-geo-alt-fill"></i> Hà Nội</div>
-          </div>
-        </div>
-
       </div>
     </div>
 
+
     <div class="container-row-top2">
-      <a routerLink="job-description" target="_blank">
+      <a href="motacongviec.html" >
         <img src="assets/media/hna.jpg" alt=""
       /></a>
     </div>
 
+
     <div class="container-row-top3">
       <div class="top-head" id="tintuc">TIN TỨC</div>
+
 
       <div class="top-cent1">
         <div class="top-cent1-box1">
@@ -817,7 +459,7 @@
               <img src="assets/media/news1.jpg" alt="New1" />
             </div>
             <div class="box3-item2">
-              <div class="box3-item2-content1">QUYỀN LỢI NHÂN VIÊN</div>
+              <div class="box3-item2-content1">QUYỀN LỢI NH N VIÊN</div>
               <div class="box3-item2-content2">
                 5 thời điểm doanh nghiệp không được buộc người lao động
                 thôi việc
@@ -860,7 +502,7 @@
               <img src="assets/media/news3.png" alt="New3" />
             </div>
             <div class="box3-item2">
-              <div class="box3-item2-content1">HUẤN LUYỆN NHÂN SỰ</div>
+              <div class="box3-item2-content1">HUẤN LUYỆN NH N SỰ</div>
               <div class="box3-item2-content2">
                 Đánh giá: bước đệm cần thiết trong việc đào tạo huấn luyện
                 nhân viên
@@ -878,5 +520,3 @@
     </div>
   </div>
 </div>
-
-

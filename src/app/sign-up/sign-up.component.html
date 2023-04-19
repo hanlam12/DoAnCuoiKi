@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="col-md-6 col-12">
-        <form class="form-login">
+        <form class="form-login" #registerForm="ngForm" name="registerForm">
           <div class="header-login">
             <h1>Đăng Ký</h1>
             <br>
@@ -41,10 +41,9 @@
           <div class="input-login user">
             <div>
               <input
-                type="text"
-                placeholder="Họ và tên*"
-                class="input form-control-lgin"
-                required
+                type="text" placeholder="Họ và tên*" class="input form-control-lgin"
+                required [(ngModel)]="newUser.name" name="name"
+                #name="ngModel" pattern="[a-zA-Z][a-zA-Z ]+"
               />
             </div>
           </div>
@@ -55,7 +54,8 @@
                 type="email"
                 placeholder="Địa chỉ e-mail*"
                 class="input form-control-lgin"
-                required
+                required [(ngModel)]="newUser.email" name="email" #email="ngModel"
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
               />
             </div>
           </div>
@@ -65,8 +65,23 @@
               <input
                 type="tel"
                 placeholder="Số điện thoại*"
-                class="input form-control-lgin"
-                required
+                class="input form-control-lgin" [(ngModel)]="newUser.phone" name="phone"
+                required #phone="ngModel"
+                pattern="[0-9]*"
+                minlength="10"
+                maxlength="10"
+              />
+            </div>
+          </div>
+
+          <div class="input-login user">
+            <div>
+              <input
+                type="text"
+                placeholder="Username*"
+                class="input form-control-lgin" [(ngModel)]="newUser.username" name="username"
+                required #username="ngModel"
+                minlength="6"
               />
             </div>
           </div>
@@ -74,36 +89,58 @@
           <div class="input-login pass">
             <div>
               <input
-                type="password"
+                type="{{passwordType}}"
                 placeholder="Mật khẩu*"
                 class="input form-control-lgin"
-                required
+                required [(ngModel)]="newUser.password" name="password" #password="ngModel"
+                minlength="5"
               />
             </div>
           </div>
 
-          <div class="input-login pass">
-            <div>
-              <input
-                type="password"
-                placeholder="Nhập lại mật khẩu*"
-                class="input form-control-lgin"
-                required
-              />
-            </div>
-          </div>
+
 
           <div>
-            <input type="checkbox" class="check" /> Hiển thị mật khẩu
+            <input type="checkbox" class="check" (click)="togglePassword()"/> Hiển thị mật khẩu
             <a href="quenmatkhau1.html"></a>
           </div>
           <br />
-          <a class="blue mg-top" href=""
+          <a class="blue mg-top" (click)="login()" style="cursor: pointer;"
             >Bạn đã có tài khoản? Đăng nhập</a
           >
           <br />
+          <div [hidden]="name.valid || name.pristine">
+            <div class="text-danger" [hidden]="!name.hasError('required')">Bạn chưa nhập tên</div>
+            <div class="text-danger" [hidden]="!name.hasError('pattern')">Vui lòng nhập tên phù hợp</div>
+          </div>
+          <div [hidden]="email.valid || email.pristine">
+            <div class="text-danger" [hidden]="!email.hasError('required')">Bạn chưa nhập tên</div>
+            <div class="text-danger" [hidden]="!email.hasError('pattern')">Email format:
+               <small><b>joe@abc.com</b></small>
+            </div>
+          </div>
+          <div [hidden]="phone.valid || phone.pristine">
+            <div class="text-danger" [hidden]="!phone.hasError('minlength')">Số điện thoại có 10 chữ số</div>
+            <div class="text-danger" [hidden]="!phone.hasError('required')">Bạn chưa nhập số điện thoại</div>
+            <div class="text-danger" [hidden]="!phone.hasError('pattern')">Số điện thoại không chứa ký tự đặc biệt</div>
+         </div>
+         <div [hidden]="username.valid || username.pristine">
+          <div class="text-danger" [hidden]="!username.hasError('minlength')">Username ít nhất có 6 ký tự</div>
+          <div class="text-danger" [hidden]="!username.hasError('required')">Bạn chưa nhập username</div>
+        </div>
+        <div [hidden]="password.valid || password.pristine">
+        <div class="text-danger" [hidden]="!password.hasError('minlength')">Mật khẩu ít nhất có 5 ký tự</div>
+        <div class="text-danger" [hidden]="!password.hasError('required')">Bạn chưa nhập mật khẩu</div>
+        </div>
+
           <br />
-          <button type="submit" class="btn-login">Đăng Ký</button>
+          <div *ngIf="errMessage" class="alert alert-danger">
+            {{errMessage}}
+            <ul *ngIf="existingUserErrors">
+              <li *ngFor="let error of existingUserErrors">{{error}}</li>
+            </ul>
+          </div>
+          <button type="submit" class="btn-login" style="cursor: pointer;" (click)="postUser()">Đăng Ký</button>
           <div class="">
             <div class="text center">
               <span>Hoặc</span>
