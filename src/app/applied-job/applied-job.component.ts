@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { User } from 'workzone';
+import { WorkZoneService } from '../work-zone.service';
 
 @Component({
   selector: 'app-applied-job',
@@ -25,5 +28,21 @@ export class AppliedJobComponent {
     pageSize = 4;
     collectionSize = this.data.length;
 
-    constructor() { }
+    user: User | undefined
+
+
+constructor(
+  private route: ActivatedRoute,
+  private usersService: WorkZoneService
+) { }
+
+ngOnInit(): void {
+  const userID = this.route.snapshot.paramMap.get('userID');
+  if (userID) {
+    this.usersService.getUser(userID).subscribe(user => {
+      this.user = user;
+      console.log('user:', user);
+    });
+  }
+}
 }

@@ -64,6 +64,27 @@ app.listen(port,()=>{
     res.send(updatedUser);
   });
 
+//   app.post("/job-application/:userID", cors(), async(req, res) => {
+//     const userID = req.params.userID;
+//     const cv = req.body;
+//     const filter = { _id: ObjectId(userID) };
+//     const update = { $push: { cv: cv } };
+//     await userCollection.updateOne(filter, update);
+//     res.send(cv);
+// });
+
+// app.post("/job-application/:userID/cv", cors(), (req, res) => {
+//   const userID = req.params.userID;
+//   const newCv = req.body;
+//   const CvToUpdate = userCollection.find((cv) => cv.userID === userID);
+//   if (CvToUpdate) {
+//     CvToUpdate.cv.push(newCv);
+//     res.send(userCollection);
+//   } else {
+//     res.status(404).send("Cv not found.");
+//   }
+// });
+
   app.get('/job-decription/:jobJD', cors(), async (req, res) => {
     try {
         const jobJD = req.params.jobJD;
