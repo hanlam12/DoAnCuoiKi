@@ -1,53 +1,4 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-}
-/*Responsive*/
-@media (max-width: 830px) {
-.box-menu-pc, .under-link{
-  display: none !important;
-}
-.body_right{
-  margin-left: 0px;
-}
-.box-menu-mb{
-  display: block !important;
-  margin-top: -55px;
-  padding-bottom: 20px ;
-  text-align: center;
-  height: 100%;
-}
-}
-a {
-  text-decoration: none;
-  color: black;
-}
-ul li{
-  list-style: none;
-  }
- /* menu-account */
- .emp-menu {
-  height: 50px;
-  align-items: center;
-  background-color: #deefff;
-  border-top: 2px solid #48c0fd;
-}
-.box-menu-pc {
-  height: 100%;
-  display: flex;
-  justify-content: space-evenly;
-}
-.box-menu-pc{
-  margin-top: 10px;
-  height: 80%;
-}
-.under-link {
-  border-bottom: 3px solid #00A9FF;
-}
-.box-menu-mb{
-  display: none;
-}
+
   /* body */
   #body{
     display: flex;
@@ -86,6 +37,7 @@ ul li{
     color: black;
     padding-top: 20px;
   }
+
   #you_create_file, #xapsep, #file_created{
     width: 100%;
     border-bottom: 0.5px solid rgba(0, 0, 0, 0.31);
@@ -94,6 +46,7 @@ ul li{
   }
   #xapsep input{
     margin-left: 5%;
+    margin-right: 1%;
   }
   table, td, th {
     text-align: center;
@@ -181,11 +134,15 @@ ul li{
   .text_text{
     padding-left: 15px;
   }
+  button {
+    border-radius: 6px;
+  }
   .disabled{
     margin-top: 20px;
     margin-left: 48%;
     margin-bottom: 20px;
   }
+
   @media (min-width: 1200px)
   {
     .container{

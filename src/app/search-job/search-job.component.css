@@ -6,7 +6,7 @@
 .hompage-main-banner {
   position: relative;
   width: 100%;
-  background: #141f72;
+  background: #0075FF;
 }
 .hompage-banner-image img {
   position: relative;
@@ -19,7 +19,7 @@
   position: relative;
 }
 .mt160{
-  padding-top: 120px;
+  padding-top: 100px;
 }
 .homepage-banner-content h3 {
   margin: 10px;
@@ -32,7 +32,7 @@
   display: flex;
   justify-content: space-between;
   padding: 20px 0;
-  width: 80%;
+  width: 90%;
   margin: auto;
 }
 .homepage-input {
@@ -90,18 +90,14 @@ a {
 }
 .search-main-content{
   position: relative;
-  width: 80%;
+  width: 90%;
   margin: auto;
   display: flex;
   justify-content: space-between;
 }
 
 .search-main-content-left{
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-bottom: 10px;
-  padding-right: 10px;
-  flex-basis: 28%;
+  flex-basis: 32%;
   border-radius: 3px;
 }
 .search-main-content-right{
@@ -111,6 +107,10 @@ a {
 .border{
   border: 1px solid gray;
   background-color: rgb(255, 255, 255);
+  border-radius:2px;
+}
+.search-card1{
+  margin-top: 10px;
 }
 .search-main-content-left1{
   background-color: transparent;
@@ -131,9 +131,10 @@ a {
   font-size: 21px;
   font-weight: bold;
   color: white;
+  margin-bottom: 20px;
 }
 .mf10 {
-  margin-left: 10px;
+  margin-left: 20px;
 }
 .cate-right {
   float: right;
@@ -143,6 +144,7 @@ a {
 .category{
   font-weight: bold;
   font-size: 20px;
+  margin-left: 10px;
 }
 .search-card-item{
   max-height: 300px;
@@ -179,6 +181,10 @@ a {
   margin: 8px 3px;
   font-size: 20px;
 }
+a:hover{
+  font-weight: 700;
+  cursor: pointer;
+}
 /* cop homepage */
 .content-hot {
   padding: 20px;
@@ -211,6 +217,7 @@ a {
 }
 .content-hot-input {
   flex-basis: 20%;
+  text-align: center;
 }
 .hover1:hover {
   color: #6b727a;
@@ -294,9 +301,9 @@ a {
     color: black;
   }
   .category{
-    margin-left: 10px;
     font-size: 16px
   }
+
   .border{
     margin-top: 10px;
   }

@@ -1,4 +1,4 @@
-<body>
+
    <div class="container__jobDecription">
     <div class="container__img--left">
       <img src="{{jobData?.job?.image}}" alt="avata company" />
@@ -16,7 +16,7 @@
         <p><i class="bi bi-clock"></i>&ensp;Hạn nộp: {{jobData?.job?.dealine}}</p>
       </div>
       <div class="container__content--right1">
-        <button id="myBtn" >Nộp đơn</button>
+        <button (click)="showModal()" id="myBtn" >Nộp đơn</button>
       </div>
     </div>
   </div>
@@ -89,4 +89,4 @@
       </div>
     </div>
   </div>
-  </body>
+
