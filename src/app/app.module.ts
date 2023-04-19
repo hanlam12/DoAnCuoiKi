@@ -51,7 +51,6 @@ import { SavedJobComponent } from './saved-job/saved-job.component';
     AppliedJobComponent,
     FooterLoggedComponent,
     FooterNotLogInComponent,
-    AppComponent,
     SearchJobComponent,
     ApplyCVComponent,
     ThongtinComponent,
@@ -81,11 +80,10 @@ import { SavedJobComponent } from './saved-job/saved-job.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
-
   ],
 
   providers: [],
-  bootstrap: [AppComponent, JobDecriptionComponent],
+  bootstrap: [AppComponent],
   entryComponents: [ApplyCVComponent]
 })
 export class AppModule { }

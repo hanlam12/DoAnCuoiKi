@@ -37,7 +37,7 @@ const routes: Routes = [
 
   {path:"job-decription/:jobJD",component:JobDecriptionComponent},
 
-  {path:"job-description",component:JobDecriptionComponent},
+  {path:"job-decription",component:JobDecriptionComponent},
 
   {path:"job-application",component:JobApplicationComponent},
   {path:"applied-job",component:AppliedJobComponent},

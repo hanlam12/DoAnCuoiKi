@@ -81,7 +81,6 @@ app.get("/job/category/:categories", cors(), async (req, res) => {
 
   // API lấy thông tin công ty
   const { ObjectId: objId } = require('mongodb');
-
   app.get('/congty/:id', async (req, res) => {
     const id = req.params.id;
     const company = await companyCollection.findOne({ _id: objId.createFromHexString(id) });
