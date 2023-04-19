@@ -56,6 +56,7 @@ app.get("/job/category/:categories", cors(), async (req, res) => {
 
 
 
+
 app.get("/company",cors(),async(req,res)=>{
   const result = await companyCollection.find({}).toArray();
   res.send(result)
@@ -75,6 +76,22 @@ app.post("/users",cors(),async(req,res)=>{
       { email: user.email },
       { phone: user.phone },
     ],
+
+  // API Login
+
+  app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    const user = await userCollection.findOne({ email: email });
+
+    if (!user || user.password !== password) {
+      return res.status(401).send('Invalid email or password');
+    }
+
+    const token = jwt.sign({ email: email }, secretKey);
+
+    res.json({ token, userEmail: user.email });
+
   });
   // Kiểm tra từng thông tin để trả về thông báo cụ thể cho người dùng
   if (existingUser) {
@@ -93,11 +110,47 @@ app.post("/users",cors(),async(req,res)=>{
   }
 
 
+
   hash = crypto.pbkdf2Sync(user.password, salt, 1000, 64, `sha512`).toString(`hex`);
+
+  app.get('/congty/:id', async (req, res) => {
+    const id = req.params.id;
+    const company = await companyCollection.findOne({ _id: objId.createFromHexString(id) });
+    if (!company) {
+      return res.status(404).send('Không tìm thấy công ty');
+    }
+    res.json(company);
+  });
+
+
+// API lấy tên người dùng
 
 
   user.password=hash
   user.salt=salt
+
+app.get('/user', async (req, res) => {
+  const token = req.headers.authorization.split(' ')[1]
+  if (!token) {
+    return res.status(401).send('Unauthorized');
+  }
+  try {
+    const decodedToken = jwt.verify(token, secretKey);
+    const email = decodedToken.email;
+    const user = await userCollection.findOne({ email: email });
+    console.log('decodedToken:', decodedToken);
+    console.log('user:', user);
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+    res.json(user.fullname);
+  } catch (error) {
+    console.error(error);
+    return res.status(401).send(` ${error.message}`);
+  }
+
+});
+
 
 
   await UserCollection.insertOne(user)

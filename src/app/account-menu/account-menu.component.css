@@ -2,10 +2,11 @@
   height: 50px;
   align-items: center;
   background-color: #deefff;
-  border-top: 2px solid #48c0fd;
+
 }
 .box-menu-pc {
-  margin-top: 10px;
+
+  padding-top: 13px;
   display: flex;
   justify-content: space-evenly;
 }
@@ -14,9 +15,7 @@
   display: none !important;
 }
 
-.emp-menu > div > li:last-child {
-  font-weight: bold;
-}
+
 @media (max-width: 480px) {
 
   .emp-menu {

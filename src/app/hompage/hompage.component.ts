@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ApplyCVComponent } from '../apply-cv/apply-cv.component';
 import { WorkZoneService } from '../work-zone.service';
 import { Router } from '@angular/router';
 
@@ -9,15 +11,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./hompage.component.css']
 })
 export class HompageComponent {
+  show = false;
+   errMessage:string='';
+  job3: any;
+  job6: any;
+  job8: any;
+  jobs: any;
+  errMessage = '';
+  modalRef!: BsModalRef;
 
-
-
-
-  job3:any;
-  job6:any;
-  job8:any;
-  jobs:any;
-  errMessage:string=''
   constructor(public _service: WorkZoneService, private router:Router){
     this._service.getJobs().subscribe({
       next:(data)=>{this.jobs=data},
@@ -38,9 +40,18 @@ export class HompageComponent {
   }
   searchjob(){
     this.router.navigate(['search-job'])
+
+  constructor(private modalService: BsModalService, public workZoneService: WorkZoneService) {}
+
+
+
+  toggle() {
+    this.getJobs();
   }
 
 
-
+  showModal() {
+    this.modalRef = this.modalService.show(ApplyCVComponent);
+  }
 
 }
