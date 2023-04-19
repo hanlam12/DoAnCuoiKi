@@ -31,7 +31,18 @@ export class WorkZoneService {
     handleError(error:HttpErrorResponse){
     return throwError(()=>new Error(error.message))
     }
-
+getCompanies():Observable<any>{
+    const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
+    const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+    }
+    return this._http.get<any>("/company",requestOptions).pipe(
+      map(res=>JSON.parse(res) as Array<Company>),
+      retry(3),
+      catchError(this.handleError)
+    )
+  }
     getNhanVien(fNhanVien:any):Observable<any>{
       const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
       const requestOptions:Object={
@@ -43,6 +54,7 @@ export class WorkZoneService {
         retry(3),
         catchError(this.handleError))
     }
+
 
     getQuanLy(fQuanLy:any):Observable<any>{
       const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")

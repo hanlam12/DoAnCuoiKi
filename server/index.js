@@ -28,6 +28,12 @@ app.listen(port,()=>{
   companyCollection = database.collection("company");
 
 
+app.get("/company",cors(),async(req,res)=>{
+  const result = await companyCollection.find({}).toArray();
+  res.send(result)
+})
+
+
  app.get("/job", cors(), async (req, res)=>{
   const result = await jobCollection.find({}).toArray();
   res.send(result)
@@ -85,6 +91,7 @@ app.get("/job/category/:categories", cors(), async (req, res) => {
     res.json(company);
   });
   
+
 
 
 
