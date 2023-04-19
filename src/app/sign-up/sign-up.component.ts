@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class SignUpComponent {
 
-  retrypassword:string=''
   password: string = '';
   passwordType: string = 'password';
   togglePassword() {
@@ -44,7 +43,7 @@ export class SignUpComponent {
             this.existingUserErrors = err.error.error;
             this.errMessage = "Có lỗi khi đăng ký tài khoản, vui lòng kiểm tra lại thông tin sau:"
           } else {
-            this.errMessage = "Có lỗi khi đăng ký tài khoản, email hoặc username hoặc số điện thoại của bạn đã được sử dụng"
+            this.errMessage = "Có lỗi khi đăng ký tài khoản, email, username hoặc số điện thoại của bạn đã được sử dụng"
           }
         }
       )

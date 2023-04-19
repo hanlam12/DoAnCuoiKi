@@ -57,7 +57,7 @@ const routes: Routes = [
   { path:"quenmatkhau3", component:Quenmatkhau3Component},
   {path: "dieukhoandichvu", component: DieukhoandichvuComponent},
 
-  {path: "companies/:companyId", component: CongtyComponent}
+  {path: "companies/:companyId", component: CongtyComponent},
 
   {path: "congty", component: CongtyComponent},
    {path: "congty/:id", component: CongtyComponent}

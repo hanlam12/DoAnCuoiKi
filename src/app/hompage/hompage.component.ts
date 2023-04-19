@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { WorkZoneService } from '../work-zone.service';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-hompage',
@@ -8,6 +9,8 @@ import {  Router } from '@angular/router';
   styleUrls: ['./hompage.component.css']
 })
 export class HompageComponent {
+
+
 
 
   job3:any;
@@ -36,6 +39,8 @@ export class HompageComponent {
   searchjob(){
     this.router.navigate(['search-job'])
   }
+
+
 
 
 }
