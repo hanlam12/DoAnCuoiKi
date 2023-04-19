@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 export class WorkZoneService {
 
   private _url:string="/entries"
-  constructor(private _http:HttpClient) { }
+
   getJobs():Observable<any>{
     const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
     const requestOptions:Object={
@@ -330,7 +330,7 @@ export class WorkZoneService {
   constructor(private _http:HttpClient, private router: Router) { }
   navigateAfterLogin(): void {
     // Điều hướng đến trang mong muốn sau khi người dùng đăng nhập thành công
-    
+
     this.router.navigate(['/']);
   }
 
@@ -347,7 +347,7 @@ export class WorkZoneService {
     );
   }
 
-  
+
   isLoggedIn(): boolean {
     const token = localStorage.getItem('token');
     return !!token;
