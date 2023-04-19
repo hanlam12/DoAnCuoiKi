@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { CommonModule } from '@angular/common';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ThongtinComponent } from './thongtin/thongtin.component';
@@ -21,14 +17,11 @@ import { CongtyComponent } from './congty/congty.component';
 import { ContactComponent } from './contact/contact.component';
 import { HompageComponent } from './hompage/hompage.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-
 import { JobDecriptionComponent } from './job-decription/job-decription.component';
 import { JobApplicationComponent } from './job-application/job-application.component';
 import { AppliedJobComponent } from './applied-job/applied-job.component';
 import { FooterLoggedComponent } from './footer-logged/footer-logged.component';
 import { FooterNotLogInComponent } from './footer-not-log-in/footer-not-log-in.component';
-
-
 import { SearchJobComponent } from './search-job/search-job.component';
 import { ApplyCVComponent } from './apply-cv/apply-cv.component';
 import { HeaderComponent } from './header/header.component';
@@ -37,7 +30,15 @@ import { ThongBaoViecLamComponent } from './thong-bao-viec-lam/thong-bao-viec-la
 import { AccountMenuComponent } from './account-menu/account-menu.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+
 import { HttpClientModule } from '@angular/common/http';
+
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SavedJobComponent } from './saved-job/saved-job.component';
+
 
 @NgModule({
   declarations: [
@@ -48,13 +49,11 @@ import { HttpClientModule } from '@angular/common/http';
     ContactComponent,
     HompageComponent,
     SignUpComponent,
-
     JobDecriptionComponent,
     JobApplicationComponent,
     AppliedJobComponent,
     FooterLoggedComponent,
     FooterNotLogInComponent,
-    AppComponent,
     SearchJobComponent,
     ApplyCVComponent,
     ThongtinComponent,
@@ -72,7 +71,8 @@ import { HttpClientModule } from '@angular/common/http';
     ThongBaoViecLamComponent,
     AccountMenuComponent,
     CreateProfileComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SavedJobComponent,
 
   ],
   imports: [
@@ -87,6 +87,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
 
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ApplyCVComponent]
 })
 export class AppModule { }

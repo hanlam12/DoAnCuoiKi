@@ -13,6 +13,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+
+
             "outputPath": "dist/do-an-cuoi-ki",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -24,6 +26,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
+
             "styles": [
               "src/styles.css",
               "node_modules/leaflet/dist/leaflet.css"
@@ -61,6 +64,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "DoAnCuoiKi:build",
+            "proxyConfig": "src/proxy.conf.json"
+          },
 
           "configurations": {
             "production": {
@@ -105,4 +112,5 @@
   "cli": {
     "analytics": "a1d15b9b-3908-4ba0-ba33-bc54a74adfaa"
   }
+
 }

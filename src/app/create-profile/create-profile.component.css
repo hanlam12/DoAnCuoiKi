@@ -1,6 +1,9 @@
 .main {
   margin: 50px 5%;
 }
+#matkhau{
+  margin-top: 5% ;
+  }
 .method {
   background-color: white;
   margin: 5px 12px;
@@ -11,12 +14,17 @@
   font-size: 15px;
   margin-bottom: -8px;
 }
+span{
+  font-size: 12px;
+  margin-top: 10px;
+  color: #86898a;
+}
 .method > span {
   font-size: 10px;
 }
 .taikhoan {
   border-left: 1px solid black;
-  margin: 35% 10%;
+  margin: 35% 10% 10%;
   padding-left: 5px;
 }
 .red {
@@ -90,24 +98,6 @@ width: 90%;
 
 
 @media (max-width: 480px) {
-  .nav-pc,
-  .btn-menu,
-  .account {
-    display: none;
-  }
-  .logo img {
-    width: 43% !important;
-  }
-  #nav-mb button {
-    position: absolute;
-    top: 25px;
-    right: 10px;
-    font-size: 20px;
-    display: block;
-    color: #48c0fd;
-    border: none;
-    background: none;
-  }
   .main {
     margin: 10px 5% !important;
   }

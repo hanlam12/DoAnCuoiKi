@@ -1,28 +1,20 @@
-
-<div *ngIf="!currentRoute.endsWith('thongbao')">
-  <app-account-menu></app-account-menu>
-</div>
-
-
 <app-not-found *ngIf="currentRoute === '/404notfound'"></app-not-found>
 
-
 <div *ngIf="currentRoute !== '/404notfound'">
-  <ng-container *ngIf="!currentRoute.endsWith('sign-up')">
+  <ng-container *ngIf="!currentRoute.endsWith('sign-up') && !currentRoute.endsWith('login') ">
     <app-header-login></app-header-login>
   </ng-container>
-
-
-  <router-outlet></router-outlet>
-
-  <ng-container *ngIf="currentRoute.endsWith('thongbao')">
+  <ng-container *ngIf="currentRoute.endsWith('noti') || currentRoute.endsWith('profile') ||currentRoute.endsWith('applied-job') || currentRoute.endsWith('saved') || currentRoute.endsWith('job-application') ||currentRoute.endsWith('thaydoimatkhau')">
     <app-account-menu></app-account-menu>
   </ng-container>
+  <router-outlet></router-outlet>
+
+
+
+<app-footer-not-log-in></app-footer-not-log-in>
 </div>
 
-<ng-container *ngIf="currentRoute === '/404notfound'">
-  <app-not-found></app-not-found>
-</ng-container>
+
 
 
 

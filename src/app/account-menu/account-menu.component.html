@@ -4,21 +4,19 @@
     <div class="col-md-12 col-12">
       <ul class="emp-menu">
         <div class="box-menu-pc">
-          <li><a href="profile">Tài khoản</a></li>
-          <li><a href="hosoxinviec.html">Hồ sơ công việc (3)</a></li>
-          <li><a href="vieclamdaluu.html">Việc đã lưu (5)</a></li>
-          <li><a href="viecdaungtuyen.html">Việc đã ứng tuyển (7)</a></li>
-          <li><a href="#">Thông báo việc làm (0)</a></li>
+          <li><a routerLink="profile">Tài khoản</a></li>
+          <li><a routerLink="job-application">Hồ sơ xin việc (3)</a></li>
+          <li><a routerLink="saved">Việc đã lưu (5)</a></li>
+          <li><a routerLink="applied-job">Việc đã ứng tuyển (7)</a></li>
+          <li><a routerLink="noti">Thông báo việc làm (0)</a></li>
         </div>
 
         <div class="box-menu-mb" [ngClass]="{'is-display-none': isDisplaynone}">
-          <span><a href="taohoso.html">Tài khoản</a></span>
-          <span><a href="hosoxinviec.html">Hồ sơ xin việc (3)</a></span>
-          <span><a href="vieclamdaluu.html">Việc đã lưu (5)</a></span>
-          <span
-            ><a href="viecdaungtuyen.html">Việc đã ứng tuyển (7)</a></span
-          >
-          <span><a href="#">Thông báo việc làm (0)</a></span>
+          <span><a routerLink="profile">Tài khoản</a></span>
+          <span><a routerLink="job-application">Hồ sơ xin việc (3)</a></span>
+          <span><a routerLink="saved">Việc đã lưu (5)</a></span>
+          <span><a routerLink="applied-job">Việc đã ứng tuyển (7)</a></span>
+          <span><a routerLink="noti">Thông báo việc làm (0)</a></span>
         </div>
       </ul>
     </div>

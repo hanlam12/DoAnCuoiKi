@@ -10,17 +10,23 @@
         </div>
         <div class="col-md-6">
           <ul class="nav-pc">
-            <li><a href="timkiemvieclam.html">Tìm việc</a></li>
-            <li><a href="#">Công việc</a></li>
+
+            <li><a (click)="openTimViec()">Tìm việc</a></li>
+            
             <li><a href="thongtin.html">Về WorkZone</a></li>
+
+            <li><a  routerLink="search-job">Tìm việc</a></li>
+
+            <li><a routerLink="thongtin">Về WorkZone</a></li>
+
           </ul>
         </div>
       </div>
     </div>
     <div class="right-main-menu">
-      <a href="sign-up" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ĐĂNG KÝ</a>
-      <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ĐĂNG NHẬP</a>
-      <a href="#" class="btn btn-primary btn-lg active ntd" role="button" aria-pressed="true">NHÀ TUYỂN DỤNG</a>
+      <a routerLink="/sign-up" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ĐĂNG KÝ</a>
+      <a routerLink="/login" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ĐĂNG NHẬP</a>
+      <a routerLink="/404notfound" class="btn btn-primary btn-lg active ntd" role="button" aria-pressed="true">NHÀ TUYỂN DỤNG</a>
     </div>
   </div>
 </div>
@@ -34,10 +40,9 @@
 
 
 <ul class="list-menu-mb-login" [ngClass]="{'is-left-default': isLeftDefault}">
-  <li><a href="timkiemvieclam.html">Tìm việc</a></li>
-  <li><a href="#">Công việc</a></li>
-  <li><a href="thongtin.html">Về WorkZone</a></li>
-  <a href="sign-up" class="btn-nav" role="button" aria-pressed="true">ĐĂNG KÝ</a>
-  <a href="#" class="btn-nav" role="button" aria-pressed="true">ĐĂNG NHẬP</a>
-  <a href="#" class="btn-nav ntd" role="button" aria-pressed="true">NHÀ TUYỂN DỤNG</a>
+  <li><a routerLink="search-job">Tìm việc</a></li>
+  <li><a routerLink="thongtin">Về WorkZone</a></li>
+  <a routerLink="/sign-up" class="btn-nav" role="button" aria-pressed="true">ĐĂNG KÝ</a>
+  <a routerLink="/login" class="btn-nav" role="button" aria-pressed="true">ĐĂNG NHẬP</a>
+  <a routerLink="/404notfound" class="btn-nav ntd" role="button" aria-pressed="true">NHÀ TUYỂN DỤNG</a>
 </ul>
