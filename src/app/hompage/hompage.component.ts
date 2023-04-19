@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { WorkZoneService } from '../work-zone.service';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-hompage',
@@ -8,12 +9,13 @@ import { WorkZoneService } from '../work-zone.service';
 })
 export class HompageComponent {
 
+
   job3:any;
   job6:any;
   job8:any;
   jobs:any;
   errMessage:string=''
-  constructor(public _service: WorkZoneService){
+  constructor(public _service: WorkZoneService, private router:Router){
     this._service.getJobs().subscribe({
       next:(data)=>{this.jobs=data},
       error:(err)=>{this.errMessage=err}
@@ -31,11 +33,8 @@ export class HompageComponent {
       error:(err)=>{this.errMessage=err}
     })
   }
-  tonggle(){
-    this._service.getJobs().subscribe({
-      next:(data)=>{this.jobs=data},
-      error:(err)=>{this.errMessage=err}
-    })
+  searchjob(){
+    this.router.navigate(['search-job'])
   }
 
 

@@ -1,3 +1,29 @@
+export interface IJob{
+  _id:any,
+  jobJD:string,
+  image:string,
+  job_name:string,
+  company:string,
+  category: Array<category>,
+  address:string,
+  salary:string,
+  exprience:string,
+  dealine:string,
+  welfare:string,
+  description:string,
+  job_requirement:string,
+  contact:string,
+  contact_person:string,
+  phone_person:number,
+  degree:string,
+  age:string,
+  position:string,
+  gender:string,
+  recruiting_amount:string,
+  work_form:string,
+}
+
+
 export class Job{
   constructor(
   public _id:any=null,
@@ -62,3 +88,16 @@ export interface cv{
   cv_detail: string
 }
 
+
+
+export class Users{
+  constructor(
+    public _id:any=null,
+    public name:string="",
+    public email:string="",
+    public phone:string="",
+    public username:string="",
+    public password:string="",
+    public retrypassword:string="",
+  ){}
+}

@@ -24,6 +24,16 @@
       <span class="homepage-icon"><i class="fas fa-map-marker-alt"></i> </span>
       <select name="location" id="location">
         <option value="">Tất cả địa điểm</option>
+        <option value="">TP. Hồ Chí Minh</option>
+        <option value="">Hà Nội</option>
+        <option value="">Bình Dương</option>
+        <option value="">Hải Phòng</option>
+        <option value="">Quảng Ninh</option>
+        <option value="">Đồng Nai</option>
+        <option value="">Long An</option>
+        <option value="">Vũng Tàu</option>
+        <option value="">Cần Thơ</option>
+        <option value="">Bạc Liêu</option>
       </select>
     </div>
     <div class="homepage-input">
@@ -39,22 +49,22 @@
 
       <div class="content-hot" *ngFor="let j of job6">
         <div class="content-img">
-          <a href="" target="_bank"
+          <a href=""
             ><img src="{{j.image}}" alt="FPT-logo"
           /></a>
         </div>
         <div class="content-hot-infor">
-          <a href="" target="_bank">
+          <a href="" >
             <div class="comp">
               {{j.job_name}}
             </div></a
           >
           <div>
-            <a href="" target="_bank" style="text-transform: uppercase;" class="hover1"
+            <a href=""  style="text-transform: uppercase;" class="hover1"
               >{{j.company}}</a
             >
             |
-            <a href="" target="_bank" class="hover2"
+            <a href=""  class="hover2"
               ><i class="bi bi-geo-alt-fill"></i> {{j.address}}</a
             >
           </div>
@@ -70,8 +80,8 @@
       </div>
       <hr />
       <br />
-      <a (click)="tonggle()" target="_bank"
-        ><div class="more">Xem tất cả</div></a
+      <a (click)="searchjob()" target="_blank"
+        ><div class="more">Xem tất cả <i class="bi bi-box-arrow-right"></i></div></a
       ><br />
     </div>
 
@@ -79,56 +89,64 @@
       <div class="box-content_right_top">
         <div class="head">TỪ KHÓA TÌM KIẾM</div>
         <div class="catelog-list">
-          <a href="" target="_bank">
+          <a href="" >
             <div >
-              <div class="cate-left">Sản xuất / Vận hành sản xuất</div
-              ><div class="cate-right">(50)</div>
+              <div class="cate-left">Kế toán / Kiểm toán</div
+              ><div class="cate-right">(3)</div>
             </div>
           </a>
         </div>
         <div class="catelog-list">
-          <a href="" target="_bank">
+          <a href="" >
             <div >
               <div class="cate-left">Quản lý chất lượng (QA/QC)</div
-              ><div class="cate-right">(10)</div>
+              ><div class="cate-right">(6)</div>
             </div>
           </a>
         </div>
         <div class="catelog-list">
-          <a href="" target="_bank">
+          <a href="" >
             <div >
-              <div class="cate-left">Điện, Sản xuất / Vận hành sản xuất</div
-              ><div class="cate-right">(10)</div>
+              <div class="cate-left">Nhà hàng / Khách sạn</div
+              ><div class="cate-right">(2)</div>
             </div>
           </a>
         </div>
         <div class="catelog-list">
-          <a href="" target="_bank">
+          <a href="" >
+            <div >
+              <div class="cate-left">Dịch vụ khách hàng</div
+              ><div class="cate-right">(9)</div>
+            </div>
+          </a>
+        </div>
+        <div class="catelog-list">
+          <a href="" >
             <div >
               <div class="cate-left">Bán hàng / Kinh doanh</div
-              ><div class="cate-right">(10)</div>
+              ><div class="cate-right">(6)</div>
             </div>
           </a>
         </div>
         <div class="catelog-list">
-          <a href="" target="_bank">
+          <a href="" >
             <div >
-              <div class="cate-left">Xây dựng</div
-              ><div class="cate-right">(10)</div>
+              <div class="cate-left">Cơ khí / Ô tô / Tự động hóa</div
+              ><div class="cate-right">(4)</div>
             </div>
           </a>
         </div>
         <div class="catelog-list">
-          <a href="" target="_bank">
+          <a href="" >
             <div >
-              <div class="cate-left">Nội ngoại thất</div
-              ><div class="cate-right">(10)</div>
+              <div class="cate-left">Điện / Điện tử / Điện lạnh</div
+              ><div class="cate-right">(6)</div>
             </div>
           </a>
         </div>
         <p>
-          <button  id="myBtn">
-            Xem thêm <i class="bi bi-chevron-compact-down"></i>
+          <button (click)="searchjob()"  id="myBtn">
+            Xem chi tiết <i class="bi bi-box-arrow-right"></i>
           </button>
         </p>
       </div>
@@ -167,7 +185,7 @@
       </div>
       <div class="top-cent">
         <div class="box1" *ngFor="let j of job8">
-          <a href="" target="_bank">
+          <a href="" >
             <div class="img">
               <img src="{{j.image}}"  alt="FPT-logo" />
             </div>
@@ -185,19 +203,19 @@
       <div class="content-row">
         <div class="box2" *ngFor="let j of jobs">
           <div class="box2-item">
-            <a href="" target="_bank">
+            <a href="" >
               <img src="{{j.image}}" alt="Fitech-logo"
             /></a>
           </div>
 
           <div class="box2-item">
             <div>
-              <a href="motacongviec.html" target="_bank">
+              <a href="motacongviec.html" >
                 {{j.job_name}}</a
               >
             </div>
             <div>
-              <a href="motacongviec.html" target="_bank">{{j.company}}</a>
+              <a href="motacongviec.html" >{{j.company}}</a>
             </div>
           </div>
 
@@ -211,7 +229,7 @@
     </div>
 
     <div class="container-row-top2">
-      <a href="motacongviec.html" target="_bank">
+      <a href="motacongviec.html" >
         <img src="assets/media/hna.jpg" alt=""
       /></a>
     </div>

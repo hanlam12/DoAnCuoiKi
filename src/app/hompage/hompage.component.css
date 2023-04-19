@@ -190,6 +190,7 @@ hr {
 }
 .more:hover {
   color: #0075ff;
+  font-size: 17px;
 }
 a {
   text-decoration: none;
@@ -236,7 +237,7 @@ ul {
 }
 .cate-right {
   flex-basis: 10%;
-  color: #b8b8b8;
+  color: #858383;
   margin-right: 20px;
 }
 .container-row {
