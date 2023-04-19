@@ -51,23 +51,23 @@
           <p class="icon">
             <i class="bi bi-cloud-arrow-up" style="font-size: 50px; color: #00A9FF;"></i>
           </p>
-          <div class="not-cv">
+          <div class="not-cv" *ngIf="!newcv.CV_chinh">
             <p>Kéo CV của bạn vào đây hoặc bấm để chọn file CV của bạn</p>
           </div>
-          <div class="is-cv">
-            <p class="name-file"></p>
+          <div class="is-cv" *ngIf="newcv.CV_chinh">
+            <p class="name-file">{{newcv.title}}</p>
             <p>Chọn tệp khác</p>
           </div>
           <form id="formUploadCv" action="" method="post" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="20pu1kkykc56Qn6HmNsD1aSLoqXn4PUSjnxtNUpm">
-            <input type="file" name="file_upload_cv" class="file-upload-cv" id="file-upload-cv">
+            <input type="file" name="file_upload_cv" class="file-upload-cv" id="file-upload-cv" (change)="onFileSelected($event, newcv)">
           </form>
         </div>
         <div class="file-format">
           <div>File tải lên không quá: 5 MB</div>
         </div>
         <div class="box-btn-upload">
-          <button (click)="updateCv()" class="btn btn-primary-hover  btn-upload ">Tải CV lên</button>
+          <button (click)="putInforCv()" class="btn btn-primary-hover  btn-upload ">Tải CV lên</button>
           <p class="text-highlight upload-process">Hệ thống đang xử lý CV của bạn thông thường mất từ 10 đến 15 giây, xin vui lòng đợi !!!</p>
         </div>
       </div>
@@ -81,7 +81,7 @@
         <button class="btn btn-change-avatar btn-upload-avatar mt-2">
           <i class="fa-solid fa-camera"></i> Thay ảnh </button>
       </div>
-      <form action="post" method="POST" id="profile-form" *ngFor="let c of user?.cv" >
+      <form action="post" method="POST" id="profile-form" *ngFor="let c of user?.cv" [formGroup]="regForm" >
         <input type="hidden" name="_token" value="xXre87L9abHsibbHUc6qqxvGChSCOxublrJK8lbZ">
         <div class="sub-content">
           <div class="form-group row mb-3">
@@ -105,7 +105,7 @@
               <label for="">Năm sinh <span class="text-red">*</span></label>
             </div>
             <div class="col-md-9">
-              <select type="text" class="form-control  select2-hidden-accessible" id="dob_selector" name="dob" style="width: 100%"  tabindex="-1" aria-hidden="true">
+              <select type="text" class="form-control  select2-hidden-accessible" id="dob_selector" name="dob" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="YOB" [class.is-invalid]="regForm.controls['YOB'].invalid && regForm.controls['YOB'].touched">
               <option value>-- Chọn năm sinh --</option>
               <option value="2005">2005</option>
               <option value="2005">2004</option>
@@ -181,7 +181,7 @@
               <label for="">Ngành nghề <span class="text-red">*</span></label>
             </div>
             <div class="col-md-9 radio">
-              <select type="text" class="form-control  select2-hidden-accessible" id="categoy" name="categoy" style="width: 100%"  tabindex="-1" aria-hidden="true">
+              <select type="text" class="form-control  select2-hidden-accessible" id="categoy" name="categoy" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="career" [class.is-invalid]="regForm.controls['career'].invalid && regForm.controls['career'].touched">
               <option value>-- Chọn ngành nghề --</option>
               <option value="1001">Kinh doanh / Bán hàng</option>
               <option value="1002">Biên / Phiên dịch</option>
@@ -258,7 +258,7 @@
               <label for="">Kinh ngiệm <span class="text-red">*</span></label>
             </div>
             <div class="col-md-9">
-              <select type="text" class="form-control  select2-hidden-accessible" id="experience" name="experience" style="width: 100%"  tabindex="-1" aria-hidden="true">
+              <select type="text" class="form-control  select2-hidden-accessible" id="experience" name="experience" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="experience" [class.is-invalid]="regForm.controls['experience'].invalid && regForm.controls['experience'].touched">
               <option value>-- Thời gian làm việc ngành nghề đã chọn --</option>
               <option value="1">Chưa có kinh nghiệm</option>
               <option value="2">Dưới 1 năm</option>
@@ -276,7 +276,7 @@
               <label for="">Trình độ chuyên môn <span class="text-red">*</span></label>
             </div>
             <div class="col-md-9">
-              <select type="text" class="form-control  select2-hidden-accessible" id="trinhDoChuyenMon" name="trinhDoChuyenMon" style="width: 100%"  tabindex="-1" aria-hidden="true">
+              <select type="text" class="form-control  select2-hidden-accessible" id="trinhDoChuyenMon" name="trinhDoChuyenMon" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="qualification" [class.is-invalid]="regForm.controls['qualification'].invalid && regForm.controls['qualification'].touched">
               <option value>-- Chọn trình độ --</option>
               <option value="1">Sinh viên</option>
               <option value="2">Mới ra trường</option>
@@ -293,7 +293,7 @@
               <label for="">Trình độ tiếng anh <span class="text-red">*</span></label>
             </div>
             <div class="col-md-9">
-              <select type="text" class="form-control  select2-hidden-accessible" id="trinhDoEnglish" name="trinhDoEnglish" style="width: 100%"  tabindex="-1" aria-hidden="true">
+              <select type="text" class="form-control  select2-hidden-accessible" id="trinhDoEnglish" name="trinhDoEnglish" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="english_level" [class.is-invalid]="regForm.controls['english_level'].invalid && regForm.controls['english_level'].touched">
               <option value>-- Chọn trình độ --</option>
               <option value="1">Không biết</option>
               <option value="2">Đọc hiểu cơ bản</option>
@@ -308,7 +308,7 @@
               <label for="">Địa điểm làm việc <span class="text-red">*</span></label>
             </div>
             <div class="col-md-9">
-              <select type="text" class="form-control  select2-hidden-accessible" id="address" name="address" style="width: 100%"  tabindex="-1" aria-hidden="true">
+              <select type="text" class="form-control  select2-hidden-accessible" id="address" name="address" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="work_location" [class.is-invalid]="regForm.controls['work_location'].invalid && regForm.controls['work_location'].touched">
               <option value>-- Lựa chọn địa điểm bạn có thể làm việc --</option>
               <option value="1">Hà Nội</option>
               <option value="2">Hồ Chí Minh</option>
@@ -387,7 +387,7 @@
               <label for="">Hình thức làm việc <span class="text-red">*</span></label>
             </div>
             <div class="col-md-9">
-              <select type="text" class="form-control  select2-hidden-accessible" id="hinhThucLamViec" name="hinhThucLamViec" style="width: 100%"  tabindex="-1" aria-hidden="true">
+              <select type="text" class="form-control  select2-hidden-accessible" id="hinhThucLamViec" name="hinhThucLamViec" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="working_form" [class.is-invalid]="regForm.controls['working_form'].invalid && regForm.controls['working_form'].touched">
               <option value>-- Chọn hình thức làm việc mong muốn --</option>
               <option value="1">Toàn thời gian</option>
               <option value="2">Bán thời gian</option>
@@ -400,7 +400,7 @@
               <label for="">Mức lương mong muốn <span class="text-red">*</span></label>
             </div>
             <div class="col-md-9">
-              <select type="text" class="form-control  select2-hidden-accessible" id="mucLuongMongMuon" name="mucLuongMongMuon" style="width: 100%"  tabindex="-1" aria-hidden="true">
+              <select type="text" class="form-control  select2-hidden-accessible" id="mucLuongMongMuon" name="mucLuongMongMuon" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="desired_salary" [class.is-invalid]="regForm.controls['desired_salary'].invalid && regForm.controls['desired_salary'].touched">
               <option value>-- Chọn mức lương mong muốn --</option>
               <option value="1">Dưới 5 triệu</option>
               <option value="2"> 5 - 10 triệu</option>
@@ -417,9 +417,9 @@
               <label for="">CV chính của bạn <span class="text-red">*</span></label>
             </div>
             <div class="col-md-9">
-              <select type="text" class="form-control  select2-hidden-accessible" id="CVChinh" name="CVChinh" style="width: 100%"  tabindex="-1" aria-hidden="true">
+              <select type="text" class="form-control  select2-hidden-accessible" id="CVChinh" name="CVChinh" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="CV_chinh" [class.is-invalid]="regForm.controls['CV_chinh'].invalid && regForm.controls['CV_chinh'].touched">
               <option value>-- Chọn CV bạn muốn dùng để ứng tuyển --</option>
-              <option></option>
+              <option>{{c?.CV_chinh}}</option>
               </select>
             </div>
           </div>
@@ -442,7 +442,7 @@
         </div>
         <div class="action text-center my-5">
           <button (click)="cancel()" class="btn btn-cancel mx-1">Bỏ qua</button>
-          <button type="submit" class="btn btn-primary mx-1" (click)="increaseCounter()">Cập nhật thông tin</button>
+          <button type="submit" class="btn btn-primary mx-1" (click)="putInforCv()">Cập nhật thông tin</button>
         </div>
       </form>
       </div>

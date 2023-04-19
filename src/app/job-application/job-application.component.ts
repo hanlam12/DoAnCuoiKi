@@ -28,12 +28,12 @@ export class JobApplicationComponent implements OnInit {
     this.showCv = true;
 
   }
-  updateCv(){
-    this.taiCv = false;
-    this.UpdateCv=true;
-    this.showCv = false;
-    this.hoSoDaTao = false
-}
+//   updateCv(){
+//     this.taiCv = false;
+//     this.UpdateCv=true;
+//     this.showCv = false;
+//     this.hoSoDaTao = false
+// }
 cancel(){
   this.taiCv = true;
   this.UpdateCv=false;
@@ -47,7 +47,7 @@ chitiet(){
 }
 
 user: User | undefined
-newcv=new JobApplication()
+
 
 constructor(
   private route: ActivatedRoute,
@@ -64,11 +64,46 @@ ngOnInit(): void {
   }
 }
 
+newcv=new JobApplication()
+title:string=''
+public setJobApplication(f:JobApplication)
+{
+  this.newcv=f
+}
+onFileSelected(event:any,newcv:JobApplication){
+  let me = this;
+  let file = event.target.files[0];
+
+  let reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = function () {
+    newcv.CV_chinh=reader.result!.toString()
+  };
+}
+public regForm: FormGroup = new FormGroup ({
+  YOB: new FormControl('', Validators.required),
+  career:  new FormControl('',Validators.required),
+  experience:  new FormControl('',Validators.required),
+  qualification:  new FormControl('',Validators.required),
+  english_level:  new FormControl('',Validators.required),
+  work_location:  new FormControl('',Validators.required),
+  working_form:  new FormControl('',Validators.required),
+  desired_salary:  new FormControl('',Validators.required),
+  CV_chinh:  new FormControl('',Validators.required),
+})
+
+updateTrinhDoEnglish(value: string) {
+  this.newcv.english_level = value;
+}
 
 putInforCv(){
   this.usersService.putInforCv(this.newcv).subscribe({
     next:(data)=>{this.user=data},
   })
+  this.taiCv = false;
+  this.UpdateCv=true;
+  this.showCv = false;
+  this.hoSoDaTao = false
 }
 
 
