@@ -16,9 +16,15 @@ const USER_API_URL = 'http://localhost:6868/user';
 })
 export class WorkZoneService {
 
+
+constructor(private _http:HttpClient, private router: Router) { }
+
+
+
   private loggedIn = false;
   public serverUrl = 'http://localhost:6868';
   private _url:string="/entries"
+
  // thông tin hồ sơ xin việc
  getUser(userID: string): Observable<User> {
   const url = `http://localhost:6868/job-application/${userID}`;
@@ -28,7 +34,11 @@ export class WorkZoneService {
       console.error('Error', error);
       return throwError(() => new Error('An error occurred while retrieving job application'));
     })
+
+
+
   )};
+
 
 
  getGD(fGD:any):Observable<any>{
@@ -109,7 +119,6 @@ export class WorkZoneService {
   public userEmail = localStorage.getItem('userEmail'); // đây là userEmail khi đăng nhập thành công, đứa nào muốn lấy truy xuất khi login thành công thì lấy thằng này.
   userIdUpdated = new EventEmitter<string>();
 
-  constructor(private _http:HttpClient, private router: Router ) { }
 
   navigateAfterLogin(): void {
     // Điều hướng đến trang mong muốn sau khi người dùng đăng nhập thành công
@@ -427,8 +436,11 @@ getUserName() {
         catchError(this.handleError)
     )
   }
+
+
    // thông tin mô tả công việc
    getjobDescription(jobJD: string): Observable<any> {
+
     const url = `http://localhost:6868/job-decription/${jobJD}`;
     return this._http.get<any>(url).pipe(
       map(result => result),
