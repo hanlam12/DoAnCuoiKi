@@ -104,6 +104,11 @@ export class JobApplication {
     ){}
 }
 
+export interface cv{
+  cv_detail: string
+}
+
+
 
 
 export class Users{

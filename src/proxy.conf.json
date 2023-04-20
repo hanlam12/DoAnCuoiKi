@@ -22,30 +22,23 @@
   },
   {
 
-    "context" : ["/job-application/"],
+    "context" : ["/job-application"],
     "target" : "http://localhost:6868",
     "secure":true,
     "changeOrigin":true,
     "logLevel":"debug"
   },
 
-   { "context" : ["/login"],
-    "target" : "http://localhost:6868",
-    "secure":true,
-    "changeOrigin":true,
-    "logLevel":"debug"
-  },
   {
 
-    "context" : ["/job-decription/"],
+    "context" : ["/job-decription"],
     "target" : "http://localhost:6868",
     "secure":true,
     "changeOrigin":true,
     "logLevel":"debug"
-  }
+  },
 
    { "context" : ["/congty"],
-
     "target" : "http://localhost:6868",
     "secure":true,
     "changeOrigin":true,

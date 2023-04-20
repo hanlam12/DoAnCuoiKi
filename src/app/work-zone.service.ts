@@ -4,11 +4,8 @@ import { catchError, map, Observable, of, retry, subscribeOn, tap, throwError } 
 import { Job, Users  } from 'workzone';
 import { User } from 'workzone';
 import { Company } from 'workzone';
-
 import { error } from 'jquery';
-
 import { Router } from '@angular/router';
-
 
 const JOB_API_URL = 'http://localhost:6868/job';
 const COMPANY_API_URL = 'http://localhost:6868/company';
@@ -19,8 +16,14 @@ const USER_API_URL = 'http://localhost:6868/user';
 })
 export class WorkZoneService {
 
+
 constructor(private _http:HttpClient, private router: Router) { }
 
+
+
+  private loggedIn = false;
+  public serverUrl = 'http://localhost:6868';
+  private _url:string="/entries"
 
  // thông tin hồ sơ xin việc
  getUser(userID: string): Observable<User> {
@@ -31,12 +34,12 @@ constructor(private _http:HttpClient, private router: Router) { }
       console.error('Error', error);
       return throwError(() => new Error('An error occurred while retrieving job application'));
     })
-    )}
 
 
-  private loggedIn = false;
-  public serverUrl = 'http://localhost:6868';
-  private _url:string="/entries"
+
+  )};
+
+
 
  getGD(fGD:any):Observable<any>{
     const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
@@ -433,8 +436,11 @@ getUserName() {
         catchError(this.handleError)
     )
   }
- // thông tin mô tả công việc
-  getjobDescription(jobJD: string): Observable<any> {
+
+
+   // thông tin mô tả công việc
+   getjobDescription(jobJD: string): Observable<any> {
+
     const url = `http://localhost:6868/job-decription/${jobJD}`;
     return this._http.get<any>(url).pipe(
       map(result => result),
@@ -458,6 +464,8 @@ putInforCv(aUser:any): Observable<any>{
   );
 }
 }
+
+
 
 
 
