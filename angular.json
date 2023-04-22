@@ -13,8 +13,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-
-
             "outputPath": "dist/do-an-cuoi-ki",
             "index": "src/index.html",
             "main": "src/main.ts",

@@ -11,7 +11,7 @@ import { tap } from 'rxjs';
 })
 export class LoginComponent {
   public lgForm: FormGroup = new FormGroup({
-    
+
   });
   password = ''
   showPassword =""
@@ -24,9 +24,9 @@ export class LoginComponent {
     });
   }
 
-  
+
   error = false
-  
+
 
   login(): void{
     this._loginService.login(this.lgForm.get('email')?.value, this.lgForm.get('password')?.value).subscribe(data => {
@@ -37,7 +37,7 @@ export class LoginComponent {
         this._loginService.navigateAfterLogin();
       }
     });
-    
+
   }
-  
+
 }

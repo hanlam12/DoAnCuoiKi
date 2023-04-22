@@ -16,14 +16,58 @@ const USER_API_URL = 'http://localhost:6868/user';
 })
 export class WorkZoneService {
 
-
+  handleError(error:HttpErrorResponse){
+    return throwError(()=>new Error(error.message))
+    }
 constructor(private _http:HttpClient, private router: Router) { }
 
-
-
-  private loggedIn = false;
+  public loggedIn = false;
   public serverUrl = 'http://localhost:6868';
   private _url:string="/entries"
+
+
+    // login
+  private loginUrl = 'http://localhost:6868/login';
+  public userEmail = localStorage.getItem('userEmail'); // đây là userEmail khi đăng nhập thành công, đứa nào muốn lấy truy xuất khi login thành công thì lấy thằng này.
+  userIdUpdated = new EventEmitter<string>();
+
+  navigateAfterLogin(): void {
+    // Điều hướng đến trang mong muốn sau khi người dùng đăng nhập thành công
+    this.router.navigate(['/']);
+  }
+
+  login(email: string, password: string): Observable<any> {
+    return this._http.post<any>(this.loginUrl, { email: email, password: password }).pipe(
+      tap(data => {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('userEmail', data.userEmail);
+        localStorage.setItem('loggedIn', 'true')
+        this.loggedIn = true; // set loggedIn thành true sau khi đăng nhập thành công
+        this.userIdUpdated.emit(data.userEmail);
+      }),
+      catchError(error => {
+        return of({ error: error.error });
+      })
+    );
+  }
+
+  isLoggedIn(): boolean {
+    const token = localStorage.getItem('token');
+    const isLoggedIn = localStorage.getItem('loggedIn');
+    if (isLoggedIn) {
+    this.loggedIn = (isLoggedIn === 'true');
+  }
+    return !!token && this.loggedIn; // trả về true nếu đã đăng nhập và loggedIn = true
+  }
+  // end login
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userEmail');
+    localStorage.setItem('loggedIn', 'false')
+    }
+
+
+
 
  // thông tin hồ sơ xin việc
  getUser(userID: string): Observable<User> {
@@ -33,11 +77,8 @@ constructor(private _http:HttpClient, private router: Router) { }
     catchError(error => {
       console.error('Error', error);
       return throwError(() => new Error('An error occurred while retrieving job application'));
-    })
+    }))};
 
-
-
-  )};
 
 
 
@@ -113,41 +154,6 @@ constructor(private _http:HttpClient, private router: Router) { }
       catchError(this.handleError))
   }
 
-  // login
-
-  private loginUrl = 'http://localhost:6868/login';
-  public userEmail = localStorage.getItem('userEmail'); // đây là userEmail khi đăng nhập thành công, đứa nào muốn lấy truy xuất khi login thành công thì lấy thằng này.
-  userIdUpdated = new EventEmitter<string>();
-
-
-  navigateAfterLogin(): void {
-    // Điều hướng đến trang mong muốn sau khi người dùng đăng nhập thành công
-    this.router.navigate(['/']);
-  }
-
-  login(email: string, password: string): Observable<any> {
-    return this._http.post<any>(this.loginUrl, { email: email, password: password }).pipe(
-      tap(data => {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('userEmail', data.userEmail);
-        this.loggedIn = true; // set loggedIn thành true sau khi đăng nhập thành công
-        this.userIdUpdated.emit(data.userEmail);
-      }),
-      catchError(error => {
-        return of({ error: error.error });
-      })
-    );
-  }
-
-  isLoggedIn(): boolean {
-    const token = localStorage.getItem('token');
-    return !!token && this.loggedIn; // trả về true nếu đã đăng nhập và loggedIn = true
-  }
-  // end login
-  logout(): void {
-    localStorage.removeItem('token');
-    this.loggedIn = false; // set loggedIn thành false sau khi đăng xuất
-  }
 
 //lấy tên người dùng
 getUserName() {
@@ -157,7 +163,6 @@ getUserName() {
   });
   return this._http.get<any>(`${this.serverUrl}/user`, { headers });
 }
-
   //thông tin công ty
 
   getCompany(id: string): Observable<Company> {
@@ -166,7 +171,7 @@ getUserName() {
   }
 
 
-    getTV(fTV:any):Observable<any>{
+ getTV(fTV:any):Observable<any>{
       const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
       const requestOptions:Object={
       headers:headers,
@@ -188,9 +193,7 @@ getUserName() {
       retry(3),
       catchError(this.handleError))
       }
-      handleError(error:HttpErrorResponse){
-      return throwError(()=>new Error(error.message))
-      }
+
     getCompanies():Observable<any>{
       const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
       const requestOptions:Object={
@@ -439,16 +442,10 @@ getUserName() {
 
 
    // thông tin mô tả công việc
-   getjobDescription(jobJD: string): Observable<any> {
+   getjobDescription(jobJD: string): Observable<Job> {
+    const url = `http://localhost:6868/job-decription`;
+    return this._http.get<Job>(`${url}/${jobJD}`)
 
-    const url = `http://localhost:6868/job-decription/${jobJD}`;
-    return this._http.get<any>(url).pipe(
-      map(result => result),
-      catchError(error => {
-        console.error('Error', error);
-        return throwError(error)})
-
-    );
 }
 //put thông tin hồ sơ xin việc
 

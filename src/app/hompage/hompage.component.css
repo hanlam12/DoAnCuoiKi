@@ -187,6 +187,7 @@ hr {
   text-align: center;
   font-weight: bold;
   cursor: pointer;
+  margin-top: 30px;
 }
 .more:hover {
   color: #0075ff;

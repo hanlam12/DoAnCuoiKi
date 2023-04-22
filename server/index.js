@@ -1,6 +1,10 @@
+
+
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const app = express();
 const port = 6868;
+const secretKey = 'ThisIsASecretKey';
 const morgan=require("morgan")
 app.use(morgan("combined"))
 const bodyParser=require("body-parser")
@@ -25,7 +29,7 @@ app.listen(port,()=>{
   userCollection = database.collection("user");
   companyCollection = database.collection("company");
 
-
+  const { ObjectId: objId } = require('mongodb');
   app.get("/job-application/:userID", cors(), async (req, res) => {
     const userId = req.params.userID;
     const result = await userCollection.find({ userID: userId }).toArray();
@@ -76,6 +80,14 @@ app.listen(port,()=>{
 
 // app.post("/job-application/:userID/cv", cors(), (req, res) => {
 //   const userID = req.params.userID;
+//   const obj;
+//   const cvArray = obj.cv
+// cvarray.push(newcv)
+// await userCollection.updateOne(filter,
+//   {...obj
+//    cv: cvArray
+// });
+//
 //   const newCv = req.body;
 //   const CvToUpdate = userCollection.find((cv) => cv.userID === userID);
 //   if (CvToUpdate) {
@@ -132,14 +144,15 @@ app.get("/company",cors(),async(req,res)=>{
   const result = await companyCollection.find({}).toArray();
   res.send(result)
 })
-app.get("/user",cors(),async(req,res)=>{
-  const result = await userCollection.find({}).toArray();
-  res.send(result)
-})
+// TODO
+// app.get("/user",cors(),async(req,res)=>{
+//   const result = await userCollection.find({}).toArray();
+//   res.send(result)
+// })
 app.post("/users",cors(),async(req,res)=>{
   var crypto = require('crypto');
   salt = crypto.randomBytes(16).toString('hex');
-  UserCollection = database.collection("User");
+  UserCollection = database.collection("Users");
   user=req.body
   var existingUser = await UserCollection.findOne({
     $or: [
@@ -147,21 +160,6 @@ app.post("/users",cors(),async(req,res)=>{
       { email: user.email },
       { phone: user.phone },
     ],
-  });
-
-  // API Login
-
-  app.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-
-    const user = await userCollection.findOne({ email: email });
-
-    if (!user || user.password !== password) {
-      return res.status(401).send('Invalid email or password');
-    }
-    const token = jwt.sign({ email: email }, secretKey);
-    res.json({ token, userEmail: user.email });
-
   });
   // Kiểm tra từng thông tin để trả về thông báo cụ thể cho người dùng
   if (existingUser) {
@@ -185,6 +183,18 @@ app.post("/users",cors(),async(req,res)=>{
   res.send(req.body)
 })
 
+// API Login
+
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+const user = await userCollection.findOne({ email: email });
+if (!user || user.password !== password) {
+  return res.status(401).send('Invalid email or password');
+}
+const token = jwt.sign({ email: email }, secretKey);
+res.json({ token, userEmail: user.email });
+});
+
 // API lấy tên người dùng
 app.get('/user', async (req, res) => {
   const token = req.headers.authorization.split(' ')[1]
@@ -205,11 +215,9 @@ app.get('/user', async (req, res) => {
     console.error(error);
     return res.status(401).send(` ${error.message}`);
   }
-
 });
 
   // API lấy thông tin công ty
-  const { ObjectId: objId } = require('mongodb');
 
   app.get('/congty/:id', async (req, res) => {
     const id = req.params.id;

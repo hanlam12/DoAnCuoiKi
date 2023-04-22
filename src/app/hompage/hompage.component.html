@@ -37,7 +37,7 @@
       </select>
     </div>
     <div class="homepage-input">
-      <input type="button" id="search" value="Tìm kiếm" />
+      <input routerLink="job-application" type="button" id="search" value="Tìm kiếm" />
     </div>
   </div>
 </div>
@@ -48,23 +48,23 @@
       <div class="head" id="hotjob" >HOT</div>
       <div class="content-hot" *ngFor="let j of job6">
         <div class="content-img">
-          <a routerLink="/job-decription"
+          <a [routerLink]="['job-decription', j.jobJD]"
             ><img src="{{j.image}}" alt="FPT-logo"
           /></a>
         </div>
         <div class="content-hot-infor">
-          <a href="" >
+          <a [routerLink]="['job-decription', j.jobJD]" >
             <div class="comp">
               {{j.job_name}}
             </div></a
           >
           <div>
-            <a href=""  style="text-transform: uppercase;" class="hover1"
+            <a [routerLink]="['job-decription', j.jobJD]"  style="text-transform: uppercase;" class="hover1"
               >{{j.company}}</a
             >
             |
 
-            <a href=""  class="hover2"
+            <a [routerLink]="['job-decription', j.jobJD]"  class="hover2"
               ><i class="bi bi-geo-alt-fill"></i> {{j.address}}</a>
 
 
@@ -170,11 +170,17 @@
     <div class="image-slider">
       <div class="job-lastest-item" *ngFor="let j of job3">
         <div class="job-image">
-          <img src="{{j.image}}" alt="" />
+          <a [routerLink]="['job-decription', j.jobJD]">
+            <img src="{{j.image}}" alt="" />
+          </a>
+
         </div>
         <div class="job-lastest-content">
-          <div class="compa">
-            {{j.job_name}}
+          <div class="compa" >
+            <a [routerLink]="['job-decription', j.jobJD]">
+              {{j.job_name}}
+            </a>
+
           </div>
           <div style="text-transform: uppercase;">{{j.company}}</div>
           <div><i class="bi bi-geo-alt-fill"></i> {{j.address}}</div>
@@ -192,7 +198,7 @@
       </div>
       <div class="top-cent">
         <div class="box1" *ngFor="let j of job8">
-          <a href="" >
+          <a [routerLink]="['job-decription', j.jobJD]">
             <div class="img">
               <img src="{{j.image}}"  alt="FPT-logo" />
             </div>
@@ -211,7 +217,7 @@
       <div class="content-row">
         <div class="box2" *ngFor="let j of jobs">
           <div class="box2-item">
-            <a href="" >
+            <a [routerLink]="['job-decription', j.jobJD]" >
               <img src="{{j.image}}" alt="Fitech-logo"
             /></a>
           </div>
@@ -219,12 +225,12 @@
 
           <div class="box2-item">
             <div>
-              <a href="motacongviec.html" >
+              <a [routerLink]="['job-decription', j.jobJD]" >
                 {{j.job_name}}</a
               >
             </div>
             <div>
-              <a href="motacongviec.html" >{{j.company}}</a>
+              <a [routerLink]="['job-decription', j.jobJD]" >{{j.company}}</a>
             </div>
           </div>
 
@@ -241,7 +247,7 @@
 
 
     <div class="container-row-top2">
-      <a href="motacongviec.html" >
+      <a href="" >
         <img src="assets/media/hna.jpg" alt=""
       /></a>
     </div>

@@ -10,9 +10,9 @@
         </div>
         <div class="col-md-6">
           <ul class="nav-pc">
-            <li><a href="search_job">Tìm việc</a></li>
+            <li><a routerLink="/search-job">Tìm việc</a></li>
 
-            <li><a href="thongtin.html">Về WorkZone</a></li>
+            <li><a routerLink="/thongtin">Về WorkZone</a></li>
           </ul>
         </div>
       </div>
@@ -35,7 +35,7 @@
   <ul class="list-menu-pc " [ngClass]="{'is-display-none': isDisplaynone}" id="list-menu-pc">
     <li>
       <div class="menu-list-row" >
-        <a href="hosoxinviec.html">
+        <a routerLink="/job-application">
           <i class="fa-regular fa-file"></i>
         <span> Hồ sơ xin việc</span>
         </a>
@@ -43,7 +43,7 @@
     </li>
     <li>
       <div class="menu-list-row">
-        <a href="vieclamdaluu.html">
+        <a routerLink="/saved">
           <i class="fa-solid fa-heart"></i>
           <span> Việc làm đã lưu</span>
         </a>
@@ -51,14 +51,14 @@
     </li>
     <li>
       <div class="menu-list-row">
-        <a href="viecdaungtuyen.html">
+        <a routerLink="/applied-job">
           <i class="fa-solid fa-paper-plane"></i>
           <span>Việc làm đã ứng tuyển</span>
         </a>
       </div>
     </li>
     <li>
-      <div class="menu-list-row"> <a href="thongbaovieclam.html">
+      <div class="menu-list-row"> <a routerLink="/noti">
         <i class="fa-regular fa-bell"></i>
         <span>Thông báo việc làm</span>
       </a></div>
@@ -66,13 +66,13 @@
     <div class="border"></div>
     <li>
       <div class="menu-list-row name-account">
-        <a href="trangchu_nguoitimviec_login.html">
+        <a routerLink="/profile">
           <i class="fa-regular fa-circle-user"></i>
         </a> <span>{{fullname}}</span>
       </div>
     </li>
     <li>
-      <div class=" log-out "> <a href="">
+      <div class=" log-out "> <a (click)="logout()" role="button" >
         <i class="fa-solid fa-arrow-right-from-bracket"></i>
       <span>Đăng xuất</span></a>
       </div>
@@ -90,25 +90,25 @@
 </div>
 <ul id="list-menu-mb-login" [ngClass]="{'is-left-default': isLeftDefault}" class="list-menu-mb-login">
   <li> <div class="menu-list-row" >
-        <a href="hosoxinviec.html">
+        <a routerLink="/job-application">
          <i class="fa-regular fa-file"></i>
         <span> Hồ sơ xin việc </span>
         </a>
       </div></li>
       <li> <div class="menu-list-row" >
-       <a href="viecdaluu.html">
+       <a routerLink="/saved">
         <i class="fa-solid fa-heart"></i>
        <span> Việc làm đã lưu </span>
        </a>
      </div></li>
   <li><div class="menu-list-row">
-        <a href="viecdaungtuyen.html">
+        <a routerLink="/applied-job">
        <i class="fa-solid fa-paper-plane"></i>
           <span> Việc làm đã ứng tuyển</span>
         </a>
       </div></li>
       <li><div class="menu-list-row">
-       <a href="viecdaungtuyen.html">
+       <a routerLink="/noti">
       <i class="fa-solid fa-id-card"></i>
          <span> Thông báo việc làm</span>
        </a>
@@ -116,7 +116,7 @@
   <div class="border"></div>
     <li>
       <div class=" name-account">
-        <a href="trangchu_nguoitimviec.html">
+        <a routerLink="/profile">
           <i class="fa-solid fa-buildings"></i>
           <span>WorkZone</span>
         </a>
@@ -127,9 +127,8 @@
 
    <div class="menu-list-row ">
      <ul class="non-nav-pc">
-       <li><a href="timkiemvieclam.html">Tìm việc</a></li>
-       <li><a href="trangchu_nguoitimviec_login">Công việc</a></li>
-       <li><a href="thongtin.html">Về WorkZone</a></li>
+       <li><a routerLink="/search-job">>Tìm việc</a></li>
+       <li><a routerLink="/thongtin">Về WorkZone</a></li>
      </ul>
    </div>
 
@@ -142,7 +141,7 @@
     <a href="#" class="btn-nav ntd-logged " role="button" aria-pressed="true">
       NHÀ TUYỂN DỤNG</a>
     <li>
-      <div class=" log-out "><a href="">
+      <div class=" log-out "><a (click)="logout()" role="button">
         <i class="fa-solid fa-arrow-right-from-bracket"></i>
       <span>Đăng xuất</span>
       </a></div>
@@ -164,7 +163,6 @@
         <div class="col-md-6">
           <ul class="nav-pc">
             <li><a  routerLink="search-job">Tìm việc</a></li>
-
             <li><a routerLink="thongtin">Về WorkZone</a></li>
           </ul>
         </div>
