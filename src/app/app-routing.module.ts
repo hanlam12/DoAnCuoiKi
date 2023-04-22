@@ -59,7 +59,7 @@ const routes: Routes = [
 
   {path: "companies/:companyId", component: CongtyComponent},
 
-
+  {path: "congty", component: CongtyComponent},
    {path: "congty/:id", component: CongtyComponent}
 
 ];

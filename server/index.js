@@ -32,10 +32,21 @@ app.listen(port,()=>{
   const result = await jobCollection.find({}).toArray();
   res.send(result)
  })
+ app.get("/company", cors(), async (req, res)=>{
+  const result = await companyCollection.find({}).toArray();
+  res.send(result)
+ })
+ const { ObjectId: objId } = require('mongodb');
 
 app.get("/job/:position", cors(), async (req, res) => {
   const position = req.params.position;
   const result = await jobCollection.find({ position: position }).toArray();
+  res.send(result);
+});
+
+app.get("/job/address/:address", cors(), async (req, res) => {
+  const address = req.params.address;
+  const result = await jobCollection.find({ address: { $regex: address, $options: "i" } }).toArray();
   res.send(result);
 });
 
@@ -44,5 +55,6 @@ app.get("/job/category/:categories", cors(), async (req, res) => {
   const result = await jobCollection.find({ category: { $in: categories } }).toArray();
   res.send(result);
 });
+
 
 

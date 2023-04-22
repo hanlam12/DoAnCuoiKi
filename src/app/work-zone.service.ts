@@ -320,6 +320,120 @@ export class WorkZoneService {
         catchError(this.handleError))
     }
 
+    getHN(fHN:any):Observable<any>{
+      const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+      const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+      }
+      return this._http.get<any>("/job/address/H%C3%A0%20N%E1%BB%99i",requestOptions).pipe(
+        map(res=>JSON.parse(res) as Array<IJob>),
+        retry(3),
+        catchError(this.handleError))
+    }
+
+    getHCM(fHCM:any):Observable<any>{
+      const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+      const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+      }
+      return this._http.get<any>("/job/address/H%E1%BB%93%20Ch%C3%AD%20Minh",requestOptions).pipe(
+        map(res=>JSON.parse(res) as Array<IJob>),
+        retry(3),
+        catchError(this.handleError))
+    }
+
+    getBD(fBD:any):Observable<any>{
+      const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+      const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+      }
+      return this._http.get<any>("/job/address/B%C3%ACnh%20D%C6%B0%C6%A1ng",requestOptions).pipe(
+        map(res=>JSON.parse(res) as Array<IJob>),
+        retry(3),
+        catchError(this.handleError))
+    }
+
+    getHP(fHP:any):Observable<any>{
+      const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+      const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+      }
+      return this._http.get<any>("/job/address/H%E1%BA%A3i%20Ph%C3%B2ng",requestOptions).pipe(
+        map(res=>JSON.parse(res) as Array<IJob>),
+        retry(3),
+        catchError(this.handleError))
+    }
+    getQN(fQN:any):Observable<any>{
+      const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+      const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+      }
+      return this._http.get<any>("/job/address/Qu%E1%BA%A3ng%20Ninh",requestOptions).pipe(
+        map(res=>JSON.parse(res) as Array<IJob>),
+        retry(3),
+        catchError(this.handleError))
+    }
+    getDN(fDN:any):Observable<any>{
+      const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+      const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+      }
+      return this._http.get<any>("/job/address/%C4%90%E1%BB%93ng%20Nai",requestOptions).pipe(
+        map(res=>JSON.parse(res) as Array<IJob>),
+        retry(3),
+        catchError(this.handleError))
+    }
+    getLA(fLA:any):Observable<any>{
+      const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+      const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+      }
+      return this._http.get<any>("/job/address/Long%20An",requestOptions).pipe(
+        map(res=>JSON.parse(res) as Array<IJob>),
+        retry(3),
+        catchError(this.handleError))
+    }
+    getVT(fVT:any):Observable<any>{
+      const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+      const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+      }
+      return this._http.get<any>("/job/address/V%C5%A9ng%20T%C3%A0u",requestOptions).pipe(
+        map(res=>JSON.parse(res) as Array<IJob>),
+        retry(3),
+        catchError(this.handleError))
+    }
+    getCT(fCT:any):Observable<any>{
+      const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+      const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+      }
+      return this._http.get<any>("/job/address/C%E1%BA%A7n%20Th%C6%A1",requestOptions).pipe(
+        map(res=>JSON.parse(res) as Array<IJob>),
+        retry(3),
+        catchError(this.handleError))
+    }
+    getDNA(fDNA:any):Observable<any>{
+      const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+      const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+      }
+      return this._http.get<any>("/job/address/%C4%90%C3%A0%20N%E1%BA%B5ng",requestOptions).pipe(
+        map(res=>JSON.parse(res) as Array<IJob>),
+        retry(3),
+        catchError(this.handleError))
+    }
+
 
   // login
 
