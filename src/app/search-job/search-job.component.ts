@@ -18,7 +18,9 @@ export class SearchJobComponent {
   showText2 = true;
   showText3 = true;
   showText4 = true;
-
+  testLogin(){
+    this.router.navigate(['sign-up-employer'])
+  }
 
   constructor(private _service:WorkZoneService,private router:Router){
     this._service.getJobs().subscribe({

@@ -43,6 +43,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 import { SavedJobComponent } from './saved-job/saved-job.component';
+import { LoginEmployerComponent } from './login-employer/login-employer.component';
+import { SignUpEmployerComponent } from './sign-up-employer/sign-up-employer.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,9 @@ import { SavedJobComponent } from './saved-job/saved-job.component';
     AccountMenuComponent,
     CreateProfileComponent,
     NotFoundComponent,
-    SavedJobComponent
+    SavedJobComponent,
+    LoginEmployerComponent,
+    SignUpEmployerComponent
   ],
   imports: [
     BrowserModule,

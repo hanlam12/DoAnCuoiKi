@@ -3,6 +3,8 @@ export class Contact{
   public Name:string="",
   public Email:string="",
   public Phone:string="",
+  public Password:string='',
+  public RetypePassword:string=''
   ){}
 
 }
