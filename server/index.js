@@ -167,7 +167,6 @@ app.post("/users",cors(),async(req,res)=>{
   user=req.body
   var existingUser = await UserCollection.findOne({
     $or: [
-      { username: user.username },
       { email: user.email },
       { phone: user.phone },
     ],
@@ -175,9 +174,6 @@ app.post("/users",cors(),async(req,res)=>{
   // Kiểm tra từng thông tin để trả về thông báo cụ thể cho người dùng
   if (existingUser) {
     var errorMessages = [];
-    if (existingUser.username === user.username) {
-      errorMessages.push("Tên đăng nhập đã được sử dụng");
-    }
     if (existingUser.email === user.email) {
       errorMessages.push("Địa chỉ email đã được sử dụng");
     }
