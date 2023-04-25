@@ -40,6 +40,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminWZComponent } from './admin-wz/admin-wz.component';
+import { TestttComponent } from './testtt/testtt.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { AdminWZComponent } from './admin-wz/admin-wz.component';
     AccountMenuComponent,
     CreateProfileComponent,
     NotFoundComponent,
-    AdminWZComponent
+    AdminWZComponent,
+    TestttComponent
   ],
   imports: [
     BrowserModule,
