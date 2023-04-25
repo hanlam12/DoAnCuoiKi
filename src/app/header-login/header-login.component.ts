@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header-login.component.css']
 })
 export class HeaderLoginComponent implements OnInit {
-  isUserLoggedIn = false;
+
   public fullname: string='';
   isLeftDefault = false;
   menu() {
@@ -23,12 +23,13 @@ export class HeaderLoginComponent implements OnInit {
   ngOnInit() {
     this.login.getUserName().subscribe(data => {
       this.fullname = data;
-      console.log (this.fullname)
+
     });
   }
-
-
   get loggedIn(): boolean {
     return this.login.isLoggedIn();
   }
+  logout(){
+  return this.login.logout()
+}
 }

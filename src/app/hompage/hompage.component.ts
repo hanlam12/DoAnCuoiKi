@@ -4,7 +4,6 @@ import { ApplyCVComponent } from '../apply-cv/apply-cv.component';
 import { WorkZoneService } from '../work-zone.service';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-hompage',
   templateUrl: './hompage.component.html',
@@ -12,46 +11,54 @@ import { Router } from '@angular/router';
 })
 export class HompageComponent {
   show = false;
-   errMessage:string='';
+  errMessage = '';
+  selectedJob: string = '';
   job3: any;
   job6: any;
-  job8: any;
-  jobs: any;
-  errMessage = '';
+   jobs: any;
+   company:any;
   modalRef!: BsModalRef;
 
-  constructor(public _service: WorkZoneService, private router:Router){
-    this._service.getJobs().subscribe({
-      next:(data)=>{this.jobs=data},
-      error:(err)=>{this.errMessage=err}
-    })
-    this._service.getJobs().subscribe({
-      next:(data)=>{this.job6=data.slice(0,6)},
-      error:(err)=>{this.errMessage=err}
-    })
-    this._service.getJobs().subscribe({
-      next:(data)=>{this.job3=data.slice(90,93)},
-      error:(err)=>{this.errMessage=err}
-    })
-    this._service.getJobs().subscribe({
-      next:(data)=>{this.job8=data.slice(12,20)},
-      error:(err)=>{this.errMessage=err}
-    })
+  constructor(public _service: WorkZoneService, private router: Router, private modalService: BsModalService) {
+    this.getJobs();
+    this.getCompanies();
   }
-  searchjob(){
-    this.router.navigate(['search-job'])
+  getJobs() {
+    this._service.getJobs().subscribe({
+      next: (data) => {
+        this.jobs = data;
+        this.job6 = data.slice(0, 6);
+        this.job3 = data.slice(90, 93);
 
-  constructor(private modalService: BsModalService, public workZoneService: WorkZoneService) {}
-
-
+      },
+      error: (err) => {
+        this.errMessage = err;
+      }
+    });
+  }
+  getCompanies(){
+    this._service.getCompanies().subscribe({
+      next: (data) => {
+      this.company =data.slice(71,79)
+      },
+      error: (err) => {
+        this.errMessage = err;
+      }
+    });
+  }
+  searchJob() {
+    this.router.navigate(['search-job']);
+  }
 
   toggle() {
     this.getJobs();
   }
-
-
-  showModal() {
-    this.modalRef = this.modalService.show(ApplyCVComponent);
+  ngOnInit(): void {
+    this._service.getJobs().subscribe(jobs => this.jobs = jobs);
   }
 
+  showModal(jobTitle: string) {
+    this.selectedJob = jobTitle;
+    this.modalRef = this.modalService.show(ApplyCVComponent);
+  }
 }
