@@ -12,30 +12,40 @@ import { Router } from '@angular/router';
 export class HompageComponent {
   show = false;
   errMessage = '';
+  selectedJob: string = '';
   job3: any;
   job6: any;
-  job8: any;
-  jobs: any;
+   jobs: any;
+   company:any;
   modalRef!: BsModalRef;
 
   constructor(public _service: WorkZoneService, private router: Router, private modalService: BsModalService) {
     this.getJobs();
+    this.getCompanies();
   }
-
   getJobs() {
     this._service.getJobs().subscribe({
       next: (data) => {
         this.jobs = data;
         this.job6 = data.slice(0, 6);
         this.job3 = data.slice(90, 93);
-        this.job8 = data.slice(12, 20);
+
       },
       error: (err) => {
         this.errMessage = err;
       }
     });
   }
-
+  getCompanies(){
+    this._service.getCompanies().subscribe({
+      next: (data) => {
+      this.company =data.slice(71,79)
+      },
+      error: (err) => {
+        this.errMessage = err;
+      }
+    });
+  }
   searchJob() {
     this.router.navigate(['search-job']);
   }
@@ -43,8 +53,12 @@ export class HompageComponent {
   toggle() {
     this.getJobs();
   }
+  ngOnInit(): void {
+    this._service.getJobs().subscribe(jobs => this.jobs = jobs);
+  }
 
-  showModal() {
+  showModal(jobTitle: string) {
+    this.selectedJob = jobTitle;
     this.modalRef = this.modalService.show(ApplyCVComponent);
   }
 }

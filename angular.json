@@ -63,6 +63,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
+            "port": 1012,
             "browserTarget": "DoAnCuoiKi:build",
             "proxyConfig": "src/proxy.conf.json"
           },

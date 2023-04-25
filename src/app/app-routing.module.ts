@@ -47,6 +47,7 @@ const routes: Routes = [
   {path:"footer-not-log-in",component:FooterNotLogInComponent},
   {path:"search-job",component:SearchJobComponent},
   {path:"applycv",component:ApplyCVComponent},
+  {path:"applycv/:jobJD",component:ApplyCVComponent},
   {path:"",component:HompageComponent},
   { path: "thongtin", component: ThongtinComponent },
  {path: "login", component:LoginComponent},
@@ -57,9 +58,9 @@ const routes: Routes = [
   { path:"quenmatkhau1", component: Quenmatkhau1Component},
   { path:"quenmatkhau2", component:Quenmatkhau2Component},
   { path:"quenmatkhau3", component:Quenmatkhau3Component},
-  {path: "companies/:companyId", component: CongtyComponent},
-  {path: "congty", component: CongtyComponent},
-   {path: "congty/:id", component: CongtyComponent}
+
+  {path: "company", component: CongtyComponent},
+   {path: "company/:company_id", component: CongtyComponent}
 
 ];
 

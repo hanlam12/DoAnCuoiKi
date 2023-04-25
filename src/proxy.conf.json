@@ -7,7 +7,7 @@
     "logLevel":"debug"
   },
   {
-    "context" : ["/companies"],
+    "context" : ["/company"],
     "target" : "http://localhost:6868",
     "secure":true,
     "changeOrigin":true,
@@ -20,12 +20,25 @@
     "changeOrigin":true,
     "logLevel":"debug"
   },
-   { "context" : ["/congty"],
-    "target" : "http://localhost:6868",
-    "secure":true,
-    "changeOrigin":true,
-    "logLevel":"debug"
-  }
-
-
+  {
+    "context": ["/company/**"],
+    "target": "http://localhost:6868",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+},
+{
+  "context": ["/applycv"],
+  "target": "http://localhost:6868",
+  "secure": true,
+  "changeOrigin": true,
+  "logLevel": "debug"
+},
+{
+  "context" : ["/job-decription"],
+  "target" : "http://localhost:6868",
+  "secure":true,
+  "changeOrigin":true,
+  "logLevel":"debug"
+}
 ]

@@ -37,7 +37,7 @@
       </select>
     </div>
     <div class="homepage-input">
-      <input routerLink="job-application" type="button" id="search" value="Tìm kiếm" />
+      <input [routerLink]="['job-application']" type="button" id="search" value="Tìm kiếm" />
     </div>
   </div>
 </div>
@@ -76,7 +76,7 @@
           </div>
         </div>
         <div class="content-hot-input">
-          <button (click)="showModal()" id="apply" >Apply Now</button>
+          <button  (click)="showModal(j.job_name)" id="apply" >Apply Now</button>
         </div>
       </div>
       <hr />
@@ -197,12 +197,12 @@
         NHỮNG CÔNG TY HÀNG ĐẦU
       </div>
       <div class="top-cent">
-        <div class="box1" *ngFor="let j of job8">
-          <a [routerLink]="['job-decription', j.jobJD]">
+        <div class="box1" *ngFor="let c of company">
+          <a [routerLink]="['company', c.company_id]">
             <div class="img">
-              <img src="{{j.image}}"  alt="FPT-logo" />
+              <img src="{{c.company_image}}"  alt="FPT-logo" />
             </div>
-            <div>{{j.company}}</div></a
+            <div>{{c.company_name}}</div></a
           >
         </div>
       </div>

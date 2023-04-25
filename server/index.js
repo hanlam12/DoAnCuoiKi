@@ -111,15 +111,29 @@ app.listen(port,()=>{
       res.status(500).send('Server error');
     }
   });
+//api lấy tên
+app.get('/applycv/jobJD', cors(), async (req, res) => {
+  try {
+    const jobJD = req.params.jobJD;
+    const job = await jobCollection.findOne({ jobJD: jobJD });
+
+    if (!job) {
+      return res.status(404).send('Job not found');
+    }
+
+    const jobName = job.job_name; // Lấy giá trị của trường job_name
+    res.send(jobName); // Trả về giá trị của job_name
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
 
 
-
-
-
-app.get("/job",cors(),async(req,res)=>{
-  const result = await jobCollection.find({}).toArray();
-  res.send(result)
-})
+  app.get("/job",cors(),async(req,res)=>{
+    const result = await jobCollection.find({}).toArray();
+    res.send(result)
+  })
 
 
 app.get("/job/:position", cors(), async (req, res) => {
@@ -140,10 +154,7 @@ app.get("/job/category/:categories", cors(), async (req, res) => {
 //   const result = await jobCollection.find({ position: position, category: { $in: categories } }).toArray();
 //   res.send(result);
 // });
-app.get("/company",cors(),async(req,res)=>{
-  const result = await companyCollection.find({}).toArray();
-  res.send(result)
-})
+
 // TODO
 // app.get("/user",cors(),async(req,res)=>{
 //   const result = await userCollection.find({}).toArray();
@@ -217,14 +228,29 @@ app.get('/user', async (req, res) => {
   }
 });
 
-  // API lấy thông tin công ty
+app.get("/company",cors(),async(req,res)=>{
+  const result = await companyCollection.find({}).toArray();
+  res.send(result)
+})
+// API lấy thông tin công ty
 
-  app.get('/congty/:id', async (req, res) => {
-    const id = req.params.id;
-    const company = await companyCollection.findOne({ _id: objId.createFromHexString(id) });
-    if (!company) {
-      return res.status(404).send('Không tìm thấy công ty');
+  app.get('/company/:id', async (req, res) => {
+    try {
+      const companyId = req.params.id;
+
+      // Find company by name
+      const company = await companyCollection.findOne({ company_id: companyId });
+
+      // Find jobs by company name
+      const jobs = await jobCollection.find({ company: company.company_name }).toArray();
+
+      const companyData = { company, jobs };
+
+      // Send company and job data in response
+      res.send(companyData);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Server error');
     }
-    res.json(company);
   });
 

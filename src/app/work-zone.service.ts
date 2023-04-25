@@ -165,9 +165,9 @@ getUserName() {
 }
   //thông tin công ty
 
-  getCompany(id: string): Observable<Company> {
-    const url = `${this.serverUrl}/congty/${id}`;
-    return this._http.get<Company>(url);
+  getCompany(company_id: string): Observable<Company> {
+    const url = `${this.serverUrl}/company`;
+    return this._http.get<Company>(`${url}/${company_id}`);
   }
 
 
@@ -443,10 +443,15 @@ getUserName() {
 
    // thông tin mô tả công việc
    getjobDescription(jobJD: string): Observable<Job> {
-    const url = `http://localhost:6868/job-decription`;
-    return this._http.get<Job>(`${url}/${jobJD}`)
 
-}
+    return this._http.get<Job>("http://localhost:6868"+jobJD)
+    }
+     // lấy tên công việc
+     getJobById(jobJD: string): Observable<Job> {
+      const url = `http://localhost:6868/applycv/${jobJD}`;
+      return this._http.get<Job>(url);
+    }
+
 //put thông tin hồ sơ xin việc
 
 putInforCv(aUser:any): Observable<any>{

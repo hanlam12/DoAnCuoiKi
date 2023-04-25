@@ -3,7 +3,7 @@ html, body {
    padding: 0;
 }
 .container-header{
-   
+
     display: flex;
     flex-wrap: wrap;
     background-color: white;
@@ -49,10 +49,10 @@ html, body {
     width: 100%;
  }
  .main-link{
-    flex-basis: 50%;
+    flex-basis: 60%;
  }
  .nhanvien{
-    flex-basis: 50%;
+    flex-basis: 40%;
  }
  #btn-follow{
     text-decoration: none;
@@ -151,7 +151,7 @@ html, body {
     border: 1px solid lightgrey;
     width: 100px;
     height: 100px;
-    
+
  }
  .job-details{
    cursor: pointer;

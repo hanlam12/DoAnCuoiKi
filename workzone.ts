@@ -2,6 +2,7 @@
 
 
 export class Job{
+  static job_name: any
   constructor(
   public _id:any=null,
   public jobJD:string="",
