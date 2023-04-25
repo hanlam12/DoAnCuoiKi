@@ -1,0 +1,62 @@
+<h2 class="title">ĐĂNG KÝ <span class="none">TÀI KHOẢN</span>  NHÀ TUYỂN DỤNG</h2>
+<div class="login-main">
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <div class="divmax">
+        <h1>WorkZone</h1>
+      <p>WorkZone giúp doanh nghiệp kết nối với các ứng viên tiềm năng một cách dễ dàng.</p>
+      <img src="assets/media/banner-login.png" width="80%">
+      </div>
+    </div>
+    <div class="col-md-6 col-12">
+      <div class="divmax">
+        <div class="divform">
+          <form action="#">
+            <p>Email<span class="text">&nbsp;*</span>:</p>
+              <input type="email" placeholder="Email" class="form-input form-control" required [(ngModel)]="model.Email" name="email"
+              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+              #email="ngModel">
+              <div class="text" [hidden]="!email.hasError('pattern')">Email format should be
+                <small><b>joe@abc.com</b></small>
+              </div>
+             <p>Mật khẩu<span class="text">&nbsp;*</span>:</p> <input id="pw newPassword" type="password" placeholder="Mật khẩu" class="form-input form-control" name="newPassword" required minlength="5"
+             [(ngModel)]="newPass" name="newpassword"
+             #newpassword="ngModel">
+             <div class="text" [hidden]="!newpassword.hasError('minlength')">Password must contain at least 5 characters</div>
+             <p>Nhập lại mật khẩu:</p><input type="password" placeholder="Nhập lại mật khẩu*" class="form-input form-control" name="retypepassword" id="retypepassword" required [(ngModel)]="retypePass"
+             #retypepassword="ngModel">
+             <div class="text" [hidden]="retypepassword.valid || retypepassword.pristine">
+              Password is required
+             </div>
+             <input id="checkboxhtmk" type="checkbox" onclick="htmk()">&nbsp; <span>Hiển thị mật khẩu</span> <br>
+              <label class="infor">Thông tin công ty</label>
+             <p>Tìm người liên hệ:</p><input type="text" placeholder="Tìm người liên hệ*" class="form-input form-control">
+             <p>SĐT liên hệ<span class="text">&nbsp;*</span>:</p> <input type="text" placeholder="SĐT liên hệ" class="form-input form-control" name="phone" id="phone" [(ngModel)]="model.Phone" name="phone"
+             pattern="[0-9]*"
+             minlength="10"
+             maxlength="10"
+             #phone="ngModel">
+
+             <div class="text" [hidden]="!phone.hasError('minlength')">Mobile should be 10 digits</div>
+             <div class="text" [hidden]="!phone.hasError('pattern')">Mobile number should be only numbers</div>
+             <p>Tên công ty<span class="text">&nbsp;*</span>:</p> <input type="text" placeholder="Tên công ty" class="form-input form-control" name="name" id="name" required pattern="[a-zA-Z][a-zA-Z ]+"
+             [(ngModel)]="model.Name" name="name"
+             #name="ngModel">
+             <div class="text" [hidden]="name.valid || name.pristine">Name is required</div>
+
+             <p>Tỉnh/Thành phố:</p> <input type="text" placeholder="Tỉnh/Thành phố" class="form-input form-control">
+             <p>Quận/Huyện:</p> <input type="text" placeholder="Quận/Huyện" class="form-input form-control">
+             <p>Địa chỉ cụ thể:</p> <input type="text" placeholder="Địa chỉ cụ thể của công ty*" class="form-input form-control">
+              <div class="dangky">
+                  <span>Bạn đã có tài khoản?</span>
+                  <a id="dangky" href="dangnhap_nhatuyendung.html" target="_blank">Đăng nhập</a>
+              </div>
+              <input (click)="Submit()" type="button" value="Đăng ký ngay" class="dkn">
+              <p>Khi đăng ký, tôi đã đồng ý với <a href="dieukhoandichvu.html" id="dangky">Thỏa thuận sử dụng </a> <a href="dieukhoandichvu.html" id="dangky">Quy định bảo mật</a> và <a href="dieukhoandichvu.html" id="dangky"> Quy chế hoạt động </a>của WorkZone</p>
+          </form>
+        </div>
+   </div>
+  </div>
+  </div>
+</div>
+
