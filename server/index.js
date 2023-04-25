@@ -81,9 +81,4 @@ app.listen(port,()=>{
   
 
 
-<<<<<<< HEAD
   
-=======
-  
-
->>>>>>> fe4f40410c81ff2a5b3b910d8e43e5c5f1983deb

@@ -27,6 +27,7 @@ export class WorkZoneService {
     
     this.router.navigate(['/']);
   }
+  
 
   login(email: string, password: string): Observable<any> {
     return this._http.post<any>(this.loginUrl, { email: email, password: password }).pipe(
