@@ -39,6 +39,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdminWZComponent } from './admin-wz/admin-wz.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ThongBaoViecLamComponent,
     AccountMenuComponent,
     CreateProfileComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AdminWZComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,100 @@
+.container{
+    display: flex;
+    flex-wrap: wrap !important;
+    width: 100%;
+    margin-top: 2%;
+    border: 1px solid white;
+    border-radius: 5px;
+    
+}
+.function{
+    display: flex;
+    justify-content: space-evenly;
+    width: 1300px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+button {
+  background-color: #48c0fd; 
+  border: none; 
+  color: white; 
+  padding: 15px 30px; 
+  text-align: center; 
+  text-decoration: none;
+  display: inline-block; 
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+button:hover {
+  background-color: #16648c;
+}
+
+/* Định dạng nút khi được nhấp */
+button:active {
+  background-color: #367539; 
+}
+
+.content{
+    width: 1300px; 
+    height: 500px; 
+    background-color: #f0f0f0;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border-radius: 5px;
+
+}
+.welcome{
+    display: flex;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 1300px;
+    background-color: #48c0fd ;
+    text-align: center;
+}
+.text{
+    display: flex;
+    width: 1300px;
+    text-align: center;
+    padding-top: 1%;
+    color: white;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: large;
+    font-weight: 200;
+
+}
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(80%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes colorChange {
+  0% {
+    color: red;
+  }
+  25% {
+    color: blue;
+  }
+  50% {
+    color: green;
+  }
+  75% {
+    color: yellow;
+  }
+  100% {
+    color: orange;
+  }
+}
+
+p {
+  animation: slide 7s linear infinite, colorChange 2s linear infinite;
+}

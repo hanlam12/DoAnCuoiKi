@@ -21,6 +21,7 @@ import { Quenmatkhau2Component } from './quenmatkhau2/quenmatkhau2.component';
 import { Quenmatkhau3Component } from './quenmatkhau3/quenmatkhau3.component';
 import { FormsModule } from '@angular/forms';
 import { CongtyComponent } from './congty/congty.component';
+import { AdminWZComponent } from './admin-wz/admin-wz.component';
 
 
 const routes: Routes = [
@@ -45,7 +46,8 @@ const routes: Routes = [
   { path:"quenmatkhau2", component:Quenmatkhau2Component},
   { path:"quenmatkhau3", component:Quenmatkhau3Component},
   {path: "dieukhoandichvu", component: DieukhoandichvuComponent},
-  {path: "companies/:id", component: CongtyComponent}
+  {path: "companies/:id", component: CongtyComponent},
+  {path: "admin", component: AdminWZComponent}
 ];
 
 @NgModule({
@@ -75,6 +77,8 @@ export const RoutingComponent={
   Quenmatkhau1Component,
   Quenmatkhau2Component,
   Quenmatkhau3Component,
-  CongtyComponent
+  CongtyComponent,
+  AdminWZComponent
+  
 
 }
