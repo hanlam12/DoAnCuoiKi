@@ -1,0 +1,324 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+.container__payment {
+  margin: 40px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.content__payment--left {
+  flex-basis: 50%;
+}
+.content__payment--right {
+  flex-basis: 40%;
+}
+h2{
+  color: #48c0fd;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+h2,
+h4 {
+  text-align: center;
+  margin-top: 20px;
+}
+h4 {
+  font-weight: normal;
+}
+table {
+  border: 1px solid;
+  width: 90%;
+  margin: auto;
+}
+
+th,
+td {
+  padding: 20px;
+  /* padding-right: 30px; */
+  height: 70px;
+  border: 3px solid white;
+  background-color: #48c0fd;
+  color: white;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+.tab__row {
+  text-align: center;
+  margin-top: 20px;
+}
+table img {
+  width: 200px;
+  float: right;
+}
+.payment__row {
+  margin-left: 5%;
+  margin-top: 20px;
+}
+.payment__row input {
+  padding-left: 15px;
+  border-radius: 5px;
+  height: 45px;
+}
+.input1 {
+  width: 95%;
+}
+.input2 {
+  width: 95%;
+}
+.input3 {
+  width: 95%;
+
+}
+.payment__row label {
+  min-width: 120px;
+}
+#telephone {
+  width: 95%;
+}
+#email {
+  width: 95%;
+}
+.radio-button {
+  height: 17px;
+  width: 17px;
+  margin-top: 25px;
+  margin-right: 20px;
+}
+#myBtn {
+  width: 300px;
+  background: #48c0fd;
+  color: aliceblue;
+  font-size: 22px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 30px;
+  margin-top: 30px;
+  margin-left: 650px;
+}
+#myBtn:hover {
+  color: blue;
+}
+.pay {
+  font-size: 20px;
+  font-weight: bold;
+}
+h3{
+  color: #48c0fd;
+  margin-left: 160px;
+}
+.payment__row-1{
+  margin-top: 35px;
+}
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  text-align: left;
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 70%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 170px;
+}
+.modal-content1 {
+  font-weight: bolder;
+  text-align: center;
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding-top: 70px;
+  border: 1px solid #888;
+  width: 70%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 170px;
+}
+.modal-content:first-child {
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+.modal-body2{
+  padding: 20px 16px;
+
+}
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+/* The Close Button */
+.close,
+.close1,
+.close2 {
+  color: white;
+  font-weight: bold;
+  margin-right: 10px;
+  border: none;
+  padding: 5px 10px;
+  background-color: #888;
+  border-radius: 5px;
+}
+
+.close:hover,
+.close1:hover,
+.close:focus,
+.close1:focus,
+.close2:hover,
+.close2:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 10px 16px;
+  font-weight: bold;
+  border-bottom: 1px solid gray;
+}
+
+.modal-body {
+  padding: 20px 16px;
+  margin-left: 50px;
+}
+.modal-footer1 {
+  text-align: center;
+  padding: 40px 30px;
+}
+.modal-footer {
+  text-align: right;
+  padding: 20px 30px;
+}
+.modal-body label {
+  margin-left: 20px;
+}
+#myBtn1,
+#myBtn2 {
+  color: #fefefe;
+  background-color: #48c0fd;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  padding: 5px 15px;
+}
+#myBtn1:hover,
+#myBtn2:hover {
+  color: blue;
+}
+#otp {
+  margin-left: 20px;
+  width: 40%;
+}
+#check__successful {
+  margin: auto;
+  display: block;
+  float: none;
+  width: 40px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 480px) {
+  .container__payment {
+    flex-direction: column;
+  }
+  .modal-body,
+  .modal-header,
+  .modal-footer,
+  .modal-footer1 {
+    padding: 10px 15px;
+    margin-left: 10px;
+  }
+  .modal-content h2 {
+    margin-left: 10px;
+  }
+  #myBtn{
+    width: 150px;
+    margin-left: 170px;
+  }
+  .payment__row h3{
+    margin-left: 130px;
+  }
+  .modal-title h4{
+    font-size: 15px;
+  }
+}
+.modal {
+  display: block !important;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+.modal-dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+}
+
+.modal-header {
+  padding: 5px 10px;
+  background-color: #eee;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.modal-title {
+  font-weight: bold;
+  margin: auto;
+  height: 60px;
+  padding-top: 15px;
+}
+
+.myModal2{
+  margin-top: 170px;
+}
+.text{
+  padding-left: 30px;
+  color: red;
+}

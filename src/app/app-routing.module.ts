@@ -27,6 +27,7 @@ import { SavedJobComponent } from './saved-job/saved-job.component';
 import { ThongBaoViecLamComponent } from './thong-bao-viec-lam/thong-bao-viec-lam.component';
 import { LoginEmployerComponent } from './login-employer/login-employer.component';
 import { SignUpEmployerComponent } from './sign-up-employer/sign-up-employer.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 const routes: Routes = [
@@ -64,7 +65,8 @@ const routes: Routes = [
   // {path: "congty", component: CongtyComponent},
   // {path: "congty/:id", component: CongtyComponent},
   {path:"login-employer", component:LoginEmployerComponent},
-  {path:"sign-up-employer", component:SignUpEmployerComponent}
+  {path:"sign-up-employer", component:SignUpEmployerComponent},
+  {path:"payment", component:PaymentComponent}
 ];
 
 @NgModule({
@@ -96,6 +98,7 @@ export const RoutingComponent={
   Quenmatkhau3Component,
   CongtyComponent,
   LoginEmployerComponent,
-  SignUpEmployerComponent
+  SignUpEmployerComponent,
+  PaymentComponent
 
 }
