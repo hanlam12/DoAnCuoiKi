@@ -1,41 +1,41 @@
 [
   {
-    "context" : ["/job"],
+    "context" : ["/api/job"],
     "target" : "http://localhost:6868",
     "secure":true,
     "changeOrigin":true,
     "logLevel":"debug"
   },
   {
-    "context" : ["/company"],
+    "context" : ["/api/company"],
     "target" : "http://localhost:6868",
     "secure":true,
     "changeOrigin":true,
     "logLevel":"debug"
   },
   {
-    "context" : ["/user"],
+    "context" : ["/api/user"],
     "target" : "http://localhost:6868",
     "secure":true,
     "changeOrigin":true,
     "logLevel":"debug"
   },
   {
-    "context": ["/company/**"],
+    "context": ["/api/company/**"],
     "target": "http://localhost:6868",
     "secure": true,
     "changeOrigin": true,
     "logLevel": "debug"
 },
 {
-  "context": ["/applycv"],
+  "context": ["/api/applycv"],
   "target": "http://localhost:6868",
   "secure": true,
   "changeOrigin": true,
   "logLevel": "debug"
 },
 {
-  "context" : ["/job-decription"],
+  "context" : ["/api/job-decription"],
   "target" : "http://localhost:6868",
   "secure":true,
   "changeOrigin":true,

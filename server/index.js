@@ -30,13 +30,13 @@ app.listen(port,()=>{
   companyCollection = database.collection("company");
 
   const { ObjectId: objId } = require('mongodb');
-  app.get("/job-application/:userID", cors(), async (req, res) => {
+  app.get("/api/job-application/:userID", cors(), async (req, res) => {
     const userId = req.params.userID;
     const result = await userCollection.find({ userID: userId }).toArray();
     res.send(result[0]);
   });
 
-  app.put("/job-application/:userID", cors(), async (req, res) =>{
+  app.put("/api/job-application/:userID", cors(), async (req, res) =>{
     const userID = req.params.userID;
     const image = req.body.image;
     const title = req.body.cv[0].title;
@@ -98,7 +98,7 @@ app.listen(port,()=>{
 //   }
 // });
 
-  app.get('/job-decription/:jobJD', cors(), async (req, res) => {
+  app.get('/api/job-decription/:jobJD', cors(), async (req, res) => {
     try {
         const jobJD = req.params.jobJD;
         const job = await jobCollection.findOne({ jobJD: jobJD });
@@ -112,7 +112,7 @@ app.listen(port,()=>{
     }
   });
 //api lấy tên
-app.get('/applycv/jobJD', cors(), async (req, res) => {
+app.get('/api/applycv/jobJD', cors(), async (req, res) => {
   try {
     const jobJD = req.params.jobJD;
     const job = await jobCollection.findOne({ jobJD: jobJD });
@@ -130,20 +130,20 @@ app.get('/applycv/jobJD', cors(), async (req, res) => {
 });
 
 
-  app.get("/job",cors(),async(req,res)=>{
+  app.get("/api/job",cors(),async(req,res)=>{
     const result = await jobCollection.find({}).toArray();
     res.send(result)
   })
 
 
-app.get("/job/:position", cors(), async (req, res) => {
+app.get("/api/job/:position", cors(), async (req, res) => {
   const position = req.params.position;
   const result = await jobCollection.find({ position: position }).toArray();
   res.send(result);
 });
 
 
-app.get("/job/category/:categories", cors(), async (req, res) => {
+app.get("/api/job/category/:categories", cors(), async (req, res) => {
   const categories = req.params.categories.split(",");
   const result = await jobCollection.find({ category: { $in: categories } }).toArray();
   res.send(result);
@@ -160,14 +160,14 @@ app.get("/job/category/:categories", cors(), async (req, res) => {
 //   const result = await userCollection.find({}).toArray();
 //   res.send(result)
 // })
-app.post("/users",cors(),async(req,res)=>{
+app.post("/api/users",cors(),async(req,res)=>{
   var crypto = require('crypto');
   salt = crypto.randomBytes(16).toString('hex');
   UserCollection = database.collection("Users");
   user=req.body
   var existingUser = await UserCollection.findOne({
     $or: [
-      { username: user.username },
+
       { email: user.email },
       { phone: user.phone },
     ],
@@ -175,9 +175,7 @@ app.post("/users",cors(),async(req,res)=>{
   // Kiểm tra từng thông tin để trả về thông báo cụ thể cho người dùng
   if (existingUser) {
     var errorMessages = [];
-    if (existingUser.username === user.username) {
-      errorMessages.push("Tên đăng nhập đã được sử dụng");
-    }
+
     if (existingUser.email === user.email) {
       errorMessages.push("Địa chỉ email đã được sử dụng");
     }
@@ -196,7 +194,7 @@ app.post("/users",cors(),async(req,res)=>{
 
 // API Login
 
-app.post('/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
 const user = await userCollection.findOne({ email: email });
 if (!user || user.password !== password) {
@@ -207,7 +205,7 @@ res.json({ token, userEmail: user.email });
 });
 
 // API lấy tên người dùng
-app.get('/user', async (req, res) => {
+app.get('/api/user', async (req, res) => {
   const token = req.headers.authorization.split(' ')[1]
   if (!token) {
     return res.status(401).send('Unauthorized');
@@ -228,13 +226,13 @@ app.get('/user', async (req, res) => {
   }
 });
 
-app.get("/company",cors(),async(req,res)=>{
+app.get("/api/company",cors(),async(req,res)=>{
   const result = await companyCollection.find({}).toArray();
   res.send(result)
 })
 // API lấy thông tin công ty
 
-  app.get('/company/:id', async (req, res) => {
+  app.get('/api/company/:id', async (req, res) => {
     try {
       const companyId = req.params.id;
 

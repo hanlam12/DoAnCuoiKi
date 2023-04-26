@@ -11,11 +11,15 @@
     </div>
     <div class="right-main-menu">
 
+
       <a href="#" class="btn btn-primary btn-lg active ntd" role="button" aria-pressed="true">NHÀ TUYỂN DỤNG</a>
+
 
     </div>
   </div>
 </div>
+
+
 
 
 <div class="container" >
@@ -27,6 +31,7 @@
           <p>
             WorkZone giúp bạn kết nối với nhà tuyển dụng với các cơ hội cơ
             hội mới trong cuộc sống của bạn.
+
 
             <img src="assets/media/banner-login.png" width="80%" style="margin-top: 30px;" alt="">
           </p>
@@ -42,11 +47,12 @@
             <div>
               <input
                 type="text" placeholder="Họ và tên*" class="input form-control-lgin"
-                required [(ngModel)]="newUser.name" name="name"
-                #name="ngModel" pattern="[a-zA-Z][a-zA-Z ]+"
+                required [(ngModel)]="newUser.fullname" name="fullname"
+                #fullname="ngModel" pattern="[a-zA-Z][a-zA-Z ]+"
               />
             </div>
           </div>
+
 
           <div class="input-login user">
             <div>
@@ -59,6 +65,7 @@
               />
             </div>
           </div>
+
 
           <div class="input-login user">
             <div>
@@ -74,17 +81,6 @@
             </div>
           </div>
 
-          <div class="input-login user">
-            <div>
-              <input
-                type="text"
-                placeholder="Username*"
-                class="input form-control-lgin" [(ngModel)]="newUser.username" name="username"
-                required #username="ngModel"
-                minlength="6"
-              />
-            </div>
-          </div>
 
           <div class="input-login pass">
             <div>
@@ -99,19 +95,32 @@
           </div>
 
 
+          <div class="input-login pass">
+            <div>
+              <input
+                type="{{passwordType}}"
+                placeholder="Nhập lại mật khẩu*"
+                class="input form-control-lgin"
+                required [(ngModel)]="confirmPass" name="confirmPass"
+                minlength="5"
+              />
+            </div>
+          </div>
+
+
+
 
           <div>
             <input type="checkbox" class="check" (click)="togglePassword()"/> Hiển thị mật khẩu
-            <a href="quenmatkhau1.html"></a>
           </div>
           <br />
           <a class="blue mg-top" (click)="login()" style="cursor: pointer;"
             >Bạn đã có tài khoản? Đăng nhập</a
           >
           <br />
-          <div [hidden]="name.valid || name.pristine">
-            <div class="text-danger" [hidden]="!name.hasError('required')">Bạn chưa nhập tên</div>
-            <div class="text-danger" [hidden]="!name.hasError('pattern')">Vui lòng nhập tên phù hợp</div>
+          <div [hidden]="fullname.valid || fullname.pristine">
+            <div class="text-danger" [hidden]="!fullname.hasError('required')">Bạn chưa nhập tên</div>
+            <div class="text-danger" [hidden]="!fullname.hasError('pattern')">Vui lòng nhập tên phù hợp</div>
           </div>
           <div [hidden]="email.valid || email.pristine">
             <div class="text-danger" [hidden]="!email.hasError('required')">Bạn chưa nhập tên</div>
@@ -124,14 +133,13 @@
             <div class="text-danger" [hidden]="!phone.hasError('required')">Bạn chưa nhập số điện thoại</div>
             <div class="text-danger" [hidden]="!phone.hasError('pattern')">Số điện thoại không chứa ký tự đặc biệt</div>
          </div>
-         <div [hidden]="username.valid || username.pristine">
-          <div class="text-danger" [hidden]="!username.hasError('minlength')">Username ít nhất có 6 ký tự</div>
-          <div class="text-danger" [hidden]="!username.hasError('required')">Bạn chưa nhập username</div>
-        </div>
+
+
         <div [hidden]="password.valid || password.pristine">
         <div class="text-danger" [hidden]="!password.hasError('minlength')">Mật khẩu ít nhất có 5 ký tự</div>
-        <div class="text-danger" [hidden]="!password.hasError('required')">Bạn chưa nhập mật khẩu</div>
+        <div  class="text-danger" [hidden]="!password.hasError('required')">Bạn chưa nhập mật khẩu</div>
         </div>
+
 
           <br />
           <div *ngIf="errMessage" class="alert alert-danger">
@@ -139,12 +147,17 @@
             <ul *ngIf="existingUserErrors">
               <li *ngFor="let error of existingUserErrors">{{error}}</li>
             </ul>
+
+
           </div>
-          <button type="submit" class="btn-login" style="cursor: pointer;" (click)="postUser()">Đăng Ký</button>
+
+
+          <button type="submit" class="btn-login" [disabled]="errorOccurred" style="cursor: pointer;" (click)="postUser()">Đăng Ký</button>
           <div class="">
             <div class="text center">
               <span>Hoặc</span>
             </div>
+
 
             <div class="row">
               <div class="col-sm-6 col-12">

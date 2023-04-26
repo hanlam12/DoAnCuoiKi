@@ -91,11 +91,17 @@ export interface cv{
 export class Users{
   constructor(
     public _id:any=null,
-    public name:string="",
+    public userID:string="",
+    public fullname:string="",
     public email:string="",
     public phone:string="",
-    public username:string="",
     public password:string="",
-
+    public gender:string="",
+    public DOB: string="",
+    public address:string="",
+    public district:string="",
+    public city:string="",
+    public image:string=""
   ){}
 }
+
