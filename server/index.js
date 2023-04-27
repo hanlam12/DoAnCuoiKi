@@ -258,7 +258,7 @@ app.get("/users",cors(),async(req,res)=>{
 app.post("/register",cors(),async(req,res)=>{
   var crypto = require('crypto');
   salt = crypto.randomBytes(16).toString('hex');
-  EmployerCollection = database.collection("Companies");
+  EmployerCollection = database.collection("company");
   employer=req.body
   var existingEmployer = await EmployerCollection.findOne({
     $or: [

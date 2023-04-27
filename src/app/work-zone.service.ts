@@ -27,7 +27,7 @@ constructor(private _http:HttpClient, private router: Router) { }
 
 
     // login
-  private loginUrl = 'http://localhost:6868/login';
+  private loginUrl = 'http://localhost:6868/login1';
   public userEmail = localStorage.getItem('userEmail'); // đây là userEmail khi đăng nhập thành công, đứa nào muốn lấy truy xuất khi login thành công thì lấy thằng này.
   userIdUpdated = new EventEmitter<string>();
 
