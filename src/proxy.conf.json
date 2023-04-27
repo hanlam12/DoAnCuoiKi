@@ -40,6 +40,13 @@
     "secure":true,
     "changeOrigin":true,
     "logLevel":"debug"
+  },
+  {
+    "context" : ["/register"],
+    "target" : "http://localhost:6868",
+    "secure":true,
+    "changeOrigin":true,
+    "logLevel":"debug"
   }
 
 ]

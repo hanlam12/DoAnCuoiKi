@@ -74,7 +74,12 @@ export class User{
 export class Company{
   constructor(
     public _id:any=null,
+    public company_id:String="",
     public company_name:string="",
+    public email:string="",
+    public phone:string="",
+    public password:string="",
+    public person_name:string="",
     public company_image:string="",
     public company_intro:string="",
     public company_scale:string="",

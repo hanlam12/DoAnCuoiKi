@@ -253,3 +253,34 @@ app.get("/users",cors(),async(req,res)=>{
   const result = await UsersCollection.find({}).toArray();
   res.send(result)
 })
+
+// api register employer
+app.post("/register",cors(),async(req,res)=>{
+  var crypto = require('crypto');
+  salt = crypto.randomBytes(16).toString('hex');
+  EmployerCollection = database.collection("Companies");
+  employer=req.body
+  var existingEmployer = await EmployerCollection.findOne({
+    $or: [
+      { email: employer.email },
+      { phone: employer.phone },
+    ],
+  });
+  // Kiểm tra từng thông tin để trả về thông báo cụ thể cho người dùng
+  if (existingEmployer) {
+    var errorMessages = [];
+    if (existingEmployer.email === employer.email) {
+      errorMessages.push("Địa chỉ email đã được sử dụng");
+    }
+    if (existingEmployer.phone === employer.phone) {
+      errorMessages.push("Số điện thoại đã được sử dụng");
+    }
+    res.status(409).send({ error: errorMessages });
+    return;
+  }
+  hash = crypto.pbkdf2Sync(employer.password, salt, 1000, 64, `sha512`).toString(`hex`);
+  employer.password=hash
+  employer.salt=salt
+  await EmployerCollection.insertOne(employer)
+  res.send(req.body)
+  })

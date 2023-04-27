@@ -13,46 +13,92 @@
         <div class="divform">
           <form action="#">
             <p>Email<span class="text">&nbsp;*</span>:</p>
-              <input type="email" placeholder="Email" class="form-input form-control" required [(ngModel)]="model.Email" name="email"
+            <input type="email" placeholder="Email" class="form-input form-control" required [(ngModel)]="company.email" name="email"
               pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
               #email="ngModel">
-              <div class="text" [hidden]="!email.hasError('pattern')">Email format should be
+
+            <div [hidden]="email.valid || email.pristine">
+              <div class="text" [hidden]="!email.hasError('required')">Bạn chưa nhập email</div>
+              <div class="text" [hidden]="!email.hasError('pattern')">Định dạng email phù hợp:
                 <small><b>joe@abc.com</b></small>
               </div>
-             <p>Mật khẩu<span class="text">&nbsp;*</span>:</p> <input id="pw newPassword" type="password" placeholder="Mật khẩu" class="form-input form-control" name="newPassword" required minlength="5"
-             [(ngModel)]="newPass" name="newpassword"
-             #newpassword="ngModel">
-             <div class="text" [hidden]="!newpassword.hasError('minlength')">Password must contain at least 5 characters</div>
-             <p>Nhập lại mật khẩu:</p><input type="password" placeholder="Nhập lại mật khẩu*" class="form-input form-control" name="retypepassword" id="retypepassword" required [(ngModel)]="retypePass"
-             #retypepassword="ngModel">
-             <div class="text" [hidden]="retypepassword.valid || retypepassword.pristine">
-              Password is required
-             </div>
-             <input id="checkboxhtmk" type="checkbox" onclick="htmk()">&nbsp; <span>Hiển thị mật khẩu</span> <br>
-              <label class="infor">Thông tin công ty</label>
-             <p>Tìm người liên hệ:</p><input type="text" placeholder="Tìm người liên hệ*" class="form-input form-control">
-             <p>SĐT liên hệ<span class="text">&nbsp;*</span>:</p> <input type="text" placeholder="SĐT liên hệ" class="form-input form-control" name="phone" id="phone" [(ngModel)]="model.Phone" name="phone"
+            </div>
+            <br>
+
+            <p>Mật khẩu<span class="text">&nbsp;*</span>:</p>
+            <input id="pw newPassword" type="{{passwordType}}" placeholder="Mật khẩu" class="form-input form-control" name="password" required minlength="6"
+             [(ngModel)]="company.password"
+             #password="ngModel">
+
+            <div [hidden]="password.valid || password.pristine">
+              <div class="text" [hidden]="!password.hasError('minlength')">Mật khẩu ít nhất có 6 ký tự</div>
+              <div  class="text" [hidden]="!password.hasError('required')">Bạn chưa nhập mật khẩu</div>
+            </div><br>
+
+
+            <p>Nhập lại mật khẩu<span class="text">&nbsp;*</span>:</p><input type="{{passwordType}}" placeholder="Nhập lại mật khẩu" class="form-input form-control" name="confirmPass"  required [(ngModel)]="confirmPass">
+            <br>
+
+            <div class="checkboxhtmk">
+              <input type="checkbox" (click)="togglePassword()">&nbsp; <span>Hiển thị mật khẩu</span> <br>
+            </div>
+
+
+            <label class="infor">Thông tin công ty</label>
+
+            <p>Tên người liên hệ<span class="text">&nbsp;*</span>:</p>
+            <input type="text" placeholder="Tên người liên hệ" class="form-input form-control" [(ngModel)]="company.person_name" name="person_name"  #person_name="ngModel" required  pattern="[a-zA-Z][a-zA-Z ]+">
+
+            <div [hidden]="person_name.valid || person_name.pristine">
+              <div class="text" [hidden]="!person_name.hasError('required')">Bạn chưa nhập tên</div>
+              <div class="text" [hidden]="!person_name.hasError('pattern')">Vui lòng nhập tên phù hợp</div>
+            </div>
+            <br>
+
+            <p>SĐT liên hệ<span class="text">&nbsp;*</span>:</p>
+            <input type="text" placeholder="SĐT liên hệ" class="form-input form-control" id="phone" [(ngModel)]="company.phone" name="phone" #phone="ngModel"
              pattern="[0-9]*"
              minlength="10"
-             maxlength="10"
-             #phone="ngModel">
+             maxlength="10">
 
-             <div class="text" [hidden]="!phone.hasError('minlength')">Mobile should be 10 digits</div>
-             <div class="text" [hidden]="!phone.hasError('pattern')">Mobile number should be only numbers</div>
-             <p>Tên công ty<span class="text">&nbsp;*</span>:</p> <input type="text" placeholder="Tên công ty" class="form-input form-control" name="name" id="name" required pattern="[a-zA-Z][a-zA-Z ]+"
-             [(ngModel)]="model.Name" name="name"
-             #name="ngModel">
-             <div class="text" [hidden]="name.valid || name.pristine">Name is required</div>
+            <div [hidden]="phone.valid || phone.pristine">
+              <div class="text" [hidden]="!phone.hasError('minlength')">Số điện thoại có 10 chữ số</div>
+              <div class="text" [hidden]="!phone.hasError('required')">Bạn chưa nhập số điện thoại</div>
+              <div class="text" style="margin-top: 0;" [hidden]="!phone.hasError('pattern')">Số điện thoại không chứa ký tự đặc biệt</div>
+           </div>
+            <br>
 
-             <p>Tỉnh/Thành phố:</p> <input type="text" placeholder="Tỉnh/Thành phố" class="form-input form-control">
-             <p>Quận/Huyện:</p> <input type="text" placeholder="Quận/Huyện" class="form-input form-control">
-             <p>Địa chỉ cụ thể:</p> <input type="text" placeholder="Địa chỉ cụ thể của công ty*" class="form-input form-control">
-              <div class="dangky">
-                  <span>Bạn đã có tài khoản?</span>
-                  <a id="dangky" href="dangnhap_nhatuyendung.html" target="_blank">Đăng nhập</a>
-              </div>
-              <input (click)="Submit()" type="button" value="Đăng ký ngay" class="dkn">
-              <p>Khi đăng ký, tôi đã đồng ý với <a href="dieukhoandichvu.html" id="dangky">Thỏa thuận sử dụng </a> <a href="dieukhoandichvu.html" id="dangky">Quy định bảo mật</a> và <a href="dieukhoandichvu.html" id="dangky"> Quy chế hoạt động </a>của WorkZone</p>
+            <p>Tên công ty<span class="text">&nbsp;*</span>:</p>
+            <input type="text" placeholder="Tên công ty" class="form-input form-control" name="name" id="name" required pattern="[a-zA-Z][a-zA-Z ]+"
+             [(ngModel)]="company.company_name" name="company_name"
+             #company_name="ngModel">
+             <div [hidden]="company_name.valid || company_name.pristine">
+              <div class="text" [hidden]="!company_name.hasError('required')">Bạn chưa nhập tên công ty</div>
+              <div class="text" [hidden]="!company_name.hasError('pattern')">Vui lòng nhập tên phù hợp</div>
+            </div>
+            <br>
+
+            <p>Địa chỉ cụ thể<span class="text">&nbsp;*</span>:</p>
+            <input type="text" [(ngModel)]="company.company_address" placeholder="Địa chỉ cụ thể của công ty" class="form-input form-control" name="company_address">
+
+            <div class="dangky">
+                <span>Bạn đã có tài khoản?</span>
+                <a id="dangky" (click)="dangnhap()" style="cursor: pointer;" >Đăng nhập</a>
+            </div>
+            <br>
+
+            <div *ngIf="errMessage" class="alert alert-danger">
+              {{errMessage}}
+              <ul *ngIf="existingUserErrors">
+                <li *ngFor="let error of existingUserErrors">{{error}}</li>
+              </ul>
+
+            </div>
+
+            <input  type="button" (click)="postCompany()" value="Đăng ký ngay" class="dkn"
+            [disabled]="errorOccurred" style="cursor: pointer;">
+
+            <p>Khi đăng ký, tôi đã đồng ý với <a href="dieukhoandichvu.html" id="dangky">Thỏa thuận sử dụng </a> <a href="dieukhoandichvu.html" id="dangky">Quy định bảo mật</a> và <a href="dieukhoandichvu.html" id="dangky"> Quy chế hoạt động </a>của WorkZone</p>
           </form>
         </div>
    </div>

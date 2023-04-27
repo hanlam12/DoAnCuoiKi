@@ -465,4 +465,19 @@ putInforCv(aUser:any): Observable<any>{
 
   );
 }
+
+
+postCompany(aCompany:any):Observable<any>
+{
+  const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+  const requestOptions:Object={
+    headers:headers,
+    responseType:"text"
+  }
+  return this._http.post<any>("/register",JSON.stringify(aCompany),requestOptions).pipe(
+      map(res=>JSON.parse(res) as Company),
+      retry(3),
+      catchError(this.handleError)
+  )
+}
 }

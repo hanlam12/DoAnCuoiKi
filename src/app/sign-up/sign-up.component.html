@@ -112,7 +112,7 @@
             <div class="text-danger" [hidden]="!fullname.hasError('pattern')">Vui lòng nhập tên phù hợp</div>
           </div>
           <div [hidden]="email.valid || email.pristine">
-            <div class="text-danger" [hidden]="!email.hasError('required')">Bạn chưa nhập tên</div>
+            <div class="text-danger" [hidden]="!email.hasError('required')">Bạn chưa nhập email</div>
             <div class="text-danger" [hidden]="!email.hasError('pattern')">Email format:
                <small><b>joe@abc.com</b></small>
             </div>
