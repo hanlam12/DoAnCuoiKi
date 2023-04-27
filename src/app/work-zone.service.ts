@@ -491,4 +491,17 @@ export class WorkZoneService {
         retry(3),
         catchError(this.handleError))
     }
+
+    getCompanies():Observable<any>{
+      const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
+      const requestOptions:Object={
+        headers:headers,
+        responseType:"text"
+      }
+      return this._http.get<any>("/api/company",requestOptions).pipe(
+        map(res=>JSON.parse(res) as Array<Company>),
+        retry(3),
+        catchError(this.handleError)
+      )
+    }
 }

@@ -56,5 +56,29 @@ app.get("/job/category/:categories", cors(), async (req, res) => {
   res.send(result);
 });
 
+app.get("/api/company",cors(),async(req,res)=>{
+  const result = await companyCollection.find({}).toArray();
+  res.send(result)
+})
+// API lấy thông tin công ty
 
+  app.get('/api/company/:id', async (req, res) => {
+    try {
+      const companyId = req.params.id;
+
+      // Find company by name
+      const company = await companyCollection.findOne({ company_id: companyId });
+
+      // Find jobs by company name
+      const jobs = await jobCollection.find({ company: company.company_name }).toArray();
+
+      const companyData = { company, jobs };
+
+      // Send company and job data in response
+      res.send(companyData);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Server error');
+    }
+  });
 
