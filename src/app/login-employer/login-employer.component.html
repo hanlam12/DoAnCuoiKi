@@ -2,27 +2,38 @@
     <div class="maxdiv">
         <div class="input">
             <form action="">
-                <input type="email" placeholder="Email *" required [(ngModel)]="model.Email" name="email"
+                <input type="email" placeholder="Email *" required [(ngModel)]="company.email" name="email"
                 pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                 #email="ngModel" class="form-control">
                 <small class="text" [hidden]="!email.hasError('pattern')">Email format should be
                   <small><b>joe@abc.com</b></small>
                 </small> <br>
-                <input type="password" name="newPassword" placeholder="Nhập mật khẩu mới" id="newPassword" required minlength="5"
-                [(ngModel)]="model.Password" name="newpassword"
-                #newpassword="ngModel" class="form-control">
-                <small class="text" [hidden]="!newpassword.hasError('minlength')">Password must contain at least 5 characters</small>
+
+                <input type="{{passwordType}}" name="password" placeholder="Nhập mật khẩu mới" id="newPassword" required minlength="5"
+                [(ngModel)]="company.password"
+                #password="ngModel" class="form-control">
+                <small class="text" [hidden]="!password.hasError('minlength')">Password must contain at least 5 characters</small>
+
                 <div class="check">
                     <div id="htmk">
-                        <input type="checkbox"><span> Hiển thị mật khẩu</span>
+                        <input type="checkbox" (click)="togglePassword()"><span> Hiển thị mật khẩu</span>
                     </div>
                     <div id="quenmatkhau"><a>Quên mật khẩu?</a></div>
                 </div>
+
                 <div class="dangky">
                     <span>Bạn chưa có tài khoản?</span>
                     <a id="dangky" (click)="signUp()" style="cursor: pointer;">Đăng ký</a>
                 </div>
-                <input type="button" value="Đăng nhập" id="input_btn_dangnhap">
+
+                <div *ngIf="errMessage" class="alert alert-danger">
+                  {{errMessage}}
+                  <ul *ngIf="existingUserErrors">
+                    <li *ngFor="let error of existingUserErrors">{{error}}</li>
+                  </ul>
+
+                </div>
+                <input type="button" (click)="login()" value="Đăng nhập" id="input_btn_dangnhap">
             </form>
         </div>
         <div class="image">

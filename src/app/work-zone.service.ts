@@ -27,7 +27,7 @@ constructor(private _http:HttpClient, private router: Router) { }
 
 
     // login
-  private loginUrl = 'http://localhost:6868/login1';
+  private loginUrl = 'http://localhost:6868/login';
   public userEmail = localStorage.getItem('userEmail'); // đây là userEmail khi đăng nhập thành công, đứa nào muốn lấy truy xuất khi login thành công thì lấy thằng này.
   userIdUpdated = new EventEmitter<string>();
 
@@ -466,7 +466,7 @@ putInforCv(aUser:any): Observable<any>{
   );
 }
 
-
+// đăng ký employer
 postCompany(aCompany:any):Observable<any>
 {
   const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
@@ -480,4 +480,62 @@ postCompany(aCompany:any):Observable<any>
       catchError(this.handleError)
   )
 }
+// đăng nhập employer
+apiUrl = 'http://localhost:6868/employer'; // Địa chỉ API đăng nhập
+
+  loginEmployer(email: string, password: string) {
+    const body = { email, password };
+    return this._http.post<any>(this.apiUrl, body);
+  }
+
+// lấy profile
+getProfile() {
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+  });
+  return this._http.get<any>(`${this.serverUrl}/userID`, { headers });
+}
+// chỉnh sửa city
+updateProfile(user: Users) {
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+  });
+  return this._http.put<any>(`${this.serverUrl}/city`, user, { headers });
+}
+// chỉnh sửa address
+updateProfile2(user: Users) {
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+  });
+  return this._http.put<any>(`${this.serverUrl}/address`, user, { headers });
+}
+// chỉnh sửa district
+updateProfile3(user: Users) {
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+  });
+  return this._http.put<any>(`${this.serverUrl}/district`, user, { headers });
+}
+// chỉnh sửa city
+updateProfile4(user: Users) {
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+  });
+  return this._http.put<any>(`${this.serverUrl}/DOB`, user, { headers });
+}
+// chỉnh sửa city
+updateProfile5(user: Users) {
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+  });
+  return this._http.put<any>(`${this.serverUrl}/gender`, user, { headers });
+}
+
+
 }

@@ -284,3 +284,166 @@ app.post("/register",cors(),async(req,res)=>{
   await EmployerCollection.insertOne(employer)
   res.send(req.body)
   })
+
+
+// api đang nhập employer
+app.post("/employer",cors(),async(req,res)=>{
+  email=req.body.email
+  password=req.body.password
+
+  var crypto = require('crypto')
+
+  EmployerCollection = database.collection("company");
+  employer=await EmployerCollection.findOne({email:email})
+  if(employer==null){
+    res.send({"email":email, "message":"not exist"})
+  }
+  else{
+    hash = crypto.pbkdf2Sync(password, employer.salt,1000,64,`sha512`).toString(`hex`);
+    if(employer.password==hash){
+      res.send(employer)
+    }
+    else{
+      res.send({"email":email,"password":password,"message":"wrong password"})
+    }
+  }
+})
+// api get profile
+app.get('/userID', async (req, res) => {
+  const token = req.headers.authorization.split(' ')[1]
+  if (!token) {
+    return res.status(401).send('Unauthorized');
+  }
+  try {
+    const decodedToken = jwt.verify(token, secretKey);
+    const email = decodedToken.email;
+    const user = await UsersCollection.findOne({ email: email });
+    console.log('decodedToken:', decodedToken);
+    console.log('user:', user);
+    if (!user) {
+      return res.status(404).send('User not found')
+    }
+    else{
+      res.send(user);
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(401).send(` ${error.message}`);
+  }
+  });
+
+  // api chỉnh sửa city
+  app.put('/city', async (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    if (!token) {
+      return res.status(401).send('Unauthorized');
+    }
+    try {
+      const decodedToken = jwt.verify(token, secretKey);
+      const email = decodedToken.email;
+      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { city: req.body.city } });
+      console.log('decodedToken:', decodedToken);
+      console.log('user:', user);
+      if (!user) {
+        return res.status(404).send('User not found');
+      } else {
+        res.send(user);
+      }
+    } catch (error) {
+      console.error(error);
+      return res.status(401).send(` ${error.message}`);
+    }
+  });
+
+  // api chỉnh sửa DOB
+  app.put('/DOB', async (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    if (!token) {
+      return res.status(401).send('Unauthorized');
+    }
+    try {
+      const decodedToken = jwt.verify(token, secretKey);
+      const email = decodedToken.email;
+      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { DOB: req.body.DOB } });
+      console.log('decodedToken:', decodedToken);
+      console.log('user:', user);
+      if (!user) {
+        return res.status(404).send('User not found');
+      } else {
+        res.send(user);
+      }
+    } catch (error) {
+      console.error(error);
+      return res.status(401).send(` ${error.message}`);
+    }
+  });
+
+  // api chỉnh sửa address
+  app.put('/address', async (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    if (!token) {
+      return res.status(401).send('Unauthorized');
+    }
+    try {
+      const decodedToken = jwt.verify(token, secretKey);
+      const email = decodedToken.email;
+      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { address: req.body.address } });
+      console.log('decodedToken:', decodedToken);
+      console.log('user:', user);
+      if (!user) {
+        return res.status(404).send('User not found');
+      } else {
+        res.send(user);
+      }
+    } catch (error) {
+      console.error(error);
+      return res.status(401).send(` ${error.message}`);
+    }
+  });
+
+  // api chỉnh sửa gender
+  app.put('/gender', async (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    if (!token) {
+      return res.status(401).send('Unauthorized');
+    }
+    try {
+      const decodedToken = jwt.verify(token, secretKey);
+      const email = decodedToken.email;
+      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { gender: req.body.gender } });
+      console.log('decodedToken:', decodedToken);
+      console.log('user:', user);
+      if (!user) {
+        return res.status(404).send('User not found');
+      } else {
+        res.send(user);
+      }
+    } catch (error) {
+      console.error(error);
+      return res.status(401).send(` ${error.message}`);
+    }
+  });
+
+   // api chỉnh sửa district
+   app.put('/district', async (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    if (!token) {
+      return res.status(401).send('Unauthorized');
+    }
+    try {
+      const decodedToken = jwt.verify(token, secretKey);
+      const email = decodedToken.email;
+      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { district: req.body.district } });
+      console.log('decodedToken:', decodedToken);
+      console.log('user:', user);
+      if (!user) {
+        return res.status(404).send('User not found');
+      } else {
+        res.send(user);
+      }
+    } catch (error) {
+      console.error(error);
+      return res.status(401).send(` ${error.message}`);
+    }
+  });
+
