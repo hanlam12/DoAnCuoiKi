@@ -281,19 +281,19 @@
             <button class="button" (click)="showPopup()"  style="width: 100%;" >New Company</button>
         <table border="1" style="margin: 10px;">
             <tr>
-            <th>_Id</th>
+            <th class="th-_ID">_Id</th>
             <th>Company Id</th>
             <th>Company Name</th>
-            <th>Company Website</th>
+            <th class="th-_ID">Company Website</th>
             <th>Image</th>
             <th>Function</th>
             </tr>
             <tbody>
             <tr *ngFor="let company of companies" class="tr-content" (click)="btnshowDetails(company)">
-            <td >{{company._id}} </td>
+            <td class="th-_ID" >{{company._id}} </td>
             <td >{{company.company_id}} </td>
             <td >{{company.company_name}}</td>
-            <td ><a href="{{company.company_website}}">{{company.company_website}}</a> </td>
+            <td class="th-_ID" ><a href="{{company.company_website}}">{{company.company_website}}</a> </td>
             
             <td>
             <img src="{{company.company_image}}" width="100px" height="100px" style="padding: 8px;">
@@ -310,7 +310,7 @@
        <div class="content" *ngIf="ngIfusers" >
         <table border="1" style="margin: 10px;">
             <tr>
-            <th>_Id</th>
+            <th class="th-_ID">_Id</th>
             <th>User Id</th>
             <th>Full Name</th>
             <th>Email</th>
@@ -319,7 +319,7 @@
             </tr>
             <tbody>
             <tr *ngFor="let user of users" class="tr-content" (click)="btnshowDetailUser(user)">
-            <td>{{user._id}}</td>
+            <td class="th-_ID">{{user._id}}</td>
             <td>{{user.userID}} </td>
             <td>{{user.fullname}}</td>
             <td>{{user.email}} </td>
@@ -341,7 +341,7 @@
             <th>Company Image</th>
             <th>Company Name</th>
             <th>Job Name</th>
-            <th>Category</th>
+            <th class="th-_ID">Category</th>
             <th>Address</th>
             <th>Function</th>
             </tr>
@@ -351,7 +351,7 @@
             <td><img src="{{job.image}}" width="100px" height="100px" style="padding: 8px;"></td>
             <td>{{job.company}}</td>
             <td>{{job.job_name}} </td>
-            <td>{{job.category}} </td>
+            <td class="th-_ID">{{job.category}} </td>
             <td>{{job.address}} </td>
             <td>
                 <button class="function-btn" (click)="btnshowEditJob(job)" >Chỉnh sửa</button>
@@ -368,7 +368,7 @@
             <th>Company Image</th>
             <th>Company Name</th>
             <th>Job Name</th>
-            <th>Category</th>
+            <th class="th-_ID" >Category</th>
             <th>Address</th>
             <th>Function</th>
             </tr>
@@ -379,7 +379,7 @@
             <td><img src="{{job.image}}" width="100px" height="100px" style="padding: 8px;"></td>
             <td>{{job.company}}</td>
             <td>{{job.job_name}} </td>
-            <td>{{job.category}} </td>
+            <td class="th-_ID">{{job.category}} </td>
             <td>{{job.address}} </td>
             <td>
                 <button class="function-btn" (click)="btnshowEditJobNull($event, job)" >Chấp nhận</button> <br>

@@ -236,3 +236,17 @@ table th {
   cursor: pointer;
 
 }
+
+@media screen and (max-width: 831px) {
+  .button {
+    font-size: 12px;
+    min-width: 80px;
+  }
+  .th-_ID{
+    display: none;
+  }
+  .welcome{
+    display: none;
+  }
+  
+}
