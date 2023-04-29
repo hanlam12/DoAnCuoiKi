@@ -1,0 +1,346 @@
+<body>
+  <h2 class="title text-center text-blue fw-bold">ĐĂNG TIN TUYỂN DỤNG</h2>
+  <div class="container">
+    <div class="body_left">
+    <form class="form" [formGroup]="regForm" (ngSubmit)="onSubmit()">
+        <div class="form-group row mb-3">
+          <div class="col-md-3 align-self-center">
+            <label for="">Tiêu đề công việc:<span class="text-red">*</span></label>
+          </div>
+          <div class="col-md-9">
+            <input type="text" class="form-control border-hover" placeholder="Nhập tiêu đề công việc" name="fulltitle" value="" formControlName="job_name" [class.is-invalid]="regForm.controls['job_name'].invalid && regForm.controls['job_name'].touched">
+          </div>
+        </div>
+        <div class="form-group row mb-3">
+          <div class="col-md-3 align-self-center">
+            <label for="">Ngành nghề: <span class="text-red">*</span></label>
+          </div>
+          <div class="col-md-9 radio">
+            <select type="text" class="form-control  select2-hidden-accessible" id="categoy" name="categoy" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="category" [class.is-invalid]="regForm.controls['category'].invalid && regForm.controls['category'].touched">
+              <option value>-- Chọn nhành nghề --</option>
+              <option value="Kinh doanh / Bán hàng">Kinh doanh / Bán hàng</option>
+              <option value="Biên / Phiên dịch">Biên / Phiên dịch</option>
+              <option value="Báo chí / Truyền hình">Báo chí / Truyền hình</option>
+              <option value="Bưu chính - Viễn thông">Bưu chính - Viễn thông</option>
+              <option value="Bảo hiểm">Bảo hiểm</option>
+              <option value="Bất động sản">Bất động sản</option>
+              <option value="Chứng khoán / Vàng / Ngoại tệ">Chứng khoán / Vàng / Ngoại tệ</option>
+              <option value="Công nghệ cao">Công nghệ cao</option>
+              <option value="Cơ khí / Chế tạo / Tự động hóa">Cơ khí / Chế tạo / Tự động hóa</option>
+              <option value="Du lịch">Du lịch</option>
+              <option value="Dầu khí/Hóa chất">Dầu khí/Hóa chất</option>
+              <option value="Dệt may / Da giày">Dệt may / Da giày</option>
+              <option value="Dịch vụ khách hàng">Dịch vụ khách hàng</option>
+              <option value="Điện tử viễn thông">Điện tử viễn thông</option>
+              <option value="Điện / Điện tử / Điện lạnh">Điện / Điện tử / Điện lạnh</option>
+              <option value="Giáo dục / Đào tạo">Giáo dục / Đào tạo</option>
+              <option value="Hoá học / Sinh học">Hoá học / Sinh học</option>
+              <option value="Hoạch định/Dự án">Hoạch định/Dự án</option>
+              <option value="Hàng gia dụng">Hàng gia dụng</option>
+              <option value="Hàng hải">Hàng hải</option>
+              <option value="Hàng không">Hàng không</option>
+              <option value="Hành chính / Văn phòng">Hành chính / Văn phòng</option>
+              <option value="In ấn / Xuất bản">In ấn / Xuất bản</option>
+              <option value="IT Phần cứng / Mạng">IT Phần cứng / Mạng</option>
+              <option value="IT phần mềm">IT phần mềm</option>
+              <option value="Khách sạn / Nhà hàng">Khách sạn / Nhà hàng</option>
+              <option value="Kế toán / Kiểm toán">Kế toán / Kiểm toán</option>
+              <option value="Công nghệ Ô tô">Công nghệ Ô tô</option>
+              <option value="An toàn lao động">An toàn lao động</option>
+              <option value="Marketing / Truyền thông / Quảng cáo">Marketing / Truyền thông / Quảng cáo</option>
+              <option value="Môi trường / Xử lý chất thải">Môi trường / Xử lý chất thải</option>
+              <option value="Mỹ phẩm / Trang sức">Mỹ phẩm / Trang sức</option>
+              <option value="Mỹ thuật / Nghệ thuật / Điện ảnh">Mỹ thuật / Nghệ thuật / Điện ảnh</option>
+              <option value="Ngân hàng / Tài chính">Ngân hàng / Tài chính</option>
+              <option value="Nhân sự">Nhân sự</option>
+              <option value="Nông / Lâm / Ngư nghiệp">Nông / Lâm / Ngư nghiệp</option>
+              <option value="Luật/Pháp lý">Luật/Pháp lý</option>
+              <option value="Quản lý chất lượng (QA/QC)">Quản lý chất lượng (QA/QC)</option>
+              <option value="Quản lý điều hành">Quản lý điều hành</option>
+              <option value="Thiết kế đồ họa">Thiết kế đồ họa</option>
+              <option value="Thời trang">Thời trang</option>
+              <option value="Thực phẩm / Đồ uống">Thực phẩm / Đồ uống</option>
+              <option value="Tư vấn">Tư vấn</option>
+              <option value="Tổ chức sự kiện / Quà tặng">Tổ chức sự kiện / Quà tặng</option>
+              <option value="Vận tải / Kho vận">Vận tải / Kho vận</option>
+              <option value="Logistics">Logistics</option>
+              <option value="Xuất nhập khẩu">Xuất nhập khẩu</option>
+              <option value="Xây dựng">Xây dựng</option>
+              <option value="Y tế / Dược">Y tế / Dược</option>
+              <option value="Bán hàng kỹ thuật">Bán hàng kỹ thuật</option>
+              <option value="Bán lẻ / bán sỉ">Bán lẻ / bán sỉ</option>
+              <option value="Bảo trì / Sửa chữa">Bảo trì / Sửa chữa</option>
+              <option value="Dược phẩm / Công nghệ sinh học">Dược phẩm / Công nghệ sinh học</option>
+              <option value="Địa chất / Khoáng sản">Địa chất / Khoáng sản</option>
+              <option value="Hàng cao cấp">Hàng cao cấp</option>
+              <option value="Hàng tiêu dùng">Hàng tiêu dùng</option>
+              <option value="Kiến trúc">Kiến trúc</option>
+              <option value="Phi chính phủ / Phi lợi nhuận">Phi chính phủ / Phi lợi nhuận</option>
+              <option value="Sản phẩm công nghiệp">Sản phẩm công nghiệp</option>
+              <option value="Sản xuất">Sản xuất</option>
+              <option value="Tài chính / Đầu tư">Tài chính / Đầu tư</option>
+              <option value="Thiết kế nội thất">Thiết kế nội thất</option>
+              <option value="Thư ký / Trợ lý">Thư ký / Trợ lý</option>
+              <option value="Spa / Làm đẹp">Spa / Làm đẹp</option>
+              <option value="Công nghệ thông tin">Công nghệ thông tin</option>
+              <option value="NGO / Phi chính phủ / Phi lợi nhuận">NGO / Phi chính phủ / Phi lợi nhuận</option>
+              <option value="Ngành nghề khác">Ngành nghề khác</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row mb-3">
+          <div class="col-md-3 align-self-center">
+            <label for="">Địa điểm làm việc: <span class="text-red">*</span></label>
+          </div>
+          <div class="col-md-9">
+            <select type="text" class="form-control  select2-hidden-accessible" id="address" name="address" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="address" [class.is-invalid]="regForm.controls['address'].invalid && regForm.controls['address'].touched">
+            <option value="">-- Chọn địa điểm --</option>
+            <option value="Hà Nội">Hà Nội</option>
+            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+            <option value="Bình Dương">Bình Dương</option>
+            <option value="Bắc Ninh">Bắc Ninh</option>
+            <option value="Đồng Nai">Đồng Nai</option>
+            <option value="Hưng Yên">Hưng Yên</option>
+            <option value="Hải Dương">Hải Dương</option>
+            <option value="Đà Nẵng">Đà Nẵng</option>
+            <option value="Hải Phòng">Hải Phòng</option>
+            <option value="An Giang">An Giang</option>
+            <option value="Bà Rịa-Vũng Tàu">Bà Rịa-Vũng Tàu</option>
+            <option value="Bắc Giang">Bắc Giang</option>
+            <option value="Bắc Kạn">Bắc Kạn</option>
+            <option value="Bạc Liêu">Bạc Liêu</option>
+            <option value="Bến Tre">Bến Tre</option>
+            <option value="Bình Định">Bình Định</option>
+            <option value="Bình Phước">Bình Phước</option>
+            <option value="Bình Thuận">Bình Thuận</option>
+            <option value="Cà Mau">Cà Mau</option>
+            <option value="Cần Thơ">Cần Thơ</option>
+            <option value="Cao Bằng">Cao Bằng</option>
+            <option value="Cửu Long">Cửu Long</option>
+            <option value="Đắk Lắk">Đắk Lắk</option>
+            <option value="Đắc Nông">Đắc Nông</option>
+            <option value="Điện Biên">Điện Biên</option>
+            <option value="Đồng Tháp">Đồng Tháp</option>
+            <option value="Gia Lai">Gia Lai</option>
+            <option value="Hà Giang">Hà Giang</option>
+            <option value="Hà Nam">Hà Nam</option>
+            <option value="Hà Tĩnh">Hà Tĩnh</option>
+            <option value="Hậu Giang">Hậu Giang</option>
+            <option value="Hoà Bình">Hoà Bình</option>
+            <option value="Khánh Hoà">Khánh Hoà</option>
+            <option value="Kiên Giang">Kiên Giang</option>
+            <option value="Kon Tum">Kon Tum</option>
+            <option value="Lai Châu">Lai Châu</option>
+            <option value="Lâm Đồng">Lâm Đồng</option>
+            <option value="Lạng Sơn">Lạng Sơn</option>
+            <option value="Lào Cai">Lào Cai</option>
+            <option value="Long An">Long An</option>
+            <option value="Miền Bắc">Miền Bắc</option>
+            <option value="Miền Nam">Miền Nam</option>
+            <option value="Miền Trung">Miền Trung</option>
+            <option value="Nam Định">Nam Định</option>
+            <option value="Nghệ An">Nghệ An</option>
+            <option value="Ninh Bình">Ninh Bình</option>
+            <option value="Ninh Thuận">Ninh Thuận</option>
+            <option value="Phú Thọ">Phú Thọ</option>
+            <option value="Phú Yên">Phú Yên</option>
+            <option value="Quảng Bình">Quảng Bình</option>
+            <option value="Quảng Nam">Quảng Nam</option>
+            <option value="Quảng Ngãi">Quảng Ngãi</option>
+            <option value="Quảng Ninh">Quảng Ninh</option>
+            <option value="Quảng Trị">Quảng Trị</option>
+            <option value="Sóc Trăng">Sóc Trăng</option>
+            <option value="Sơn La">Sơn La</option>
+            <option value="Tây Ninh">Tây Ninh</option>
+            <option value="Thái Bình">Thái Bình</option>
+            <option value="Thái Nguyên">Thái Nguyên</option>
+            <option value="Thanh Hoá">Thanh Hoá</option>
+            <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
+            <option value="Tiền Giang">Tiền Giang</option>
+            <option value="Toàn Quốc">Toàn Quốc</option>
+            <option value="Trà Vinh">Trà Vinh</option>
+            <option value="Tuyên Quang">Tuyên Quang</option>
+            <option value="Vĩnh Long">Vĩnh Long</option>
+            <option value="Vĩnh Phúc">Vĩnh Phúc</option>
+            <option value="Yên Bái">Yên Bái</option>
+            <option value="Nước Ngoài">Nước Ngoài</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row mb-3">
+          <div class="col-md-3 align-self-center">
+            <label for="">Mức lương: <span class="text-red">*</span></label>
+          </div>
+          <div class="col-md-9">
+            <input type="text" class="form-control border-hover" placeholder="̀Nhập mức lương (5 -10 triệu/ 500 - 1000 USD)" name="fulltitle" value="" formControlName="salary" [class.is-invalid]="regForm.controls['salary'].invalid && regForm.controls['salary'].touched">
+          </div>
+        </div>
+        <div class="form-group row mb-3">
+          <div class="col-md-3 align-self-center">
+            <label for="">Kinh nghiệm: <span class="text-red">*</span></label>
+          </div>
+          <div class="col-md-9">
+            <select type="text" class="form-control  select2-hidden-accessible" id="experience" name="experience" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="exprience" [class.is-invalid]="regForm.controls['exprience'].invalid && regForm.controls['exprience'].touched">
+            <option value>-- Kinh nghiệm -- </option>
+            <option value="Chưa có kinh nghiệm">Chưa có kinh nghiệm</option>
+            <option value="Dưới 1 năm">Dưới 1 năm</option>
+            <option value="1 năm">1 năm</option>
+            <option value="2 năm">2 năm</option>
+            <option value="3 năm">3 năm</option>
+            <option value="4 năm">4 năm</option>
+            <option value="5 năm">5 năm</option>
+            <option value="Trên 5 năm">Trên 5 năm</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row mb-3">
+          <div class="col-md-3 align-self-center">
+            <label for="">Hạn nộp: <span class="text-red">*</span></label>
+          </div>
+          <div class="col-md-9">
+            <input type="date" class="form-control border-hover" placeholder="dd/mm/yyyy" name="fulltitle" value="" formControlName="dealine" [class.is-invalid]="regForm.controls['dealine'].invalid && regForm.controls['dealine'].touched">
+          </div>
+        </div>
+        <div class="form-group row mb-3">
+          <div class="col-md-3 align-self-center">
+            <label for="">Cấp bậc:  <span class="text-red">*</span> </label>
+          </div>
+          <div class="col-md-9">
+            <select type="text" class="form-control  select2-hidden-accessible" id="experience" name="experience" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="degree" [class.is-invalid]="regForm.controls['degree'].invalid && regForm.controls['degree'].touched">
+            <option value>-- Chọn cấp bậc của nhân viên -- </option>
+            <option value="Không yêu cầu">Không yêu cầu</option>
+            <option value="Đại học">Đại học</option>
+            <option value="Cao đẳng trở lên">Cao đẳng trở lên</option>
+            <option value="Cao đẳng">Cao đẳng</option>
+            <option value="Trung cấp">Trung cấp</option>
+            <option value="Từ trung cấp trở lên">Từ trung cấp trở lên</option>
+            <option value="Giáo sư">Giáo sư</option>
+            <option value="Tiến sĩ">Tiến sĩ</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row mb-3">
+          <div class="col-md-3 align-self-center">
+            <label for="">Hình thức làm việc: <span class="text-red">*</span></label>
+          </div>
+          <div class="col-md-9">
+            <select type="text" class="form-control  select2-hidden-accessible" id="hinhThucLamViec" name="hinhThucLamViec" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="work_form" [class.is-invalid]="regForm.controls['work_form'].invalid && regForm.controls['work_form'].touched">
+            <option value>-- Chọn hình thức làm việc --</option>
+            <option value="Nhân viên chính thức">Nhân viên chính thức</option>
+            <option value="Toàn thời gian">Toàn thời gian</option>
+            <option value="Bán thời gian">Bán thời gian</option>
+            <option value="Thực tập">Thực tập</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row mb-3">
+          <div class="col-md-3 align-self-center">
+            <label for="">Số lượng tuyển: <span class="text-red">*</span></label>
+          </div>
+          <div class="col-md-9">
+            <input type="text" class="form-control border-hover" placeholder="Nhập số lượng cần tuyển (... người)" name="fulltitle" value="" formControlName="recruiting_amount" [class.is-invalid]="regForm.controls['recruiting_amount'].invalid && regForm.controls['recruiting_amount'].touched">
+          </div>
+        </div>
+        <div class="form-group row mb-3">
+          <div class="col-md-3 align-self-center">
+            <label for="">Chức vụ: <span class="text-red">*</span></label>
+          </div>
+          <div class="col-md-9">
+            <input type="text" class="form-control border-hover" placeholder="Nhập chức vụ" name="fulltitle" value="" formControlName="position" [class.is-invalid]="regForm.controls['position'].invalid && regForm.controls['position'].touched">
+          </div>
+        </div>
+        <div class="form-group row mb-3">
+          <div class="col-md-3 align-self-center">
+            <label for="">Độ tuổi:<span class="text-red">*</span></label>
+          </div>
+          <div class="col-md-9">
+            <select type="text" class="form-control  select2-hidden-accessible" id="experience" name="experience" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="age" [class.is-invalid]="regForm.controls['age'].invalid && regForm.controls['age'].touched">
+              <option value="">-- Chọn độ tuổi cho ứng viên --</option>
+              <option value="Trên 18 tuổi">Trên 18 tuổi</option>
+              <option value="Từ 18 - 22 tuổi">Từ 18 - 22 tuổi</option>
+              <option value="Từ 18 - 30 tuổi">Từ 18 - 30 tuổi</option>
+              <option value="Trên 22 tuổi">Trên 22 tuổi</option>
+              <option value="Từ 22 - 30 tuổi">Từ 22 - 30 tuổi</option>
+              <option value="Từ 22 - 35 tuổi">Từ 22 - 35 tuổi</option>
+              <option value="Trên 28 tuổi">Trên 28 tuổi</option>
+              <option value="Từ 28 - 35 tuổi">Từ 28 - 35 tuổi</option>
+              <option value="Từ 28 - 40 tuổi">Từ 28 - 40 tuổi</option>
+              <option value="Không yêu cầu">Không yêu cầu</option>
+              </select>
+          </div>
+        </div>
+        <div class="form-group row mb-3">
+          <div class="col-md-3 align-self-center">
+            <label for="">Giới tính: <span class="text-red">*</span></label>
+          </div>
+          <div class="col-md-9 radio">
+            <select type="text" class="form-control  select2-hidden-accessible" id="experience" name="experience" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="gender" [class.is-invalid]="regForm.controls['gender'].invalid && regForm.controls['gender'].touched">
+              <option value="">-- Chọn giới tính --</option>
+              <option value="Nam">Nam</option>
+              <option value="Nữ">Nữ</option>
+              <option value="Không yêu cầu">Không yêu cầu</option>
+              </select>
+          </div>
+        </div>
+        <div class="form-group row mb-3">
+          <div class="col-md-3 align-self-center">
+            <label for="">Phúc lợi:<span class="text-red">*</span></label>
+          </div>
+          <div class="col-md-9">
+            <textarea class="form-control border-hover" name="expectation" placeholder="Phúc lợi của ngành nghề mà công ty đem lại"  cols="30" rows="10" style="height: 100px;" formControlName="welfare" [class.is-invalid]="regForm.controls['welfare'].invalid && regForm.controls['welfare'].touched" > </textarea>
+          </div>
+        </div>
+        <div class="form-group row mb-3">
+          <div class="col-md-3 align-self-center">
+            <label for="">Mô tả công việc:<span class="text-red">*</span></label>
+          </div>
+          <div class="col-md-9">
+            <textarea class="form-control border-hover" name="expectation" placeholder="Mô tả công việc công ty bạn đang tuyển dụng"  cols="30" rows="10" style="height: 100px;" formControlName="description" [class.is-invalid]="regForm.controls['description'].invalid && regForm.controls['description'].touched"> </textarea>
+          </div>
+        </div>
+        <div class="form-group row mb-3">
+          <div class="col-md-3 align-self-center">
+            <label for="">Yêu cầu công việc: <span class="text-red">*</span></label>
+          </div>
+          <div class="col-md-9">
+            <textarea class="form-control border-hover" name="expectation" placeholder="Nhập yêu cầu về công việc mà công ty đang tuyển dụng"  cols="30" rows="10" style="height: 100px;" formControlName="job_requirement" [class.is-invalid]="regForm.controls['job_requirement'].invalid && regForm.controls['job_requirement'].touched"> </textarea>
+          </div>
+        </div>
+        <div class="form-group row mb-3">
+        <div class="col-md-3 align-self-center">
+          <label for="">Tên liên hệ: <span class="text-red">*</span></label>
+        </div>
+        <div class="col-md-9">
+          <input type="text" class="form-control border-hover" placeholder="Nhập tên người liên hệ" name="fulltitle" value="" formControlName="contact_person" [class.is-invalid]="regForm.controls['contact_person'].invalid && regForm.controls['contact_person'].touched">
+        </div>
+      </div>
+      <div class="form-group row mb-3">
+        <div class="col-md-3 align-self-center">
+          <label for="">SĐT liên hệ: <span class="text-red">*</span></label>
+        </div>
+        <div class="col-md-9">
+          <input type="text" class="form-control border-hover" placeholder="Nhập SĐT người liên hệ" name="fulltitle" value="" formControlName="phone_person" [class.is-invalid]="regForm.controls['phone_person'].invalid && regForm.controls['phone_person'].touched">
+        </div>
+      </div>
+      <div class="text-center">
+        <button class="btn submit" [disabled]="!regForm.valid" type="submit">Đăng tin tuyển dụng</button>
+        <button class="btn cancel" (click)="onCancel()">Xóa thông tin</button>
+      </div>
+      </form>
+    </div>
+    <div class="body_right">
+    <div class="form">
+      <div class="text-center">
+        <p class="fw-bold name_cpn text-blue">{{companyData?.company?.company_name}}
+        </p>
+      </div>
+      <div id="exist-avatar" class="upload-avatar d-flex">
+        <div class="avatar" >
+          <img src="{{companyData?.job?.image}}" id="avatar-output" width="100">
+        </div>
+      </div>
+      <div class="form-group row mb-3 picture"><img src="assets/media/dangtuyen.png"></div>
+    </div>
+  </div>
+  </div>
+  </body>

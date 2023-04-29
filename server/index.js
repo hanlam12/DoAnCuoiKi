@@ -1,6 +1,8 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const app = express();
 const port = 6868;
+const secretKey = 'ThisIsASecretKey';
 const morgan=require("morgan")
 app.use(morgan("combined"))
 const bodyParser=require("body-parser")
@@ -25,14 +27,14 @@ app.listen(port,()=>{
   userCollection = database.collection("user");
   companyCollection = database.collection("company");
 
-
-  app.get("/job-application/:userID", cors(), async (req, res) => {
+  const { ObjectId: objId } = require('mongodb');
+  app.get("/api/job-application/:userID", cors(), async (req, res) => {
     const userId = req.params.userID;
     const result = await userCollection.find({ userID: userId }).toArray();
     res.send(result[0]);
   });
 
-  app.put("/job-application/:userID", cors(), async (req, res) =>{
+  app.put("/api/job-application/:userID", cors(), async (req, res) =>{
     const userID = req.params.userID;
     const image = req.body.image;
     const title = req.body.cv[0].title;
@@ -76,6 +78,14 @@ app.listen(port,()=>{
 
 // app.post("/job-application/:userID/cv", cors(), (req, res) => {
 //   const userID = req.params.userID;
+//   const obj;
+//   const cvArray = obj.cv
+// cvarray.push(newcv)
+// await userCollection.updateOne(filter,
+//   {...obj
+//    cv: cvArray
+// });
+//
 //   const newCv = req.body;
 //   const CvToUpdate = userCollection.find((cv) => cv.userID === userID);
 //   if (CvToUpdate) {
@@ -86,7 +96,7 @@ app.listen(port,()=>{
 //   }
 // });
 
-  app.get('/job-decription/:jobJD', cors(), async (req, res) => {
+  app.get('/api/job-decription/:jobJD', cors(), async (req, res) => {
     try {
         const jobJD = req.params.jobJD;
         const job = await jobCollection.findOne({ jobJD: jobJD });
@@ -99,25 +109,39 @@ app.listen(port,()=>{
       res.status(500).send('Server error');
     }
   });
+//api lấy tên
+app.get('/api/applycv/jobJD', cors(), async (req, res) => {
+  try {
+    const jobJD = req.params.jobJD;
+    const job = await jobCollection.findOne({ jobJD: jobJD });
+
+    if (!job) {
+      return res.status(404).send('Job not found');
+    }
+
+    const jobName = job.job_name; // Lấy giá trị của trường job_name
+    res.send(jobName); // Trả về giá trị của job_name
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
 
 
+  app.get("/api/job",cors(),async(req,res)=>{
+    const result = await jobCollection.find({}).toArray();
+    res.send(result)
+  })
 
 
-
-app.get("/job",cors(),async(req,res)=>{
-  const result = await jobCollection.find({}).toArray();
-  res.send(result)
-})
-
-
-app.get("/job/:position", cors(), async (req, res) => {
+app.get("/api/job/:position", cors(), async (req, res) => {
   const position = req.params.position;
   const result = await jobCollection.find({ position: position }).toArray();
   res.send(result);
 });
 
 
-app.get("/job/category/:categories", cors(), async (req, res) => {
+app.get("/api/job/category/:categories", cors(), async (req, res) => {
   const categories = req.params.categories.split(",");
   const result = await jobCollection.find({ category: { $in: categories } }).toArray();
   res.send(result);
@@ -128,47 +152,28 @@ app.get("/job/category/:categories", cors(), async (req, res) => {
 //   const result = await jobCollection.find({ position: position, category: { $in: categories } }).toArray();
 //   res.send(result);
 // });
-app.get("/company",cors(),async(req,res)=>{
-  const result = await companyCollection.find({}).toArray();
-  res.send(result)
-})
-app.get("/user",cors(),async(req,res)=>{
-  const result = await userCollection.find({}).toArray();
-  res.send(result)
-})
-app.post("/users",cors(),async(req,res)=>{
+
+// TODO
+// app.get("/user",cors(),async(req,res)=>{
+//   const result = await userCollection.find({}).toArray();
+//   res.send(result)
+// })
+app.post("/api/users",cors(),async(req,res)=>{
   var crypto = require('crypto');
   salt = crypto.randomBytes(16).toString('hex');
-  UserCollection = database.collection("User");
+  UserCollection = database.collection("Users");
   user=req.body
   var existingUser = await UserCollection.findOne({
     $or: [
-      { username: user.username },
+
       { email: user.email },
       { phone: user.phone },
     ],
   });
-
-  // API Login
-
-  app.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-
-    const user = await userCollection.findOne({ email: email });
-
-    if (!user || user.password !== password) {
-      return res.status(401).send('Invalid email or password');
-    }
-    const token = jwt.sign({ email: email }, secretKey);
-    res.json({ token, userEmail: user.email });
-
-  });
   // Kiểm tra từng thông tin để trả về thông báo cụ thể cho người dùng
   if (existingUser) {
     var errorMessages = [];
-    if (existingUser.username === user.username) {
-      errorMessages.push("Tên đăng nhập đã được sử dụng");
-    }
+
     if (existingUser.email === user.email) {
       errorMessages.push("Địa chỉ email đã được sử dụng");
     }
@@ -185,8 +190,20 @@ app.post("/users",cors(),async(req,res)=>{
   res.send(req.body)
 })
 
+// API Login
+
+app.post('/api/login', async (req, res) => {
+  const { email, password } = req.body;
+const user = await userCollection.findOne({ email: email });
+if (!user || user.password !== password) {
+  return res.status(401).send('Invalid email or password');
+}
+const token = jwt.sign({ email: email }, secretKey);
+res.json({ token, userEmail: user.email });
+});
+
 // API lấy tên người dùng
-app.get('/user', async (req, res) => {
+app.get('/api/user', async (req, res) => {
   const token = req.headers.authorization.split(' ')[1]
   if (!token) {
     return res.status(401).send('Unauthorized');
@@ -205,18 +222,64 @@ app.get('/user', async (req, res) => {
     console.error(error);
     return res.status(401).send(` ${error.message}`);
   }
-
 });
 
-  // API lấy thông tin công ty
-  const { ObjectId: objId } = require('mongodb');
+app.get("/api/company",cors(),async(req,res)=>{
+  const result = await companyCollection.find({}).toArray();
+  res.send(result)
+})
+// API lấy thông tin công ty
 
-  app.get('/congty/:id', async (req, res) => {
-    const id = req.params.id;
-    const company = await companyCollection.findOne({ _id: objId.createFromHexString(id) });
-    if (!company) {
-      return res.status(404).send('Không tìm thấy công ty');
+  app.get('/api/company/:id', async (req, res) => {
+    try {
+      const companyId = req.params.id;
+
+      // Find company by name
+      const company = await companyCollection.findOne({ company_id: companyId });
+
+      // Find jobs by company name
+      const jobs = await jobCollection.find({ company: company.company_name }).toArray();
+
+      const companyData = { company, jobs };
+
+      // Send company and job data in response
+      res.send(companyData);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Server error');
     }
-    res.json(company);
   });
 
+  app.get('/api/recruitment/:company_id', cors(), async (req, res) => {
+    try {
+      const company_id = req.params.company_id;
+      const company = await companyCollection.findOne({ company_id: company_id });
+      const job = await jobCollection.find({ company_id: company_id }).toArray(); // Updated this line
+      const companyData = { company, job };
+      res.send(companyData);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Server error');
+    }
+  });
+
+  app.post('/api/recruitment/:company_id/job', cors(), async (req, res) => {
+    try {
+      const company_id = req.params.company_id;
+      const job = req.body;
+
+      // Kiểm tra xem công ty có tồn tại trong cơ sở dữ liệu không
+      const company = await companyCollection.findOne({ company_id: company_id });
+      if (!company) {
+        res.status(404).send('Company not found');
+        return;
+      }
+      job.company_id = company_id;
+      const result = await jobCollection.insertOne(job);
+
+      res.send(result.ops[0]);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Server error');
+    }
+  });

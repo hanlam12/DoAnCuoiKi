@@ -25,6 +25,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { SavedJobComponent } from './saved-job/saved-job.component';
 import { ThongBaoViecLamComponent } from './thong-bao-viec-lam/thong-bao-viec-lam.component';
+import { RecruitmentComponent } from './recruitment/recruitment.component';
+import { HomepageEmployerComponent } from './homepage-employer/homepage-employer.component';
 
 
 
@@ -42,7 +44,7 @@ const routes: Routes = [
   {path:"job-application/:userID",component:JobApplicationComponent},
   {path:"applied-job/:userID",component:AppliedJobComponent},
 
- 
+
   {path:"job-decription",component:JobDecriptionComponent},
   {path:"job-application",component:JobApplicationComponent},
   {path:"applied-job",component:AppliedJobComponent},
@@ -65,7 +67,11 @@ const routes: Routes = [
   {path: "companies/:companyId", component: CongtyComponent},
 
   {path: "congty", component: CongtyComponent},
-   {path: "congty/:id", component: CongtyComponent}
+   {path: "congty/:id", component: CongtyComponent},
+   {path: "recruitment/:company_id", component: RecruitmentComponent},
+   {path: "recruitment", component: RecruitmentComponent},
+   {path: "homepageEmployer", component: HomepageEmployerComponent},
+   {path: "homepageEmployer/:company_id", component: HomepageEmployerComponent},
 
 ];
 
@@ -95,6 +101,7 @@ export const RoutingComponent={
   Quenmatkhau1Component,
   Quenmatkhau2Component,
   Quenmatkhau3Component,
-  CongtyComponent
-
+  CongtyComponent,
+  RecruitmentComponent,
+  HomepageEmployerComponent,
 }
