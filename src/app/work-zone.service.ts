@@ -26,18 +26,11 @@ constructor(private _http:HttpClient, private router: Router) { }
   private _url:string="/entries"
 
 
-    // login
+
   private loginUrl = 'http://localhost:6868/login';
-  public userEmail = localStorage.getItem('userEmail'); // đây là userEmail khi đăng nhập thành công, đứa nào muốn lấy truy xuất khi login thành công thì lấy thằng này.
-  userIdUpdated = new EventEmitter<string>();
-
-  navigateAfterLogin(): void {
-    // Điều hướng đến trang mong muốn sau khi người dùng đăng nhập thành công
-    this.router.navigate(['/']);
-  }
-
   login(email: string, password: string): Observable<any> {
-    return this._http.post<any>(this.loginUrl, { email: email, password: password }).pipe(
+    const body = { email, password };
+    return this._http.post<any>(this.loginUrl, body).pipe(
       tap(data => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('userEmail', data.userEmail);
@@ -50,6 +43,30 @@ constructor(private _http:HttpClient, private router: Router) { }
       })
     );
   }
+    // login
+  // private loginUrl = 'http://localhost:6868/login';
+  public userEmail = localStorage.getItem('userEmail'); // đây là userEmail khi đăng nhập thành công, đứa nào muốn lấy truy xuất khi login thành công thì lấy thằng này.
+  userIdUpdated = new EventEmitter<string>();
+
+  navigateAfterLogin(): void {
+    // Điều hướng đến trang mong muốn sau khi người dùng đăng nhập thành công
+    this.router.navigate(['/']);
+  }
+
+  // login(email: string, password: string): Observable<any> {
+  //   return this._http.post<any>(this.loginUrl, { email: email, password: password }).pipe(
+  //     tap(data => {
+  //       localStorage.setItem('token', data.token);
+  //       localStorage.setItem('userEmail', data.userEmail);
+  //       localStorage.setItem('loggedIn', 'true')
+  //       this.loggedIn = true; // set loggedIn thành true sau khi đăng nhập thành công
+  //       this.userIdUpdated.emit(data.userEmail);
+  //     }),
+  //     catchError(error => {
+  //       return of({ error: error.error });
+  //     })
+  //   );
+  // }
 
   isLoggedIn(): boolean {
     const token = localStorage.getItem('token');

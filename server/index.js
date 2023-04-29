@@ -190,17 +190,43 @@ await UserCollection.insertOne(user)
 res.send(req.body)
 })
 
+
+
+// api đăng nhâp employee
+app.post("/login",cors(),async(req,res)=>{
+  email=req.body.email
+  password=req.body.password
+
+
+  var crypto = require('crypto')
+
+
+  UsersCollection = database.collection("Users");
+  user=await UsersCollection.findOne({email:email})
+  if(user==null)
+    res.send({"email":email, "message":"not exist"})
+  else{
+    hash = crypto.pbkdf2Sync(password, user.salt,1000,64,`sha512`).toString(`hex`);
+    if(user.password==hash){
+      const token = jwt.sign({ email: email }, secretKey);
+      res.json({ user, token, userEmail: user.email });
+    }
+
+    else
+      res.send({"email":email,"password":password,"message":"wrong password"})
+  }
+})
 // API Login
 
-app.post('/login', async (req, res) => {
-const { email, password } = req.body;
-const user = await userCollection.findOne({ email: email });
-if (!user || user.password !== password) {
-return res.status(401).send('Invalid email or password');
-}
-const token = jwt.sign({ email: email }, secretKey);
-res.json({ token, userEmail: user.email });
-});
+// app.post('/login', async (req, res) => {
+// const { email, password } = req.body;
+// const user = await userCollection.findOne({ email: email });
+// if (!user || user.password !== password) {
+// return res.status(401).send('Invalid email or password');
+// }
+// const token = jwt.sign({ email: email }, secretKey);
+// res.json({ token, userEmail: user.email });
+// });
 
 // API lấy tên người dùng
 app.get('/user', async (req, res) => {
