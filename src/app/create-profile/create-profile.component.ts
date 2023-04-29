@@ -15,9 +15,32 @@ export class CreateProfileComponent {
 
   errMessage:string=''
 
+  onSelectFile(event:any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.user.image = reader.result as string;
+      this.login.updateImage(this.user.image).subscribe(
+        res => {
+          console.log(res);
+          alert("Đã lưu hình ảnh")
+        },
+        error => console.error(error)
+      );
+    };
+  }
 
-
-
+  // saveImage() {
+  //   this.login.updateImage(this.user.image).subscribe(
+  //     response => {
+  //       console.log('Lưu hình ảnh thành công!');
+  //     },
+  //     error => {
+  //       console.log('Lỗi khi lưu hình ảnh: ' + error.message);
+  //     }
+  //   );
+  // }
 
   ngOnInit() {
     this.login.getProfile().subscribe(data => {

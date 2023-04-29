@@ -536,7 +536,12 @@ updateProfile5(user: Users) {
   });
   return this._http.put<any>(`${this.serverUrl}/gender`, user, { headers });
 }
-
-
+// image
+updateImage(image: string): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = { Authorization: 'Bearer ' + token };
+  const body = { image: image };
+  return this._http.put(`${this.serverUrl}/image`, body, { headers });
+}
 
 }
