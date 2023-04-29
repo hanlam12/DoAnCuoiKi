@@ -107,9 +107,13 @@
     <div class="col-md-3 col-12">
         <div class="img-profile" id="img-profile">
           <img src="{{user.image}}" >
-          <input type="file" (change)="onFileSelected($event,user)" [(ngModel)]="user.image" name="image" #image="ngModel" >
+          <input type="file"  [(ngModel)]="user.image" name="image" #image="ngModel">
+
+
           <p>(JPEG/PNG/GIF, 1MB)</p>
-          <button class="save" style="width: auto; padding: 5px 8px">Lưu ảnh</button>
+          <button class="save" style="width: auto; padding: 5px 8px" >Lưu ảnh</button>
+
+          <div>{{user.fullname}}</div>
         </div>
       </div>
   </div>

@@ -447,3 +447,28 @@ app.get('/userID', async (req, res) => {
     }
   });
 
+   // api chỉnh sửa image
+   app.put('/image', async (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    if (!token) {
+      return res.status(401).send('Unauthorized');
+    }
+    try {
+      const decodedToken = jwt.verify(token, secretKey);
+      const email = decodedToken.email;
+      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { image: req.body.image } });
+      console.log('decodedToken:', decodedToken);
+      console.log('user:', user);
+      if (!user) {
+        return res.status(404).send('User not found');
+      } else {
+        res.send(user);
+      }
+    } catch (error) {
+      console.error(error);
+      return res.status(401).send(` ${error.message}`);
+    }
+  });
+
+
+

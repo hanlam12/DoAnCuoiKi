@@ -520,7 +520,7 @@ updateProfile3(user: Users) {
   });
   return this._http.put<any>(`${this.serverUrl}/district`, user, { headers });
 }
-// chỉnh sửa city
+// chỉnh sửa DOB
 updateProfile4(user: Users) {
   const headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -528,7 +528,7 @@ updateProfile4(user: Users) {
   });
   return this._http.put<any>(`${this.serverUrl}/DOB`, user, { headers });
 }
-// chỉnh sửa city
+// chỉnh sửa gender
 updateProfile5(user: Users) {
   const headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -536,6 +536,7 @@ updateProfile5(user: Users) {
   });
   return this._http.put<any>(`${this.serverUrl}/gender`, user, { headers });
 }
+
 
 
 }

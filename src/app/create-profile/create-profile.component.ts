@@ -15,23 +15,6 @@ export class CreateProfileComponent {
 
   errMessage:string=''
 
-  public setFashion(f:Users){
-    this.user=f
-  }
-
-  onFileSelected (event: any, user: Users) {
-    let me = this;
-    let file= event.target.files[0];
-    let reader = new FileReader(); reader.readAsDataURL(file);
-    reader.onload= function () {
-    user.image=reader.result!.toString()
-    };
-
-    reader.onerror= function (error) {
-    console.log('Error: ', error);
-    };
-
-    }
 
 
 
