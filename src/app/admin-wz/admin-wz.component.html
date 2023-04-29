@@ -1,11 +1,394 @@
 <div class="container">
     <div class="function" >
-        <button>Danh Sách Công ty</button>
-        <button>Danh Sách Công việc</button>
-        <button>Danh sách User</button>
+        <button class="button" (click)="btnCompaniesList()" >Danh Sách Công ty</button>
+        <button class="button" (click)="btnJobsList()" >Danh Sách Công việc</button>
+        <button class="button" (click)="btnUsersList()" >Danh sách User</button>
+        <button class="button" (click)="btnJobsNullList()">Danh sách Bài đăng tuyển</button>
     </div>
-    <div class="content" >
+    <div class="container-content" >
+
+        <app-new-company-modal *ngIf="showModal" (hidePopup)="hidePopup()">
+        </app-new-company-modal>
+        <div class="content" *ngIf="showEdit">
+            <div class="company-details-content">
+                <label for="">_Id</label>
+                <input type="text" value="{{companyEdits._id}}"
+                #name="ngModel" name="_id" id="_id" 
+                [(ngModel)]="companyEdits._id" disabled>
+            </div>
+            <div class="company-details-content">
+                <label for="">Company Name</label>
+                <input type="text" value="{{companyEdits.company_name}}"
+                #name="ngModel" name="company_name" id="company_name" 
+                [(ngModel)]="companyEdits.company_name">
+            </div>
+            <div class="company-details-content">
+                <label for="">Company Intro</label>
+                <input type="text" value="{{companyEdits.company_intro}}"
+                #name="ngModel" name="company_intro" id="company_intro" 
+                [(ngModel)]="companyEdits.company_intro">
+            </div>
+            <div class="company-details-content">
+                <label for="">Company Scale</label>
+                <input type="text" value="{{companyEdits.company_scale}}"
+                #name="ngModel" name="company_scale" id="company_scale" 
+                [(ngModel)]="companyEdits.company_scale">
+            </div>
+            <div class="company-details-content">
+                <label for="">Company Address</label>
+                <input type="text" value="{{companyEdits.company_address}}"
+                #name="ngModel" name="company_address" id="company_address" 
+                [(ngModel)]="companyEdits.company_address">
+            </div>
+            <div class="company-details-content">
+                <label for="">Company Website</label>
+                <input type="text" value="{{companyEdits.company_website}}"
+                #name="ngModel" name="company_website" id="company_website" 
+                [(ngModel)]="companyEdits.company_website">
+            </div>
+
+            <div class="company-details-content">
+                <label for="">Company ID</label>
+                <input type="text" value="{{companyEdits.company_id}}"
+                #name="ngModel" name="company_id" id="company_id" 
+                [(ngModel)]="companyEdits.company_id">
+            </div>
+
+            <div class="img-company">
+                <img src="{{companyEdits.company_image}}" alt="Lỗi" >
+                <input type="file" #name="ngModel" name="company_image" id="company_image" 
+                [(ngModel)]="companyEdits.company_image"
+                (change)="onFileSelectedPutCompany($event,companyEdits)">
+            </div>
+
+            <div class="put-function-div">
+                <button class="put-function-btn" (click)="putCompany()" >Submit</button>
+                <button class="put-function-btn" (click)="closePutCompany()" >Close</button>
+            </div>
+        </div>
+        <div class="content" *ngIf="showDetails" >
+            <div class="company-details-content">
+                <label for="">_Id</label>
+                <div>{{companyDetails._id}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Company Name</label>
+                <div>{{companyDetails.company_name}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Company Intro</label>
+                <div>{{companyDetails.company_intro}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Company Scale</label>
+                <div>{{companyDetails.company_scale}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Company Address</label>
+                <div>{{companyDetails.company_address}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Company Website</label>
+                <div><a href="{{companyDetails.company_website}}">{{companyDetails.company_website}}</a></div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Company ID</label>
+                <div>{{companyDetails.company_id}}</div>
+            </div>
+            <div class="img-company">
+                <img src="{{companyDetails.company_image}}" alt="Lỗi" >
+            </div>
+            <div class="put-function-div">
+                <button class="put-function-btn" (click)="closeDetailsCompany()" >Close</button>
+            </div>
+        </div>
+        <div class="content"  *ngIf="showDetailsUser">
+            <div class="company-details-content">
+                <label for="">_Id</label>
+                <div>{{userDetails._id}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">User ID</label>
+                <div>{{userDetails.userID}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Full Name</label>
+                <div>{{userDetails.fullname}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Email</label>
+                <div>{{userDetails.email}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Giới tính</label>
+                <div>{{userDetails.gender}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Ngày sinh</label>
+                <div>{{userDetails.DOB}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Số điện thoại</label>
+                <div>{{userDetails.phone}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Địa chỉ cụ thể</label>
+                <div>{{userDetails.address}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Quận/Huyện</label>
+                <div>{{userDetails.district}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Tỉnh/TP</label>
+                <div>{{userDetails.city}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Hồ sơ</label>
+                <div>{{userDetails.cv}}</div>
+            </div>
+            <div class="img-company">
+                <img src="{{userDetails.image}}" alt="Lỗi" >
+            </div>
+            <div class="put-function-div">
+                <button class="put-function-btn" (click)="closeDetailsUser()" >Close</button>
+            </div>
+        </div>
+        <div class="content" id="userEditconten" *ngIf="showEditUser">
+            <div class="company-details-content">
+                <label for="">User ID</label>
+                <input type="text" value="{{userEditsT.userID}}"
+                #name="ngModel" name="userID" id="userID" 
+                [(ngModel)]="userEdits.userID">
+            </div>
+
+            <div class="put-function-div">
+                <button class="put-function-btn" (click)="putUser()" >Submit</button>
+                <button class="put-function-btn" (click)="closePutUser()" >Close</button>
+            </div>
+        </div>
+
+        <div class="content" id="userEditconten" *ngIf="showEditJob">
+            <div class="company-details-content">
+                <label for="">Job ID</label>
+                <input type="text" value="{{jobEdits.jobJD}}"
+                #name="ngModel" name="jobJD" id="jobJD" 
+                [(ngModel)]="jobEdits.jobJD">
+            </div>
+
+            <div class="put-function-div">
+                <button class="put-function-btn" (click)="putJob()" >Submit</button>
+                <button class="put-function-btn" (click)="closePutJob()" >Close</button>
+            </div>
+        </div>
         
+        <div class="content"  *ngIf="showDetailsJob">
+            <div class="company-details-content">
+                <label for="">_Id</label>
+                <div>{{jobDetails._id}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Job ID</label>
+                <div>{{jobDetails.jobJD}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Job Name</label>
+                <div>{{jobDetails.job_name}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Company</label>
+                <div>{{jobDetails.company}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Category</label>
+                <div>{{jobDetails.category}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Address</label>
+                <div>{{jobDetails.address}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Salary</label>
+                <div>{{jobDetails.salary}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Exprience</label>
+                <div>{{jobDetails.exprience}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Deadline</label>
+                <div>{{jobDetails.dealine}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">WelFare</label>
+                <div>{{jobDetails.welfare}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Description</label>
+                <div>{{jobDetails.description}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Requirement</label>
+                <div>{{jobDetails.job_requirement}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Contact</label>
+                <div>{{jobDetails.contact}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Contact Person</label>
+                <div>{{jobDetails.contact_person}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Phone Person</label>
+                <div>0{{jobDetails.phone_person}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Degree</label>
+                <div>{{jobDetails.degree}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Age</label>
+                <div>{{jobDetails.age}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Position</label>
+                <div>{{jobDetails.position}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Gender</label>
+                <div>{{jobDetails.gender}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Work Form</label>
+                <div>{{jobDetails.work_form}}</div>
+            </div>
+            <div class="company-details-content">
+                <label for="">Recruting Amount</label>
+                <div>{{jobDetails.recruiting_amount
+                }}</div>
+            </div>
+            <div class="img-company">
+                <img src="{{jobDetails.image}}" alt="Lỗi" >
+            </div>
+            <div class="put-function-div">
+                <button class="put-function-btn" (click)="closeDetailsJob()" >Close</button>
+            </div>
+        </div>
+
+    <div class="content" *ngIf="ngIfcompanies">
+        <div class="function-company" style="width: 100%;" >
+            <button class="button" (click)="showPopup()"  style="width: 100%;" >New Company</button>
+        <table border="1" style="margin: 10px;">
+            <tr>
+            <th>_Id</th>
+            <th>Company Id</th>
+            <th>Company Name</th>
+            <th>Company Website</th>
+            <th>Image</th>
+            <th>Function</th>
+            </tr>
+            <tbody>
+            <tr *ngFor="let company of companies" class="tr-content" (click)="btnshowDetails(company)">
+            <td >{{company._id}} </td>
+            <td >{{company.company_id}} </td>
+            <td >{{company.company_name}}</td>
+            <td ><a href="{{company.company_website}}">{{company.company_website}}</a> </td>
+            
+            <td>
+            <img src="{{company.company_image}}" width="100px" height="100px" style="padding: 8px;">
+            </td>
+            <td>
+                <button class="function-btn" (click)="btnshowEdit(company)" >Chỉnh sửa</button>
+                <button class="function-btn" (click)="deleteCompany(company)" >Xóa</button>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+       </div>
+    </div>
+       <div class="content" *ngIf="ngIfusers" >
+        <table border="1" style="margin: 10px;">
+            <tr>
+            <th>_Id</th>
+            <th>User Id</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Image</th>
+            <th>Function</th>
+            </tr>
+            <tbody>
+            <tr *ngFor="let user of users" class="tr-content" (click)="btnshowDetailUser(user)">
+            <td>{{user._id}}</td>
+            <td>{{user.userID}} </td>
+            <td>{{user.fullname}}</td>
+            <td>{{user.email}} </td>
+            <td>
+            <img src="{{user.image}}" width="100px" height="100px" style="padding: 8px;">
+            </td>
+            <td>
+                <button class="function-btn" (click)="btnshowEditUser(user)" >Chỉnh sửa</button>
+                <button class="function-btn" (click)="deleteUser(user)" >Xóa</button>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+       </div> 
+       <div class="content" *ngIf="ngIfjobs" >
+        <table border="1" style="margin: 10px;">
+            <tr>
+            <th>Job Id</th>
+            <th>Company Image</th>
+            <th>Company Name</th>
+            <th>Job Name</th>
+            <th>Category</th>
+            <th>Address</th>
+            <th>Function</th>
+            </tr>
+            <tbody>
+            <tr *ngFor="let job of jobs" (click)="btnshowDetailJob(job)" class="tr-content">
+            <td>{{job.jobJD}}</td>
+            <td><img src="{{job.image}}" width="100px" height="100px" style="padding: 8px;"></td>
+            <td>{{job.company}}</td>
+            <td>{{job.job_name}} </td>
+            <td>{{job.category}} </td>
+            <td>{{job.address}} </td>
+            <td>
+                <button class="function-btn" (click)="btnshowEditJob(job)" >Chỉnh sửa</button>
+                <button class="function-btn" (click)="deleteJob(job)" >Xóa</button>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+       </div> 
+       <div class="content" *ngIf="ngIfjobsNull" >
+        <table border="1" style="margin: 10px;">
+            <tr>
+            <th>Job Id</th>
+            <th>Company Image</th>
+            <th>Company Name</th>
+            <th>Job Name</th>
+            <th>Category</th>
+            <th>Address</th>
+            <th>Function</th>
+            </tr>
+            <tbody>
+            <tr *ngFor="let job of jobsNull" class="tr-content"
+            (click)="btnshowDetailJob(job)">
+            <td>{{job.jobJD}}</td>
+            <td><img src="{{job.image}}" width="100px" height="100px" style="padding: 8px;"></td>
+            <td>{{job.company}}</td>
+            <td>{{job.job_name}} </td>
+            <td>{{job.category}} </td>
+            <td>{{job.address}} </td>
+            <td>
+                <button class="function-btn" (click)="btnshowEditJobNull($event, job)" >Chấp nhận</button> <br>
+                <button class="function-btn" (click)="deleteJob(job)" >Xóa</button>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+       </div> 
     </div>
     <div class="welcome" >
         <p class="text">Welcome to Admin WorkZone</p>

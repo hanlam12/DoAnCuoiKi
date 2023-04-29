@@ -1,10 +1,8 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import * as L from 'leaflet';
+
 import { Company } from 'workzone';
 import { WorkZoneService } from '../work-zone.service';
-
-
+import { ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'app-congty',
   templateUrl: './congty.component.html',
@@ -31,31 +29,27 @@ export class CongtyComponent implements OnInit {
   //   }
   // }
 
+
   companyId: string =''
   companyData: any
+  errMessage:string='';
 
   constructor(
     private route: ActivatedRoute,
     private companyService: WorkZoneService
-  ) {}
-
-  ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.companyId = params.get('id')!;
-      this.getCompanyData();
-    });
-  }
-
-  getCompanyData() {
-    this.companyService.getCompanyData(this.companyId).subscribe({
-      next: result => {
-        this.companyData = result;
-        console.log(this.companyData);
-      },
-      error: error => {
-        console.error('Error getting company data:', error);
+  ) {
+    this.route.params.subscribe(
+      (params: Params) => {
+         this.companyId = params['company_id'];
       }
-    });
+   );
+
+    this.companyService.getCompany(this.companyId).subscribe({
+    next:(data)=>{this.companyData=data},
+    error:(err)=>{this.errMessage=err}
+    })
   }
-  
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 }

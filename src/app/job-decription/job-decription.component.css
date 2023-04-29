@@ -19,15 +19,19 @@ html {
 }
 .container__img--left img {
   width: 93%;
+  /* height: 100px; */
   display: block;
   margin: 5px auto;
-  border: 1px solid rgba(0, 0, 0, 0.5);
 }
 .container__content--right {
   display: flex;
   width: 75%;
 }
-
+.name--job{
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-size: 24px;
+}
 .container__content--right1:nth-child(1) {
   flex-basis: 80%;
 }
@@ -181,7 +185,6 @@ html {
   text-decoration: none;
   cursor: pointer;
 }
-
 h2 > span {
   color: #0075ff;
   font-style: italic;

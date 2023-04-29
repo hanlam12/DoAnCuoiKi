@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ThongtinComponent } from './thongtin/thongtin.component';
@@ -22,7 +22,6 @@ import { JobApplicationComponent } from './job-application/job-application.compo
 import { AppliedJobComponent } from './applied-job/applied-job.component';
 import { FooterLoggedComponent } from './footer-logged/footer-logged.component';
 import { FooterNotLogInComponent } from './footer-not-log-in/footer-not-log-in.component';
-
 import { SearchJobComponent } from './search-job/search-job.component';
 import { ApplyCVComponent } from './apply-cv/apply-cv.component';
 import { HeaderComponent } from './header/header.component';
@@ -32,15 +31,14 @@ import { AccountMenuComponent } from './account-menu/account-menu.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
-import { HttpClientModule } from '@angular/common/http';
-
-
+import { AdminWZComponent } from './admin-wz/admin-wz.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AdminWZComponent } from './admin-wz/admin-wz.component';
-import { TestttComponent } from './testtt/testtt.component';
+import { SavedJobComponent } from './saved-job/saved-job.component';
+import { NewCompanyModalComponent } from './new-company-modal/new-company-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -56,7 +54,6 @@ import { TestttComponent } from './testtt/testtt.component';
     AppliedJobComponent,
     FooterLoggedComponent,
     FooterNotLogInComponent,
-    AppComponent,
     SearchJobComponent,
     ApplyCVComponent,
     ThongtinComponent,
@@ -75,8 +72,10 @@ import { TestttComponent } from './testtt/testtt.component';
     AccountMenuComponent,
     CreateProfileComponent,
     NotFoundComponent,
+    SavedJobComponent,
     AdminWZComponent,
-    TestttComponent
+    NewCompanyModalComponent
+
   ],
   imports: [
     BrowserModule,
@@ -87,10 +86,10 @@ import { TestttComponent } from './testtt/testtt.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
-
   ],
 
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ApplyCVComponent]
 })
 export class AppModule { }

@@ -1,30 +1,32 @@
-import { Component, TemplateRef, ViewChild , Input  } from '@angular/core';
+import { Component, TemplateRef, ViewChild , Input,OnInit   } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { WorkZoneService } from '../work-zone.service';
+import { Job } from 'workzone';
+import { ActivatedRoute, Params } from '@angular/router';
+
 @Component({
   selector: 'app-apply-cv',
   templateUrl: './apply-cv.component.html',
   styleUrls: ['./apply-cv.component.css']
 })
 export class ApplyCVComponent   {
-  show=false
-  tonggle(){
+  show=false;
+  errMessage:string='';
+  @Input() jobJD: string='';
+  @Input() selectedJob: string = '';
+  jobName: string='';
+  job_id:string = '';
+  isSubmitted = false;
+  toggle(){
     this.show=!this.show
   }
-
-  @ViewChild('myModal') modal!: TemplateRef<any>;
-  modalRef!: BsModalRef;
-  @ViewChild('myModal2') modal2!: TemplateRef<any>;
-  modal2Ref!: BsModalRef;
-  constructor(private modalService: BsModalService) { }
-
-  openModal(){
-    this.modalRef = this.modalService.show(this.modal)
+  constructor(public bsModalRef: BsModalRef, private _job: WorkZoneService, private route: ActivatedRoute,) {}
+  ngOnInit() {
+    console.log(this.selectedJob);
   }
+
   cvSuccess() {
-    this.modal2Ref = this.modalService.show(this.modal2);
-    this.modalRef.hide()
+    this.isSubmitted = true;
   }
-  cvSuccess2() {
-    this.modal2Ref.hide()
-  }
+
 }
