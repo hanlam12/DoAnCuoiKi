@@ -25,14 +25,19 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { SavedJobComponent } from './saved-job/saved-job.component';
 import { ThongBaoViecLamComponent } from './thong-bao-viec-lam/thong-bao-viec-lam.component';
+import { LoginEmployerComponent } from './login-employer/login-employer.component';
+import { SignUpEmployerComponent } from './sign-up-employer/sign-up-employer.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 
 
 
 const routes: Routes = [
+
   {path:"profile", component: CreateProfileComponent},
   {path:"saved/:userID", component: SavedJobComponent},
+
   {path:"noti", component: ThongBaoViecLamComponent},
   {path:"404notfound", component: NotFoundComponent},
   {path:"contact",component:ContactComponent},
@@ -58,10 +63,15 @@ const routes: Routes = [
   { path:"quenmatkhau1", component: Quenmatkhau1Component},
   { path:"quenmatkhau2", component:Quenmatkhau2Component},
   { path:"quenmatkhau3", component:Quenmatkhau3Component},
-
   {path: "company", component: CongtyComponent},
    {path: "company/:company_id", component: CongtyComponent}
 
+
+  // {path: "congty", component: CongtyComponent},
+  // {path: "congty/:id", component: CongtyComponent},
+  {path:"login-employer", component:LoginEmployerComponent},
+  {path:"sign-up-employer", component:SignUpEmployerComponent},
+  {path:"payment", component:PaymentComponent}
 ];
 
 @NgModule({
@@ -89,6 +99,9 @@ export const RoutingComponent={
   Quenmatkhau1Component,
   Quenmatkhau2Component,
   Quenmatkhau3Component,
-  CongtyComponent
+  CongtyComponent,
+  LoginEmployerComponent,
+  SignUpEmployerComponent,
+  PaymentComponent
 
 }

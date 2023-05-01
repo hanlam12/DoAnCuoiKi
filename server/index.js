@@ -236,11 +236,19 @@ app.get("/api/job/:position", cors(), async (req, res) => {
 });
 
 
+app.get("/api/job/address/:address", cors(), async (req, res) => {
+  const address = req.params.address;
+  const result = await jobCollection.find({ address: { $regex: address, $options: "i" } }).toArray();
+  res.send(result);
+});
+
+
 app.get("/api/job/category/:categories", cors(), async (req, res) => {
   const categories = req.params.categories.split(",");
   const result = await jobCollection.find({ category: { $in: categories } }).toArray();
   res.send(result);
 });
+
 // app.get("/job/:result", cors(), async (req, res) => {
 //   const position = req.params.position;
 //   const categories = req.params.categories.split(",");
@@ -346,7 +354,5 @@ app.get("/api/company",cors(),async(req,res)=>{
       res.status(500).send('Server error');
     }
   });
-
-//test kết hợp token
 
 
