@@ -15,6 +15,10 @@
   height: 118%;
 }
 
+.title{
+  margin-bottom: 20px;
+}
+
 .right-main-menu {
   display: flex;
 }
@@ -80,6 +84,11 @@
   .account {
     display: none;
   }
+
+  .title{
+    font-size: 20px;
+  }
+
   .logo img {
     width: 43% !important;
   }
@@ -145,13 +154,16 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 6%;
+
+    margin-top: 15px;
   }
   #htmk{
-    flex-basis: 40%;
+    flex:1
   }
   #quenmatkhau{
-    flex-basis: 30%;
     text-align: right;
+    flex: 1;
+
     color: #00A9FF;
   }
 .dangky{
@@ -162,22 +174,23 @@
 #input_btn_dangnhap{
     width: 100%;
     background: #48C0FD;
-    border: 1px solid #0019FD;
+
+    border: none;
     border-radius: 5px;
     font-weight:bold;
-    height: 50px;
+    padding: 6px 0 8px;
     font-size: 23px;
-    color: #FFFFFF
+    color: #FFFFFF;
+
 }
 #line{
   height: 40%;
 }
 @media (max-width: 1260px){
-    #htmk{
-        flex-basis: 50%;
-      }
+
       #quenmatkhau{
-        flex-basis: 45%;
+
+
         text-align: right;
         color: #00A9FF;
       }
@@ -186,11 +199,16 @@
     }
 }
 @media (max-width: 837px){
-    .image{
+
+    .image,.none{
+
       display: none;
     }
     .input{
       flex-basis: 100%;
+
+      border-right:none ;
+
     }
     .line{
       display: none;

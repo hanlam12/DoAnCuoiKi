@@ -33,8 +33,14 @@ export class Job{
 export class Company{
   constructor(
     public _id:any=null,
+
     public company_id:string="",
+
     public company_name:string="",
+    public email:string="",
+    public phone:string="",
+    public password:string="",
+    public person_name:string="",
     public company_image:string="",
     public company_intro:string="",
     public company_scale:string="",
@@ -80,10 +86,12 @@ export class Users{
     public DOB: string="",
     public address:string="",
     public district:string="",
+
     public cv: Array<JobApplication>=[],
     public city:string="",
     public image:string="",
     public savejob: Array<jobJD>=[]
+
   ){}
 }
 export interface jobJD{

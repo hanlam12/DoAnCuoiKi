@@ -20,7 +20,29 @@
     "changeOrigin":true,
     "logLevel":"debug"
   },
+
   {
+    "context" : ["/users"],
+    "target" : "http://localhost:6868",
+    "secure":true,
+    "changeOrigin":true,
+    "logLevel":"debug"
+  },
+  {
+    "context" : ["/register"],
+    "target" : "http://localhost:6868",
+    "secure":true,
+    "changeOrigin":true,
+    "logLevel":"debug"
+  },
+  {
+    "context" : ["/employer"],
+    "target" : "http://localhost:6868",
+    "secure":true,
+    "changeOrigin":true,
+    "logLevel":"debug"
+  },
+{
     "context": ["/api/company/**"],
     "target": "http://localhost:6868",
     "secure": true,
@@ -41,4 +63,5 @@
   "changeOrigin":true,
   "logLevel":"debug"
 }
+
 ]

@@ -21,8 +21,9 @@
         </div>
         <div class="row-pass">
           <div class="name-user">Họ và tên <span class="red">*</span></div>
-          <input type="text" class="input user" value="WorkZone" disabled />
+          <input type="text" class="input user" value="{{user.fullname}}" />
         </div>
+
         <div class="border-user"></div>
         <div class="row-pass">
           <div class="name-user">
@@ -31,34 +32,40 @@
           <input
             type="email"
             class="input user"
-            value="workZone@gmail.com"
+            value="{{user.email}}"
+            [(ngModel)]="user.email"
+            name="email"
             disabled
           />
         </div>
+
         <div class="border-user"></div>
         <div class="row-pass">
           <div class="name-user">Giới tính</div>
-          <select name="gender" id="gender" class="input user">
-            <option value="0"></option>
-            <option value="1">Nam</option>
-            <option value="2">Nữ</option>
-            <option value="3">Khác</option>
+          <select name="gender" id="gender" class="input user"
+          [(ngModel)]="user.gender" name="gender" #gender="ngModel">
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+            <option value="Khác">Khác</option>
           </select>
-          <button class="save">Lưu</button>
+          <button class="save" (click)="putProfile5()">Lưu</button>
         </div>
+
         <div class="border-user"></div>
         <div class="row-pass">
           <div class="name-user">Ngày sinh</div>
-          <input type="date" class="input user">
-          <button class="save">Lưu</button>
+          <input type="date" class="input user" value="{{user.DOB}}"
+          [(ngModel)]="user.DOB" #DOB="ngModel" name="DOB">
+          <button class="save" (click)="putProfile4()">Lưu</button>
         </div>
+
         <div class="border-user"></div>
         <div class="row-pass">
           <div class="name-user">Số điện thoại</div>
           <input
             type="tel"
             class="input user"
-            value="09876256152"
+            value="{{user.phone}}"
             disabled
           />
         </div>
@@ -66,20 +73,26 @@
         <div class="row-pass mr-bot">
           <div class="name-user">Địa chỉ <span class="red">*</span></div>
         </div>
+
         <div class="row-pass">
           <div class="name-user">Địa chỉ cụ thể</div>
-          <input type="text" class="input user" />
-          <button class="save">Lưu</button>
+          <input type="text" class="input user" value="{{user.address}}"
+          [(ngModel)]="user.address" #address="ngModel" name="address"/>
+          <button class="save" (click)="putProfile2()">Lưu</button>
         </div>
+
         <div class="row-pass">
           <div class="name-user">Quận/Huyện</div>
-          <input type="text" class="input user" />
-          <button class="save">Lưu</button>
+          <input type="text" class="input user" value="{{user.district}}"
+          [(ngModel)]="user.district" #district="ngModel" name="district"/>
+          <button class="save" (click)="putProfile3()">Lưu</button>
         </div>
+
         <div class="row-pass">
           <div class="name-user">Tỉnh/Thành phố</div>
-          <input type="text" class="input user" />
-          <button class="save">Lưu</button>
+          <input type="text" class="input user" value="{{user.city}}"
+           [(ngModel)]="user.city" #city="ngModel" name="city" />
+          <button class="save" (click)="putProfile()">Lưu</button>
         </div>
         <div class="border-user"></div>
         <div class="row-pass">
@@ -93,8 +106,8 @@
     </div>
     <div class="col-md-3 col-12">
         <div class="img-profile" id="img-profile">
-          <i class="fa-regular fa-circle-user"> </i>
-          <input type="file" (change)="onFileSelected($event)">
+          <img src="{{user.image}}" >
+          <input type="file" [(ngModel)]="user.image" name="image" #image="ngModel" (change)="onSelectFile($event)">
           <p>(JPEG/PNG/GIF, 1MB)</p>
         </div>
       </div>

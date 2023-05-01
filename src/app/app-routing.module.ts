@@ -29,10 +29,6 @@ import { LoginEmployerComponent } from './login-employer/login-employer.componen
 import { SignUpEmployerComponent } from './sign-up-employer/sign-up-employer.component';
 import { PaymentComponent } from './payment/payment.component';
 
-
-
-
-
 const routes: Routes = [
 
   {path:"profile", component: CreateProfileComponent},
@@ -63,8 +59,15 @@ const routes: Routes = [
   { path:"quenmatkhau1", component: Quenmatkhau1Component},
   { path:"quenmatkhau2", component:Quenmatkhau2Component},
   { path:"quenmatkhau3", component:Quenmatkhau3Component},
+
+
+  {path: "dangnhap", component: LoginEmployerComponent},
+  
+  {path: "sign-up-employer", component: SignUpEmployerComponent},
+
   {path: "company", component: CongtyComponent},
    {path: "company/:company_id", component: CongtyComponent}
+
 
 
   // {path: "congty", component: CongtyComponent},
@@ -102,6 +105,8 @@ export const RoutingComponent={
   CongtyComponent,
   LoginEmployerComponent,
   SignUpEmployerComponent,
+
   PaymentComponent
+
 
 }
