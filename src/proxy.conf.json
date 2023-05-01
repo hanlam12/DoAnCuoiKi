@@ -21,6 +21,7 @@
     "logLevel":"debug"
   },
 
+
   {
     "context" : ["/users"],
     "target" : "http://localhost:6868",
@@ -44,6 +45,7 @@
     "logLevel":"debug"
   },
 {
+
     "context": ["/api/company/**"],
     "target": "http://localhost:6868",
     "secure": true,
@@ -63,6 +65,7 @@
   "secure":true,
   "changeOrigin":true,
   "logLevel":"debug"
+
 },
 {
   "context" : ["/api/admin"],
@@ -120,5 +123,6 @@
   "changeOrigin":true,
   "logLevel":"debug"
 }
+
 
 ]
