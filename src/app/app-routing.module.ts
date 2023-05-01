@@ -25,6 +25,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { SavedJobComponent } from './saved-job/saved-job.component';
 import { ThongBaoViecLamComponent } from './thong-bao-viec-lam/thong-bao-viec-lam.component';
+import { RecruitmentComponent } from './recruitment/recruitment.component';
+import { HomepageEmployerComponent } from './homepage-employer/homepage-employer.component';
 
 import { AdminWZComponent } from './admin-wz/admin-wz.component';
 
@@ -45,8 +47,10 @@ const routes: Routes = [
   {path:"job-decription/:jobJD",component:JobDecriptionComponent},
   {path:"job-application/:userID",component:JobApplicationComponent},
   {path:"applied-job/:userID",component:AppliedJobComponent},
+
 {path: "job-decription", component: JobDecriptionComponent},
 {path: "job-application", component: JobApplicationComponent},
+
   {path:"applied-job",component:AppliedJobComponent},
   {path:"footer-logged",component:FooterLoggedComponent},
   {path:"footer-not-log-in",component:FooterNotLogInComponent},
@@ -63,6 +67,10 @@ const routes: Routes = [
   { path:"quenmatkhau1", component: Quenmatkhau1Component},
   { path:"quenmatkhau2", component:Quenmatkhau2Component},
   { path:"quenmatkhau3", component:Quenmatkhau3Component},
+   {path: "recruitment/:company_id", component: RecruitmentComponent},
+   {path: "recruitment", component: RecruitmentComponent},
+   {path: "homepageEmployer", component: HomepageEmployerComponent},
+   {path: "homepageEmployer/:company_id", component: HomepageEmployerComponent},
   {path: "dangnhap", component: LoginEmployerComponent},
   {path: "sign-up-employer", component: SignUpEmployerComponent},
   {path: "company", component: CongtyComponent},
@@ -101,12 +109,17 @@ export const RoutingComponent={
   Quenmatkhau3Component,
   CongtyComponent,
 
+  RecruitmentComponent,
+  HomepageEmployerComponent,
+
+
   AdminWZComponent,
 
   LoginEmployerComponent,
   SignUpEmployerComponent,
 
   PaymentComponent
+
 
 
 
