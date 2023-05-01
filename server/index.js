@@ -132,7 +132,6 @@ app.get('/api/applycv/jobJD', cors(), async (req, res) => {
 
   app.get("/api/job",cors(),async(req,res)=>{
     const result = await jobCollection.find({}).toArray();
-
     res.send(result)
   })
 
