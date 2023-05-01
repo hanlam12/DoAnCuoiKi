@@ -1,0 +1,24 @@
+
+  
+  <div class = "divform">
+    <form>
+        <input type="text" placeholder="Company ID" class="form-input" #name="ngModel" name="company_id" id="company_id" 
+        [(ngModel)] = company.company_id>
+        <input type="text" placeholder="Company Name" class="form-input" #name="ngModel" name="company_name" id="company_name" 
+        [(ngModel)] = company.company_name>
+        <input type="text" placeholder="Company Intro" class="form-input"  #name="ngModel" name="company_intro" id="company_intro" 
+        [(ngModel)] = company.company_intro>
+        <input type="text" placeholder="Company Scale" class="form-input" #name="ngModel" name="company_scale" id="company_scale" 
+        [(ngModel)] = company.company_scale>
+        <input type="text" placeholder="Company Address" class="form-input" #name="ngModel" name="company_address" id="company_address" 
+        [(ngModel)] = company.company_address>
+        <input type="text" placeholder="Company Website" class="form-input" #name="ngModel" name="company_website" id="company_website" 
+        [(ngModel)] = company.company_website>
+        <input type="file"  class="form-input" #name="ngModel" name="company_image" id="company_image" [(ngModel)]="company.company_image" 
+        (change)="onFileSelected($event,company)"
+        >
+        <input type="button" value="Xác nhận" class="button" 
+        (click)="postCompany()">
+        <div class="btnClose"><button (click)="closePopup()" class="function-btn" >Close</button></div>
+    </form>
+  </div>

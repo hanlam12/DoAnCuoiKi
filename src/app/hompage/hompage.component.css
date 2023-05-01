@@ -110,6 +110,57 @@
   margin: auto;
   padding: 10px 0;
 }
+.luu{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 63%;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 0.5px solid rgb(202, 185, 172);
+  padding: 8px 0;
+
+
+  border: none;
+  background-color: #48c0fd;
+  color: aliceblue;
+  font-weight: bold;
+}
+.luu:hover{
+  color: black;
+
+  width: 63%;
+  background-color: rgb(164, 183, 199);
+}
+.container {
+  position: relative;
+  margin-left: 19%;
+}
+
+
+
+.boluu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: aliceblue;
+  font-weight: bold;
+  width: 63%;
+  margin-top: 10px;
+  background-color: #48c0fd;
+  border-radius: 5px;
+  border: 0.5px solid rgb(202, 185, 172);
+  padding: 8px 0;
+}
+.boluu .fa-heart {
+  color: #0075ff;
+}
+.boluu:hover {
+  color: black;
+
+  width: 63%;
+  background-color: rgb(164, 183, 199);
+}
 .head {
   width: 98%;
   font-size: 20px;
@@ -166,8 +217,8 @@
 }
 #apply:hover {
   color: black;
-  height: 45%;
-  width: 80%;
+
+
   background-color: rgb(164, 183, 199);
 }
 
@@ -187,6 +238,7 @@ hr {
   text-align: center;
   font-weight: bold;
   cursor: pointer;
+  margin-top: 30px;
 }
 .more:hover {
   color: #0075ff;
@@ -202,6 +254,9 @@ a {
 }
 #more-view {
   display: none;
+}
+.is-hidden {
+  visibility: hidden;
 }
 #myBtn {
   border: none;

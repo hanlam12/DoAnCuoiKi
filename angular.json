@@ -13,8 +13,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-
-
             "outputPath": "dist/do-an-cuoi-ki",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -65,6 +63,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
+            "port": 1012,
             "browserTarget": "DoAnCuoiKi:build",
             "proxyConfig": "src/proxy.conf.json"
           },

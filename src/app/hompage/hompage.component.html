@@ -21,23 +21,25 @@
       />
     </div>
     <div class="homepage-input">
-      <span class="homepage-icon"><i class="fas fa-map-marker-alt"></i> </span>
+      <span class="homepage-icon"><i class="fas fa-map-marker-alt"></i></span>
       <select name="location" id="location">
-        <option value="">Tất cả địa điểm</option>
-        <option value="">TP. Hồ Chí Minh</option>
-        <option value="">Hà Nội</option>
-        <option value="">Bình Dương</option>
-        <option value="">Hải Phòng</option>
-        <option value="">Quảng Ninh</option>
-        <option value="">Đồng Nai</option>
-        <option value="">Long An</option>
-        <option value="">Vũng Tàu</option>
-        <option value="">Cần Thơ</option>
-        <option value="">Bạc Liêu</option>
+
+        <option value="all" #location>Tất cả địa điểm</option>
+        <option value="hcm" #location>TP. Hồ Chí Minh</option>
+        <option value="hanoi" #location>Hà Nội</option>
+        <option value="binhduong" #location>Bình Dương</option>
+        <option value="haiphong" #location>Hải Phòng</option>
+        <option value="quangninh" #location>Quảng Ninh</option>
+        <option value="dongnai" #location>Đồng Nai</option>
+        <option value="longan" #location>Long An</option>
+        <option value="vungtau" #location>Vũng Tàu</option>
+        <option value="cantho" #location>Cần Thơ</option>
+        <option value="danang" #location>Đà Nẵng</option>
       </select>
     </div>
     <div class="homepage-input">
-      <input type="button" id="search" value="Tìm kiếm" />
+      <input (click)="getLocation()" type="button" id="search" value="Tìm kiếm" />
+
     </div>
   </div>
 </div>
@@ -48,23 +50,23 @@
       <div class="head" id="hotjob" >HOT</div>
       <div class="content-hot" *ngFor="let j of job6">
         <div class="content-img">
-          <a routerLink="/job-decription"
+          <a [routerLink]="['job-decription', j.jobJD]"
             ><img src="{{j.image}}" alt="FPT-logo"
           /></a>
         </div>
         <div class="content-hot-infor">
-          <a href="" >
+          <a [routerLink]="['job-decription', j.jobJD]" >
             <div class="comp">
               {{j.job_name}}
             </div></a
           >
           <div>
-            <a href=""  style="text-transform: uppercase;" class="hover1"
+            <a [routerLink]="['job-decription', j.jobJD]"  style="text-transform: uppercase;" class="hover1"
               >{{j.company}}</a
             >
             |
 
-            <a href=""  class="hover2"
+            <a [routerLink]="['job-decription', j.jobJD]"  class="hover2"
               ><i class="bi bi-geo-alt-fill"></i> {{j.address}}</a>
 
 
@@ -76,18 +78,26 @@
           </div>
         </div>
         <div class="content-hot-input">
-          <button (click)="showModal()" id="apply" >Apply Now</button>
+          <button  (click)="showModal(j.job_name)" id="apply" >Apply Now</button>
+          <div class="container">
+            <button class="luu" [ngClass]="{ 'is-hidden': isSaved (j) }" (click)="saveJob(j)">
+              <i class="fas fa-heart"></i> Lưu
+            </button>
+
+            <button class="boluu" [ngClass]="{ 'is-hidden': !isSaved (j) }" (click)="removeJob(j)">
+              <i class="fas fa-heart"></i> Đã Lưu
+            </button>
+          </div>
+
         </div>
+        {{isSaved(j)}}
       </div>
       <hr />
-      <a (click)="searchJob()"
+     <a (click)="searchJob()"
         ><div class="more">Xem tất cả <i class="bi bi-box-arrow-right"></i></div></a>
-
 
       <br />
     </div>
-
-
     <div class="box-content_right">
       <div class="box-content_right_top">
         <div class="head">TỪ KHÓA TÌM KIẾM</div>
@@ -170,11 +180,17 @@
     <div class="image-slider">
       <div class="job-lastest-item" *ngFor="let j of job3">
         <div class="job-image">
-          <img src="{{j.image}}" alt="" />
+          <a [routerLink]="['job-decription', j.jobJD]">
+            <img src="{{j.image}}" alt="" />
+          </a>
+
         </div>
         <div class="job-lastest-content">
-          <div class="compa">
-            {{j.job_name}}
+          <div class="compa" >
+            <a [routerLink]="['job-decription', j.jobJD]">
+              {{j.job_name}}
+            </a>
+
           </div>
           <div style="text-transform: uppercase;">{{j.company}}</div>
           <div><i class="bi bi-geo-alt-fill"></i> {{j.address}}</div>
@@ -191,12 +207,12 @@
         NHỮNG CÔNG TY HÀNG ĐẦU
       </div>
       <div class="top-cent">
-        <div class="box1" *ngFor="let j of job8">
-          <a href="" >
+        <div class="box1" *ngFor="let c of company">
+          <a [routerLink]="['company', c.company_id]">
             <div class="img">
-              <img src="{{j.image}}"  alt="FPT-logo" />
+              <img src="{{c.company_image}}"  alt="FPT-logo" />
             </div>
-            <div>{{j.company}}</div></a
+            <div>{{c.company_name}}</div></a
           >
         </div>
       </div>
@@ -211,7 +227,7 @@
       <div class="content-row">
         <div class="box2" *ngFor="let j of jobs">
           <div class="box2-item">
-            <a href="" >
+            <a [routerLink]="['job-decription', j.jobJD]" >
               <img src="{{j.image}}" alt="Fitech-logo"
             /></a>
           </div>
@@ -219,12 +235,12 @@
 
           <div class="box2-item">
             <div>
-              <a href="motacongviec.html" >
+              <a [routerLink]="['job-decription', j.jobJD]" >
                 {{j.job_name}}</a
               >
             </div>
             <div>
-              <a href="motacongviec.html" >{{j.company}}</a>
+              <a [routerLink]="['job-decription', j.jobJD]" >{{j.company}}</a>
             </div>
           </div>
 
@@ -241,7 +257,7 @@
 
 
     <div class="container-row-top2">
-      <a href="motacongviec.html" >
+      <a href="" >
         <img src="assets/media/hna.jpg" alt=""
       /></a>
     </div>

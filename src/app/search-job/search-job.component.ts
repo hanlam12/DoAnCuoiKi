@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Job } from 'workzone';
-import { IJob } from 'workzone';
+
 import { WorkZoneService } from '../work-zone.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-search-job',
   templateUrl: './search-job.component.html',
@@ -10,12 +11,16 @@ import { Router } from '@angular/router';
 })
 export class SearchJobComponent {
   jobs:any
+  location:any
   errMessage:string=''
   showText = true;
   showText1 = true;
   showText2 = true;
   showText3 = true;
   showText4 = true;
+  testLogin(){
+    this.router.navigate(['sign-up-employer'])
+  }
 
   constructor(private _service:WorkZoneService,private router:Router){
     this._service.getJobs().subscribe({
@@ -30,6 +35,79 @@ export class SearchJobComponent {
   goToDescription(companyId:string){
     this.router.navigate(['/job-decription/'+companyId])
   }
+  getLocation(){
+    const locationElement = document.querySelector('#location') as HTMLSelectElement;
+  const selectedLocation = locationElement?.value;
+  if (selectedLocation === 'hanoi') {
+    this._service.getHN(this.jobs).subscribe({
+      next:(data)=>{this.jobs=data},
+      error:(err)=>{this.errMessage=err}
+    });
+  }
+  else if (selectedLocation === 'hcm'){
+    this._service.getHCM(this.jobs).subscribe({
+      next:(data)=>{this.jobs=data},
+      error:(err)=>{this.errMessage=err}
+    });
+  }
+  else if (selectedLocation === 'binhduong'){
+    this._service.getBD(this.jobs).subscribe({
+      next:(data)=>{this.jobs=data},
+      error:(err)=>{this.errMessage=err}
+    });
+  }
+  else if (selectedLocation === 'haiphong'){
+    this._service.getHP(this.jobs).subscribe({
+      next:(data)=>{this.jobs=data},
+      error:(err)=>{this.errMessage=err}
+    });
+  }
+  else if (selectedLocation === 'quangninh'){
+    this._service.getQN(this.jobs).subscribe({
+      next:(data)=>{this.jobs=data},
+      error:(err)=>{this.errMessage=err}
+    });
+  }
+  else if (selectedLocation === 'dongnai'){
+    this._service.getDN(this.jobs).subscribe({
+      next:(data)=>{this.jobs=data},
+      error:(err)=>{this.errMessage=err}
+    });
+  }
+  else if (selectedLocation === 'longan'){
+    this._service.getLA(this.jobs).subscribe({
+      next:(data)=>{this.jobs=data},
+      error:(err)=>{this.errMessage=err}
+    });
+  }
+  else if (selectedLocation === 'vungtau'){
+    this._service.getVT(this.jobs).subscribe({
+      next:(data)=>{this.jobs=data},
+      error:(err)=>{this.errMessage=err}
+    });
+  }
+  else if (selectedLocation === 'cantho'){
+    this._service.getCT(this.jobs).subscribe({
+      next:(data)=>{this.jobs=data},
+      error:(err)=>{this.errMessage=err}
+    });
+  }
+  else if (selectedLocation === 'danang'){
+    this._service.getDNA(this.jobs).subscribe({
+      next:(data)=>{this.jobs=data},
+      error:(err)=>{this.errMessage=err}
+    });
+  }
+  else if (selectedLocation === 'all'){
+    this._service.getJobs().subscribe({
+      next:(data)=>{this.jobs=data},
+      error:(err)=>{this.errMessage=err}
+    });
+  }
+
+  }
+
+
   toggleText() {
     this.showText = !this.showText;
   }

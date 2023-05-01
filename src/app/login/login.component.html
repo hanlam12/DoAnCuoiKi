@@ -65,6 +65,14 @@
               </div>
 
               <a class="blue center mg-top" routerLink="/sign-up">Bạn chưa có tài khoản? Đăng ký</a>
+
+              <div *ngIf="errMessage" class="alert alert-danger">
+                {{errMessage}}
+                <ul *ngIf="existingUserErrors">
+                  <li *ngFor="let error of existingUserErrors">{{error}}</li>
+                </ul>
+
+              </div>
               <button type="submit" class="btn-login" (click)="login()" >Đăng Nhập</button>
               <div class="">
                 <div class="text center">

@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Job } from 'workzone';
 import { WorkZoneService } from '../work-zone.service';
 import { Component, TemplateRef, ViewChild } from '@angular/core';
@@ -15,33 +15,24 @@ export class JobDecriptionComponent {
 
   jobId: string = '';
   jobData: any;
-
+  errMessage:string='';
   constructor(
     private route: ActivatedRoute,
     private jobsService: WorkZoneService,
     private modalService: BsModalService
-  ) { }
-
-  ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      if (params.has('jobId')) {
-        this.jobId = params.get('jobId')!;
-        this.getJobDescription();
+  ) {
+    this.route.params.subscribe(
+      (params: Params) => {
+         this.jobId = params['jobJD'];
       }
-    });
-  }
+   );
 
-  getJobDescription() {
     this.jobsService.getjobDescription(this.jobId).subscribe({
-      next: result => {
-        this.jobData = result;
-        console.log(this.jobData);
-      },
-      error: error => {
-        console.error('Error getting job data:', error);
-      }
-    });
-  }
+    next:(data)=>{this.jobData=data},
+    error:(err)=>{this.errMessage=err}
+    })
+   }
+
 
   showModal() {
     this.modalService.show(ApplyCVComponent);
