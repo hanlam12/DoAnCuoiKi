@@ -690,9 +690,6 @@ putInforCv(aUser:any): Observable<any>{
 
   );
 }
-}
-
-
 // lấy profile
 getProfile() {
   const headers = new HttpHeaders({
@@ -748,5 +745,8 @@ updateImage(image: string): Observable<any> {
   const body = { image: image };
   return this._http.put(`${this.serverUrl}/image`, body, { headers });
 }
-
 }
+
+
+
+
