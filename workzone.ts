@@ -30,29 +30,17 @@ export class Job{
   ){}
   }
 
-export class User{
-  constructor(
-    public _id:any=null,
-    public userID:string="",
-    public fullname:string="",
-    public email:string="",
-    public gender:string="",
-    public DOB: string="",
-    public phone:number,
-    public address:string="",
-    public district:string="",
-    public city:string="",
-    public password:string="",
-    public cv: Array<JobApplication>,
-    public image:string=""
-    ){}
-}
-
 export class Company{
   constructor(
     public _id:any=null,
+
     public company_id:string="",
+
     public company_name:string="",
+    public email:string="",
+    public phone:string="",
+    public password:string="",
+    public person_name:string="",
     public company_image:string="",
     public company_intro:string="",
     public company_scale:string="",
@@ -86,16 +74,27 @@ export interface cv{
 }
 
 
-
-
 export class Users{
   constructor(
     public _id:any=null,
-    public name:string="",
+    public userID:string="",
+    public fullname:string="",
     public email:string="",
     public phone:string="",
-    public username:string="",
     public password:string="",
+    public gender:string="",
+    public DOB: string="",
+    public address:string="",
+    public district:string="",
+
+    public cv: Array<JobApplication>=[],
+    public city:string="",
+    public image:string="",
+    public savejob: Array<jobJD>=[]
 
   ){}
 }
+export interface jobJD{
+  savejobJD: string
+}
+

@@ -1,47 +1,49 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Users } from 'workzone';
-import { WorkZoneService } from '../work-zone.service';
+
 import { Router } from '@angular/router';
+import { Contact } from 'src/assets/contact';
+import { Password } from 'src/assets/thaymatkhau';
+import { WorkZoneService } from '../work-zone.service';
+import { Company } from 'workzone';
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  selector: 'app-sign-up-employer',
+  templateUrl: './sign-up-employer.component.html',
+  styleUrls: ['./sign-up-employer.component.css']
 })
-export class SignUpComponent {
+export class SignUpEmployerComponent {
+
+  company = new Company();
+  errMessage :string='';
   confirmPass='';
   password: string = '';
   passwordType: string = 'password';
+  existingUserErrors:string[] = [];
   togglePassword() {
     this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
   }
 
-  newUser=new Users();
-  errMessage:string=''
-  existingUserErrors:string[] = [];
 
   constructor(private _service:WorkZoneService,private router:Router){}
 
   errorOccurred:boolean=false;
 
-  postUser(){
-
+  postCompany(){
     if(
-      this.newUser.fullname !='' &&
-      this.newUser.phone!='' &&
-      this.newUser.email!='' &&
-      this.newUser.password!=''){
-      if (this.newUser.password!= this.confirmPass){
+      this.company.person_name !='' &&
+      this.company.phone!='' &&
+      this.company.email!='' &&
+      this.company.password!=''){
+      if (this.company.password!= this.confirmPass){
           this.errMessage = "Nhập mật khẩu không khớp"
       }
       else{
-        this._service.postUser(this.newUser).subscribe(
+        this._service.postCompany(this.company).subscribe(
           (data) => {
-            this.newUser = data;
+            this.company = data;
             alert('Đăng ký tài khoản thành công')
             console.log('Post user success:', data);
-             this.router.navigate(['login'])
+             this.router.navigate(['dangnhap'])
           },
           (err) => {
 
@@ -62,8 +64,10 @@ export class SignUpComponent {
       alert('Vui lòng nhập đầy đủ thông tin để đăng ký tài khoản')}
   }
 
-  login(){
-    this.router.navigate(['login'])
-  }
 
+  dangnhap(){
+    this.router.navigate(['dangnhap'])
+
+  }
 }
+

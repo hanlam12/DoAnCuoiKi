@@ -37,7 +37,15 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SavedJobComponent } from './saved-job/saved-job.component';
+
 import { NewCompanyModalComponent } from './new-company-modal/new-company-modal.component';
+
+import { LoginEmployerComponent } from './login-employer/login-employer.component';
+import { SignUpEmployerComponent } from './sign-up-employer/sign-up-employer.component';
+
+import { PaymentComponent } from './payment/payment.component';
+
+
 
 
 @NgModule({
@@ -73,8 +81,15 @@ import { NewCompanyModalComponent } from './new-company-modal/new-company-modal.
     CreateProfileComponent,
     NotFoundComponent,
     SavedJobComponent,
+
     AdminWZComponent,
     NewCompanyModalComponent
+
+    LoginEmployerComponent,
+    SignUpEmployerComponent,
+    PaymentComponent
+
+
 
   ],
   imports: [
