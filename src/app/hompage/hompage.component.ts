@@ -11,7 +11,9 @@ import { Router } from '@angular/router';
 })
 export class HompageComponent {
   show = false;
+
   saved_jobs: any[] = [];
+
   errMessage = '';
   selectedJob: string = '';
   job3: any;
@@ -19,9 +21,6 @@ export class HompageComponent {
    jobs: any;
    company:any;
   modalRef!: BsModalRef;
-
-
-
   constructor(public _service: WorkZoneService, private router: Router, private modalService: BsModalService) {
     this.getJobs();
     this.getCompanies();
@@ -219,5 +218,5 @@ removeJob(job: any): void {
     this.selectedJob = jobTitle;
     this.modalRef = this.modalService.show(ApplyCVComponent);
   }
- 
+
 }
