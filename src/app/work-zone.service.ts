@@ -98,7 +98,7 @@ constructor(private _http:HttpClient, private router: Router) { }
       retry(3),
       catchError(this.handleError))
   }
-  
+
 
   getTC(fGD:any):Observable<any>{
     const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
@@ -673,7 +673,7 @@ putInforCv(aUser:any): Observable<any>{
 }
 
 
-getcompany(company_id: string): Observable<Company> { 
+getcompany(company_id: string): Observable<Company> {
   const url = `http://localhost:6868/api/recruitment/${company_id}`;
   return this._http.get<Company>(url).pipe(
     map(result => result),
@@ -697,7 +697,7 @@ addJob(jobData: any, company_id: string):Observable<any>
       retry(3),
       catchError(this.handleError)
   )
-
+}
 // lấy profile
 getProfile() {
   const headers = new HttpHeaders({

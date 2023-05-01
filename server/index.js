@@ -423,7 +423,7 @@ app.get('/api/user', async (req, res) => {
     console.error(error);
     return res.status(401).send(` ${error.message}`);
   }
-
+})
 
   app.get('/api/recruitment/:company_id', cors(), async (req, res) => {
     try {
@@ -638,7 +638,7 @@ app.get("/api/company",cors(),async(req,res)=>{
     await companyCollection.insertOne(req.body)
     res.send(req.body)
   });
-  
+
 const CircularJSON = require('circular-json');
 
 function replacer(key, value) {
