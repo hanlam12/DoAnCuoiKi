@@ -483,7 +483,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         catchError(this.handleError)
     )
   }
-//lấy việc làm đã lưu của user
+
 
 
    // thông tin mô tả công việc
@@ -504,7 +504,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
       responseType:"text"
       }
       return this._http.get<any>("/job/address/H%C3%A0%20N%E1%BB%99i",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
@@ -516,7 +516,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
       responseType:"text"
       }
       return this._http.get<any>("/job/address/H%E1%BB%93%20Ch%C3%AD%20Minh",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
@@ -528,7 +528,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
       responseType:"text"
       }
       return this._http.get<any>("/job/address/B%C3%ACnh%20D%C6%B0%C6%A1ng",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
@@ -540,7 +540,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
       responseType:"text"
       }
       return this._http.get<any>("/job/address/H%E1%BA%A3i%20Ph%C3%B2ng",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
@@ -551,7 +551,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
       responseType:"text"
       }
       return this._http.get<any>("/job/address/Qu%E1%BA%A3ng%20Ninh",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
@@ -562,7 +562,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
       responseType:"text"
       }
       return this._http.get<any>("/job/address/%C4%90%E1%BB%93ng%20Nai",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
@@ -573,7 +573,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
       responseType:"text"
       }
       return this._http.get<any>("/job/address/Long%20An",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
@@ -584,7 +584,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
       responseType:"text"
       }
       return this._http.get<any>("/job/address/V%C5%A9ng%20T%C3%A0u",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
@@ -595,7 +595,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
       responseType:"text"
       }
       return this._http.get<any>("/job/address/C%E1%BA%A7n%20Th%C6%A1",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
@@ -606,7 +606,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
       responseType:"text"
       }
       return this._http.get<any>("/job/address/%C4%90%C3%A0%20N%E1%BA%B5ng",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
