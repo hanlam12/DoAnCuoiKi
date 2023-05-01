@@ -2,7 +2,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from'@angular/common/http';
 import { catchError, map, Observable, of, retry, subscribeOn, tap, throwError } from 'rxjs';
 import { Job, Users  } from 'workzone';
-import { User } from 'workzone';
+// import { Users } from 'workzone';
 import { Company } from 'workzone';
 import { error } from 'jquery';
 import { Router } from '@angular/router';
@@ -41,6 +41,7 @@ constructor(private _http:HttpClient, private router: Router) { }
       tap(data => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('userEmail', data.userEmail);
+        localStorage.setItem('userID', data.userID);
         localStorage.setItem('loggedIn', 'true')
         this.loggedIn = true; // set loggedIn thành true sau khi đăng nhập thành công
         this.userIdUpdated.emit(data.userEmail);
@@ -70,9 +71,9 @@ constructor(private _http:HttpClient, private router: Router) { }
 
 
  // thông tin hồ sơ xin việc
- getUser(userID: string): Observable<User> {
+ getUser(userID: string): Observable<Users> {
   const url = `http://localhost:6868/api/job-application/${userID}`;
-  return this._http.get<User>(url).pipe(
+  return this._http.get<Users>(url).pipe(
     map(result => result),
     catchError(error => {
       console.error('Error', error);
@@ -163,13 +164,79 @@ getUserName() {
   });
   return this._http.get<any>(`${this.serverUrl}/api/user`, { headers });
 }
-  //thông tin công ty
+//lấy job của user
+getSavedJob(userID: string):  Observable<Job> {
+   return this._http.get<Job>(`http://localhost:6868/api/savejob/${userID}`);
+}
 
+//lưu job
+SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
+  const headers = new HttpHeaders().set("Content-Type", "application/json");
+  const requestOptions: Object = {
+  headers: headers
+  };
+  const body = {
+  userID: userId,
+  JobJD: jobID
+  };
+  let apiUrl = "/api/savejob";
+
+  return this._http.put<any>(`http://localhost:6868${apiUrl}`, body, requestOptions).pipe(
+  catchError(this.handleError)
+  );
+  }
+
+  GetSavedJobs(userId: string): Observable<any> {
+    const headers = new HttpHeaders().set("Content-Type", "application/json");
+    const requestOptions: Object = {
+      headers: headers
+    };
+    let apiUrl = `/api/getsavejob/${userId}`;
+
+    return this._http.get<any>(`http://localhost:6868${apiUrl}`, requestOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  removeJob(userID: string, JobJD: string): Observable<any> {
+    const headers = new HttpHeaders().set("Content-Type", "application/json");
+    const requestOptions: Object = {
+      headers: headers
+    };
+    return this._http.delete<any>(`http://localhost:6868/api/removejob/${userID}/${JobJD}`, requestOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+
+//thông tin công ty
   getCompany(company_id: string): Observable<Company> {
     const url = `${this.serverUrl}/api/company`;
     return this._http.get<Company>(`${url}/${company_id}`);
   }
-
+  getCompanies():Observable<any>{
+    const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
+    const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+    }
+    return this._http.get<any>("/api/company",requestOptions).pipe(
+      map(res=>JSON.parse(res) as Array<Company>),
+      retry(3),
+      catchError(this.handleError)
+    )
+  }
+  getJobs():Observable<any>{
+    const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
+    const requestOptions:Object={
+    headers:headers,
+    responseType:"text"
+    }
+    return this._http.get<any>("/api/job",requestOptions).pipe(
+    map(res=>JSON.parse(res) as Array<Job>),
+    retry(3),
+    catchError(this.handleError))
+    }
 
  getTV(fTV:any):Observable<any>{
       const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
@@ -182,30 +249,8 @@ getUserName() {
         retry(3),
         catchError(this.handleError))
     }
-    getJobs():Observable<any>{
-      const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
-      const requestOptions:Object={
-      headers:headers,
-      responseType:"text"
-      }
-      return this._http.get<any>("/api/job",requestOptions).pipe(
-      map(res=>JSON.parse(res) as Array<Job>),
-      retry(3),
-      catchError(this.handleError))
-      }
 
-    getCompanies():Observable<any>{
-      const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
-      const requestOptions:Object={
-        headers:headers,
-        responseType:"text"
-      }
-      return this._http.get<any>("/api/company",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<Company>),
-        retry(3),
-        catchError(this.handleError)
-      )
-    }
+
       getNhanVien(fNhanVien:any):Observable<any>{
         const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
         const requestOptions:Object={
@@ -439,6 +484,7 @@ getUserName() {
         catchError(this.handleError)
     )
   }
+//lấy việc làm đã lưu của user
 
 
    // thông tin mô tả công việc

@@ -26,7 +26,7 @@ app.listen(port,()=>{
   client.connect();
   database = client.db("WorkZone");
   jobCollection = database.collection("job");
-  userCollection = database.collection("user");
+  userCollection = database.collection("Users");
   companyCollection = database.collection("company");
 
   const { ObjectId: objId } = require('mongodb');
@@ -132,8 +132,101 @@ app.get('/api/applycv/jobJD', cors(), async (req, res) => {
 
   app.get("/api/job",cors(),async(req,res)=>{
     const result = await jobCollection.find({}).toArray();
+
     res.send(result)
   })
+
+  // job nào được lưu gắn liền với user đó
+app.get("/api/savejob/:userID",cors(),async(req,res)=>{
+  try {
+    const userID = req.params.userID;
+    const user = await userCollection.findOne({ userID: userID});
+    const job = await jobCollection.find({ jobJD: { $in: user.JobJD } }).toArray();
+    const saveJob ={user,job};
+  res.send(saveJob);
+} catch (err) {
+  console.error(err);
+  res.status(500).send('Server error');
+}
+})
+//lấy jobJD với user
+app.get("/api/getsavejob/:userID", cors(), async(req, res) => {
+  try {
+    const userID = req.params.userID;
+    const user = await userCollection.findOne({ userID: userID });
+    const savedJobs = user.JobJD;
+    res.send(savedJobs);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+
+//lưu job
+app.put('/api/savejob', cors(), async (req, res) => {
+  const { userID, JobJD } = req.body;
+  try {
+    const user = await userCollection.findOne({ userID: userID});
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Make sure that user has a saveJob property
+    if (!user.JobJD) {
+      user.JobJD = [];
+    }
+
+    // Thực hiện hành động lưu công việc
+    const isSaved = user.JobJD.some((job) => job.JobJD === JobJD);
+    if (!isSaved) {
+      user.JobJD.push( JobJD );
+    }
+
+    // Cập nhật thông tin người dùng trong cơ sở dữ liệu
+    await userCollection.updateOne({ userID: userID }, { $set: { JobJD: user.JobJD } });
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error.message);
+
+  }
+});
+// xóa job
+app.delete('/api/removejob/:userID/:JobJD', cors(), async (req, res) => {
+  const { userID, JobJD } = req.params;
+  try {
+    const user = await userCollection.findOne({ userID });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Make sure that user has a saveJob property
+    if (!user.JobJD) {
+      user.JobJD = [];
+    }
+
+    // Remove the job with the given ID from the user's saved jobs
+    const jobIndex = user.JobJD.findIndex((job) => job === JobJD);
+    if (jobIndex !== -1) {
+      user.JobJD.splice(jobIndex, 1);
+      console.log(jobIndex)
+      console.log(user)
+      console.log(JobJD)
+      console.log(userID)
+    } else {
+      return res.status(404).json({ message: 'Job not found' });
+    }
+
+    // Update the user's saved jobs in the database
+    await userCollection.updateOne({ userID }, { $set: { JobJD: user.JobJD } });
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
 
 
 app.get("/api/job/:position", cors(), async (req, res) => {
@@ -201,7 +294,7 @@ if (!user || user.password !== password) {
   return res.status(401).send('Invalid email or password');
 }
 const token = jwt.sign({ email: email }, secretKey);
-res.json({ token, userEmail: user.email });
+res.json({ token, userEmail: user.email, userID:user.userID });
 });
 
 // API lấy tên người dùng
@@ -214,6 +307,8 @@ app.get('/api/user', async (req, res) => {
     const decodedToken = jwt.verify(token, secretKey);
     const email = decodedToken.email;
     const user = await userCollection.findOne({ email: email });
+
+
     console.log('decodedToken:', decodedToken);
     console.log('user:', user);
     if (!user) {
@@ -251,4 +346,7 @@ app.get("/api/company",cors(),async(req,res)=>{
       res.status(500).send('Server error');
     }
   });
+
+//test kết hợp token
+
 

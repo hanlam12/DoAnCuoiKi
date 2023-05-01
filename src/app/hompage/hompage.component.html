@@ -76,8 +76,21 @@
           </div>
         </div>
         <div class="content-hot-input">
+
           <button  (click)="showModal(j.job_name)" id="apply" >Apply Now</button>
+
+          <div class="container">
+            <button class="luu" [ngClass]="{ 'is-hidden': isSaved (j) }" (click)="saveJob(j)">
+              <i class="fas fa-heart"></i> Lưu
+            </button>
+
+            <button class="boluu" [ngClass]="{ 'is-hidden': !isSaved (j) }" (click)="removeJob(j)">
+              <i class="fas fa-heart"></i> Đã Lưu
+            </button>
+          </div>
+
         </div>
+        {{isSaved(j)}}
       </div>
       <hr />
       <a (click)="searchJob()"

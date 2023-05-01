@@ -4,7 +4,6 @@ import { Users } from 'workzone';
 import { WorkZoneService } from '../work-zone.service';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -18,17 +17,16 @@ export class SignUpComponent {
     this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
   }
 
-
   newUser=new Users();
   errMessage:string=''
   existingUserErrors:string[] = [];
-  constructor(private _service:WorkZoneService,private router:Router){}
 
+  constructor(private _service:WorkZoneService,private router:Router){}
 
   errorOccurred:boolean=false;
 
-
   postUser(){
+
     if(
       this.newUser.fullname !='' &&
       this.newUser.phone!='' &&
@@ -47,7 +45,6 @@ export class SignUpComponent {
           },
           (err) => {
 
-
             console.error('Post user error:', err);
             if (err.status === 409 && err.error && err.error.error) {
               this.existingUserErrors = err.error.error;
@@ -55,8 +52,6 @@ export class SignUpComponent {
             } else {
               this.errMessage = "Có lỗi khi đăng ký tài khoản, email hoặc số điện thoại của bạn đã được sử dụng"
             }
-
-
 
 
           }
@@ -67,10 +62,8 @@ export class SignUpComponent {
       alert('Vui lòng nhập đầy đủ thông tin để đăng ký tài khoản')}
   }
 
-
   login(){
     this.router.navigate(['login'])
   }
-
 
 }

@@ -32,7 +32,7 @@ import { ThongBaoViecLamComponent } from './thong-bao-viec-lam/thong-bao-viec-la
 
 const routes: Routes = [
   {path:"profile", component: CreateProfileComponent},
-  {path:"saved", component: SavedJobComponent},
+  {path:"saved/:userID", component: SavedJobComponent},
   {path:"noti", component: ThongBaoViecLamComponent},
   {path:"404notfound", component: NotFoundComponent},
   {path:"contact",component:ContactComponent},

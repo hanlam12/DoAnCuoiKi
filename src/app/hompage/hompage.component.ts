@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class HompageComponent {
   show = false;
+  saved_jobs: any[] = [];
   errMessage = '';
   selectedJob: string = '';
   job3: any;
@@ -18,6 +19,8 @@ export class HompageComponent {
    jobs: any;
    company:any;
   modalRef!: BsModalRef;
+
+
 
   constructor(public _service: WorkZoneService, private router: Router, private modalService: BsModalService) {
     this.getJobs();
@@ -61,4 +64,53 @@ export class HompageComponent {
     this.selectedJob = jobTitle;
     this.modalRef = this.modalService.show(ApplyCVComponent);
   }
+  luu() {
+    this.show = !this.show;
+  }
+
+  isSavedValue: boolean = false;
+
+  isSaved(job: any): boolean {
+    const userId = localStorage.getItem('userID');
+    if (userId) {
+      this.isSavedValue = this.saved_jobs.includes(job.jobJD);
+      return this.isSavedValue;
+    }
+    return false;
+  }
+
+
+
+saveJob(job: any): void {
+  const userId = localStorage.getItem('userID');
+  if (userId) {
+    this._service.GetSavedJobs(userId).subscribe((savedJobs: any) => {
+      if (Array.isArray(savedJobs) && savedJobs.includes(job.jobJD)) {
+        console.log(`Công việc ${job.jobJD} đã được lưu trước đó`);
+      } else {
+        this._service.SaveJob(userId, job.jobJD, true).subscribe(() => {
+          this.saved_jobs.push(job.jobJD);
+          console.log(`Đã lưu công việc ${job.jobJD}`);
+        });
+      }
+    });
+  }
+}
+
+
+
+removeJob(job: any): void {
+  const userId = localStorage.getItem('userID');
+  if (userId) {
+    this._service.removeJob(userId, job.jobJD).subscribe(() => {
+      const index = this.saved_jobs.findIndex((savedJob) => savedJob === job.jobJD);
+      if (index > -1) {
+        this.saved_jobs.splice(index, 1);
+      }
+    }, error => {
+      console.log(`Xóa công việc ${job.jobJD} thất bại: ${error.message}`);
+    });
+  }
+}
+
 }
