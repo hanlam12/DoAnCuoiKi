@@ -9,7 +9,7 @@ const morgan=require("morgan")
 app.use(morgan("combined"))
 const bodyParser=require("body-parser")
 app.use(bodyParser.json({ limit: '10mb' }));
-app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: false, limit: '10mb' }));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(express.json());
@@ -28,6 +28,7 @@ app.listen(port,()=>{
   jobCollection = database.collection("job");
   userCollection = database.collection("Users");
   companyCollection = database.collection("company");
+
   const { ObjectId: objId } = require('mongodb');
   app.get("/api/job-application/:userID", cors(), async (req, res) => {
     const userId = req.params.userID;
@@ -129,7 +130,9 @@ app.get('/api/applycv/jobJD', cors(), async (req, res) => {
 });
 
 
+
   app.get("/api/job",cors(),async(req,res)=>{
+
     const result = await jobCollection.find({}).toArray();
     res.send(result)
   })
@@ -576,6 +579,111 @@ app.get("/api/company",cors(),async(req,res)=>{
       res.status(500).send('Server error');
     }
   });
+//admin
+  app.get("/api/admin",cors(),async(req,res)=>{
+    const companies = await companyCollection.find({}).toArray();
+    const jobs = await jobCollection.find({}).toArray();
+    const users = await userCollection.find({}).toArray();
+    adminData = { companies, jobs, users }
+    res.send(adminData)
+  })
+  app.post("/api/create-company",cors(),async(req,res)=>{
+    await companyCollection.insertOne(req.body)
+    res.send(req.body)
+  });
+  
+const CircularJSON = require('circular-json');
 
+function replacer(key, value) {
+  if (value instanceof Object && !(value instanceof Array)) {
+    if (value.hasOwnProperty('_id')) {
+      return { ...value, _id: value._id.toString() };
+    }
+    return Object.entries(value).reduce((acc, [k, v]) => {
+      return { ...acc, [k]: replacer(k, v) };
+    }, {});
+  }
+  return value;
+}
+
+// ...
+
+
+app.put("/api/put-company", async (req, res) => {
+  await companyCollection.updateOne(
+    {_id:new ObjectId(req.body._id)},//condition for update
+    { $set: { //Field for updating
+      company_name: req.body.company_name,
+      company_intro: req.body.company_intro,
+      company_scale: req.body.company_scale,
+      company_address: req.body.company_address,
+      company_website: req.body.company_website,
+      company_id: req.body.company_id,
+      company_image: req.body.company_image
+    }
+    }
+    )
+    var o_id = new ObjectId(req.body._id);
+    const result = await companyCollection.find({_id:o_id}).toArray();
+    const updatedCompanyJSON = CircularJSON.stringify(result, replacer);
+    res.send(updatedCompanyJSON);
+});
+
+app.delete("/api/delete-company",cors(),async(req,res)=>{
+  var o_id = new ObjectId(req.body._id);
+  const result = await companyCollection.find({_id:o_id}).toArray();
+  await companyCollection.deleteOne(
+  {_id:o_id}
+  )
+  res.send(result[0])
+  });
+
+
+app.put("/api/put-user", async (req, res) => {
+  await userCollection.updateOne(
+    {_id:new ObjectId(req.body._id)},//condition for update
+    { $set: { //Field for updating
+      userID: req.body.userID,
+    }
+    }
+    )
+    var o_id = new ObjectId(req.body._id);
+    const result = await userCollection.find({_id:o_id}).toArray();
+    const updatedUserJSON = CircularJSON.stringify(result, replacer);
+    res.send(updatedUserJSON);
+});
+
+app.delete("/api/delete-user",cors(),async(req,res)=>{
+  var o_id = new ObjectId(req.body._id);
+  const result = await userCollection.find({_id:o_id}).toArray();
+  await userCollection.deleteOne(
+  {_id:o_id}
+  )
+  res.send(result[0])
+  });
+
+app.put("/api/put-job", async (req, res) => {
+  await jobCollection.updateOne(
+    {_id:new ObjectId(req.body._id)},//condition for update
+    { $set: { //Field for updating
+      jobJD: req.body.jobJD,
+    }
+    }
+    )
+    var o_id = new ObjectId(req.body._id);
+    const result = await jobCollection.find({_id:o_id}).toArray();
+    const updatedUserJSON = CircularJSON.stringify(result, replacer);
+    res.send(updatedUserJSON);
+});
+
+
+app.delete("/api/delete-job",cors(),async(req,res)=>{
+  var o_id = new ObjectId(req.body._id);
+  const result = await jobCollection.find({_id:o_id}).toArray();
+  await jobCollection.deleteOne(
+  {_id:o_id}
+  )
+  res.send(result[0])
+  });
 
 

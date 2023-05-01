@@ -34,6 +34,7 @@ constructor(private _http:HttpClient, private router: Router) { }
     // Điều hướng đến trang mong muốn sau khi người dùng đăng nhập thành công
     this.router.navigate(['/']);
   }
+  
 
   login(email: string, password: string): Observable<any> {
     return this._http.post<any>(this.loginUrl, { email: email, password: password }).pipe(
@@ -93,6 +94,7 @@ constructor(private _http:HttpClient, private router: Router) { }
       retry(3),
       catchError(this.handleError))
   }
+  
 
   getTC(fGD:any):Observable<any>{
     const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")

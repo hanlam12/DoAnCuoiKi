@@ -31,16 +31,20 @@ import { AccountMenuComponent } from './account-menu/account-menu.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
-
+import { AdminWZComponent } from './admin-wz/admin-wz.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SavedJobComponent } from './saved-job/saved-job.component';
+
+import { NewCompanyModalComponent } from './new-company-modal/new-company-modal.component';
+
 import { LoginEmployerComponent } from './login-employer/login-employer.component';
 import { SignUpEmployerComponent } from './sign-up-employer/sign-up-employer.component';
 
 import { PaymentComponent } from './payment/payment.component';
+
 
 
 
@@ -77,9 +81,14 @@ import { PaymentComponent } from './payment/payment.component';
     CreateProfileComponent,
     NotFoundComponent,
     SavedJobComponent,
+
+    AdminWZComponent,
+    NewCompanyModalComponent
+
     LoginEmployerComponent,
     SignUpEmployerComponent,
     PaymentComponent
+
 
 
   ],

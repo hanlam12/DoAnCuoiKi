@@ -1,0 +1,82 @@
+.title{
+    color: #00A9FF;
+    text-align: center;
+    margin-top: 4%;
+  }
+  .divform{
+    display: flex;
+    width: fit-content;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding-left: 7%;
+    padding-right: 7%;
+    padding-top: 4%;
+    margin: 4% 23%;
+
+  }
+  .form-input{
+    width: 100%;
+    margin-bottom: 5%;
+    box-sizing: border-box;
+    border: 0.5px solid rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding: 2% 5%;
+  }
+  .infor{
+    width: 100%;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+    margin: 5% 0%;
+  }
+
+.function-btn{
+    padding: 2px !important;
+    background-color: #48c0fd;
+    width: 100px;
+    margin-bottom: 5px;
+    border: none; 
+    color: white;
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block; 
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    
+    
+  }
+  .button {
+    background-color: #48c0fd; 
+    border: none; 
+    color: white; 
+    padding: 10px 20px; 
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block; 
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 2%;
+    font-size: large;
+  }
+  
+  
+  .button:hover {
+    background-color: #16648c;
+  }
+  .button:active {
+    background-color: #367539; 
+  }
+  .function-btn:hover {
+    background-color: #16648c;
+  }
+  .function-btn:active {
+    background-color: #367539; 
+  }
+  .btnClose{
+    display: flex;
+    justify-content: end;
+  }

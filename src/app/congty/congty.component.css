@@ -104,21 +104,24 @@ html, body {
  }
  .function-tuyendung{
    background-color: white;
-   flex-basis: 69%;
+   flex-basis: 69% !important;
    padding: 2%;
    border-radius: 5px;
  }
  .function-share{
    background-color: white;
-   flex-basis: 30%;
+   flex-basis: 30% !important;
    padding: 2%;
    border-radius: 5px;
  }
  #lable-link{
+  display: inline-block;
    background-color: aliceblue;
    padding: 1%;
    width: 80%;
    border-radius: 5px;
+  
+  
  }
  .function-copy{
    display: flex;
@@ -131,6 +134,7 @@ html, body {
    text-align: center;
    width: 30px;
    cursor: pointer;
+   justify-self: center;
  }
  .function-click{
    display: flex;
@@ -151,11 +155,51 @@ html, body {
     border: 1px solid lightgrey;
     width: 100px;
     height: 100px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    
+    
 
  }
  .job-details{
    cursor: pointer;
+   
  }
  .job-details:hover{
    background-color: aliceblue;
  }
+
+ /* Thiết lập cho các thiết bị tablet */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+
+  /* Thiết lập chiều rộng cho logo */
+  .logo-image {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    display: block; /* Thêm dòng này để đảm bảo hình ảnh được hiển thị dưới dạng block element */
+}
+
+
+  /* Thiết lập chiều rộng cho container */
+  .container {
+      max-width: 768px;
+      margin: 0 auto;
+  }
+
+  /* Thiết lập hiển thị danh sách công việc */
+  .table-image {
+      width: 80px;
+  }
+
+  .table-details {
+      padding-left: 16px;
+  }
+
+  .table-luong {
+      display: none;
+  }
+
+}
+
+ 

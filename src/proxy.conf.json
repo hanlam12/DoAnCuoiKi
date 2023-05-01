@@ -28,6 +28,7 @@
     "changeOrigin":true,
     "logLevel":"debug"
   },
+  
   {
     "context" : ["/register"],
     "target" : "http://localhost:6868",
@@ -58,6 +59,62 @@
 },
 {
   "context" : ["/api/job-decription"],
+  "target" : "http://localhost:6868",
+  "secure":true,
+  "changeOrigin":true,
+  "logLevel":"debug"
+},
+{
+  "context" : ["/api/admin"],
+  "target" : "http://localhost:6868",
+  "secure":true,
+  "changeOrigin":true,
+  "logLevel":"debug"
+},
+{
+  "context" : ["/api/create-company"],
+  "target" : "http://localhost:6868",
+  "secure":true,
+  "changeOrigin":true,
+  "logLevel":"debug"
+},
+{
+  "context" : ["/api/put-company"],
+  "target" : "http://localhost:6868",
+  "secure":true,
+  "changeOrigin":true,
+  "logLevel":"debug"
+},
+{
+  "context" : ["/api/delete-company"],
+  "target" : "http://localhost:6868",
+  "secure":true,
+  "changeOrigin":true,
+  "logLevel":"debug"
+},
+{
+  "context" : ["/api/put-user"],
+  "target" : "http://localhost:6868",
+  "secure":true,
+  "changeOrigin":true,
+  "logLevel":"debug"
+},
+{
+  "context" : ["/api/delete-user"],
+  "target" : "http://localhost:6868",
+  "secure":true,
+  "changeOrigin":true,
+  "logLevel":"debug"
+},
+{
+  "context" : ["/api/put-job"],
+  "target" : "http://localhost:6868",
+  "secure":true,
+  "changeOrigin":true,
+  "logLevel":"debug"
+},
+{
+  "context" : ["/api/delete-job"],
   "target" : "http://localhost:6868",
   "secure":true,
   "changeOrigin":true,
