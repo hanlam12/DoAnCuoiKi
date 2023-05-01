@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Password } from 'src/assets/thaymatkhau';
 
 @Component({
@@ -12,6 +12,7 @@ export class ThaydoimatkhauComponent {
   newPass: string='';
   retypePass: string='';
   showPassword:boolean=false;
+
   changePassword() {
     if(this.newPass == this.retypePass){
       alert ('Cập nhật mật khẩu thành công')

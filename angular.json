@@ -24,6 +24,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
+
             "styles": [
               "src/styles.css",
               "node_modules/leaflet/dist/leaflet.css"
@@ -62,6 +63,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
+            "port": 1012,
             "browserTarget": "DoAnCuoiKi:build",
             "proxyConfig": "src/proxy.conf.json"
           },
@@ -109,4 +111,5 @@
   "cli": {
     "analytics": "a1d15b9b-3908-4ba0-ba33-bc54a74adfaa"
   }
+
 }

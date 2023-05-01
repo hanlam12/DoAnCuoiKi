@@ -1,0 +1,154 @@
+<h2>CHI TIẾT THANH TOÁN</h2>
+    <h4>Chúng tôi đảm bảo thông tin của bạn là bảo mật</h4>
+    <div class="container__payment">
+      <div class="content__payment--left">
+        <form >
+          <table>
+            <tr>
+              <td>
+                <input
+                  type="radio"
+                  name="pay"
+                  class="radio-button"
+                  id="paypal"
+                /><label for="paypal" class="pay">Paypal</label>
+                <img src="assets/media/paypal.jpg" alt="Paypal-method"/>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <input
+                  type="radio"
+                  name="pay"
+                  class="radio-button"
+                  id="card"
+                /><label class="pay" for="card">Card</label>
+                <img src="assets/media/pay.jpg" alt="Card-method" />
+              </td>
+            </tr>
+          </table>
+
+          <div class="payment__row">
+            <input type="number" placeholder="Số thẻ" class="input1 form-control"  pattern="[0-9]*"  placeholder="Nhập số thẻ" required #cardNumber/>
+          </div>
+
+          <div class="payment__row">
+            <input type="date" placeholder="Hết hạn" class="input2 form-control" /><br>
+            <input type="number" placeholder="CVV" class="input3 form-control" />
+          </div>
+          <div class="payment__row">
+            <input type="text" placeholder="Họ và tên" class="input2 form-control" />
+
+          </div>
+          </form>
+      </div>
+      <div class="content__payment--right">
+        <table>
+          <tr style="text-align: center">
+            <th>Loại dịch vụ</th>
+            <th>Số tiền</th>
+          </tr>
+          <tr>
+            <td style="text-align: right; border: 1px solid;">Thanh toán người mới bắt đầu</td>
+            <td>2.000.000 VNĐ</td>
+          </tr>
+          <tr>
+            <td style="text-align: right; font-weight: 700;">Tổng:</td>
+            <td style="font-weight: 700;">2.000.000 VNĐ</td>
+          </tr>
+        </table>
+        <div class="payment__row-1">
+        <div class="payment__row">
+          <h3>Thông tin liên hệ</h3>
+        </div>
+        <div class="payment__row">
+          <label for="telephone">Số điện thoại:</label>
+          <input type="tel" class="form-control" id="telephone" name="phone" id="phone" [(ngModel)]="model.Phone" name="phone"
+          pattern="[0-9]*"
+          minlength="10"
+          maxlength="10"
+          #phone="ngModel" placeholder="Nhập số điện thoại" required/>
+        </div>
+        <div class="text" [hidden]="!phone.hasError('pattern')">Mobile number should be only numbers!</div>
+        <div class="payment__row">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+             id="email" required [(ngModel)]="model.Email" name="email"
+          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+          #email="ngModel"
+            placeholder="Email"
+            class="form-control"
+          />
+          <div style="color: red;" [hidden]="!email.hasError('pattern')">Email format should be
+            <small><b>joe@abc.com</b></small>
+         </div>
+        </div>
+      </div>
+
+        </div>
+
+    </div>
+    <div><input type="submit" id="myBtn" (click)="openModal1(template1)" value="Next"/></div>
+
+    <!-- popup.component.html -->
+    <ng-template #template1>
+      <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Chọn phương thức nhận OTP Code</h4>
+          </div>
+          <div class="modal-body">
+            <p>Bạn muốn nhận mã OTP Code thông qua</p>
+
+            <input type="radio" name="send" id="phone" /><label for="phone"
+              >Số điện thoại</label
+            >
+            <br />
+            <input type="radio" name="send" id="mail" /><label for="mail"
+              >Email</label
+            >
+          </div>
+          <div class="modal-footer">
+            <button class="close" (click)="bsModalRef.hide()">Hủy</button>
+            <button id="myBtn1" (click)="openModal2(template2)">Tiếp tục</button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+  <ng-template #template2>
+  <div cid="myModal" class="modal">
+    <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">Xác nhận OTP</h4>
+      <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body2">
+      <p>Vui lòng nhập mã OTP được gửi đến số điện thoại của bạn.</p>
+      <input type="text" placeholder="Nhập mã OTP" class="form-control" />
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="openModal1(template1)">Hủy</button>
+      <button type="button" class="btn btn-primary" (click)="sendOtp(template3)">Xác nhận</button>
+    </div>
+    </div>
+  </div>
+  </ng-template>
+
+  <ng-template #template3>
+    <div id="myModal2" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content1">
+        <img id="check__successful" src="assets/media/check.png" alt="" />
+        <div>THANH TOÁN THÀNH CÔNG</div>
+        <div class="modal-footer1">
+          <button (click)="bsModalRef.hide()" class="close2">OK</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>

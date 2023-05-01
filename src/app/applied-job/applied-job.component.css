@@ -18,6 +18,14 @@
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 15px;
   }
+  .body_right .fa-circle-user{
+    width:60px;
+    height: 60px;
+    margin-top: 20px;
+    margin-left: 8%;
+    float: left;
+    border-radius: 50px;
+  }
   #file_created{
     background: #00A9FF;
     border-radius: 15px 15px 0px 0px;

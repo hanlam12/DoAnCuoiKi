@@ -20,11 +20,13 @@ export class SignUpComponent {
   newUser=new Users();
   errMessage:string=''
   existingUserErrors:string[] = [];
+
   constructor(private _service:WorkZoneService,private router:Router){}
 
   errorOccurred:boolean=false;
 
   postUser(){
+
     if(
       this.newUser.fullname !='' &&
       this.newUser.phone!='' &&

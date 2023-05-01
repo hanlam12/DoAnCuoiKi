@@ -14,9 +14,11 @@
   align-items: center;
   height: 118%;
 }
+
 .title{
   margin-bottom: 20px;
 }
+
 .right-main-menu {
   display: flex;
 }
@@ -82,9 +84,11 @@
   .account {
     display: none;
   }
+
   .title{
     font-size: 20px;
   }
+
   .logo img {
     width: 43% !important;
   }
@@ -150,6 +154,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 6%;
+
     margin-top: 15px;
   }
   #htmk{
@@ -158,6 +163,7 @@
   #quenmatkhau{
     text-align: right;
     flex: 1;
+
     color: #00A9FF;
   }
 .dangky{
@@ -168,18 +174,23 @@
 #input_btn_dangnhap{
     width: 100%;
     background: #48C0FD;
+
     border: none;
     border-radius: 5px;
     font-weight:bold;
     padding: 6px 0 8px;
     font-size: 23px;
     color: #FFFFFF;
+
 }
 #line{
   height: 40%;
 }
 @media (max-width: 1260px){
+
       #quenmatkhau{
+
+
         text-align: right;
         color: #00A9FF;
       }
@@ -188,12 +199,16 @@
     }
 }
 @media (max-width: 837px){
+
     .image,.none{
+
       display: none;
     }
     .input{
       flex-basis: 100%;
+
       border-right:none ;
+
     }
     .line{
       display: none;

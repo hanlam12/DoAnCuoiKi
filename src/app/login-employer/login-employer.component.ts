@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { WorkZoneService } from '../work-zone.service';
 import { Router } from '@angular/router';
 import { Company } from 'workzone';
@@ -9,6 +10,7 @@ import { Company } from 'workzone';
   styleUrls: ['./login-employer.component.css']
 })
 export class LoginEmployerComponent {
+
   company = new Company();
 
   errMessage :string='';
@@ -54,4 +56,7 @@ export class LoginEmployerComponent {
     }
 
   }
+
+  
+
 }

@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
+
 import { Router } from '@angular/router';
 import { Contact } from 'src/assets/contact';
 import { Password } from 'src/assets/thaymatkhau';
 import { WorkZoneService } from '../work-zone.service';
 import { Company } from 'workzone';
+
 @Component({
   selector: 'app-sign-up-employer',
   templateUrl: './sign-up-employer.component.html',
   styleUrls: ['./sign-up-employer.component.css']
 })
 export class SignUpEmployerComponent {
+
   company = new Company();
   errMessage :string='';
   confirmPass='';
@@ -67,3 +70,4 @@ export class SignUpEmployerComponent {
 
   }
 }
+

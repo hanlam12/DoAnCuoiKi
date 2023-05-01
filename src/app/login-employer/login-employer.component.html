@@ -1,14 +1,16 @@
+
 <h3 class="title">ĐĂNG NHẬP <span class="none">TÀI KHOẢN</span>  NHÀ TUYỂN DỤNG</h3>
     <div class="maxdiv">
         <div class="input">
             <form action="">
                 <input type="email" placeholder="Email *" required [(ngModel)]="company.email" name="email"
+
+
                 pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                 #email="ngModel" class="form-control">
                 <small class="text" [hidden]="!email.hasError('pattern')">Email format should be
                   <small><b>joe@abc.com</b></small>
                 </small> <br>
-
                 <input type="{{passwordType}}" name="password" placeholder="Nhập mật khẩu mới" id="newPassword" required minlength="5"
                 [(ngModel)]="company.password"
                 #password="ngModel" class="form-control">
@@ -34,12 +36,15 @@
 
                 </div>
                 <input type="button" (click)="login()" value="Đăng nhập" id="input_btn_dangnhap">
+
             </form>
         </div>
         <div class="image">
             <p class="txtwz">WorkZone</p>
             <div>
+
                 <img class="imgwz" src="assets/media/banner-login.png" alt="Lỗi" id="anh">
+
             </div>
         </div>
     </div>

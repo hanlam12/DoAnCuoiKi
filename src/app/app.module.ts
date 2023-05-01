@@ -22,7 +22,6 @@ import { JobApplicationComponent } from './job-application/job-application.compo
 import { AppliedJobComponent } from './applied-job/applied-job.component';
 import { FooterLoggedComponent } from './footer-logged/footer-logged.component';
 import { FooterNotLogInComponent } from './footer-not-log-in/footer-not-log-in.component';
-
 import { SearchJobComponent } from './search-job/search-job.component';
 import { ApplyCVComponent } from './apply-cv/apply-cv.component';
 import { HeaderComponent } from './header/header.component';
@@ -31,6 +30,8 @@ import { ThongBaoViecLamComponent } from './thong-bao-viec-lam/thong-bao-viec-la
 import { AccountMenuComponent } from './account-menu/account-menu.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+
+
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -38,6 +39,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SavedJobComponent } from './saved-job/saved-job.component';
 import { LoginEmployerComponent } from './login-employer/login-employer.component';
 import { SignUpEmployerComponent } from './sign-up-employer/sign-up-employer.component';
+
+import { PaymentComponent } from './payment/payment.component';
+
+
 
 @NgModule({
   declarations: [
@@ -53,7 +58,6 @@ import { SignUpEmployerComponent } from './sign-up-employer/sign-up-employer.com
     AppliedJobComponent,
     FooterLoggedComponent,
     FooterNotLogInComponent,
-    AppComponent,
     SearchJobComponent,
     ApplyCVComponent,
     ThongtinComponent,
@@ -74,7 +78,10 @@ import { SignUpEmployerComponent } from './sign-up-employer/sign-up-employer.com
     NotFoundComponent,
     SavedJobComponent,
     LoginEmployerComponent,
-    SignUpEmployerComponent
+    SignUpEmployerComponent,
+    PaymentComponent
+
+
   ],
   imports: [
     BrowserModule,
@@ -85,11 +92,10 @@ import { SignUpEmployerComponent } from './sign-up-employer/sign-up-employer.com
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
-
   ],
 
   providers: [],
-  bootstrap: [AppComponent, JobDecriptionComponent],
+  bootstrap: [AppComponent],
   entryComponents: [ApplyCVComponent]
 })
 export class AppModule { }

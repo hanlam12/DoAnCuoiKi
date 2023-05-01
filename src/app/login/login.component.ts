@@ -26,9 +26,11 @@ export class LoginComponent {
 
 
   error = false
+
   errMessage :string='';
 
   existingUserErrors:string[] = [];
+
 
   login(): void{
     this._loginService.login(this.lgForm.get('email')?.value, this.lgForm.get('password')?.value).subscribe(
@@ -46,5 +48,6 @@ export class LoginComponent {
     );
 
   }
+
 }
 
