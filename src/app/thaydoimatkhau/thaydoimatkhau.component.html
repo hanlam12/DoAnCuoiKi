@@ -1,17 +1,20 @@
+<div class="main">
 <div class="row">
-<div class="col-md-3 col-12">
+<div class="col-md-4 col-12">
   <div class="taikhoan" id="taikhoan">
-    <button class="method btn1" onclick="tab()">
-      <h4>Tài khoản</h4>
-      <p>Tùy chỉnh thông tin cá nhân</p>
-      <span class="text"></span>
-    </button> <br>
-    <button class="method btn2" onclick="tab()">
-      <h4>Đổi mật khẩu</h4>
-      <p>Đổi mật khẩu đăng nhập</p>
+    <button class="method" routerLink="/profile">
+      <h5>Tài khoản</h5>
+      <span>Tùy chỉnh thông tin cá nhân</span>
     </button>
   </div>
-</div>
+  <div class="taikhoan matkhau" id="matkhau">
+    <button class="method " routerLink="/thaydoimatkhau">
+      <h5>Đổi mật khẩu</h5>
+      <span>Đổi mật khẩu đăng nhập</span>
+    </button>
+  </div>
+ </div>
+<div class="col-md-8 col-12">
 <form class="form-change-pass is-display-none" id="form-change-pass">
   <div class="header-change-pass">
     <h1>Thay đổi mật khẩu</h1>
@@ -56,3 +59,6 @@
   <button class="btn-mk" type="submit" (click)="changePassword()">Cập nhật mật khẩu</button>
 </form>
 </div>
+</div>
+</div>
+

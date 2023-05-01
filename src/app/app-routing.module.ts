@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContactComponent } from './contact/contact.component';
 import { HompageComponent } from './hompage/hompage.component';
@@ -30,27 +30,32 @@ import { SignUpEmployerComponent } from './sign-up-employer/sign-up-employer.com
 import { PaymentComponent } from './payment/payment.component';
 
 
+
+
+
 const routes: Routes = [
-  {path:"create-profile", component: CreateProfileComponent},
-  {path:"saved", component: SavedJobComponent},
+
+  {path:"profile", component: CreateProfileComponent},
+  {path:"saved/:userID", component: SavedJobComponent},
+
   {path:"noti", component: ThongBaoViecLamComponent},
   {path:"404notfound", component: NotFoundComponent},
   {path:"contact",component:ContactComponent},
   {path:"sign-up",component:SignUpComponent},
-
   {path:"job-decription/:jobJD",component:JobDecriptionComponent},
-
-  {path:"job-description",component:JobDecriptionComponent},
-
-  {path:"job-application",component:JobApplicationComponent},
+  {path:"job-application/:userID",component:JobApplicationComponent},
+  {path:"applied-job/:userID",component:AppliedJobComponent},
+{path: "job-decription", component: JobDecriptionComponent},
+{path: "job-application", component: JobApplicationComponent},
   {path:"applied-job",component:AppliedJobComponent},
   {path:"footer-logged",component:FooterLoggedComponent},
   {path:"footer-not-log-in",component:FooterNotLogInComponent},
   {path:"search-job",component:SearchJobComponent},
   {path:"applycv",component:ApplyCVComponent},
+  {path:"applycv/:jobJD",component:ApplyCVComponent},
   {path:"",component:HompageComponent},
   { path: "thongtin", component: ThongtinComponent },
-  {path: "login", component: LoginComponent},
+ {path: "login", component:LoginComponent},
   {path: "dieukhoandichvu", component: DieukhoandichvuComponent},
   { path:"support", component:SupportComponent},
   { path:"thaydoimatkhau", component:ThaydoimatkhauComponent},
@@ -58,9 +63,9 @@ const routes: Routes = [
   { path:"quenmatkhau1", component: Quenmatkhau1Component},
   { path:"quenmatkhau2", component:Quenmatkhau2Component},
   { path:"quenmatkhau3", component:Quenmatkhau3Component},
-  {path: "dieukhoandichvu", component: DieukhoandichvuComponent},
+  {path: "company", component: CongtyComponent},
+   {path: "company/:company_id", component: CongtyComponent}
 
-  // {path: "companies/:companyId", component: CongtyComponent},
 
   // {path: "congty", component: CongtyComponent},
   // {path: "congty/:id", component: CongtyComponent},
@@ -78,13 +83,11 @@ export const RoutingComponent={
   ContactComponent,
   HompageComponent,
   SignUpComponent,
-
   JobDecriptionComponent,
   JobApplicationComponent,
   AppliedJobComponent,
   FooterLoggedComponent,
   FooterNotLogInComponent,
-
   SearchJobComponent,
   ApplyCVComponent,
   ThongtinComponent,

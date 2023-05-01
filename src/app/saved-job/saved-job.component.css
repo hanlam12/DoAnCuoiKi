@@ -33,7 +33,7 @@ margin-top: 20px;
   height: auto;
 }
 #xapsep input{
-  margin-left: 9%;
+  margin-left: 5%;
   margin-right: 1%;
 }
 _1, _2, _3, _4, _5{
@@ -50,8 +50,8 @@ _1, _2, _3, _4, _5{
  img{
   float: left;
   width: 100%;
-  height: auto;
-margin-top: 20px;
+  height: 100px;
+
 }
  .line_button{
   float: left;

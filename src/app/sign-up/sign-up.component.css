@@ -162,6 +162,7 @@
 .icon {
   padding-right: 5px;
 }
+
 @media (max-width: 480px) {
   .left-lg{
     display: none;

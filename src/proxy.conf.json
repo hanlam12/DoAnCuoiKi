@@ -1,38 +1,44 @@
 [
   {
-    "context" : ["/job"],
+    "context" : ["/api/job"],
     "target" : "http://localhost:6868",
     "secure":true,
     "changeOrigin":true,
     "logLevel":"debug"
   },
   {
-    "context" : ["/companies"],
+    "context" : ["/api/company"],
     "target" : "http://localhost:6868",
     "secure":true,
     "changeOrigin":true,
     "logLevel":"debug"
   },
   {
-    "context" : ["/user"],
+    "context" : ["/api/user"],
     "target" : "http://localhost:6868",
     "secure":true,
     "changeOrigin":true,
     "logLevel":"debug"
   },
   {
-    "context" : ["/login"],
-    "target" : "http://localhost:6868",
-    "secure":true,
-    "changeOrigin":true,
-    "logLevel":"debug"
-  },
-  {
-    "context" : ["/congty"],
-    "target" : "http://localhost:6868",
-    "secure":true,
-    "changeOrigin":true,
-    "logLevel":"debug"
-  }
-
+    "context": ["/api/company/**"],
+    "target": "http://localhost:6868",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+},
+{
+  "context": ["/api/applycv"],
+  "target": "http://localhost:6868",
+  "secure": true,
+  "changeOrigin": true,
+  "logLevel": "debug"
+},
+{
+  "context" : ["/api/job-decription"],
+  "target" : "http://localhost:6868",
+  "secure":true,
+  "changeOrigin":true,
+  "logLevel":"debug"
+}
 ]

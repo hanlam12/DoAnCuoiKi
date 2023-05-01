@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Job } from 'workzone';
-import { IJob } from 'workzone';
+
 import { WorkZoneService } from '../work-zone.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';

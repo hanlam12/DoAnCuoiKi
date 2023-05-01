@@ -1,3 +1,6 @@
+import { ActivatedRoute, Params } from '@angular/router';
+import { Job } from 'workzone';
+import { WorkZoneService } from '../work-zone.service';
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService  } from 'ngx-bootstrap/modal';
 import { ApplyCVComponent } from '../apply-cv/apply-cv.component';
@@ -8,16 +11,31 @@ import { ApplyCVComponent } from '../apply-cv/apply-cv.component';
   templateUrl: './job-decription.component.html',
   styleUrls: ['./job-decription.component.css'],
 })
-export class JobDecriptionComponent{
-  show = false;
+export class JobDecriptionComponent {
 
-  constructor(private modalService: BsModalService) {}
+  jobId: string = '';
+  jobData: any;
+  errMessage:string='';
+  constructor(
+    private route: ActivatedRoute,
+    private jobsService: WorkZoneService,
+    private modalService: BsModalService
+  ) {
+    this.route.params.subscribe(
+      (params: Params) => {
+         this.jobId = params['jobJD'];
+      }
+   );
 
+    this.jobsService.getjobDescription(this.jobId).subscribe({
+    next:(data)=>{this.jobData=data},
+    error:(err)=>{this.errMessage=err}
+    })
+   }
 
-  modalRef!: BsModalRef;
 
   showModal() {
-
-    this.modalRef = this.modalService.show(ApplyCVComponent);
+    this.modalService.show(ApplyCVComponent);
   }
+
 }
