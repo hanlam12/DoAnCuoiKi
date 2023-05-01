@@ -1,0 +1,34 @@
+<h2 class="title">ĐĂNG NHẬP TÀI KHOẢN NHÀ TUYỂN DỤNG</h2>
+    <div class="maxdiv">
+        <div class="input">
+            <form action="">
+                <input type="email" placeholder="Email *" required [(ngModel)]="model.Email" name="email"
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                #email="ngModel" class="form-control">
+                <small class="text" [hidden]="!email.hasError('pattern')">Email format should be
+                  <small><b>joe@abc.com</b></small>
+                </small> <br>
+                <input type="password" name="newPassword" placeholder="Nhập mật khẩu mới" id="newPassword" required minlength="5"
+                [(ngModel)]="model.Password" name="newpassword"
+                #newpassword="ngModel" class="form-control">
+                <small class="text" [hidden]="!newpassword.hasError('minlength')">Password must contain at least 5 characters</small>
+                <div class="check">
+                    <div id="htmk">
+                        <input type="checkbox"><span> Hiển thị mật khẩu</span>
+                    </div>
+                    <span id="quenmatkhau"><a>Quên mật khẩu?</a></span>
+                </div>
+                <div class="dangky">
+                    <span>Bạn chưa có tài khoản?</span>
+                    <a id="dangky">Đăng ký</a>
+                </div>
+                <input type="button" value="Đăng nhập" id="input_btn_dangnhap">
+            </form>
+        </div>
+        <div class="image">
+            <p class="txtwz">WorkZone</p>
+            <div>
+                <img class="imgwz" src="assets/media/imgdangnhap.png" alt="Lỗi" id="anh">
+            </div>
+        </div>
+    </div>

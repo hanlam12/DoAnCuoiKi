@@ -1,0 +1,244 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+.main-menu {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.logo img {
+  width: 100%;
+}
+.nav-pc {
+  display: flex;
+  align-items: center;
+  height: 118%;
+}
+
+.right-main-menu {
+  display: flex;
+}
+.right-main-menu button {
+  margin-left: 10px;
+}
+.btn-menu {
+  border-radius: 12px;
+  border: 1px solid rgba(36, 0, 255, 1);
+  font-size: 90%;
+  font-weight: bold;
+  color: #ffffff;
+  width: 150px;
+  background-color: #48c0fd;
+}
+
+.btn-nav {
+  width: 50%;
+  font-weight: bold;
+  background: #48c0fd;
+  margin: 10px 10px;
+  color: #fff;
+  border-radius: 12px;
+}
+.relative {
+  position: relative;
+}
+.ntd {
+  border-radius: 12px;
+  border: 1px solid rgba(36, 0, 255, 1);
+  font-size: 90%;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: blue;
+}
+
+.list-menu-mb-login {
+  padding-top: 10px;
+  position: fixed;
+  background: white;
+  font-size: 15px;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+  left: -2000px;
+  transition: 0.5s;
+}
+
+.is-left-default {
+  left: 0px !important;
+}
+.text{
+  color: red;
+}
+/*Responsive*/
+#nav-mb button {
+  display: none;
+}
+@media (max-width: 830px) {
+  .nav-pc,
+  .btn-menu,
+  .account {
+    display: none;
+  }
+  .logo img {
+    width: 43% !important;
+  }
+  #nav-mb button {
+    position: absolute;
+    top: 25px;
+    right: 10px;
+    font-size: 20px;
+    display: block;
+    color: #48c0fd;
+    border: none;
+    background: none;
+  }
+  .login-main {
+    width: 100%;
+    margin: 0 !important;
+  }
+  .left-lg {
+    display: none;
+  }
+}
+  /* body */
+  .title{
+    color: #00A9FF;
+    text-align: center;
+    margin-top: 3%;
+  }
+  .maxdiv{
+    display: flex;
+  }
+  .input{
+    flex-basis: 50%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 4%;
+    border-right: 2px solid #00A9FF
+  }
+  .image{
+    flex-basis: 50%;
+    justify-content: center;
+  }
+
+  #input_emailmk{
+    width: 100%;
+    margin-bottom: 6%;
+    box-sizing: border-box;
+    border: 0.5px solid rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding: 1%;
+  }
+
+  .imgwz{
+    width: 70%;
+    margin-left: 15%;
+  }
+  .txtwz{
+    color: #00A9FF;
+    font-size: xx-large;
+    font-weight: bolder;
+    text-align: center;
+  }
+  .check{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6%;
+  }
+  #htmk{
+    flex-basis: 40%;
+  }
+  #quenmatkhau{
+    flex-basis: 30%;
+    text-align: right;
+    color: #00A9FF;
+  }
+.dangky{
+    text-align: center;
+    color:#00A9FF;
+    margin-bottom: 6%;
+}
+#input_btn_dangnhap{
+    width: 100%;
+    background: #48C0FD;
+    border: 1px solid #0019FD;
+    border-radius: 5px;
+    font-weight:bold;
+    height: 50px;
+    font-size: 23px;
+    color: #FFFFFF
+}
+#line{
+  height: 40%;
+}
+@media (max-width: 1260px){
+    #htmk{
+        flex-basis: 50%;
+      }
+      #quenmatkhau{
+        flex-basis: 45%;
+        text-align: right;
+        color: #00A9FF;
+      }
+    #logo{
+      width: 70%;
+    }
+}
+@media (max-width: 837px){
+    .image{
+      display: none;
+    }
+    .input{
+      flex-basis: 100%;
+    }
+    .line{
+      display: none;
+    }
+}
+#quenmatkhau:hover{
+    color: #0019FD;
+    font-weight: bold;
+}
+#dangky:hover{
+    color: #0019FD;
+    font-weight: bold;
+}
+/* footer */
+.logo-footer img {
+  width: 296px;
+  margin-bottom: 10px;
+}
+.pd-left {
+  padding-left: 45px !important;
+}
+footer {
+  margin-top: 30px;
+}
+.background {
+  background-color: #2a363b;
+}
+.copyright {
+  text-align: center;
+  margin-bottom: 0;
+  font-size: 13px;
+}
+.content1_2 img {
+  width: 150px;
+  margin-left: -12px;
+}
+.white {
+  color: white;
+}
+.blue {
+  color: #0075ff;
+}
+
+.hover:hover {
+  text-decoration: underline;
+}
+@media (max-width: 480px) {
+  .pd-left {
+    padding-left: 15px !important;
+  }
+}
