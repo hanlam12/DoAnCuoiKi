@@ -24,28 +24,27 @@ export class HomepageEmployerComponent {
     this.infor = true;
     this.change_infor = false;
   }
-  companyId: string = '';
-  companyData: any;
+  companyId: string =''
+  companyData: any
   errMessage:string='';
+
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private _Service: WorkZoneService,
-  ) {}
-  ngOnInit(): void {
+    private companyService: WorkZoneService
+  ) {
     this.route.params.subscribe(
-      params => {
-        this.companyId = params['company_id'];
-        this._Service.getCompany(this.companyId).subscribe({
-          next: (data) => {
-            this.companyData = data;
-          },
-          error: (err) => {
-            this.errMessage = err;
-          }
-        });
+      (params: Params) => {
+         this.companyId = params['company_id'];
       }
-    );
+   );
+
+    this.companyService.getCompany(this.companyId).subscribe({
+    next:(data)=>{this.companyData=data},
+    error:(err)=>{this.errMessage=err}
+    })
+  }
+  ngOnInit(): void {
+    // Your code here
   }
   }
 

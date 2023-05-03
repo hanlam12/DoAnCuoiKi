@@ -29,25 +29,28 @@ import { Company, Job } from 'workzone';
       recruiting_amount: new FormControl('',Validators.required),
       work_form: new FormControl('',Validators.required),
     })
-    companyId: string = '';
-    companyData: any;
+    companyId: string =''
+    companyData: any
     errMessage:string='';
-    job: any = {};
+
     constructor(
       private route: ActivatedRoute,
       private router: Router,
-      private _Service: WorkZoneService,
+      private _Service: WorkZoneService
     ) {
       this.route.params.subscribe(
         (params: Params) => {
-          this.companyId = params['company_id'];
+           this.companyId = params['company_id'];
         }
-    );
+     );
 
-      this._Service.getcompany(this.companyId).subscribe({
+      this._Service.getCompany(this.companyId).subscribe({
       next:(data)=>{this.companyData=data},
       error:(err)=>{this.errMessage=err}
       })
+    }
+    ngOnInit(): void {
+      // Your code here
     }
 
     onCancel() {

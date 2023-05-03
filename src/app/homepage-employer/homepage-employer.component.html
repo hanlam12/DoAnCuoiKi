@@ -6,7 +6,7 @@
     </div>
     <div id="contentBody">
         <div class="leftContent">
-            <div class="leftTopContent" *ngFor="let job of companyData?.job">
+            <div class="leftTopContent" *ngFor="let job of companyData?.jobs">
                 <div class="myPost fw-bold text-upper text-blue">Việc làm đang tuyển</div>
                 <div class="figure">
                   <div class="image">
@@ -19,10 +19,10 @@
                       <a href="#">{{job?.job_name}}</a>
                     </h5>
                     <div class="caption">
-                      <p class="company-name "> Công ty Cổ phần FECON</p>
-                      <p class="salary">$ Cạnh tranh</p>
-                      <p class="location"> Hà Nội</p>
-                      <p class="deadline"> <i class="bi bi-calendar-check"></i> 31/05/2023</p>
+                      <p class="company-name  " style="line-height: 20px;"> {{job?.company}}</p>
+                      <p class="salary">$ {{job?.salary}}</p>
+                      <p class="location">{{job?.address}} </p>
+                      <p class="deadline"> <i class="bi bi-calendar-check"></i> {{job?.dealine}}  </p>
                     </div>
                   </div>
                 </div>
@@ -55,9 +55,9 @@
               <h3 class="nameCompany fw-bold text-upper text-center text-blue">{{companyData?.company?.company_name}}</h3>
               <div style="display: flex; ">
                 <div class="figure">
-              <div class="image">
+              <div class="image" *ngFor="let job of companyData?.jobs" >
                 <a href="#">
-                <img src="">
+                <img src="{{job?.image}}">
               </a></div>
               <span>
                 <div style="margin-left: 5%; width: 100%; margin-top: 30px;" ><strong class="text-upper">Thông tin công ty</strong>
@@ -87,10 +87,10 @@
           </div>
           <div class="rightContent" *ngIf="change_infor">
             <div class="rightTopContent account_change-info" >
-              <h2 class="nameCompany fw-bold text-upper text-center text-blue">Công ty cổ phần FECON</h2>
+              <h2 class="nameCompany fw-bold text-upper text-center text-blue">{{companyData?.company?.company_name}}</h2>
               <div id="exist-avatar" class="upload-avatar d-flex">
-                <div class="avatar">
-                  <img src="https://images.careerbuilder.vn/employer_folders/lot7/142077/155x155/163220-29865a87951beee16796b5549440712a1777dfc00ebdcb960e-pimgpsh_fullsize_distr.png" id="avatar-output">
+                <div class="avatar" *ngFor="let job of companyData?.jobs">
+                  <img src="{{job?.image}}" id="avatar-output">
                 </div>
                 <button class="btn btn-change-avatar btn-upload-avatar mt-2">
                   <i class="fa-solid fa-camera"></i> Thay ảnh </button>
@@ -103,7 +103,7 @@
                       <label for="">Email:<span class="text-red">*</span></label>
                     </div>
                     <div class="col-md-9">
-                      <input type="text" class="form-control border-hover" placeholder="abc@.gmail.com"  value="{{companyData?.company?.company_website}}" disabled >
+                      <input type="text" class="form-control border-hover" placeholder="abc@.gmail.com"  value="{{companyData?.company?.company_website}}" >
                     </div>
                   </div>
                   <div class="form-group row mb-3">

@@ -250,19 +250,6 @@ app.get("/api/company",cors(),async(req,res)=>{
     }
   });
 
-  app.get('/api/recruitment/:company_id', cors(), async (req, res) => {
-    try {
-      const company_id = req.params.company_id;
-      const company = await companyCollection.findOne({ company_id: company_id });
-      const job = await jobCollection.find({ company_id: company_id }).toArray(); // Updated this line
-      const companyData = { company, job };
-      res.send(companyData);
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Server error');
-    }
-  });
-
   app.post('/api/recruitment/:company_id/job', cors(), async (req, res) => {
     try {
       const company_id = req.params.company_id;
@@ -283,3 +270,18 @@ app.get("/api/company",cors(),async(req,res)=>{
       res.status(500).send('Server error');
     }
   });
+  // app.put("/api/company/:company_id", cors(), async (req, res) =>{
+  //   await companyCollection.updateOne(
+  //     { company_id: new ObjectId(req.body.company_id) },
+  //     { $set: {
+  //       company_image: req.body.company_image,
+  //       company_intro: req.body.company_intro,
+  //       company_scale: req.body.company_scale,
+  //       company_address: req.body.company_address,
+  //       company_website: req.body.company_website,
+  //     }}
+  //   );
+  //   var o_id = new ObjectId(req.body.company_id)
+  //   const result = await companyCollection.findOne({ company_id: o_id });
+  //   res.send(result[0]);
+  // });

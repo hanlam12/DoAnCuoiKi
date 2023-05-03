@@ -182,7 +182,7 @@
           <div class="col-md-9">
             <select type="text" class="form-control  select2-hidden-accessible" id="experience" name="experience" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="exprience" [class.is-invalid]="regForm.controls['exprience'].invalid && regForm.controls['exprience'].touched">
             <option value>-- Kinh nghiệm -- </option>
-            <option value="Chưa có kinh nghiệm">Chưa có kinh nghiệm</option>
+            <option value="Không yêu cầu">Không yêu cầu</option>
             <option value="Dưới 1 năm">Dưới 1 năm</option>
             <option value="1 năm">1 năm</option>
             <option value="2 năm">2 năm</option>
@@ -335,8 +335,8 @@
         </p>
       </div>
       <div id="exist-avatar" class="upload-avatar d-flex">
-        <div class="avatar" >
-          <img src="{{companyData?.job?.image}}" id="avatar-output" width="100">
+        <div class="avatar" *ngFor="let job of companyData?.jobs" >
+          <img src="{{job.image}}" id="avatar-output" width="100">
         </div>
       </div>
       <div class="form-group row mb-3 picture"><img src="assets/media/dangtuyen.png"></div>
