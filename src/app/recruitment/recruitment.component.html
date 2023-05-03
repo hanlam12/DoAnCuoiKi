@@ -2,7 +2,7 @@
   <h2 class="title text-center text-blue fw-bold">ĐĂNG TIN TUYỂN DỤNG</h2>
   <div class="container">
     <div class="body_left">
-    <form class="form" [formGroup]="regForm" (ngSubmit)="onSubmit()">
+    <form class="form" [formGroup]="regForm">
         <div class="form-group row mb-3">
           <div class="col-md-3 align-self-center">
             <label for="">Tiêu đề công việc:<span class="text-red">*</span></label>
@@ -323,7 +323,7 @@
         </div>
       </div>
       <div class="text-center">
-        <button class="btn submit" [disabled]="!regForm.valid" type="submit">Đăng tin tuyển dụng</button>
+        <button class="btn submit" [disabled]="!regForm.valid" (click)="onSubmit()">Đăng tin tuyển dụng</button>
         <button class="btn cancel" (click)="onCancel()">Xóa thông tin</button>
       </div>
       </form>

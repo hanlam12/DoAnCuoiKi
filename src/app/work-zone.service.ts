@@ -455,7 +455,7 @@ getUserName() {
 
 putInforCv(aUser:any): Observable<any>{
   const url = `http://localhost:6868/api/job-application/${aUser.userID}`;
-  return this._http.post<any>(url,JSON.stringify(aUser)).pipe(
+  return this._http.put<any>(url,JSON.stringify(aUser)).pipe(
     map(result => result),
     catchError(error => {
       console.error('Error', error);
@@ -473,9 +473,7 @@ addJob(jobData: any, company_id: string):Observable<any>
     responseType:"text"
   }
   return this._http.post<any>(url,jobData ,requestOptions).pipe(
-      map(res=>JSON.parse(res) as Job),
-      retry(3),
-      catchError(this.handleError)
+      map(res=>JSON.parse(res) as Job)
   )
 }
 }

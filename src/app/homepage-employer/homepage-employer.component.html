@@ -6,9 +6,9 @@
     </div>
     <div id="contentBody">
         <div class="leftContent">
-            <div class="leftTopContent" *ngFor="let job of companyData?.jobs">
+            <div class="leftTopContent" >
                 <div class="myPost fw-bold text-upper text-blue">Việc làm đang tuyển</div>
-                <div class="figure">
+                <div class="figure" *ngFor="let job of companyData?.jobs">
                   <div class="image">
                     <a href="#">
                       <img src="{{job?.image}}">
@@ -55,9 +55,9 @@
               <h3 class="nameCompany fw-bold text-upper text-center text-blue">{{companyData?.company?.company_name}}</h3>
               <div style="display: flex; ">
                 <div class="figure">
-              <div class="image" *ngFor="let job of companyData?.jobs" >
+              <div class="image"  >
                 <a href="#">
-                <img src="{{job?.image}}">
+                <img src="{{companyData?.company?.image}}">
               </a></div>
               <span>
                 <div style="margin-left: 5%; width: 100%; margin-top: 30px;" ><strong class="text-upper">Thông tin công ty</strong>
@@ -89,10 +89,12 @@
             <div class="rightTopContent account_change-info" >
               <h2 class="nameCompany fw-bold text-upper text-center text-blue">{{companyData?.company?.company_name}}</h2>
               <div id="exist-avatar" class="upload-avatar d-flex">
-                <div class="avatar" *ngFor="let job of companyData?.jobs">
-                  <img src="{{job?.image}}" id="avatar-output">
+                <div class="avatar" >
+                  <img src="{{companyData?.company?.image}}" id="avatar-output">
                 </div>
-                <button class="btn btn-change-avatar btn-upload-avatar mt-2">
+                <button class="btn btn-change-avatar btn-upload-avatar mt-2"  #name="ngModel" name="company_image" id="company_image"
+                [(ngModel)]="companyEdits.company_image"
+                (change)="onFileSelectedPutCompany($event,companyEdits)">
                   <i class="fa-solid fa-camera"></i> Thay ảnh </button>
               </div>
               <form action="post" method="POST" id="profile-form" >

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { WorkZoneService } from '../work-zone.service';
+import { Company } from 'workzone';
 
 @Component({
   selector: 'app-homepage-employer',
@@ -46,6 +47,19 @@ export class HomepageEmployerComponent {
   ngOnInit(): void {
     // Your code here
   }
+  companyEdits = new Company()
+  onFileSelectedPutCompany(event:any,companyEdits:Company) {
+    let me = this;
+    let file = event.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+    me.companyEdits.company_image=reader.result!.toString()
+    };
+    reader.onerror = function (error) {
+    console.log('Error: ', error);
+    };
+    };
   }
 
 

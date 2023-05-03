@@ -76,7 +76,7 @@ app.listen(port,()=>{
 //     res.send(cv);
 // });
 
-// app.post("/job-application/:userID/cv", cors(), (req, res) => {
+// app.put("/job-application/:userID/cv", cors(), (req, res) => {
 //   const userID = req.params.userID;
 //   const obj;
 //   const cvArray = obj.cv
@@ -85,7 +85,7 @@ app.listen(port,()=>{
 //   {...obj
 //    cv: cvArray
 // });
-//
+
 //   const newCv = req.body;
 //   const CvToUpdate = userCollection.find((cv) => cv.userID === userID);
 //   if (CvToUpdate) {
@@ -230,25 +230,30 @@ app.get("/api/company",cors(),async(req,res)=>{
 })
 // API lấy thông tin công ty
 
-  app.get('/api/company/:id', async (req, res) => {
-    try {
-      const companyId = req.params.id;
+app.get('/api/company/:id', async (req, res) => {
+  try {
+    const companyId = req.params.id;
 
-      // Find company by name
-      const company = await companyCollection.findOne({ company_id: companyId });
+    // Find company by ID
+    const company = await companyCollection.findOne({ company_id: companyId });
 
-      // Find jobs by company name
-      const jobs = await jobCollection.find({ company: company.company_name }).toArray();
-
-      const companyData = { company, jobs };
-
-      // Send company and job data in response
-      res.send(companyData);
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Server error');
+    if (!company) {
+      return res.status(404).send('Company not found');
     }
-  });
+
+    // Find jobs by company ID
+    const jobs = await jobCollection.find({ company_id: companyId }).toArray();
+    console.log(jobs);
+
+    const companyData = { company, jobs };
+
+    // Send company and job data in response
+    res.send(companyData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
 
   app.post('/api/recruitment/:company_id/job', cors(), async (req, res) => {
     try {
@@ -262,6 +267,7 @@ app.get("/api/company",cors(),async(req,res)=>{
         return;
       }
       job.company_id = company_id;
+      job.image = image;
       const result = await jobCollection.insertOne(job);
 
       res.send(result.ops[0]);
@@ -270,18 +276,19 @@ app.get("/api/company",cors(),async(req,res)=>{
       res.status(500).send('Server error');
     }
   });
-  // app.put("/api/company/:company_id", cors(), async (req, res) =>{
-  //   await companyCollection.updateOne(
-  //     { company_id: new ObjectId(req.body.company_id) },
-  //     { $set: {
-  //       company_image: req.body.company_image,
-  //       company_intro: req.body.company_intro,
-  //       company_scale: req.body.company_scale,
-  //       company_address: req.body.company_address,
-  //       company_website: req.body.company_website,
-  //     }}
-  //   );
-  //   var o_id = new ObjectId(req.body.company_id)
-  //   const result = await companyCollection.findOne({ company_id: o_id });
-  //   res.send(result[0]);
-  // });
+  app.put("/api/company/:company_id", cors(), async (req, res) =>{
+    const companyId = req.params.company_id;
+    const { company_image, company_intro, company_scale, company_address, company_website } = req.body;
+    await companyCollection.updateOne(
+      { _id: new ObjectId(companyId) },
+      { $set: {
+        company_image,
+        company_intro,
+        company_scale,
+        company_address,
+        company_website,
+      }}
+    );
+    const result = await companyCollection.findOne({ _id: new ObjectId(companyId) });
+    res.send(result);
+  });
