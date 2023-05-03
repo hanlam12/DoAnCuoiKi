@@ -31,18 +31,24 @@ export class HomepageEmployerComponent {
     private route: ActivatedRoute,
     private router: Router,
     private _Service: WorkZoneService,
-  ) {
+  ) {}
+  ngOnInit(): void {
     this.route.params.subscribe(
-      (params: Params) => {
+      params => {
         this.companyId = params['company_id'];
+        this._Service.getCompany(this.companyId).subscribe({
+          next: (data) => {
+            this.companyData = data;
+          },
+          error: (err) => {
+            this.errMessage = err;
+          }
+        });
       }
-  );
-
-    this._Service.getcompany(this.companyId).subscribe({
-    next:(data)=>{this.companyData=data},
-    error:(err)=>{this.errMessage=err}
-    })
+    );
   }
-}
+  }
+
+
 
 

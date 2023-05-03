@@ -465,9 +465,9 @@ putInforCv(aUser:any): Observable<any>{
   );
 }
 
-getcompany(company_id: string): Observable<Company> {
+getcompany(company_id: string): Observable<{company: Company, job: Job[]}> {
   const url = `http://localhost:6868/api/recruitment/${company_id}`;
-  return this._http.get<Company>(url).pipe(
+  return this._http.get<{company: Company, job: Job[]}>(url).pipe(
     map(result => result),
     catchError(error => {
       console.error('Error', error);

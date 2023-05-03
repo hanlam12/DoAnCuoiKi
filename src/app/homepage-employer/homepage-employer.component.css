@@ -16,6 +16,9 @@
   width: 50%;
   margin: 30px 15px 20px 15px;
 }
+#contentBody .rightContent{
+  line-height: 25px;
+}
 #contentBody .leftContent .leftTopContent,#contentBody .leftContent .leftBottomContent ,#contentBody .rightContent{
   border-bottom: 1px solid #eee;
   padding: 24px 24px 36px;
@@ -36,7 +39,7 @@
   margin-top: 30px;
   display: flex
 }
-.text-upper{text-transform: uppercase;} .fw-bold{font-weight: bold;}
+.text-upper{text-transform: uppercase;} .fw-bold{font-weight: bold;} .text-blue{color: #12adfa;} .text-red{color: red;}
 .figure .image{
   flex: 0 0 143px;
   max-width: 143px;
@@ -76,4 +79,60 @@
     height: auto;
     margin: auto;
 }
-
+.figNotification .view{
+  background-color: rgb(214, 92, 5);
+}
+.figNotification .viewed{
+  background-color: rgb(2, 198, 2);
+}
+.myPost{
+  font-size: 20px;
+}
+.caption .company-name{
+  color: gray;
+}
+.caption  .salary{
+  color: green;
+}
+.exit{
+  margin-left: 30%;
+}
+.UpdateInfor{
+  background: #12adfa;
+  margin-left: 26%;
+}
+#exist-avatar .avatar {
+  border: 1px solid #EAEAEA;
+  border-radius: 8px;
+  align-items: center;
+  filter: drop-shadow(-1px 3px 10px rgba(0,0,0,.08));
+  height: 150px;
+  justify-content: center;
+  overflow: hidden;
+  width: 150px;
+  display: flex;
+  margin: auto;
+}
+.upload-avatar {
+align-items: center;
+display: none;
+flex-direction: column;
+margin-top: 16px;
+text-align: center;
+}
+.d-flex {
+display: flex!important;
+}
+.avatar, .d-flex {
+display: flex;
+}
+.avatar>img {
+width: 75%;
+}
+.btn-change-avatar {
+background: #eee;
+border-color: #eee;
+border-radius: 5px;
+padding: 6px 16px;
+margin-bottom: 20px;
+}

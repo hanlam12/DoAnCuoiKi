@@ -6,17 +6,17 @@
     </div>
     <div id="contentBody">
         <div class="leftContent">
-            <div class="leftTopContent">
-                <div class="myPost fw-bold text-upper">Việc làm đang tuyển</div>
+            <div class="leftTopContent" *ngFor="let job of companyData?.job">
+                <div class="myPost fw-bold text-upper text-blue">Việc làm đang tuyển</div>
                 <div class="figure">
                   <div class="image">
                     <a href="#">
-                      <img src="{{companyData.job.image}}">
+                      <img src="{{job?.image}}">
                     </a>
                   </div>
                   <div class="figcaption">
                     <h5 class="title text-upper">
-                      <a href="#">Chuyên viên kĩ thuật</a>
+                      <a href="#">{{job?.job_name}}</a>
                     </h5>
                     <div class="caption">
                       <p class="company-name "> Công ty Cổ phần FECON</p>
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="leftBottomContent">
-                <div class="myPost fw-bold text-upper ">Đơn ứng tuyển mới nhất</div>
+                <div class="myPost fw-bold text-upper text-blue">Đơn ứng tuyển mới nhất</div>
                 <div class="figure">
                   <div class="image">
                     <a href="#">
@@ -36,9 +36,9 @@
                     </a>
                   </div>
                   <div class="figcaption">
-                    <h5 class="title text-upper"> <a href="#" >Nguyễn Trúc Quỳnh My</a> </h5>
+                    <h5 class="title text-upper"> <a href="#"  >Nguyễn Trúc Quỳnh My</a> </h5>
                     <div class="caption">
-                      <p class="job-name">Chuyên viên kĩ thuật</p>
+                      <p class="job-name text-upper  ">Chuyên viên kĩ thuật</p>
                       <p class="email">Email: quynhmy@gmail.com</p>
                       <p class="phone">SĐT: 0932445566</p>
                     </div>
@@ -52,35 +52,33 @@
         </div>
         <div class="rightContent" *ngIf="infor">
             <div class="rightTopContent">
-              <h3 class="nameCompany fw-bold text-upper text-center">Công ty cổ phần FECON</h3>
+              <h3 class="nameCompany fw-bold text-upper text-center text-blue">{{companyData?.company?.company_name}}</h3>
               <div style="display: flex; ">
                 <div class="figure">
               <div class="image">
                 <a href="#">
-                <img src="https://images.careerbuilder.vn/employer_folders/lot7/142077/155x155/163220-29865a87951beee16796b5549440712a1777dfc00ebdcb960e-pimgpsh_fullsize_distr.png">
+                <img src="">
               </a></div>
               <span>
-                <div style="margin-left: 5%; width: 100%;"><strong>Thông tin công ty</strong>
+                <div style="margin-left: 5%; width: 100%; margin-top: 30px;" ><strong class="text-upper">Thông tin công ty</strong>
                 <ul>
                   <li>
-                    <span class="mdi mdi-account-supervisor">  Qui mô công ty: 1.000-4.999 </span>
+                    <span class="mdi mdi-account-supervisor">  Qui mô công ty: {{companyData?.company?.company_scale}} </span>
                   </li>
                   <li>
-                    <span class="mdi mdi-link">  Website: <a href="3">http://fecon.com.vn</a>  </span>
+                    <span class="mdi mdi-link">  Website: <a href="3">{{companyData?.company?.company_website}}</a>  </span>
                   </li>
                 </ul></div>
               </span></div>
               </div>
               <div class="content">
-                <strong> Địa điểm </strong>Tầng 15, tòa nhà CEO, lô HH2-1, KĐT Mễ Trì Hạ, đường Phạm Hùng, Phường Mễ Trì, Q.Nam Từ Liêm
+                <strong> Địa điểm: </strong>{{companyData?.company?.company_address}}
                 <hr>
-                <strong> Giới thiệu về công ty </strong>
-                <p>Công ty Cổ phần FECON thành lập năm 2004 từ một nhóm các kỹ sư và chuyên gia đầu ngành về xử lý và thi công nền móng công trình, có tâm huyết với nghề, với sự năng động sáng tạo kết hợp với đội ngũ công nhân lành nghề, hệ thống thiết bị đồng bộ với những công nghệ hiện đại, đến nay FECON đã trở thành một Nhà thầu và Nhà đầu tư uy tín theo chuẩn quốc tế, sở hữu năng lực xuất sắc về nền móng và công trình ngầm.
-                  FECON đặt mục tiêu trở thành Tập đoàn xây dựng và phát triển hạ tầng hàng đầu tại Việt Nam vào năm 2025.
-                </p>
+                <strong class="text-upper"> Giới thiệu về công ty </strong>
+                <p>{{companyData?.company?.company_intro}}</p>
               </div>
               <hr >
-              <div ><i class="bi bi-pencil-square" ></i>&nbsp;&nbsp;<a (click)="changeInfor()" class="change">Thay đổi thông tin tài khoản</a>
+              <div ><i class="bi bi-pencil-square text-blue" ></i>&nbsp;&nbsp;<a (click)="changeInfor()" class="change text-blue">Thay đổi thông tin tài khoản</a>
               <span class="exit">
                 <i class="bi bi-box-arrow-right"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" >Đăng xuất</a>
               </span>
@@ -89,7 +87,7 @@
           </div>
           <div class="rightContent" *ngIf="change_infor">
             <div class="rightTopContent account_change-info" >
-              <h2 class="nameCompany fw-bold text-upper text-center">Công ty cổ phần FECON</h2>
+              <h2 class="nameCompany fw-bold text-upper text-center text-blue">Công ty cổ phần FECON</h2>
               <div id="exist-avatar" class="upload-avatar d-flex">
                 <div class="avatar">
                   <img src="https://images.careerbuilder.vn/employer_folders/lot7/142077/155x155/163220-29865a87951beee16796b5549440712a1777dfc00ebdcb960e-pimgpsh_fullsize_distr.png" id="avatar-output">
@@ -105,32 +103,32 @@
                       <label for="">Email:<span class="text-red">*</span></label>
                     </div>
                     <div class="col-md-9">
-                      <input type="text" class="form-control border-hover" placeholder="abc@.gmail.com"  value="http://fecon.com.vn" disabled >
+                      <input type="text" class="form-control border-hover" placeholder="abc@.gmail.com"  value="{{companyData?.company?.company_website}}" disabled >
                     </div>
                   </div>
                   <div class="form-group row mb-3">
                     <div class="col-md-3 align-self-center">
-                      <label for="">Quy mô:<span class="text-red">*</span></label>
+                      <label for="">Quy mô:</label>
                     </div>
                     <div class="col-md-9">
-                      <input type="text" class="form-control border-hover" placeholder="Nhập quy mô công ty"  value="">
+                      <input type="text" class="form-control border-hover" placeholder="Nhập quy mô công ty"  value="{{companyData?.company?.company_scale}}" >
                     </div>
                   </div>
 
                   <div class="form-group row mb-3">
                     <div class="col-md-3 align-self-center">
-                      <label for="">Địa chỉ:<span class="text-red">*</span></label>
+                      <label for="">Địa chỉ:</label>
                     </div>
                     <div class="col-md-9">
-                      <input type="text" class="form-control border-hover" placeholder="Nhập địa chỉ công ty"  value="">
+                      <input type="text" class="form-control border-hover" placeholder="Nhập địa chỉ công ty"  value="{{companyData?.company?.company_address}}   ">
                     </div>
                   </div>
                   <div class="form-group row mb-3">
-                    <div class="col-md-3 align-self-center">
-                      <label for="">Giới thiệu công ty</label>
+                    <div class="col-md-3 align-self-center ">
+                      <label for="" >Giới thiệu công ty</label>
                     </div>
                     <div class="col-md-9">
-                      <textarea class="form-control border-hover" name="note" placeholder="Giới thiệu về công ty" style="height: 100px;" cols="30" rows="10">  </textarea>
+                      <textarea class="form-control border-hover" name="note" placeholder="Giới thiệu về công ty" style="height: fit-content;" cols="30" rows="10"> {{companyData?.company?.company_intro}}   </textarea>
                     </div>
                   </div>
                   <div >

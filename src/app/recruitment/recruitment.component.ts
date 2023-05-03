@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
   import { ActivatedRoute, Params, Router } from '@angular/router';
   import { WorkZoneService } from '../work-zone.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Company, Job } from 'workzone';
 
   @Component({
     selector: 'app-recruitment',
