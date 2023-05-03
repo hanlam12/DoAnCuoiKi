@@ -46,6 +46,7 @@ import { LoginEmployerComponent } from './login-employer/login-employer.componen
 import { SignUpEmployerComponent } from './sign-up-employer/sign-up-employer.component';
 
 import { PaymentComponent } from './payment/payment.component';
+import { HeaderEmployerComponent } from './header-employer/header-employer.component';
 
 
 
@@ -84,14 +85,15 @@ import { PaymentComponent } from './payment/payment.component';
     NotFoundComponent,
     SavedJobComponent,
     RecruitmentComponent,
-    HomepageEmployerComponent
+    HomepageEmployerComponent,
 
     AdminWZComponent,
     NewCompanyModalComponent,
 
     LoginEmployerComponent,
     SignUpEmployerComponent,
-    PaymentComponent
+    PaymentComponent,
+    HeaderEmployerComponent
 
 
 

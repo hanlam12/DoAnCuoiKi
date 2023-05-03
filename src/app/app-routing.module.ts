@@ -72,7 +72,6 @@ const routes: Routes = [
    {path: "homepageEmployer", component: HomepageEmployerComponent},
    {path: "homepageEmployer/:company_id", component: HomepageEmployerComponent},
   {path: "dangnhap", component: LoginEmployerComponent},
-  {path: "sign-up-employer", component: SignUpEmployerComponent},
   {path: "company", component: CongtyComponent},
   {path: "admin", component: AdminWZComponent},
    {path: "company/:company_id", component: CongtyComponent},

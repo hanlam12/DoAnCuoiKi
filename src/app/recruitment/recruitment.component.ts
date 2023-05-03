@@ -43,7 +43,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
         }
     );
 
-      this._Service.getcompany(this.companyId).subscribe({
+      this._Service.GetRecruit(this.companyId).subscribe({
       next:(data)=>{this.companyData=data},
       error:(err)=>{this.errMessage=err}
       })

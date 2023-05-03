@@ -11,7 +11,7 @@
                 <div class="figure">
                   <div class="image">
                     <a href="#">
-                      <img src="{{companyData.job.image}}">
+                      <img src="{{companyData?.job?.image}}">
                     </a>
                   </div>
                   <div class="figcaption">
@@ -80,9 +80,9 @@
                 </p>
               </div>
               <hr >
-              <div ><i class="bi bi-pencil-square" ></i>&nbsp;&nbsp;<a (click)="changeInfor()" class="change">Thay đổi thông tin tài khoản</a>
+              <div class="relative"><i class="bi bi-pencil-square" ></i>&nbsp;&nbsp;<a role="button" (click)="changeInfor()" class="change">Thay đổi thông tin tài khoản</a>
               <span class="exit">
-                <i class="bi bi-box-arrow-right"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" >Đăng xuất</a>
+                <i class="bi bi-box-arrow-right"></i><a routerLink="/login-employer" >Đăng xuất</a>
               </span>
               </div>
             </div>

@@ -26,9 +26,12 @@ constructor(private _http:HttpClient, private router: Router) { }
   private _url:string="/entries"
 
 
-    // login
+    // login employee
   private loginUrl = 'http://localhost:6868/api/login';
-  public userEmail = localStorage.getItem('userEmail'); // đây là userEmail khi đăng nhập thành công, đứa nào muốn lấy truy xuất khi login thành công thì lấy thằng này.
+  public userEmail = localStorage.getItem('userEmail');
+   // đây là userEmail khi đăng nhập thành công, đứa nào muốn lấy truy xuất khi login thành công thì lấy thằng này.
+   public userID = localStorage.getItem('userID');
+
   userIdUpdated = new EventEmitter<string>();
 
   navigateAfterLogin(): void {
@@ -39,15 +42,15 @@ constructor(private _http:HttpClient, private router: Router) { }
 
   login(email: string, password: string): Observable<any> {
     return this._http.post<any>(this.loginUrl, { email: email, password: password }).pipe(
-      tap(data => {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('userEmail', data.userEmail);
-
-        localStorage.setItem('userID', data.userID);
-
+      tap(data1 => {
+        localStorage.setItem('token', data1.token);
+        localStorage.setItem('userEmail', data1.userEmail);
+        localStorage.setItem('userID', data1.userID);
+        localStorage.setItem('phone', data1.phone);
         localStorage.setItem('loggedIn', 'true')
         this.loggedIn = true; // set loggedIn thành true sau khi đăng nhập thành công
-        this.userIdUpdated.emit(data.userEmail);
+        this.userIdUpdated.emit(data1.userEmail);
+        console.log (data1)
       }),
       catchError(error => {
         return of({ error: error.error });
@@ -58,10 +61,13 @@ constructor(private _http:HttpClient, private router: Router) { }
   isLoggedIn(): boolean {
     const token = localStorage.getItem('token');
     const isLoggedIn = localStorage.getItem('loggedIn');
+
+    const userID = localStorage.getItem('userID');
     if (isLoggedIn) {
     this.loggedIn = (isLoggedIn === 'true');
-  }
-    return !!token && this.loggedIn; // trả về true nếu đã đăng nhập và loggedIn = true
+     }
+    return !!token && this.loggedIn && !!userID ;
+     // trả về true nếu đã đăng nhập và loggedIn = true
   }
 
   // end login
@@ -69,7 +75,7 @@ constructor(private _http:HttpClient, private router: Router) { }
     localStorage.removeItem('token');
     localStorage.removeItem('userEmail');
     localStorage.setItem('loggedIn', 'false')
-    }
+  }
 
 
  // thông tin hồ sơ xin việc
@@ -537,13 +543,45 @@ postCompany(aCompany:any):Observable<any>
   )
 }
 // đăng nhập employer
-apiUrl = 'http://localhost:6868/employer'; // Địa chỉ API đăng nhập
+apiUrl = 'http://localhost:6868/api/employer'; // Địa chỉ API đăng nhập
+public empID = localStorage.getItem('company_id');
 
   loginEmployer(email: string, password: string) {
     const body = { email, password };
-    return this._http.post<any>(this.apiUrl, body);
+    return this._http.post<any>(this.apiUrl, body).pipe(
+      tap(data => {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('loggedIn', 'true')
+        this.loggedIn = true; // set loggedIn thành true sau khi đăng nhập thành công
+        localStorage.setItem('empID', data.company_id);
+      }),
+      catchError(error => {
+        return of({ error: error.error });
+      })
+    );
   }
+  isLoggedInEmp(): boolean {
+    const token = localStorage.getItem('token');
+    const isLoggedIn = localStorage.getItem('loggedIn');
+    if (isLoggedIn) {
+    this.loggedIn = (isLoggedIn === 'true');
+     }
+    return !!token && this.loggedIn; // trả về true nếu đã đăng nhập và loggedIn = true
+  }
+  // end login
+  logoutEmp(): void {
+    localStorage.removeItem('token');
 
+    localStorage.setItem('loggedIn', 'false')
+    this.router.navigate(['/login-employer']);
+  }
+  getEmpName() {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this._http.get<any>(`${this.serverUrl}/api/employername`, { headers });
+  }
     getHN(fHN:any):Observable<any>{
       const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
       const requestOptions:Object={
@@ -673,7 +711,7 @@ putInforCv(aUser:any): Observable<any>{
 }
 
 
-getcompany(company_id: string): Observable<Company> {
+GetRecruit(company_id: string): Observable<Company> {
   const url = `http://localhost:6868/api/recruitment/${company_id}`;
   return this._http.get<Company>(url).pipe(
     map(result => result),

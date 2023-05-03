@@ -40,8 +40,7 @@ export class LoginComponent {
       } else if (data.message === 'wrong password') {
         this.errMessage = "Mật khẩu không đúng";
       } else {
-        alert("Đăng nhập thành công");
-        console.log(data);
+
         this._loginService.navigateAfterLogin()
       }
     }

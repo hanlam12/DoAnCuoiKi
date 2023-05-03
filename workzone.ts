@@ -33,9 +33,7 @@ export class Job{
 export class Company{
   constructor(
     public _id:any=null,
-
     public company_id:string="",
-
     public company_name:string="",
     public email:string="",
     public phone:string="",
