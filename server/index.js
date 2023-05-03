@@ -76,25 +76,30 @@ app.listen(port,()=>{
 //     res.send(cv);
 // });
 
-// app.put("/job-application/:userID/cv", cors(), (req, res) => {
-//   const userID = req.params.userID;
-//   const obj;
-//   const cvArray = obj.cv
-// cvarray.push(newcv)
-// await userCollection.updateOne(filter,
-//   {...obj
-//    cv: cvArray
-// });
+app.put('/api/savecv', cors(), async (req, res) => {
+  const { userID, cv } = req.body;
+  try {
+    const user = await userCollection.findOne({ userID: userID});
 
-//   const newCv = req.body;
-//   const CvToUpdate = userCollection.find((cv) => cv.userID === userID);
-//   if (CvToUpdate) {
-//     CvToUpdate.cv.push(newCv);
-//     res.send(userCollection);
-//   } else {
-//     res.status(404).send("Cv not found.");
-//   }
-// });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Make sure that user has a saveJob property
+    if (!user.cv) {
+      user.cv = [];
+    }
+      user.cv.push( cv );
+
+    // Cập nhật thông tin người dùng trong cơ sở dữ liệu
+    await userCollection.updateOne({ userID: userID }, { $set: { cv: user.cv } });
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error.message);
+
+  }
+});
 
   app.get('/api/job-decription/:jobJD', cors(), async (req, res) => {
     try {
