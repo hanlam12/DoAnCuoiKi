@@ -23,7 +23,7 @@
 
 
   {
-    "context" : ["/api//users"],
+    "context" : ["/api/users"],
     "target" : "http://localhost:6868",
     "secure":true,
     "changeOrigin":true,

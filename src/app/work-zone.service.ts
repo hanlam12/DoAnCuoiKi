@@ -7,10 +7,6 @@ import { Company } from 'workzone';
 import { error } from 'jquery';
 import { Router } from '@angular/router';
 
-const JOB_API_URL = 'http://localhost:6868/api/job';
-const COMPANY_API_URL = 'http://localhost:6868/api/company';
-const USER_API_URL = 'http://localhost:6868/api/user';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -46,11 +42,12 @@ constructor(private _http:HttpClient, private router: Router) { }
         localStorage.setItem('token', data1.token);
         localStorage.setItem('userEmail', data1.userEmail);
         localStorage.setItem('userID', data1.userID);
-        localStorage.setItem('phone', data1.phone);
-        localStorage.setItem('loggedIn', 'true')
+        localStorage.setItem('loggedIn', 'true');
+
         this.loggedIn = true; // set loggedIn thành true sau khi đăng nhập thành công
         this.userIdUpdated.emit(data1.userEmail);
         console.log (data1)
+        console.log(data1.save_jobs)
       }),
       catchError(error => {
         return of({ error: error.error });
@@ -179,7 +176,7 @@ getUserName() {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem('token')}`
   });
-  return this._http.get<any>(`${this.serverUrl}/api/user`, { headers });
+  return this._http.get<any>(`${this.serverUrl}/api/username`, { headers });
 }
 
 //lấy job của user
@@ -742,7 +739,7 @@ getProfile() {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem('token')}`
   });
-  return this._http.get<any>(`${this.serverUrl}/userID`, { headers });
+  return this._http.get<any>(`${this.serverUrl}/api/userID`, { headers });
 }
 // chỉnh sửa city
 updateProfile(user: Users) {
@@ -750,7 +747,7 @@ updateProfile(user: Users) {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem('token')}`
   });
-  return this._http.put<any>(`${this.serverUrl}/city`, user, { headers });
+  return this._http.put<any>(`${this.serverUrl}/api/city`, user, { headers });
 }
 // chỉnh sửa address
 updateProfile2(user: Users) {
@@ -758,7 +755,7 @@ updateProfile2(user: Users) {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem('token')}`
   });
-  return this._http.put<any>(`${this.serverUrl}/address`, user, { headers });
+  return this._http.put<any>(`${this.serverUrl}/api/address`, user, { headers });
 }
 // chỉnh sửa district
 updateProfile3(user: Users) {
@@ -766,7 +763,7 @@ updateProfile3(user: Users) {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem('token')}`
   });
-  return this._http.put<any>(`${this.serverUrl}/district`, user, { headers });
+  return this._http.put<any>(`${this.serverUrl}/api/district`, user, { headers });
 }
 // chỉnh sửa DOB
 updateProfile4(user: Users) {
@@ -774,7 +771,7 @@ updateProfile4(user: Users) {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem('token')}`
   });
-  return this._http.put<any>(`${this.serverUrl}/DOB`, user, { headers });
+  return this._http.put<any>(`${this.serverUrl}/api/DOB`, user, { headers });
 }
 // chỉnh sửa gender
 updateProfile5(user: Users) {
@@ -782,18 +779,32 @@ updateProfile5(user: Users) {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem('token')}`
   });
-  return this._http.put<any>(`${this.serverUrl}/gender`, user, { headers });
+  return this._http.put<any>(`${this.serverUrl}/api/gender`, user, { headers });
 }
 // image
 updateImage(image: string): Observable<any> {
   const token = localStorage.getItem('token');
   const headers = { Authorization: 'Bearer ' + token };
   const body = { image: image };
-  return this._http.put(`${this.serverUrl}/image`, body, { headers });
+  return this._http.put<any>(`${this.serverUrl}/api/image`, body, { headers });
 
 }
+// đếm số lượng job trong các component
+private savedJobCount = 0;
+
+getSavedJobCount(): number {
+  return this.savedJobCount;
 }
 
+incrementSavedJobCount(): void {
+  this.savedJobCount++;
+}
+
+decrementSavedJobCount(): void {
+  this.savedJobCount--;
+}
+
+}
 
 
 

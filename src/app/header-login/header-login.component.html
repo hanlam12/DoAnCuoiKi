@@ -20,7 +20,10 @@
       </div>
       <div class="right-main-menu">
         <div class="account">
-          <i class="fa-regular fa-circle-user"></i><span>{{fullname}}</span>
+          <a [routerLink]="['/profile', uID]">
+          <i class="fa-regular fa-circle-user"></i>
+        </a>
+        <span>{{fullname}}</span>
           <a (click)="menupc()" >
             <i class="fa-solid fa-sort-down"></i>
           </a>
@@ -30,11 +33,11 @@
     </div>
   </div>
 
-  <div>
+  <div >
     <ul class="list-menu-pc " [ngClass]="{'is-display-none': isDisplaynone}" id="list-menu-pc">
       <li>
         <div class="menu-list-row" >
-          <a routerLink="/job-application">
+          <a [routerLink]="['/job-application', uID]">
             <i class="fa-regular fa-file"></i>
           <span> Hồ sơ xin việc</span>
           </a>
@@ -42,7 +45,7 @@
       </li>
       <li>
         <div class="menu-list-row">
-          <a routerLink="/saved">
+          <a [routerLink]="['/saved', uID]">
             <i class="fa-solid fa-heart"></i>
             <span> Việc làm đã lưu</span>
           </a>
@@ -50,14 +53,14 @@
       </li>
       <li>
         <div class="menu-list-row">
-          <a routerLink="/applied-job">
+          <a [routerLink]="['/applied-job', uID]">
             <i class="fa-solid fa-paper-plane"></i>
             <span>Việc làm đã ứng tuyển</span>
           </a>
         </div>
       </li>
       <li>
-        <div class="menu-list-row"> <a routerLink="/noti">
+        <div class="menu-list-row"> <a  routerLink="noti">
           <i class="fa-regular fa-bell"></i>
           <span>Thông báo việc làm</span>
         </a></div>
@@ -65,7 +68,7 @@
       <div class="border"></div>
       <li>
         <div class="menu-list-row name-account">
-          <a routerLink="/profile">
+          <a [routerLink]="['/profile', uID]">
             <i class="fa-regular fa-circle-user"></i>
           </a> <span>{{fullname}}</span>
         </div>
@@ -90,33 +93,33 @@
   </div>
   <ul id="list-menu-mb-login" [ngClass]="{'is-left-default': isLeftDefault}" class="list-menu-mb-login">
     <li> <div class="menu-list-row" >
-          <a routerLink="/job-application">
+          <a [routerLink]="['/job-application', uID]">
            <i class="fa-regular fa-file"></i>
           <span> Hồ sơ xin việc </span>
           </a>
         </div></li>
         <li> <div class="menu-list-row" >
-         <a routerLink="/saved">
+         <a [routerLink]="['/saved', uID]">
           <i class="fa-solid fa-heart"></i>
          <span> Việc làm đã lưu </span>
          </a>
        </div></li>
     <li><div class="menu-list-row">
-          <a routerLink="/applied-job">
+          <a [routerLink]="['/applied-job', uID]">
          <i class="fa-solid fa-paper-plane"></i>
             <span> Việc làm đã ứng tuyển</span>
           </a>
         </div></li>
         <li><div class="menu-list-row">
-         <a routerLink="/noti">
+         <a  routerLink="noti">
         <i class="fa-solid fa-id-card"></i>
            <span> Thông báo việc làm</span>
          </a>
        </div></li>
     <div class="border"></div>
       <li>
-        <div class=" name-account">
-          <a routerLink="/profile">
+        <div class="name-account">
+          <a [routerLink]="['/profile', uID]" role="button">
             <i class="fa-solid fa-buildings"></i>
             <span>{{fullname}}</span>
           </a>

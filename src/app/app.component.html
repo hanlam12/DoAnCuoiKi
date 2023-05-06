@@ -3,7 +3,7 @@
      <ng-container *ngIf="!currentRoute.endsWith('sign-up') && !currentRoute.endsWith('login') && !currentRoute.endsWith('sign-up-employer') && !currentRoute.endsWith('login-employer') && !currentRoute.endsWith('login-employer')">
       <app-header-login></app-header-login>
     </ng-container>
-    <ng-container *ngIf="currentRoute.endsWith('noti') || currentRoute.endsWith('profile') || currentRoute.endsWith('applied-job') || currentRoute.endsWith('saved') || currentRoute.endsWith('job-application') || currentRoute.endsWith('thaydoimatkhau')">
+    <ng-container *ngIf="currentRoute.includes('noti') || currentRoute.includes('profile') || currentRoute.includes('applied-job') || currentRoute.includes('saved') || currentRoute.includes('job-application') || currentRoute.includes('thaydoimatkhau')">
       <app-account-menu></app-account-menu>
     </ng-container>
 

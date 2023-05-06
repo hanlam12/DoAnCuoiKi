@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WorkZoneService } from '../work-zone.service';
 import { ActivatedRoute } from '@angular/router';
-import { JobApplication, Users } from 'workzone';
+import {  Users } from 'workzone';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -64,49 +64,16 @@ ngOnInit(): void {
   }
 }
 
-newcv=new JobApplication()
-title:string=''
-public setJobApplication(f:JobApplication)
-{
-  this.newcv=f
-}
-onFileSelected(event:any,newcv:JobApplication){
-  let me = this;
-  let file = event.target.files[0];
 
-  let reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = function () {
-    newcv.CV_chinh=reader.result!.toString()
-  };
-}
-public regForm: FormGroup = new FormGroup ({
-  title: new FormControl('', Validators.required),
-  YOB: new FormControl('', Validators.required),
-  career:  new FormControl('',Validators.required),
-  experience:  new FormControl('',Validators.required),
-  qualification:  new FormControl('',Validators.required),
-  english_level:  new FormControl('',Validators.required),
-  work_location:  new FormControl('',Validators.required),
-  working_form:  new FormControl('',Validators.required),
-  desired_salary:  new FormControl('',Validators.required),
-  CV_chinh:  new FormControl('',Validators.required),
-  gender: new FormControl('',Validators.required),
-  fullname: new FormControl('',Validators.required),
-})
 
-updateTrinhDoEnglish(value: string) {
-  this.newcv.english_level = value;
-}
-
-putInforCv(){
-  this.usersService.putInforCv(this.newcv).subscribe({
-    next:(data)=>{this.user=data},
-  })
-  this.taiCv = true;
-  this.UpdateCv=false;
-  this.showCv = false;
-  this.hoSoDaTao = true
-}
+// putInforCv(){
+//   this.usersService.putInforCv(this.newcv).subscribe({
+//     next:(data)=>{this.user=data},
+//   })
+//   this.taiCv = true;
+//   this.UpdateCv=false;
+//   this.showCv = false;
+//   this.hoSoDaTao = true
+// }
 
 }

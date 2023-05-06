@@ -37,7 +37,7 @@ import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
 
-  {path:"profile", component: CreateProfileComponent},
+  {path:"profile/:userID", component: CreateProfileComponent},
   {path:"saved/:userID", component: SavedJobComponent},
 
   {path:"noti", component: ThongBaoViecLamComponent},

@@ -309,7 +309,9 @@ app.post("/api/login",cors(),async(req,res)=>{
     if(user.password==hash){
       const token = jwt.sign({ email: email }, secretKey);
       const userID = user.userID
-      res.json({ user, token, userEmail: user.email, userID:userID });
+      // const save_jobs = user.JobJD
+
+      res.json({ user, token, userEmail: user.email, userID:userID});
     }
     else
       res.send({"email":email,"password":password,"message":"wrong password"})
@@ -383,7 +385,7 @@ app.get('/api/userID', async (req, res) => {
   try {
     const decodedToken = jwt.verify(token, secretKey);
     const email = decodedToken.email;
-    const user = await UsersCollection.findOne({ email: email });
+    const user = await userCollection.findOne({ email: email });
     console.log('decodedToken:', decodedToken);
     console.log('user:', user);
     if (!user) {
@@ -421,7 +423,7 @@ app.get('/api/employername', async (req, res) => {
 })
 
 // API lấy tên người dùng
-app.get('/api/user', async (req, res) => {
+app.get('/api/username', async (req, res) => {
   const token = req.headers.authorization.split(' ')[1]
   // if (!token) {
   //   return res.status(401).send('Unauthorized');
@@ -479,7 +481,7 @@ app.get('/api/user', async (req, res) => {
 
 
   // api chỉnh sửa city
-  app.put('/api//city', async (req, res) => {
+  app.put('/api/city', async (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     if (!token) {
       return res.status(401).send('Unauthorized');
@@ -487,7 +489,7 @@ app.get('/api/user', async (req, res) => {
     try {
       const decodedToken = jwt.verify(token, secretKey);
       const email = decodedToken.email;
-      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { city: req.body.city } });
+      const user = await userCollection.findOneAndUpdate({ email: email }, { $set: { city: req.body.city } });
       console.log('decodedToken:', decodedToken);
       console.log('user:', user);
       if (!user) {
@@ -502,7 +504,7 @@ app.get('/api/user', async (req, res) => {
   });
 
   // api chỉnh sửa DOB
-  app.put('/api//DOB', async (req, res) => {
+  app.put('/api/DOB', async (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     if (!token) {
       return res.status(401).send('Unauthorized');
@@ -510,7 +512,7 @@ app.get('/api/user', async (req, res) => {
     try {
       const decodedToken = jwt.verify(token, secretKey);
       const email = decodedToken.email;
-      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { DOB: req.body.DOB } });
+      const user = await userCollection.findOneAndUpdate({ email: email }, { $set: { DOB: req.body.DOB } });
       console.log('decodedToken:', decodedToken);
       console.log('user:', user);
       if (!user) {
@@ -525,7 +527,7 @@ app.get('/api/user', async (req, res) => {
   });
 
   // api chỉnh sửa address
-  app.put('/api//address', async (req, res) => {
+  app.put('/api/address', async (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     if (!token) {
       return res.status(401).send('Unauthorized');
@@ -533,7 +535,7 @@ app.get('/api/user', async (req, res) => {
     try {
       const decodedToken = jwt.verify(token, secretKey);
       const email = decodedToken.email;
-      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { address: req.body.address } });
+      const user = await userCollection.findOneAndUpdate({ email: email }, { $set: { address: req.body.address } });
       console.log('decodedToken:', decodedToken);
       console.log('user:', user);
       if (!user) {
@@ -548,7 +550,7 @@ app.get('/api/user', async (req, res) => {
   });
 
   // api chỉnh sửa gender
-  app.put('/api//gender', async (req, res) => {
+  app.put('/api/gender', async (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     if (!token) {
       return res.status(401).send('Unauthorized');
@@ -556,7 +558,7 @@ app.get('/api/user', async (req, res) => {
     try {
       const decodedToken = jwt.verify(token, secretKey);
       const email = decodedToken.email;
-      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { gender: req.body.gender } });
+      const user = await userCollection.findOneAndUpdate({ email: email }, { $set: { gender: req.body.gender } });
       console.log('decodedToken:', decodedToken);
       console.log('user:', user);
       if (!user) {
@@ -571,7 +573,7 @@ app.get('/api/user', async (req, res) => {
   });
 
    // api chỉnh sửa district
-   app.put('/api//district', async (req, res) => {
+   app.put('/api/district', async (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     if (!token) {
       return res.status(401).send('Unauthorized');
@@ -579,7 +581,7 @@ app.get('/api/user', async (req, res) => {
     try {
       const decodedToken = jwt.verify(token, secretKey);
       const email = decodedToken.email;
-      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { district: req.body.district } });
+      const user = await userCollection.findOneAndUpdate({ email: email }, { $set: { district: req.body.district } });
       console.log('decodedToken:', decodedToken);
       console.log('user:', user);
       if (!user) {
@@ -594,7 +596,7 @@ app.get('/api/user', async (req, res) => {
   });
 
    // api chỉnh sửa image
-   app.put('/api//image', async (req, res) => {
+   app.put('/api/image', async (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     if (!token) {
       return res.status(401).send('Unauthorized');
@@ -602,7 +604,7 @@ app.get('/api/user', async (req, res) => {
     try {
       const decodedToken = jwt.verify(token, secretKey);
       const email = decodedToken.email;
-      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { image: req.body.image } });
+      const user = await userCollection.findOneAndUpdate({ email: email }, { $set: { image: req.body.image } });
       console.log('decodedToken:', decodedToken);
       console.log('user:', user);
       if (!user) {
