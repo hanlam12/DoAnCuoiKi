@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from'@angular/common/http';
 import { catchError, map, Observable, retry, subscribeOn, throwError } from 'rxjs';
 import { Job } from 'workzone';
-import { User } from 'workzone';
+import { Users } from 'workzone';
 import { Company } from 'workzone';
 const JOB_API_URL = 'http://localhost:6868/job';
 const COMPANY_API_URL = 'http://localhost:6868/company';
@@ -74,11 +74,11 @@ headers:headers,
 responseType:"text"
 }
 return this._http.put<any>("/api/put-user",JSON.stringify(user),requestOptions).pipe(
-map(res=>JSON.parse(res) as Array<User>),
+map(res=>JSON.parse(res) as Array<Users>),
 retry(3))
 };
 
-deleteUser(user: User):Observable<any> {
+deleteUser(user: Users):Observable<any> {
   const headers = new HttpHeaders().set("Content-Type", "application/json;charset=utf-8");
   return this._http.delete<any>(
     "/api/delete-user",
@@ -88,7 +88,7 @@ deleteUser(user: User):Observable<any> {
       responseType: "json"
     }
   ).pipe(
-    map(res=>JSON.parse(res) as Array<User>),
+    map(res=>JSON.parse(res) as Array<Users>),
     retry(3)
   );
   
@@ -102,11 +102,11 @@ headers:headers,
 responseType:"text"
 }
 return this._http.put<any>("/api/put-job",JSON.stringify(job),requestOptions).pipe(
-map(res=>JSON.parse(res) as Array<User>),
+map(res=>JSON.parse(res) as Array<Users>),
 retry(3))
 };
 
-deleteJob(user: User):Observable<any> {
+deleteJob(user: Users):Observable<any> {
   const headers = new HttpHeaders().set("Content-Type", "application/json;charset=utf-8");
   return this._http.delete<any>(
     "/api/delete-job",
