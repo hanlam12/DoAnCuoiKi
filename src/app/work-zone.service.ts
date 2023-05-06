@@ -25,9 +25,13 @@ constructor(private _http:HttpClient, private router: Router) { }
   public serverUrl = 'http://localhost:6868';
   private _url:string="/entries"
 
-    // login
+
+    // login employee
   private loginUrl = 'http://localhost:6868/api/login';
-  public userEmail = localStorage.getItem('userEmail'); // đây là userEmail khi đăng nhập thành công, đứa nào muốn lấy truy xuất khi login thành công thì lấy thằng này.
+  public userEmail = localStorage.getItem('userEmail');
+   // đây là userEmail khi đăng nhập thành công, đứa nào muốn lấy truy xuất khi login thành công thì lấy thằng này.
+   public userID = localStorage.getItem('userID');
+
   userIdUpdated = new EventEmitter<string>();
 
   navigateAfterLogin(): void {
@@ -35,15 +39,18 @@ constructor(private _http:HttpClient, private router: Router) { }
     this.router.navigate(['/']);
   }
 
+
   login(email: string, password: string): Observable<any> {
     return this._http.post<any>(this.loginUrl, { email: email, password: password }).pipe(
-      tap(data => {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('userEmail', data.userEmail);
-        localStorage.setItem('userID', data.userID);
+      tap(data1 => {
+        localStorage.setItem('token', data1.token);
+        localStorage.setItem('userEmail', data1.userEmail);
+        localStorage.setItem('userID', data1.userID);
+        localStorage.setItem('phone', data1.phone);
         localStorage.setItem('loggedIn', 'true')
         this.loggedIn = true; // set loggedIn thành true sau khi đăng nhập thành công
-        this.userIdUpdated.emit(data.userEmail);
+        this.userIdUpdated.emit(data1.userEmail);
+        console.log (data1)
       }),
       catchError(error => {
         return of({ error: error.error });
@@ -54,10 +61,13 @@ constructor(private _http:HttpClient, private router: Router) { }
   isLoggedIn(): boolean {
     const token = localStorage.getItem('token');
     const isLoggedIn = localStorage.getItem('loggedIn');
+
+    const userID = localStorage.getItem('userID');
     if (isLoggedIn) {
     this.loggedIn = (isLoggedIn === 'true');
-  }
-    return !!token && this.loggedIn; // trả về true nếu đã đăng nhập và loggedIn = true
+     }
+    return !!token && this.loggedIn && !!userID ;
+     // trả về true nếu đã đăng nhập và loggedIn = true
   }
 
   // end login
@@ -65,7 +75,7 @@ constructor(private _http:HttpClient, private router: Router) { }
     localStorage.removeItem('token');
     localStorage.removeItem('userEmail');
     localStorage.setItem('loggedIn', 'false')
-    }
+  }
 
 
  // thông tin hồ sơ xin việc
@@ -80,6 +90,7 @@ constructor(private _http:HttpClient, private router: Router) { }
 
 
 
+
  getGD(fGD:any):Observable<any>{
     const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
     const requestOptions:Object={
@@ -87,12 +98,13 @@ constructor(private _http:HttpClient, private router: Router) { }
     responseType:"text"
     }
 
-    return this._http.get<any>("/api/job/category/Gi%C3%A1o%20d%E1%BB%A5c%20%2F%20%C4%90%C3%A0o%20t%E1%BA%A1o",requestOptions).pipe(
 
+    return this._http.get<any>("/api/job/category/Gi%C3%A1o%20d%E1%BB%A5c%20%2F%20%C4%90%C3%A0o%20t%E1%BA%A1o",requestOptions).pipe(
       map(res=>JSON.parse(res) as Array<Job>),
       retry(3),
       catchError(this.handleError))
   }
+
 
   getTC(fGD:any):Observable<any>{
     const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
@@ -101,7 +113,9 @@ constructor(private _http:HttpClient, private router: Router) { }
     responseType:"text"
     }
 
+
     return this._http.get<any>("/api/job/category/T%C3%A0i%20ch%C3%ADnh%20%2F%20%C4%90%E1%BA%A7u%20t%C6%B0",requestOptions).pipe(
+
 
       map(res=>JSON.parse(res) as Array<Job>),
       retry(3),
@@ -114,9 +128,7 @@ constructor(private _http:HttpClient, private router: Router) { }
     headers:headers,
     responseType:"text"
     }
-
     return this._http.get<any>("/api/job/category/Ng%C3%A2n%20h%C3%A0ng",requestOptions).pipe(
-
       map(res=>JSON.parse(res) as Array<Job>),
       retry(3),
       catchError(this.handleError))
@@ -129,7 +141,6 @@ constructor(private _http:HttpClient, private router: Router) { }
     responseType:"text"
     }
     return this._http.get<any>("/api/job/category/C%C3%B4ng%20ngh%E1%BB%87%20th%C3%B4ng%20tin",requestOptions).pipe(
-
       map(res=>JSON.parse(res) as Array<Job>),
       retry(3),
       catchError(this.handleError))
@@ -141,9 +152,7 @@ constructor(private _http:HttpClient, private router: Router) { }
     headers:headers,
     responseType:"text"
     }
-
     return this._http.get<any>("/api/job/category/Th%E1%BB%9Di%20trang",requestOptions).pipe(
-
       map(res=>JSON.parse(res) as Array<Job>),
       retry(3),
       catchError(this.handleError))
@@ -155,8 +164,8 @@ constructor(private _http:HttpClient, private router: Router) { }
     headers:headers,
     responseType:"text"
     }
-
     return this._http.get<any>("/api/job/category/CNTT%20-%20Ph%E1%BA%A7n%20m%E1%BB%81m",requestOptions).pipe(
+
 
       map(res=>JSON.parse(res) as Array<Job>),
       retry(3),
@@ -172,6 +181,7 @@ getUserName() {
   });
   return this._http.get<any>(`${this.serverUrl}/api/user`, { headers });
 }
+
 //lấy job của user
 getSavedJob(userID: string):  Observable<Job> {
    return this._http.get<Job>(`http://localhost:6868/api/savejob/${userID}`);
@@ -253,9 +263,10 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
       headers:headers,
       responseType:"text"
       }
+
+
       return this._http.get<any>("/api/job/category/T%C6%B0%20v%E1%BA%A5n",requestOptions).pipe(
         map(res=>JSON.parse(res) as Array<Job>),
-
         retry(3),
         catchError(this.handleError))
     }
@@ -269,7 +280,6 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         }
 
         return this._http.get<any>("/api/job/Nh%C3%A2n%20vi%C3%AAn",requestOptions).pipe(
-
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
           catchError(this.handleError))
@@ -282,8 +292,8 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         headers:headers,
         responseType:"text"
         }
-
         return this._http.get<any>("/api/job/Qu%E1%BA%A3n%20l%C3%BD",requestOptions).pipe(
+
 
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
@@ -296,7 +306,6 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         headers:headers,
         responseType:"text"
         }
-
         return this._http.get<any>("/api/job/Tr%C6%B0%E1%BB%9Fng%20nh%C3%B3m",requestOptions).pipe(
 
           map(res=>JSON.parse(res) as Array<Job>),
@@ -310,9 +319,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         headers:headers,
         responseType:"text"
         }
-
         return this._http.get<any>("/api/job/Qu%E1%BA%A3n%20l%C3%BD%20%2F%20Gi%C3%A1m%20s%C3%A1t",requestOptions).pipe(
-
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
           catchError(this.handleError))
@@ -324,7 +331,6 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         headers:headers,
         responseType:"text"
         }
-
         return this._http.get<any>("/api/job/Tr%C6%B0%E1%BB%9Fng%20ph%C3%B2ng",requestOptions).pipe(
 
           map(res=>JSON.parse(res) as Array<Job>),
@@ -338,8 +344,8 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         headers:headers,
         responseType:"text"
         }
-
         return this._http.get<any>("/api/job/Tr%C6%B0%E1%BB%9Fng%20nh%C3%B3m%20%2F%20Gi%C3%A1m%20s%C3%A1t",requestOptions).pipe(
+
 
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
@@ -352,9 +358,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         headers:headers,
         responseType:"text"
         }
-
         return this._http.get<any>("/api/job/V%E1%BB%ABa%20t%E1%BB%91t%20nghi%E1%BB%87p",requestOptions).pipe(
-
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
           catchError(this.handleError))
@@ -366,9 +370,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         headers:headers,
         responseType:"text"
         }
-
         return this._http.get<any>("/api/job/category/X%C3%A2y%20d%E1%BB%B1ng",requestOptions).pipe(
-
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
           catchError(this.handleError))
@@ -380,9 +382,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         headers:headers,
         responseType:"text"
         }
-
         return this._http.get<any>("/api/job/category/K%E1%BA%BF%20to%C3%A1n%20%2F%20Ki%E1%BB%83m%20to%C3%A1n",requestOptions).pipe(
-
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
           catchError(this.handleError))
@@ -394,9 +394,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         headers:headers,
         responseType:"text"
         }
-
         return this._http.get<any>("/api/job/category/Qu%E1%BA%A3n%20l%C3%BD%20ch%E1%BA%A5t%20l%C6%B0%E1%BB%A3ng%20(QA%2FQC)",requestOptions).pipe(
-
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
           catchError(this.handleError))
@@ -408,9 +406,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         headers:headers,
         responseType:"text"
         }
-
         return this._http.get<any>("/api/job/category/Nh%C3%A0%20h%C3%A0ng%20%2F%20Kh%C3%A1ch%20s%E1%BA%A1n",requestOptions).pipe(
-
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
           catchError(this.handleError))
@@ -422,9 +418,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         headers:headers,
         responseType:"text"
         }
-
         return this._http.get<any>("/api/job/category/D%E1%BB%8Bch%20v%E1%BB%A5%20kh%C3%A1ch%20h%C3%A0ng",requestOptions).pipe(
-
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
           catchError(this.handleError))
@@ -436,9 +430,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         headers:headers,
         responseType:"text"
         }
-
         return this._http.get<any>("/api/job/category/B%C3%A1n%20h%C3%A0ng%20%2F%20Kinh%20doanh",requestOptions).pipe(
-
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
           catchError(this.handleError))
@@ -450,9 +442,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         headers:headers,
         responseType:"text"
         }
-
         return this._http.get<any>("/api/job/category/C%C6%A1%20kh%C3%AD%20%2F%20%C3%94%20t%C3%B4%20%2F%20T%E1%BB%B1%20%C4%91%E1%BB%99ng%20h%C3%B3a",requestOptions).pipe(
-
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
           catchError(this.handleError))
@@ -465,7 +455,6 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         responseType:"text"
         }
         return this._http.get<any>("/api/job/category/%C4%90i%E1%BB%87n%20%2F%20%C4%90i%E1%BB%87n%20t%E1%BB%AD%20%2F%20%C4%90i%E1%BB%87n%20l%E1%BA%A1nh",requestOptions).pipe(
-
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
           catchError(this.handleError))
@@ -477,7 +466,6 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         headers:headers,
         responseType:"text"
         }
-
         return this._http.get<any>("/api/job/category/B%C3%A1n%20l%E1%BA%BB%20%2F%20B%C3%A1n%20s%E1%BB%89",requestOptions).pipe(
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
@@ -490,7 +478,6 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         headers:headers,
         responseType:"text"
         }
-
         return this._http.get<any>("/api/job/category/B%E1%BA%A3o%20hi%E1%BB%83m",requestOptions).pipe(
 
           map(res=>JSON.parse(res) as Array<Job>),
@@ -507,6 +494,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         }
 
         return this._http.get<any>("/api/job/category/M%C3%B4i%20tr%C6%B0%E1%BB%9Dng",requestOptions).pipe(
+
 
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
@@ -528,7 +516,6 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         catchError(this.handleError)
     )
   }
-//lấy việc làm đã lưu của user
 
 
    // thông tin mô tả công việc
@@ -556,13 +543,45 @@ postCompany(aCompany:any):Observable<any>
   )
 }
 // đăng nhập employer
-apiUrl = 'http://localhost:6868/employer'; // Địa chỉ API đăng nhập
+apiUrl = 'http://localhost:6868/api/employer'; // Địa chỉ API đăng nhập
+public empID = localStorage.getItem('company_id');
 
   loginEmployer(email: string, password: string) {
     const body = { email, password };
-    return this._http.post<any>(this.apiUrl, body);
+    return this._http.post<any>(this.apiUrl, body).pipe(
+      tap(data => {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('loggedIn', 'true')
+        this.loggedIn = true; // set loggedIn thành true sau khi đăng nhập thành công
+        localStorage.setItem('empID', data.company_id);
+      }),
+      catchError(error => {
+        return of({ error: error.error });
+      })
+    );
   }
+  isLoggedInEmp(): boolean {
+    const token = localStorage.getItem('token');
+    const isLoggedIn = localStorage.getItem('loggedIn');
+    if (isLoggedIn) {
+    this.loggedIn = (isLoggedIn === 'true');
+     }
+    return !!token && this.loggedIn; // trả về true nếu đã đăng nhập và loggedIn = true
+  }
+  // end login
+  logoutEmp(): void {
+    localStorage.removeItem('token');
 
+    localStorage.setItem('loggedIn', 'false')
+    this.router.navigate(['/login-employer']);
+  }
+  getEmpName() {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this._http.get<any>(`${this.serverUrl}/api/employername`, { headers });
+  }
     getHN(fHN:any):Observable<any>{
       const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
       const requestOptions:Object={
@@ -570,7 +589,7 @@ apiUrl = 'http://localhost:6868/employer'; // Địa chỉ API đăng nhập
       responseType:"text"
       }
       return this._http.get<any>("/job/address/H%C3%A0%20N%E1%BB%99i",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
@@ -582,7 +601,7 @@ apiUrl = 'http://localhost:6868/employer'; // Địa chỉ API đăng nhập
       responseType:"text"
       }
       return this._http.get<any>("/job/address/H%E1%BB%93%20Ch%C3%AD%20Minh",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
@@ -594,7 +613,7 @@ apiUrl = 'http://localhost:6868/employer'; // Địa chỉ API đăng nhập
       responseType:"text"
       }
       return this._http.get<any>("/job/address/B%C3%ACnh%20D%C6%B0%C6%A1ng",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
@@ -606,7 +625,7 @@ apiUrl = 'http://localhost:6868/employer'; // Địa chỉ API đăng nhập
       responseType:"text"
       }
       return this._http.get<any>("/job/address/H%E1%BA%A3i%20Ph%C3%B2ng",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
@@ -617,7 +636,7 @@ apiUrl = 'http://localhost:6868/employer'; // Địa chỉ API đăng nhập
       responseType:"text"
       }
       return this._http.get<any>("/job/address/Qu%E1%BA%A3ng%20Ninh",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
@@ -628,7 +647,7 @@ apiUrl = 'http://localhost:6868/employer'; // Địa chỉ API đăng nhập
       responseType:"text"
       }
       return this._http.get<any>("/job/address/%C4%90%E1%BB%93ng%20Nai",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
@@ -639,7 +658,7 @@ apiUrl = 'http://localhost:6868/employer'; // Địa chỉ API đăng nhập
       responseType:"text"
       }
       return this._http.get<any>("/job/address/Long%20An",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
@@ -650,7 +669,7 @@ apiUrl = 'http://localhost:6868/employer'; // Địa chỉ API đăng nhập
       responseType:"text"
       }
       return this._http.get<any>("/job/address/V%C5%A9ng%20T%C3%A0u",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
@@ -661,7 +680,7 @@ apiUrl = 'http://localhost:6868/employer'; // Địa chỉ API đăng nhập
       responseType:"text"
       }
       return this._http.get<any>("/job/address/C%E1%BA%A7n%20Th%C6%A1",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
@@ -672,7 +691,7 @@ apiUrl = 'http://localhost:6868/employer'; // Địa chỉ API đăng nhập
       responseType:"text"
       }
       return this._http.get<any>("/job/address/%C4%90%C3%A0%20N%E1%BA%B5ng",requestOptions).pipe(
-        map(res=>JSON.parse(res) as Array<IJob>),
+        map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
     }
@@ -690,9 +709,33 @@ putInforCv(aUser:any): Observable<any>{
 
   );
 }
+
+
+GetRecruit(company_id: string): Observable<Company> {
+  const url = `http://localhost:6868/api/recruitment/${company_id}`;
+  return this._http.get<Company>(url).pipe(
+    map(result => result),
+    catchError(error => {
+      console.error('Error', error);
+      return throwError(error)})
+
+  );
 }
 
-
+addJob(jobData: any, company_id: string):Observable<any>
+{
+  const url = `http://localhost:6868/api/recruitment/${company_id}/job`;
+  const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+  const requestOptions:Object={
+    headers:headers,
+    responseType:"text"
+  }
+  return this._http.post<any>(url,jobData ,requestOptions).pipe(
+      map(res=>JSON.parse(res) as Job),
+      retry(3),
+      catchError(this.handleError)
+  )
+}
 // lấy profile
 getProfile() {
   const headers = new HttpHeaders({
@@ -747,6 +790,6 @@ updateImage(image: string): Observable<any> {
   const headers = { Authorization: 'Bearer ' + token };
   const body = { image: image };
   return this._http.put(`${this.serverUrl}/image`, body, { headers });
-}
 
+}
 }
