@@ -42,6 +42,8 @@ import { SignUpEmployerComponent } from './sign-up-employer/sign-up-employer.com
 
 import { PaymentComponent } from './payment/payment.component';
 import { RecruitmentComponent } from './recruitment/recruitment.component';
+import { HomepageEmployerComponent } from './homepage-employer/homepage-employer.component';
+import { AdminWZComponent } from './admin-wz/admin-wz.component';
 
 
 
@@ -81,7 +83,9 @@ import { RecruitmentComponent } from './recruitment/recruitment.component';
     LoginEmployerComponent,
     SignUpEmployerComponent,
     PaymentComponent,
-    RecruitmentComponent
+    RecruitmentComponent,
+    HomepageEmployerComponent,
+    AdminWZComponent
 
 
   ],
