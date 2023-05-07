@@ -21,29 +21,25 @@
     "logLevel":"debug"
   },
 
+
   {
-    "context" : ["/users"],
+    "context" : ["/api/users"],
     "target" : "http://localhost:6868",
     "secure":true,
     "changeOrigin":true,
     "logLevel":"debug"
   },
-  
+
+
   {
-    "context" : ["/register"],
-    "target" : "http://localhost:6868",
-    "secure":true,
-    "changeOrigin":true,
-    "logLevel":"debug"
-  },
-  {
-    "context" : ["/employer"],
+    "context" : ["/api/employer"],
     "target" : "http://localhost:6868",
     "secure":true,
     "changeOrigin":true,
     "logLevel":"debug"
   },
 {
+
     "context": ["/api/company/**"],
     "target": "http://localhost:6868",
     "secure": true,
@@ -63,6 +59,7 @@
   "secure":true,
   "changeOrigin":true,
   "logLevel":"debug"
+
 },
 {
   "context" : ["/api/admin"],
@@ -115,20 +112,6 @@
 },
 {
   "context" : ["/api/delete-job"],
-  "target" : "http://localhost:6868",
-  "secure":true,
-  "changeOrigin":true,
-  "logLevel":"debug"
-},
-{
-  "context" : ["/api/applied-job/:userID"],
-  "target" : "http://localhost:6868",
-  "secure":true,
-  "changeOrigin":true,
-  "logLevel":"debug"
-},
-{
-  "context" : ["/api/user-email"],
   "target" : "http://localhost:6868",
   "secure":true,
   "changeOrigin":true,

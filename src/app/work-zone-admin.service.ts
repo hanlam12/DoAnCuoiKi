@@ -19,7 +19,7 @@ export class WorkZoneAdminService {
 
   getAdminData() {
     return this._http.get<any>('http://localhost:6868/api/admin').pipe(
-      catchError((error) => 
+      catchError((error) =>
       {
         console.log('Error accessing API', error);
         return throwError(error);
@@ -55,7 +55,7 @@ deleteCompany(company:string):Observable<any> {
   const headers = new HttpHeaders().set("Content-Type", "application/json;charset=utf-8");
   return this._http.delete<any>(
     "/api/delete-company",
-    { 
+    {
       headers: headers,
       body: JSON.stringify(company),
       responseType: "json"
@@ -82,7 +82,7 @@ deleteUser(user: Users):Observable<any> {
   const headers = new HttpHeaders().set("Content-Type", "application/json;charset=utf-8");
   return this._http.delete<any>(
     "/api/delete-user",
-    { 
+    {
       headers: headers,
       body: JSON.stringify(user),
       responseType: "json"
@@ -91,7 +91,7 @@ deleteUser(user: Users):Observable<any> {
     map(res=>JSON.parse(res) as Array<Users>),
     retry(3)
   );
-  
+
 };
 
 putJob(job:any):Observable<any>
@@ -110,7 +110,7 @@ deleteJob(user: Users):Observable<any> {
   const headers = new HttpHeaders().set("Content-Type", "application/json;charset=utf-8");
   return this._http.delete<any>(
     "/api/delete-job",
-    { 
+    {
       headers: headers,
       body: JSON.stringify(user),
       responseType: "json"
@@ -119,7 +119,7 @@ deleteJob(user: Users):Observable<any> {
     map(res=>JSON.parse(res) as Array<Job>),
     retry(3)
   );
-  
+
 };
 
 }

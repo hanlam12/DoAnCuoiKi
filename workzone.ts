@@ -33,9 +33,7 @@ export class Job{
 export class Company{
   constructor(
     public _id:any=null,
-
     public company_id:string="",
-
     public company_name:string="",
     public email:string="",
     public phone:string="",
@@ -52,22 +50,6 @@ export interface category{
    category_detail: string
 
     }
-export class JobApplication {
-  constructor (
-    public title: string="",
-    public YOB:string="",
-    public career:string="",
-    public experience:string="",
-    public qualification:string="",
-    public english_level:string="",
-    public work_location:string="",
-    public working_form:string="",
-    public desired_salary:string="",
-    public CV_chinh:string="",
-    public your_wishes:string="",
-    public introduce_yourself:string="",
-    ){}
-}
 
 export interface cv{
   cv_detail: string
@@ -86,8 +68,7 @@ export class Users{
     public DOB: string="",
     public address:string="",
     public district:string="",
-
-    public cv: Array<JobApplication>=[],
+    public cv: Array<cv>=[],
     public city:string="",
     public image:string="",
     public savejob: Array<jobJD>=[]

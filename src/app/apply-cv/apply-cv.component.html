@@ -26,30 +26,33 @@
               <form action="">
                 <div class="jFiler-input-inner">
                   <i class="bi bi-upload" style="font-size: 20px;font-weight: bold;"></i>
-                  <button class="btn-choosefile">Chọn File</button>
+                  <!-- <button class="btn-choosefile">Chọn File</button> -->
+                  <input class="btn-choosefile" type="file" name="fileCV" id="fileCV" #name="ngModel" [(ngModel)]="submitCV.fileCV" >
                 </div>
                 <div class="form-group mb20">
                   <label for="">Họ và tên</label>
                   <span class="text-danger">*</span>:
-                  <input class="form-input" type="text" placeholder="Họ tên hiển thị với Nhà tuyển dụng">
+                  <input class="form-input" type="text" placeholder="Họ tên hiển thị với Nhà tuyển dụng" name="name" id="name" #name="ngModel" [(ngModel)]="submitCV.name">
                 </div>
                 <div class="mb20">
                   <div class="form-group">
                     <label for="">Email</label>
                     <span class="text-danger">*</span>:
-                    <input class="form-input" type="email" name="" id="" placeholder="Email hiển thị với Nhà tuyển dụng">
+                    <input class="form-input" type="email" placeholder="Email hiển thị với Nhà tuyển dụng"
+                    name="email" id="email" #name="ngModel" [(ngModel)]="submitCV.email">
                   </div>
                 </div>
                 <div class="mb20">
                   <div class="form-group">
                     <label for="">Số điện thoại</label>
                     <span class="text-danger">*</span>:
-                    <input class="form-input" type="phone" name="" id="" placeholder="Số điện thoại hiển thị với Nhà tuyển dụng">
+                    <input class="form-input" type="phone" name="sdt" id="sdt" #name="ngModel" [(ngModel)]="submitCV.sdt" placeholder="Số điện thoại hiển thị với Nhà tuyển dụng">
                   </div>
                 </div>
                 <div class="mb20">
                   <label for="">Thư giới thiệu: </label>
-                  <textarea name="" id=""  rows="3" class="form-control" placeholder="Viết giới thiệu ngắn gọn về bản thân (điểm mạnh, điểm yếu) và nêu rõ mong muốn, lý do làm việc tại công ty này. Đây là cách gây ấn tượng với nhà tuyển dụng nếu bạn có chưa có kinh nghiệm làm việc (hoặc CV không tốt)."></textarea>
+                  <textarea name="recommendation" id="recommendation" #name="ngModel" [(ngModel)]="submitCV.recommendation"  rows="3" class="form-control" placeholder="Viết giới thiệu ngắn gọn về bản thân (điểm mạnh, điểm yếu) và nêu rõ mong muốn, lý do làm việc tại công ty này. Đây là cách gây ấn tượng với nhà tuyển dụng nếu bạn có chưa có kinh nghiệm làm việc (hoặc CV không tốt)."></textarea>
+                  
                 </div>
               </form>
             </div>
@@ -59,7 +62,7 @@
 
         </div>
         <div class="modal-footer">
-          <button (click)="bsModalRef.hide()" class="close">Đóng lại</button>
+          <button (click)="close()" class="close">Đóng lại</button>
           <button (click)="cvSuccess()" id="myBtn2">Nộp CV</button>
         </div>
       </div>
@@ -73,7 +76,7 @@
       <div class="modal-content1">
         <div>NỘP CV THÀNH CÔNG</div>
         <div class="modal-footer1">
-          <button class="close2" (click)="close()">OK</button>
+          <button class="close2" (click)="navigateToAppliedJob()">OK</button>
         </div>
       </div>
     </div>

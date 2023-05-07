@@ -37,6 +37,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SavedJobComponent } from './saved-job/saved-job.component';
+import { RecruitmentComponent } from './recruitment/recruitment.component';
+import { HomepageEmployerComponent } from './homepage-employer/homepage-employer.component';
 
 import { NewCompanyModalComponent } from './new-company-modal/new-company-modal.component';
 
@@ -44,6 +46,7 @@ import { LoginEmployerComponent } from './login-employer/login-employer.componen
 import { SignUpEmployerComponent } from './sign-up-employer/sign-up-employer.component';
 
 import { PaymentComponent } from './payment/payment.component';
+import { HeaderEmployerComponent } from './header-employer/header-employer.component';
 
 
 
@@ -81,13 +84,16 @@ import { PaymentComponent } from './payment/payment.component';
     CreateProfileComponent,
     NotFoundComponent,
     SavedJobComponent,
+    RecruitmentComponent,
+    HomepageEmployerComponent,
 
     AdminWZComponent,
     NewCompanyModalComponent,
 
     LoginEmployerComponent,
     SignUpEmployerComponent,
-    PaymentComponent
+    PaymentComponent,
+    HeaderEmployerComponent
 
 
 

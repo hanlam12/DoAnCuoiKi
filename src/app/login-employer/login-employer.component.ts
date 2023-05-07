@@ -41,9 +41,9 @@ export class LoginEmployerComponent {
           } else if (data.message === 'wrong password') {
             this.errMessage = "Mật khẩu không đúng";
           } else {
-            alert("Đăng nhập thành công");
-            console.log(data);
 
+
+            this.router.navigate(['homepageEmployer',data.company_id])
           }
         },
         error => {
@@ -57,6 +57,6 @@ export class LoginEmployerComponent {
 
   }
 
-  
+
 
 }

@@ -1,5 +1,3 @@
-
-
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const app = express();
@@ -28,8 +26,8 @@ app.listen(port,()=>{
   jobCollection = database.collection("job");
   userCollection = database.collection("Users");
   companyCollection = database.collection("company");
+  EmployerCollection = database.collection("company");
   AppliedJobCollection = database.collection("AppliedJob");
-
   const { ObjectId: objId } = require('mongodb');
   app.get("/api/job-application/:userID", cors(), async (req, res) => {
     const userId = req.params.userID;
@@ -132,6 +130,7 @@ app.get('/api/applycv/jobJD', cors(), async (req, res) => {
 
 
 
+
   app.get("/api/job",cors(),async(req,res)=>{
 
     const result = await jobCollection.find({}).toArray();
@@ -204,6 +203,7 @@ app.delete('/api/removejob/:userID/:JobJD', cors(), async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
+
     // Make sure that user has a saveJob property
     if (!user.JobJD) {
       user.JobJD = [];
@@ -213,10 +213,8 @@ app.delete('/api/removejob/:userID/:JobJD', cors(), async (req, res) => {
     const jobIndex = user.JobJD.findIndex((job) => job === JobJD);
     if (jobIndex !== -1) {
       user.JobJD.splice(jobIndex, 1);
-      console.log(jobIndex)
-      console.log(user)
-      console.log(JobJD)
-      console.log(userID)
+
+
     } else {
       return res.status(404).json({ message: 'Job not found' });
     }
@@ -230,6 +228,7 @@ app.delete('/api/removejob/:userID/:JobJD', cors(), async (req, res) => {
 });
 
 
+
 app.get("/api/job/:position", cors(), async (req, res) => {
   const position = req.params.position;
   const result = await jobCollection.find({ position: position }).toArray();
@@ -237,11 +236,13 @@ app.get("/api/job/:position", cors(), async (req, res) => {
 });
 
 
+
 app.get("/api/job/address/:address", cors(), async (req, res) => {
   const address = req.params.address;
   const result = await jobCollection.find({ address: { $regex: address, $options: "i" } }).toArray();
   res.send(result);
 });
+
 
 
 app.get("/api/job/category/:categories", cors(), async (req, res) => {
@@ -262,13 +263,15 @@ app.get("/api/job/category/:categories", cors(), async (req, res) => {
 //   const result = await userCollection.find({}).toArray();
 //   res.send(result)
 // })
+
+
 //api đăng kí user
-app.post("/users",cors(),async(req,res)=>{
+app.post("/api/users",cors(),async(req,res)=>{
 var crypto = require('crypto');
 salt = crypto.randomBytes(16).toString('hex');
-UserCollection = database.collection("Users");
+
 user=req.body
-var existingUser = await UserCollection.findOne({
+var existingUser = await userCollection.findOne({
   $or: [
     { email: user.email },
     { phone: user.phone },
@@ -289,7 +292,7 @@ if (existingUser) {
 hash = crypto.pbkdf2Sync(user.password, salt, 1000, 64, `sha512`).toString(`hex`);
 user.password=hash
 user.salt=salt
-await UserCollection.insertOne(user)
+await userCollection.insertOne(user)
 res.send(req.body)
 })
 
@@ -306,7 +309,10 @@ app.post("/api/login",cors(),async(req,res)=>{
     hash = crypto.pbkdf2Sync(password, user.salt,1000,64,`sha512`).toString(`hex`);
     if(user.password==hash){
       const token = jwt.sign({ email: email }, secretKey);
-      res.json({ user, token, userEmail: user.email });
+      const userID = user.userID
+      // const save_jobs = user.JobJD
+
+      res.json({ user, token, userEmail: user.email, userID:userID});
     }
     else
       res.send({"email":email,"password":password,"message":"wrong password"})
@@ -317,18 +323,20 @@ app.post("/api/login",cors(),async(req,res)=>{
 app.post("/api/register",cors(),async(req,res)=>{
   var crypto = require('crypto');
   salt = crypto.randomBytes(16).toString('hex');
-  EmployerCollection = database.collection("company");
+
   employer=req.body
   var existingEmployer = await EmployerCollection.findOne({
     $or: [
       { email: employer.email },
       { phone: employer.phone },
+
     ],
   });
   // Kiểm tra từng thông tin để trả về thông báo cụ thể cho người dùng
   if (existingEmployer) {
     var errorMessages = [];
     if (existingEmployer.email === employer.email) {
+
       errorMessages.push("Địa chỉ email đã được sử dụng");
     }
     if (existingEmployer.phone === employer.phone) {
@@ -348,7 +356,7 @@ app.post("/api/employer",cors(),async(req,res)=>{
   email=req.body.email
   password=req.body.password
   var crypto = require('crypto')
-  EmployerCollection = database.collection("company");
+
   employer=await EmployerCollection.findOne({email:email})
   if(employer==null){
     res.send({"email":email, "message":"not exist"})
@@ -356,7 +364,9 @@ app.post("/api/employer",cors(),async(req,res)=>{
   else{
     hash = crypto.pbkdf2Sync(password, employer.salt,1000,64,`sha512`).toString(`hex`);
     if(employer.password==hash){
-      res.send(employer)
+      const token = jwt.sign({ email: email }, secretKey);
+      const empID = employer.company_id
+      res.json({ employer, token, employerEmail: employer.email, company_id:empID });
     }
     else{
       res.send({"email":email,"password":password,"message":"wrong password"})
@@ -365,8 +375,10 @@ app.post("/api/employer",cors(),async(req,res)=>{
 })
 
 
+
+
 // api get profile
-app.get('/userID', async (req, res) => {
+app.get('/api/userID', async (req, res) => {
   const token = req.headers.authorization.split(' ')[1]
   if (!token) {
     return res.status(401).send('Unauthorized');
@@ -374,7 +386,7 @@ app.get('/userID', async (req, res) => {
   try {
     const decodedToken = jwt.verify(token, secretKey);
     const email = decodedToken.email;
-    const user = await UsersCollection.findOne({ email: email });
+    const user = await userCollection.findOne({ email: email });
     console.log('decodedToken:', decodedToken);
     console.log('user:', user);
     if (!user) {
@@ -389,19 +401,38 @@ app.get('/userID', async (req, res) => {
   }
   });
 
+//API lấy tên người tuyển dụng
+app.get('/api/employername', async (req, res) => {
+  const token = req.headers.authorization.split(' ')[1]
+  // if (!token) {
+  //   return res.status(401).send('Unauthorized');
+  // }
+  try {
+    const decodedToken = jwt.verify(token, secretKey);
+    const email = decodedToken.email;
+    const emp = await EmployerCollection.findOne({ email: email });
+    console.log('decodedToken:', decodedToken);
+    console.log('emp:', emp);
+    if (!emp) {
+      return res.status(404).send('Employer not found');
+    }
+    res.json(emp.person_name);
+  } catch (error) {
+    console.error(error);
+    return res.status(401).send(` ${error.message}`);
+  }
+})
 
 // API lấy tên người dùng
-app.get('/api/user', async (req, res) => {
+app.get('/api/username', async (req, res) => {
   const token = req.headers.authorization.split(' ')[1]
-  if (!token) {
-    return res.status(401).send('Unauthorized');
-  }
+  // if (!token) {
+  //   return res.status(401).send('Unauthorized');
+  // }
   try {
     const decodedToken = jwt.verify(token, secretKey);
     const email = decodedToken.email;
     const user = await userCollection.findOne({ email: email });
-
-
     console.log('decodedToken:', decodedToken);
     console.log('user:', user);
     if (!user) {
@@ -412,11 +443,46 @@ app.get('/api/user', async (req, res) => {
     console.error(error);
     return res.status(401).send(` ${error.message}`);
   }
-});
+})
+
+  app.get('/api/recruitment/:company_id', cors(), async (req, res) => {
+    try {
+      const company_id = req.params.company_id;
+      const company = await companyCollection.findOne({ company_id: company_id });
+      const job = await jobCollection.find({ company_id: company_id }).toArray(); // Updated this line
+      const companyData = { company, job };
+      res.send(companyData);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Server error');
+    }
+  });
+
+  app.post('/api/recruitment/:company_id/job', cors(), async (req, res) => {
+    try {
+      const company_id = req.params.company_id;
+      const job = req.body;
+
+      // Kiểm tra xem công ty có tồn tại trong cơ sở dữ liệu không
+      const company = await companyCollection.findOne({ company_id: company_id });
+      if (!company) {
+        res.status(404).send('Company not found');
+        return;
+      }
+      job.company_id = company_id;
+      const result = await jobCollection.insertOne(job);
+
+      res.send(result.ops[0]);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Server error');
+    }
+  });
+
 
 
   // api chỉnh sửa city
-  app.put('/city', async (req, res) => {
+  app.put('/api/city', async (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     if (!token) {
       return res.status(401).send('Unauthorized');
@@ -424,7 +490,7 @@ app.get('/api/user', async (req, res) => {
     try {
       const decodedToken = jwt.verify(token, secretKey);
       const email = decodedToken.email;
-      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { city: req.body.city } });
+      const user = await userCollection.findOneAndUpdate({ email: email }, { $set: { city: req.body.city } });
       console.log('decodedToken:', decodedToken);
       console.log('user:', user);
       if (!user) {
@@ -439,7 +505,7 @@ app.get('/api/user', async (req, res) => {
   });
 
   // api chỉnh sửa DOB
-  app.put('/DOB', async (req, res) => {
+  app.put('/api/DOB', async (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     if (!token) {
       return res.status(401).send('Unauthorized');
@@ -447,7 +513,7 @@ app.get('/api/user', async (req, res) => {
     try {
       const decodedToken = jwt.verify(token, secretKey);
       const email = decodedToken.email;
-      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { DOB: req.body.DOB } });
+      const user = await userCollection.findOneAndUpdate({ email: email }, { $set: { DOB: req.body.DOB } });
       console.log('decodedToken:', decodedToken);
       console.log('user:', user);
       if (!user) {
@@ -462,7 +528,7 @@ app.get('/api/user', async (req, res) => {
   });
 
   // api chỉnh sửa address
-  app.put('/address', async (req, res) => {
+  app.put('/api/address', async (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     if (!token) {
       return res.status(401).send('Unauthorized');
@@ -470,7 +536,7 @@ app.get('/api/user', async (req, res) => {
     try {
       const decodedToken = jwt.verify(token, secretKey);
       const email = decodedToken.email;
-      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { address: req.body.address } });
+      const user = await userCollection.findOneAndUpdate({ email: email }, { $set: { address: req.body.address } });
       console.log('decodedToken:', decodedToken);
       console.log('user:', user);
       if (!user) {
@@ -485,7 +551,7 @@ app.get('/api/user', async (req, res) => {
   });
 
   // api chỉnh sửa gender
-  app.put('/gender', async (req, res) => {
+  app.put('/api/gender', async (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     if (!token) {
       return res.status(401).send('Unauthorized');
@@ -493,7 +559,7 @@ app.get('/api/user', async (req, res) => {
     try {
       const decodedToken = jwt.verify(token, secretKey);
       const email = decodedToken.email;
-      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { gender: req.body.gender } });
+      const user = await userCollection.findOneAndUpdate({ email: email }, { $set: { gender: req.body.gender } });
       console.log('decodedToken:', decodedToken);
       console.log('user:', user);
       if (!user) {
@@ -508,7 +574,7 @@ app.get('/api/user', async (req, res) => {
   });
 
    // api chỉnh sửa district
-   app.put('/district', async (req, res) => {
+   app.put('/api/district', async (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     if (!token) {
       return res.status(401).send('Unauthorized');
@@ -516,7 +582,7 @@ app.get('/api/user', async (req, res) => {
     try {
       const decodedToken = jwt.verify(token, secretKey);
       const email = decodedToken.email;
-      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { district: req.body.district } });
+      const user = await userCollection.findOneAndUpdate({ email: email }, { $set: { district: req.body.district } });
       console.log('decodedToken:', decodedToken);
       console.log('user:', user);
       if (!user) {
@@ -531,7 +597,7 @@ app.get('/api/user', async (req, res) => {
   });
 
    // api chỉnh sửa image
-   app.put('/image', async (req, res) => {
+   app.put('/api/image', async (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     if (!token) {
       return res.status(401).send('Unauthorized');
@@ -539,7 +605,7 @@ app.get('/api/user', async (req, res) => {
     try {
       const decodedToken = jwt.verify(token, secretKey);
       const email = decodedToken.email;
-      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { image: req.body.image } });
+      const user = await userCollection.findOneAndUpdate({ email: email }, { $set: { image: req.body.image } });
       console.log('decodedToken:', decodedToken);
       console.log('user:', user);
       if (!user) {
@@ -592,7 +658,7 @@ app.get("/api/company",cors(),async(req,res)=>{
     await companyCollection.insertOne(req.body)
     res.send(req.body)
   });
-  
+
 const CircularJSON = require('circular-json');
 
 function replacer(key, value) {

@@ -3,13 +3,14 @@ import { WorkZoneAdminService } from '../work-zone-admin.service';
 import { data } from 'jquery';
 import { Subscription } from 'rxjs';
 import { Company, Job, Users } from 'workzone';
+import { control } from 'leaflet';
 
 @Component({
   selector: 'app-admin-wz',
   templateUrl: './admin-wz.component.html',
   styleUrls: ['./admin-wz.component.css']
 })
-export class AdminWZComponent implements OnInit {  
+export class AdminWZComponent implements OnInit {
   subscription: Subscription | undefined;
   adminData: any[] = [];
   companies: any[] = [];
@@ -19,7 +20,7 @@ export class AdminWZComponent implements OnInit {
   ngIfjobs = false;
   ngIfusers = false;
   jobsNull: any[] = []
-  
+
 
   constructor(private adminService: WorkZoneAdminService) {}
 
@@ -33,10 +34,16 @@ export class AdminWZComponent implements OnInit {
     });
   }
 
+  
+  // test(){
+  //   console.log(this.jobsNull, this.jobs);
+    
+  // }
+
   ngOnDestroy() {
     this.subscription!.unsubscribe(); // hủy đăng ký subscriptions khi không còn cần thiết
   }
- 
+
   btnCompaniesList(){
     this.ngIfcompanies = true;
     this.ngIfjobs = false;
@@ -119,12 +126,12 @@ putCompany() {
 };
 
 deleteCompany(company:any) {
-  if (confirm('Bạn có chắc chắn muốn xóa?')) 
+  if (confirm('Bạn có chắc chắn muốn xóa?'))
   {
     this.adminService.deleteCompany(company).subscribe({
       next: (data) => { this.companies = data, alert('Xóa thành công'), location.reload() },
       error: (err) => { this.errMessage = err }
-    }) 
+    })
   }
 };
 
@@ -162,12 +169,12 @@ putUser() {
 
 deleteUser(user:any) {
   console.log(user)
-  if (confirm('Bạn có chắc chắn muốn xóa?')) 
+  if (confirm('Bạn có chắc chắn muốn xóa?'))
   {
     this.adminService.deleteUser(user).subscribe({
       next: (data) => { this.users = data, alert('Xóa thành công'), location.reload() },
       error: (err) => { this.errMessage = err }
-    }) 
+    })
   }
 };
 
@@ -191,7 +198,7 @@ btnshowEditJob(job: Job){
   this.showEditJob = true
   this.showDetails = false
   this.showDetailsUser = false
-  this.showDetailsJob = false 
+  this.showDetailsJob = false
 };
 closePutJob(){
   this.showEditJob = false
@@ -205,12 +212,12 @@ putJob() {
 };
 
 deleteJob(job:any) {
-  if (confirm('Bạn có chắc chắn muốn xóa?')) 
+  if (confirm('Bạn có chắc chắn muốn xóa?'))
   {
     this.adminService.deleteJob(job).subscribe({
       next: (data) => { this.users = data, alert('Xóa thành công'), location.reload() },
       error: (err) => { this.errMessage = err }
-    }) 
+    })
   }
 };
 
@@ -229,7 +236,7 @@ btnshowEditJobNull(event: Event ,job: Job){
   this.showEditJob = true
   this.showDetails = false
   this.showDetailsUser = false
-  this.showDetailsJob = false 
+  this.showDetailsJob = false
 };
 }
 

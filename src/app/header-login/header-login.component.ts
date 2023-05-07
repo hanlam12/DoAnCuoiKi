@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header-login.component.css']
 })
 export class HeaderLoginComponent implements OnInit {
-
+  uID: string =''
   public fullname: string='';
   isLeftDefault = false;
   menu() {
@@ -19,7 +19,13 @@ export class HeaderLoginComponent implements OnInit {
     this.isDisplaynone = !this.isDisplaynone;
   }
 
-  constructor(private login: WorkZoneService) { }
+  constructor(private login: WorkZoneService) {
+    const uID = localStorage.getItem('userID');
+    if (uID) {
+      this.uID = uID;
+    }
+   }
+
   ngOnInit() {
     this.login.getUserName().subscribe(data => {
       this.fullname = data;
@@ -31,5 +37,6 @@ export class HeaderLoginComponent implements OnInit {
   }
   logout(){
   return this.login.logout()
+
 }
 }

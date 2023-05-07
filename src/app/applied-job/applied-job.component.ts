@@ -38,17 +38,19 @@ constructor(
 userIDAppliedJob: any
 
 ngOnInit(): void {
-  const userID = "cus00002";
-  if (userID) {
-    this.usersService.getUser(userID).subscribe(user => {
-      this.user = user;
-      console.log('user:', user);
-    });
-  };
+  // const userID = this.usersService.UserIDDataLoggedin();
   this.route.paramMap.subscribe(params => {
     this.userIDAppliedJob = params.get('userID');
     this.getAppliedJob();
   });
+ 
+  if (this.userIDAppliedJob) {
+    this.usersService.getUser(this.userIDAppliedJob).subscribe(user => {
+      this.user = user;
+      console.log('user:', user);
+    });
+  };
+  
 };
 getAppliedJob(): void {
   this.usersService.getAppliedJob(this.userIDAppliedJob)
