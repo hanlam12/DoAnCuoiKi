@@ -63,9 +63,9 @@
   width: 100%;
 }
 .figcaption {
-  padding-left: 35px;
   flex: 0 0 calc(100% - 243px);
   position: relative;
+  margin: auto;
 }
 .figcaption .caption{
   line-height: 14px;
@@ -75,15 +75,15 @@
 }
 .figNotification{
   flex: 0 0 100px;
-  max-width: 100px;
+  max-width: 170px;
     height: auto;
-    margin: auto;
+   margin: auto;
+   text-align: center;
 }
+
 .figNotification .view{
-  background-color: rgb(214, 92, 5);
-}
-.figNotification .viewed{
-  background-color: rgb(2, 198, 2);
+  background-color:#12adfa;
+  display: flex;
 }
 .myPost{
   font-size: 20px;

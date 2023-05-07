@@ -1,0 +1,91 @@
+<body>
+  <!-- body -->
+  <div id="body" class="container">
+    <div class="hinhAnh">
+        <img src="{{companyData?.company?.company_image}}" style="padding-left: 5px; float: left;">
+    </div>
+    <div id="contentBody">
+        <div class="leftContent">
+            <div class="leftTopContent" >
+                <div class="myPost fw-bold text-upper text-blue">Việc làm đang tuyển</div>
+                <div class="figure" *ngFor="let job of companyData?.jobs">
+                  <div class="image">
+                    <a href="#">
+                      <img src="{{job?.image}}">
+                    </a>
+                  </div>
+                  <div class="figcaption">
+                    <h5 class="title text-upper">
+                      <a href="#">{{job?.job_name}}</a>
+                    </h5>
+                    <div class="caption">
+                      <p class="company-name  " style="line-height: 20px;"> {{job?.company}}</p>
+                      <p class="salary">$ {{job?.salary}}</p>
+                      <p class="location">{{job?.address}} </p>
+                      <p class="deadline"> <i class="bi bi-calendar-check"></i> {{job?.dealine}}  </p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="leftBottomContent" >
+              <div class="myPost fw-bold text-upper text-blue">Đơn ứng tuyển mới nhất</div>
+              <div class="figure" *ngFor="let user of companyData?.users">
+                <div class="image" *ngFor="let job of companyData?.jobs">
+                  <a [routerLink]="['/homepageEmployer', companyData?.company?.company_id, job?.jobJD, user?.userID]" >
+                    <img src="{{user?.image}}">
+                  </a>
+                </div>
+                <div class="figcaption" *ngFor="let job of companyData?.jobs">
+                  <h5 class="title text-upper"> <a [routerLink]="['/homepageEmployer', companyData?.company?.company_id, job?.jobJD, user?.userID]"  >{{user?.fullname}}</a> </h5>
+                  <div class="caption">
+                    <p class="email">Email: {{user?.email}}</p>
+                    <p class="phone">SĐT: {{user?.phone}}</p>
+                  </div>
+                </div>
+                <div class="figNotification" *ngFor="let job of companyData?.jobs">
+                  <button class="btn view" (click)="status(); isOn = true;" [hidden]="isOn" [routerLink]="['/homepageEmployer', companyData?.company?.company_id, job?.jobJD, user?.userID]">Xem</button>
+                  <button class="btn viewed" (click)="status(); isOn = false;" [hidden]="!isOn">Đã xem</button>
+                </div>
+              </div>
+          </div>
+
+        </div>
+        <div class="rightContent" *ngIf="infor">
+            <div class="rightTopContent">
+              <h3 class="nameCompany fw-bold text-upper text-center text-blue">{{companyData?.company?.company_name}}</h3>
+              <div style="display: flex; ">
+                <div class="figure">
+              <div class="image"  >
+                <a href="#">
+                <img src="{{companyData?.company?.image}}">
+              </a></div>
+              <span>
+                <div style="margin-left: 5%; width: 100%; margin-top: 30px;" ><strong class="text-upper">Thông tin công ty</strong>
+                <ul>
+                  <li>
+                    <span class="mdi mdi-account-supervisor">  Qui mô công ty: {{companyData?.company?.company_scale}} </span>
+                  </li>
+                  <li>
+                    <span class="mdi mdi-link">  Website: <a href="3">{{companyData?.company?.company_website}}</a>  </span>
+                  </li>
+                </ul></div>
+              </span></div>
+              </div>
+              <div class="content">
+                <strong> Địa điểm: </strong>{{companyData?.company?.company_address}}
+                <hr>
+                <strong class="text-upper"> Giới thiệu về công ty </strong>
+                <p>{{companyData?.company?.company_intro}}</p>
+              </div>
+              <hr >
+              <div >
+              <span class="exit">
+                <a [routerLink]="['/homepageEmployer', companyData?.company?.company_id]" ><i class="bi bi-box-arrow-right"></i>&nbsp;&nbsp;&nbsp;Thoát</a>
+              </span>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+  </body>
+

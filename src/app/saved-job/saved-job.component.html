@@ -5,7 +5,7 @@
       <div id="file_created"> <p>Việc làm đã lưu
         <br><span> Xem lại danh sách những việc làm mà bạn đã lưu trước đó. Ứng tuyển ngay để không bỏ lỡ cơ hội nghề nghiệp dành cho bạn.</span>
       </p> </div>
-      <div id="you_create_file"> <p>Danh sách 05 việc làm đã lưu</p> </div>
+      <div id="you_create_file"> <p>Danh sách xx việc làm đã lưu</p> </div>
       <div id="xapsep"> <p>Ưu tiên hiển thị:
         <input id="gandaynhat" name="sapxep" type="radio">
         <label for="gandaynhat">Cập nhật gần đây nhất</label>
@@ -17,14 +17,14 @@
       </div>
       </div>
       <div class="container" style="margin-top: 20px;">
-        <div class="row">
+        <div class="row" *ngFor="let c of userData?.job">
                  <div class="col-md-3">
-              <img src="assets/media/logo.png" alt="">
+              <img src="{{c?.image}}" alt="">
               </div>
               <div class="col-md-7">
-              <div class="line_job">Chuyên Viên Quan Hệ Khách Hàng Kênh Aia Exchange (Lương Cơ Bản 14 Triệu + Hoa Hồng)</div>
-              <div class="line_company">CÔNG TY TNHH BẢO HIỂM NHÂN THỌ AIA (VIỆT NAM)</div>
-              <div class="line_button">14-16 triệu</div> <div class="line_button">Hồ Chí Minh</div><div class="line_button">1 giờ trước</div>
+              <div class="line_job">{{ c?.job_name }}</div>
+              <div class="line_company">{{c?.company}}</div>
+              <div class="line_button">{{c?.salary}}</div> <div class="line_button">{{c?.address}}</div>
             </div>
               <div class="col-md-2">
                 <a class="btn-nav line_no-save" role="button" aria-pressed="true">Bỏ lưu</a>

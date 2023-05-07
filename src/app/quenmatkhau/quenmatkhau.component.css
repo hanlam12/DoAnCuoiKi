@@ -15,3 +15,13 @@
 .aa{
   margin-left: 370px;
 }
+@media screen and (max-width: 480px){
+  .container{
+    width: 460px;
+    height: 270px;
+  }
+  .aa{
+    margin-left: 0px;
+  }
+
+}

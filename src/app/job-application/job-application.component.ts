@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { WorkZoneService } from '../work-zone.service';
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'workzone';
+import {  User, Users } from 'workzone';
+
 
 @Component({
   selector: 'app-job-application',
@@ -18,6 +19,7 @@ export class JobApplicationComponent implements OnInit {
   taiCv = true
   showCv = false
   UpdateCv = false
+  detail = false
 
 
   toggle(){
@@ -26,26 +28,23 @@ export class JobApplicationComponent implements OnInit {
     this.showCv = true;
 
   }
-  updateCv(){
-    this.taiCv = false;
-    this.UpdateCv=true;
-    this.showCv = false;
-    this.hoSoDaTao = false
-}
+
 cancel(){
   this.taiCv = true;
   this.UpdateCv=false;
   this.showCv = false;
-  this.hoSoDaTao = true
+  this.hoSoDaTao = true;
+  this.detail = false;
 }
 chitiet(){
   this.taiCv = false;
-  this.UpdateCv=true;
+  this.UpdateCv=false;
   this.showCv = false;
-  this.hoSoDaTao = false
+  this.hoSoDaTao = false;
+  this.detail = true;
 }
 
-user: User | undefined
+user: Users | undefined
 
 
 constructor(
@@ -62,5 +61,25 @@ ngOnInit(): void {
     });
   }
 }
+applied_cv: any[] = [];
+userID: string = '';
+cv: any;
+
+applyCV() {
+    this.taiCv = false;
+    this.UpdateCv=true;
+    this.showCv = false;
+    this.hoSoDaTao = false
+    this.usersService.applyCV(this.userID, this.cv).subscribe(
+      response => {
+        this.applied_cv.push(response.cv);
+        console.log(`Applied CV successfully: ${response.cv}`);
+      },
+      error => {
+        console.log(`Error applying CV: ${error}`);
+      }
+    );
+  }
 
 }
+

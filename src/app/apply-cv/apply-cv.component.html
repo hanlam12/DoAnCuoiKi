@@ -1,12 +1,12 @@
 
 
-    <div id="myModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModal">
+    <div  id="myModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModal">
       <!-- Modal content -->
-      <div class="modal-content">
+      <div   class="modal-content">
         <div class="modal-header">
           <h5>
             Ứng tuyển
-            <span >Nhân viên Relationshop Manager</span>
+            <span >{{jobName}}</span>
           </h5>
         </div>
         <div class="modal-body">
@@ -54,21 +54,14 @@
                 </div>
               </form>
             </div>
-
           </div>
-
-
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer" >
           <button (click)="bsModalRef.hide()" class="close">Đóng lại</button>
-          <button (click)="cvSuccess()" id="myBtn2">Nộp CV</button>
+          <button (click)="ApplyJob(jobs)" id="myBtn2">Nộp CV</button>
         </div>
       </div>
     </div>
-
-
-
-
    <div *ngIf="isSubmitted">
     <div id="myModal2" class="modal">
       <div class="modal-content1">

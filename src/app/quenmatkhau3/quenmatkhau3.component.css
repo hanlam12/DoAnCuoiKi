@@ -18,3 +18,12 @@
 .text{
   color: red;
 }
+@media screen and (max-width: 480px){
+  .container{
+    width: 470px;
+    height: 350px;
+  }
+  .aa{
+    margin-left: 250px;
+  }
+}

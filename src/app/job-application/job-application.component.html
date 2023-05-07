@@ -1,5 +1,4 @@
 
-
     <div id="body">
          <div class="body_right" ng-controller="myController">
           <div class="body_right-top">
@@ -44,36 +43,51 @@
             <p class="name-file"></p>
             <p>Chọn tệp khác</p>
           </div>
-          <form id="formUploadCv" action="" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="_token" value="20pu1kkykc56Qn6HmNsD1aSLoqXn4PUSjnxtNUpm">
-            <input type="file" name="file_upload_cv" class="file-upload-cv" id="file-upload-cv" >
+          <form id="formUploadCv" action="" method="post" enctype="multipart/form-data" >
+            <input type="hidden" name="image"id="image" >
+            <input type="file"  name="cv" name="file_upload_cv" class="file-upload-cv" id="file-upload-cv" [(ngModel)]="cv" name="cv" >
           </form>
         </div>
         <div class="file-format">
           <div>File tải lên không quá: 5 MB</div>
         </div>
         <div class="box-btn-upload">
-          <button (click)="updateCv()" class="btn btn-primary-hover  btn-upload ">Tải CV lên</button>
+          <button type="submit"  (click)="applyCV()" class="btn btn-primary-hover  btn-upload ">Tải CV lên</button>
           <p class="text-highlight upload-process">Hệ thống đang xử lý CV của bạn thông thường mất từ 10 đến 15 giây, xin vui lòng đợi !!!</p>
         </div>
       </div>
-
+      <div  id="cv-upload-list" class="box-block" *ngIf="UpdateCv">
+        <div>
+          <span class="exit" (click)="cancel()" >
+            <a><i class="bi bi-box-arrow-left"></i>&nbsp;&nbsp;&nbsp;Thoát</a>
+          </span>
+        </div>
+        <div class="text-center">Tải CV lên thành công</div>
+        <br>
+      </div>
+      <div  id="cv-upload-list" class="box-block" *ngIf="detail">
+        <div>
+          <span class="exit" (click)="cancel()" >
+            <a><i class="bi bi-box-arrow-left"></i>&nbsp;&nbsp;&nbsp;Thoát</a>
+          </span>
+        </div>
+        <div class="cvChiTiet" *ngFor=" let u of user?.cv">
+          <img src="{{cv}}" alt="">
+        </div>
+      </div>
       <div id="body_left-bottom" *ngIf="hoSoDaTao" >
       <div id="content_body_left">
         <div id="file_created"> <p>Hồ sơ đã tạo</p> </div>
-        <div id="you_create_file"> <p>Bạn đã tạo 03 hồ sơ</p> </div>
-        <div >
+          <div >
         <table>
         <tr>
             <th>STT</th>
             <th>Tên hồ sơ</th>
-            <th>Ngày tạo</th>
             <th class="text-center ">Xem chi tiết</th>
         </tr>
         <tr *ngFor="let c of user?.cv">
             <td>1</td>
-            <td></td>
-            <td>11/12/2022</td>
+            <td>Hồ sơ 1</td>
             <td>  <div id="chitiet" class="text-center"><a (click)="chitiet()">Chi tiết</a></div></td>
         </tr>
     </table>

@@ -11,7 +11,7 @@ import { tap } from 'rxjs';
 })
 export class LoginComponent {
   public lgForm: FormGroup = new FormGroup({
-    
+
   });
   password = ''
   showPassword =""
@@ -24,20 +24,30 @@ export class LoginComponent {
     });
   }
 
-  
+
   error = false
-  
+
+  errMessage :string='';
+
+  existingUserErrors:string[] = [];
+
 
   login(): void{
-    this._loginService.login(this.lgForm.get('email')?.value, this.lgForm.get('password')?.value).subscribe(data => {
-      if (data.error) {
-        this.error = data.error;
+    this._loginService.login(this.lgForm.get('email')?.value, this.lgForm.get('password')?.value).subscribe(
+      data => {
+      if (data.message === 'not exist') {
+        this.errMessage = "Email không tồn tại";
+      } else if (data.message === 'wrong password') {
+        this.errMessage = "Mật khẩu không đúng";
       } else {
-        this.error = true;
-        this._loginService.navigateAfterLogin();
+        alert("Đăng nhập thành công");
+        console.log(data);
+        this._loginService.navigateAfterLogin()
       }
-    });
-    
+    }
+    );
+
   }
-  
+
 }
+

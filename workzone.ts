@@ -1,31 +1,8 @@
-export interface IJob{
-  _id:any,
-  jobJD:string,
-  image:string,
-  job_name:string,
-  company:string,
-  category: Array<category>,
-  address:string,
-  salary:string,
-  exprience:string,
-  dealine:string,
-  welfare:string,
-  description:string,
-  job_requirement:string,
-  contact:string,
-  contact_person:string,
-  phone_person:number,
-  degree:string,
-  age:string,
-  position:string,
-  gender:string,
-  recruiting_amount:string,
-  work_form:string,
-  company_id:string
-}
+
 
 
 export class Job{
+  static job_name: any
   constructor(
   public _id:any=null,
   public jobJD:string="",
@@ -49,7 +26,8 @@ export class Job{
   public gender:string="",
   public recruiting_amount:string="",
   public work_form:string="",
-  public company_id:string=""
+  public company_id:string="",
+  public applyuser:Array<userID>=[]
   ){}
   }
 
@@ -77,11 +55,15 @@ export class Company{
     public company_id:string="",
     public image:string="",
     public company_name:string="",
+    public email:string="",
+    public phone:string="",
+    public password:string="",
+    public person_name:string="",
     public company_image:string="",
     public company_intro:string="",
     public company_scale:string="",
     public company_address: string ="",
-    public company_website:string=""
+    public company_website:string="",
     ){}
 }
 export interface category{
@@ -94,16 +76,27 @@ export interface cv{
 }
 
 
-
-
 export class Users{
   constructor(
     public _id:any=null,
-    public name:string="",
+    public userID:string="",
+    public fullname:string="",
     public email:string="",
     public phone:string="",
-    public username:string="",
     public password:string="",
-    public retrypassword:string="",
+    public gender:string="",
+    public DOB: string="",
+    public address:string="",
+    public district:string="",
+    public cv: Array<cv>=[],
+    public city:string="",
+    public image:string="",
+    public JobJD: Array<jobJD>=[]
   ){}
+}
+export interface jobJD{
+  savejobJD: string
+}
+export interface userID{
+  savejobJD: string
 }

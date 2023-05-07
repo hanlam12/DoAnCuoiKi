@@ -28,34 +28,40 @@ import { ThongBaoViecLamComponent } from './thong-bao-viec-lam/thong-bao-viec-la
 import { RecruitmentComponent } from './recruitment/recruitment.component';
 import { HomepageEmployerComponent } from './homepage-employer/homepage-employer.component';
 
+import { AdminWZComponent } from './admin-wz/admin-wz.component';
 
+import { LoginEmployerComponent } from './login-employer/login-employer.component';
+import { SignUpEmployerComponent } from './sign-up-employer/sign-up-employer.component';
+import { PaymentComponent } from './payment/payment.component';
+import { DonUngTuyenComponent } from './don-ung-tuyen/don-ung-tuyen.component';
+import { XemUngVienComponent } from './xem-ung-vien/xem-ung-vien.component';
 
 
 const routes: Routes = [
+
   {path:"profile", component: CreateProfileComponent},
-  {path:"saved", component: SavedJobComponent},
+  {path:"saved/:userID", component: SavedJobComponent},
+
   {path:"noti", component: ThongBaoViecLamComponent},
   {path:"404notfound", component: NotFoundComponent},
   {path:"contact",component:ContactComponent},
   {path:"sign-up",component:SignUpComponent},
-
-
   {path:"job-decription/:jobJD",component:JobDecriptionComponent},
   {path:"job-application/:userID",component:JobApplicationComponent},
   {path:"applied-job/:userID",component:AppliedJobComponent},
 
+{path: "job-decription", component: JobDecriptionComponent},
+{path: "job-application", component: JobApplicationComponent},
 
-  {path:"job-decription",component:JobDecriptionComponent},
-  {path:"job-application",component:JobApplicationComponent},
   {path:"applied-job",component:AppliedJobComponent},
-
   {path:"footer-logged",component:FooterLoggedComponent},
   {path:"footer-not-log-in",component:FooterNotLogInComponent},
   {path:"search-job",component:SearchJobComponent},
   {path:"applycv",component:ApplyCVComponent},
+  {path:"applycv/:jobJD",component:ApplyCVComponent},
   {path:"",component:HompageComponent},
   { path: "thongtin", component: ThongtinComponent },
-  {path: "login", component: LoginComponent},
+ {path: "login", component:LoginComponent},
   {path: "dieukhoandichvu", component: DieukhoandichvuComponent},
   { path:"support", component:SupportComponent},
   { path:"thaydoimatkhau", component:ThaydoimatkhauComponent},
@@ -63,15 +69,21 @@ const routes: Routes = [
   { path:"quenmatkhau1", component: Quenmatkhau1Component},
   { path:"quenmatkhau2", component:Quenmatkhau2Component},
   { path:"quenmatkhau3", component:Quenmatkhau3Component},
-
-  {path: "companies/:companyId", component: CongtyComponent},
-
-  {path: "congty", component: CongtyComponent},
-   {path: "congty/:id", component: CongtyComponent},
    {path: "recruitment/:company_id", component: RecruitmentComponent},
    {path: "recruitment", component: RecruitmentComponent},
    {path: "homepageEmployer", component: HomepageEmployerComponent},
    {path: "homepageEmployer/:company_id", component: HomepageEmployerComponent},
+  {path: "dangnhap", component: LoginEmployerComponent},
+  {path: "sign-up-employer", component: SignUpEmployerComponent},
+  {path: "company", component: CongtyComponent},
+  {path: "admin", component: AdminWZComponent},
+  {path: "company/:company_id", component: CongtyComponent},
+  {path:"login-employer", component:LoginEmployerComponent},
+  {path:"sign-up-employer", component:SignUpEmployerComponent},
+  {path:"payment", component:PaymentComponent},
+  {path:"homepageEmployer/:company_id/:jobJD", component:DonUngTuyenComponent},
+  {path:"homepageEmployer/:company_id/:jobJD/:userID", component:XemUngVienComponent},
+
 
 ];
 
@@ -84,7 +96,6 @@ export const RoutingComponent={
   ContactComponent,
   HompageComponent,
   SignUpComponent,
-
   JobDecriptionComponent,
   JobApplicationComponent,
   AppliedJobComponent,
@@ -102,6 +113,19 @@ export const RoutingComponent={
   Quenmatkhau2Component,
   Quenmatkhau3Component,
   CongtyComponent,
+
   RecruitmentComponent,
   HomepageEmployerComponent,
+
+
+  AdminWZComponent,
+
+  LoginEmployerComponent,
+  SignUpEmployerComponent,
+
+  PaymentComponent
+
+
+
+
 }

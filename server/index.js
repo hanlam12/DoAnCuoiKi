@@ -1,3 +1,5 @@
+
+
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const app = express();
@@ -7,7 +9,7 @@ const morgan=require("morgan")
 app.use(morgan("combined"))
 const bodyParser=require("body-parser")
 app.use(bodyParser.json({ limit: '10mb' }));
-app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: false, limit: '10mb' }));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(express.json());
@@ -24,7 +26,7 @@ app.listen(port,()=>{
   client.connect();
   database = client.db("WorkZone");
   jobCollection = database.collection("job");
-  userCollection = database.collection("user");
+  userCollection = database.collection("Users");
   companyCollection = database.collection("company");
 
   const { ObjectId: objId } = require('mongodb');
@@ -76,28 +78,21 @@ app.listen(port,()=>{
 //     res.send(cv);
 // });
 
-app.put('/api/savecv', cors(), async (req, res) => {
+app.put('/api/applyCV', cors(), async (req, res) => {
   const { userID, cv } = req.body;
   try {
     const user = await userCollection.findOne({ userID: userID});
-
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-
-    // Make sure that user has a saveJob property
     if (!user.cv) {
       user.cv = [];
     }
       user.cv.push( cv );
-
-    // Cập nhật thông tin người dùng trong cơ sở dữ liệu
     await userCollection.updateOne({ userID: userID }, { $set: { cv: user.cv } });
-
     res.status(200).json(user);
   } catch (error) {
     console.error(error.message);
-
   }
 });
 
@@ -131,12 +126,104 @@ app.get('/api/applycv/jobJD', cors(), async (req, res) => {
     res.status(500).send('Server error');
   }
 });
-
-
   app.get("/api/job",cors(),async(req,res)=>{
+
     const result = await jobCollection.find({}).toArray();
     res.send(result)
   })
+
+  // job nào được lưu gắn liền với user đó
+app.get("/api/savejob/:userID",cors(),async(req,res)=>{
+  try {
+    const userID = req.params.userID;
+    const user = await userCollection.findOne({ userID: userID});
+    const job = await jobCollection.find({ jobJD: { $in: user.JobJD } }).toArray();
+    const saveJob ={user,job};
+  res.send(saveJob);
+} catch (err) {
+  console.error(err);
+  res.status(500).send('Server error');
+}
+})
+//lấy jobJD với user
+app.get("/api/getsavejob/:userID", cors(), async(req, res) => {
+  try {
+    const userID = req.params.userID;
+    const user = await userCollection.findOne({ userID: userID });
+    const savedJobs = user.JobJD;
+    res.send(savedJobs);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+
+//lưu job
+app.put('/api/savejob', cors(), async (req, res) => {
+  const { userID, JobJD } = req.body;
+  try {
+    const user = await userCollection.findOne({ userID: userID});
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Make sure that user has a saveJob property
+    if (!user.JobJD) {
+      user.JobJD = [];
+    }
+
+    // Thực hiện hành động lưu công việc
+    const isSaved = user.JobJD.some((job) => job.JobJD === JobJD);
+    if (!isSaved) {
+      user.JobJD.push( JobJD );
+    }
+
+    // Cập nhật thông tin người dùng trong cơ sở dữ liệu
+    await userCollection.updateOne({ userID: userID }, { $set: { JobJD: user.JobJD } });
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error.message);
+
+  }
+});
+// xóa job
+app.delete('/api/removejob/:userID/:JobJD', cors(), async (req, res) => {
+  const { userID, JobJD } = req.params;
+  try {
+    const user = await userCollection.findOne({ userID });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+
+    // Make sure that user has a saveJob property
+    if (!user.JobJD) {
+      user.JobJD = [];
+    }
+
+    // Remove the job with the given ID from the user's saved jobs
+    const jobIndex = user.JobJD.findIndex((job) => job === JobJD);
+    if (jobIndex !== -1) {
+      user.JobJD.splice(jobIndex, 1);
+      console.log(jobIndex)
+      console.log(user)
+      console.log(JobJD)
+      console.log(userID)
+    } else {
+      return res.status(404).json({ message: 'Job not found' });
+    }
+
+    // Update the user's saved jobs in the database
+    await userCollection.updateOne({ userID }, { $set: { JobJD: user.JobJD } });
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
 
 
 app.get("/api/job/:position", cors(), async (req, res) => {
@@ -146,11 +233,21 @@ app.get("/api/job/:position", cors(), async (req, res) => {
 });
 
 
+
+app.get("/api/job/address/:address", cors(), async (req, res) => {
+  const address = req.params.address;
+  const result = await jobCollection.find({ address: { $regex: address, $options: "i" } }).toArray();
+  res.send(result);
+});
+
+
+
 app.get("/api/job/category/:categories", cors(), async (req, res) => {
   const categories = req.params.categories.split(",");
   const result = await jobCollection.find({ category: { $in: categories } }).toArray();
   res.send(result);
 });
+
 // app.get("/job/:result", cors(), async (req, res) => {
 //   const position = req.params.position;
 //   const categories = req.params.categories.split(",");
@@ -163,49 +260,140 @@ app.get("/api/job/category/:categories", cors(), async (req, res) => {
 //   const result = await userCollection.find({}).toArray();
 //   res.send(result)
 // })
-app.post("/api/users",cors(),async(req,res)=>{
+
+
+//api đăng kí user
+app.post("/users",cors(),async(req,res)=>{
+var crypto = require('crypto');
+salt = crypto.randomBytes(16).toString('hex');
+UserCollection = database.collection("Users");
+user=req.body
+var existingUser = await UserCollection.findOne({
+  $or: [
+    { email: user.email },
+    { phone: user.phone },
+  ],
+});
+// Kiểm tra từng thông tin để trả về thông báo cụ thể cho người dùng
+if (existingUser) {
+  var errorMessages = [];
+  if (existingUser.email === user.email) {
+    errorMessages.push("Địa chỉ email đã được sử dụng");
+  }
+  if (existingUser.phone === user.phone) {
+    errorMessages.push("Số điện thoại đã được sử dụng");
+  }
+  res.status(409).send({ error: errorMessages });
+  return;
+}
+hash = crypto.pbkdf2Sync(user.password, salt, 1000, 64, `sha512`).toString(`hex`);
+user.password=hash
+user.salt=salt
+await UserCollection.insertOne(user)
+res.send(req.body)
+})
+
+
+// api đăng nhâp employee
+app.post("/api/login",cors(),async(req,res)=>{
+  email=req.body.email
+  password=req.body.password
+  var crypto = require('crypto')
+  user=await userCollection.findOne({email:email})
+  if(user==null)
+    res.send({"email":email, "message":"not exist"})
+  else{
+    hash = crypto.pbkdf2Sync(password, user.salt,1000,64,`sha512`).toString(`hex`);
+    if(user.password==hash){
+      const token = jwt.sign({ email: email }, secretKey);
+      res.json({ user, token, userEmail: user.email });
+    }
+    else
+      res.send({"email":email,"password":password,"message":"wrong password"})
+  }
+})
+
+// api register employer
+app.post("/api/register",cors(),async(req,res)=>{
   var crypto = require('crypto');
   salt = crypto.randomBytes(16).toString('hex');
-  UserCollection = database.collection("Users");
-  user=req.body
-  var existingUser = await UserCollection.findOne({
+  EmployerCollection = database.collection("company");
+  employer=req.body
+  var existingEmployer = await EmployerCollection.findOne({
     $or: [
+      { email: employer.email },
+      { phone: employer.phone },
 
-      { email: user.email },
-      { phone: user.phone },
     ],
   });
   // Kiểm tra từng thông tin để trả về thông báo cụ thể cho người dùng
-  if (existingUser) {
+  if (existingEmployer) {
     var errorMessages = [];
+    if (existingEmployer.email === employer.email) {
 
-    if (existingUser.email === user.email) {
       errorMessages.push("Địa chỉ email đã được sử dụng");
     }
-    if (existingUser.phone === user.phone) {
+    if (existingEmployer.phone === employer.phone) {
       errorMessages.push("Số điện thoại đã được sử dụng");
     }
     res.status(409).send({ error: errorMessages });
     return;
   }
-  hash = crypto.pbkdf2Sync(user.password, salt, 1000, 64, `sha512`).toString(`hex`);
-  user.password=hash
-  user.salt=salt
-  await UserCollection.insertOne(user)
+  hash = crypto.pbkdf2Sync(employer.password, salt, 1000, 64, `sha512`).toString(`hex`);
+  employer.password=hash
+  employer.salt=salt
+  await EmployerCollection.insertOne(employer)
   res.send(req.body)
+  })
+// api đang nhập employer
+app.post("/api/employer",cors(),async(req,res)=>{
+  email=req.body.email
+  password=req.body.password
+  var crypto = require('crypto')
+  EmployerCollection = database.collection("company");
+  employer=await EmployerCollection.findOne({email:email})
+  if(employer==null){
+    res.send({"email":email, "message":"not exist"})
+  }
+  else{
+    hash = crypto.pbkdf2Sync(password, employer.salt,1000,64,`sha512`).toString(`hex`);
+    if(employer.password==hash){
+      res.send(employer)
+    }
+    else{
+      res.send({"email":email,"password":password,"message":"wrong password"})
+    }
+  }
 })
 
-// API Login
 
-app.post('/api/login', async (req, res) => {
-  const { email, password } = req.body;
-const user = await userCollection.findOne({ email: email });
-if (!user || user.password !== password) {
-  return res.status(401).send('Invalid email or password');
-}
-const token = jwt.sign({ email: email }, secretKey);
-res.json({ token, userEmail: user.email });
-});
+
+
+// api get profile
+app.get('/userID', async (req, res) => {
+  const token = req.headers.authorization.split(' ')[1]
+  if (!token) {
+    return res.status(401).send('Unauthorized');
+  }
+  try {
+    const decodedToken = jwt.verify(token, secretKey);
+    const email = decodedToken.email;
+    const user = await UsersCollection.findOne({ email: email });
+    console.log('decodedToken:', decodedToken);
+    console.log('user:', user);
+    if (!user) {
+      return res.status(404).send('User not found')
+    }
+    else{
+      res.send(user);
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(401).send(` ${error.message}`);
+  }
+  });
+
+
 
 // API lấy tên người dùng
 app.get('/api/user', async (req, res) => {
@@ -217,6 +405,8 @@ app.get('/api/user', async (req, res) => {
     const decodedToken = jwt.verify(token, secretKey);
     const email = decodedToken.email;
     const user = await userCollection.findOne({ email: email });
+
+
     console.log('decodedToken:', decodedToken);
     console.log('user:', user);
     if (!user) {
@@ -227,7 +417,7 @@ app.get('/api/user', async (req, res) => {
     console.error(error);
     return res.status(401).send(` ${error.message}`);
   }
-});
+})
 
 app.get("/api/company",cors(),async(req,res)=>{
   const result = await companyCollection.find({}).toArray();
@@ -246,8 +436,9 @@ app.get('/api/company/:id', async (req, res) => {
       return res.status(404).send('Company not found');
     }
 
+
     // Find jobs by company ID
-    const jobs = await jobCollection.find({ company_id: companyId }).toArray();
+    const jobs = await jobCollection.find({ company_id: companyId}).toArray();
     console.log(jobs);
 
     const companyData = { company, jobs };
@@ -259,41 +450,395 @@ app.get('/api/company/:id', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
+app.post('/api/recruitment/:company_id/job', cors(), async (req, res) => {
+  try {
+    const company_id = req.params.company_id;
+    const job = req.body;
 
-  app.post('/api/recruitment/:company_id/job', cors(), async (req, res) => {
+    // Check if the company exists in the database
+    const company = await companyCollection.findOne({ company_id: company_id });
+    if (!company) {
+      return res.status(404).send('Company not found');
+    }
+    job.company_id = company_id;
+    job.image = company.image;
+    job.company_name = company.company_name;
+    const result = await jobCollection.insertOne(job);
+    res.send(result.ops[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+
+  app.put("/api/company/:company_id", cors(), async (req, res) =>{
+    const company_id = req.params.company_id;
+    const image = req.body.image;
+    const company_intro = req.body.company_intro;
+    const company_website = req.body.company_website;
+    const company_scale = req.body.company_scale;
+    const company_address = req.body.company_address;
+    await companyCollection.updateOne(
+      { company_id: company_id },
+      { $set: {
+        "image": image,
+        "company_intro": company_intro,
+        "company_scale": company_scale,
+        "company_address": company_address,
+        "company_website": company_website,
+      }}
+    );
+    const updatedCompany = await companyCollection.findOne({ company_id: company_id });
+    res.send(updatedCompany);
+  });
+
+
+
+
+  // api chỉnh sửa city
+  app.put('/city', async (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    if (!token) {
+      return res.status(401).send('Unauthorized');
+    }
     try {
-      const company_id = req.params.company_id;
-      const job = req.body;
-
-      // Kiểm tra xem công ty có tồn tại trong cơ sở dữ liệu không
-      const company = await companyCollection.findOne({ company_id: company_id });
-      if (!company) {
-        res.status(404).send('Company not found');
-        return;
+      const decodedToken = jwt.verify(token, secretKey);
+      const email = decodedToken.email;
+      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { city: req.body.city } });
+      console.log('decodedToken:', decodedToken);
+      console.log('user:', user);
+      if (!user) {
+        return res.status(404).send('User not found');
+      } else {
+        res.send(user);
       }
-      job.company_id = company_id;
-      job.image = image;
-      const result = await jobCollection.insertOne(job);
+    } catch (error) {
+      console.error(error);
+      return res.status(401).send(` ${error.message}`);
+    }
+  });
 
-      res.send(result.ops[0]);
+  // api chỉnh sửa DOB
+  app.put('/DOB', async (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    if (!token) {
+      return res.status(401).send('Unauthorized');
+    }
+    try {
+      const decodedToken = jwt.verify(token, secretKey);
+      const email = decodedToken.email;
+      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { DOB: req.body.DOB } });
+      console.log('decodedToken:', decodedToken);
+      console.log('user:', user);
+      if (!user) {
+        return res.status(404).send('User not found');
+      } else {
+        res.send(user);
+      }
+    } catch (error) {
+      console.error(error);
+      return res.status(401).send(` ${error.message}`);
+    }
+  });
+
+  // api chỉnh sửa address
+  app.put('/address', async (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    if (!token) {
+      return res.status(401).send('Unauthorized');
+    }
+    try {
+      const decodedToken = jwt.verify(token, secretKey);
+      const email = decodedToken.email;
+      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { address: req.body.address } });
+      console.log('decodedToken:', decodedToken);
+      console.log('user:', user);
+      if (!user) {
+        return res.status(404).send('User not found');
+      } else {
+        res.send(user);
+      }
+    } catch (error) {
+      console.error(error);
+      return res.status(401).send(` ${error.message}`);
+    }
+  });
+
+  // api chỉnh sửa gender
+  app.put('/gender', async (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    if (!token) {
+      return res.status(401).send('Unauthorized');
+    }
+    try {
+      const decodedToken = jwt.verify(token, secretKey);
+      const email = decodedToken.email;
+      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { gender: req.body.gender } });
+      console.log('decodedToken:', decodedToken);
+      console.log('user:', user);
+      if (!user) {
+        return res.status(404).send('User not found');
+      } else {
+        res.send(user);
+      }
+    } catch (error) {
+      console.error(error);
+      return res.status(401).send(` ${error.message}`);
+    }
+  });
+
+   // api chỉnh sửa district
+   app.put('/district', async (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    if (!token) {
+      return res.status(401).send('Unauthorized');
+    }
+    try {
+      const decodedToken = jwt.verify(token, secretKey);
+      const email = decodedToken.email;
+      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { district: req.body.district } });
+      console.log('decodedToken:', decodedToken);
+      console.log('user:', user);
+      if (!user) {
+        return res.status(404).send('User not found');
+      } else {
+        res.send(user);
+      }
+    } catch (error) {
+      console.error(error);
+      return res.status(401).send(` ${error.message}`);
+    }
+  });
+
+   // api chỉnh sửa image
+   app.put('/image', async (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    if (!token) {
+      return res.status(401).send('Unauthorized');
+    }
+    try {
+      const decodedToken = jwt.verify(token, secretKey);
+      const email = decodedToken.email;
+      const user = await UsersCollection.findOneAndUpdate({ email: email }, { $set: { image: req.body.image } });
+      console.log('decodedToken:', decodedToken);
+      console.log('user:', user);
+      if (!user) {
+        return res.status(404).send('User not found');
+      } else {
+        res.send(user);
+      }
+    } catch (error) {
+      console.error(error);
+      return res.status(401).send(` ${error.message}`);
+    }
+  });
+
+
+
+app.get("/api/company",cors(),async(req,res)=>{
+  const result = await companyCollection.find({}).toArray();
+  res.send(result)
+})
+// API lấy thông tin công ty
+
+  app.get('/api/company/:id', async (req, res) => {
+    try {
+      const companyId = req.params.id;
+
+      // Find company by name
+      const company = await companyCollection.findOne({ company_id: companyId });
+
+      // Find jobs by company name
+      const jobs = await jobCollection.find({ company: company.company_name }).toArray();
+
+      const companyData = { company, jobs };
+
+      // Send company and job data in response
+      res.send(companyData);
     } catch (err) {
       console.error(err);
       res.status(500).send('Server error');
     }
   });
-  app.put("/api/company/:company_id", cors(), async (req, res) =>{
-    const companyId = req.params.company_id;
-    const { company_image, company_intro, company_scale, company_address, company_website } = req.body;
-    await companyCollection.updateOne(
-      { _id: new ObjectId(companyId) },
-      { $set: {
-        company_image,
-        company_intro,
-        company_scale,
-        company_address,
-        company_website,
-      }}
-    );
-    const result = await companyCollection.findOne({ _id: new ObjectId(companyId) });
-    res.send(result);
+//admin
+  app.get("/api/admin",cors(),async(req,res)=>{
+    const companies = await companyCollection.find({}).toArray();
+    const jobs = await jobCollection.find({}).toArray();
+    const users = await userCollection.find({}).toArray();
+    adminData = { companies, jobs, users }
+    res.send(adminData)
+  })
+  app.post("/api/create-company",cors(),async(req,res)=>{
+    await companyCollection.insertOne(req.body)
+    res.send(req.body)
   });
+
+const CircularJSON = require('circular-json');
+
+function replacer(key, value) {
+  if (value instanceof Object && !(value instanceof Array)) {
+    if (value.hasOwnProperty('_id')) {
+      return { ...value, _id: value._id.toString() };
+    }
+    return Object.entries(value).reduce((acc, [k, v]) => {
+      return { ...acc, [k]: replacer(k, v) };
+    }, {});
+  }
+  return value;
+}
+
+// ...
+
+
+app.put("/api/put-company", async (req, res) => {
+  await companyCollection.updateOne(
+    {_id:new ObjectId(req.body._id)},//condition for update
+    { $set: { //Field for updating
+      company_name: req.body.company_name,
+      company_intro: req.body.company_intro,
+      company_scale: req.body.company_scale,
+      company_address: req.body.company_address,
+      company_website: req.body.company_website,
+      company_id: req.body.company_id,
+      company_image: req.body.company_image
+    }
+    }
+    )
+    var o_id = new ObjectId(req.body._id);
+    const result = await companyCollection.find({_id:o_id}).toArray();
+    const updatedCompanyJSON = CircularJSON.stringify(result, replacer);
+    res.send(updatedCompanyJSON);
+});
+
+app.delete("/api/delete-company",cors(),async(req,res)=>{
+  var o_id = new ObjectId(req.body._id);
+  const result = await companyCollection.find({_id:o_id}).toArray();
+  await companyCollection.deleteOne(
+  {_id:o_id}
+  )
+  res.send(result[0])
+  });
+
+
+app.put("/api/put-user", async (req, res) => {
+  await userCollection.updateOne(
+    {_id:new ObjectId(req.body._id)},//condition for update
+    { $set: { //Field for updating
+      userID: req.body.userID,
+    }
+    }
+    )
+    var o_id = new ObjectId(req.body._id);
+    const result = await userCollection.find({_id:o_id}).toArray();
+    const updatedUserJSON = CircularJSON.stringify(result, replacer);
+    res.send(updatedUserJSON);
+});
+
+app.delete("/api/delete-user",cors(),async(req,res)=>{
+  var o_id = new ObjectId(req.body._id);
+  const result = await userCollection.find({_id:o_id}).toArray();
+  await userCollection.deleteOne(
+  {_id:o_id}
+  )
+  res.send(result[0])
+  });
+
+app.put("/api/put-job", async (req, res) => {
+  await jobCollection.updateOne(
+    {_id:new ObjectId(req.body._id)},//condition for update
+    { $set: { //Field for updating
+      jobJD: req.body.jobJD,
+    }
+    }
+    )
+    var o_id = new ObjectId(req.body._id);
+    const result = await jobCollection.find({_id:o_id}).toArray();
+    const updatedUserJSON = CircularJSON.stringify(result, replacer);
+    res.send(updatedUserJSON);
+});
+
+
+app.delete("/api/delete-job",cors(),async(req,res)=>{
+  var o_id = new ObjectId(req.body._id);
+  const result = await jobCollection.find({_id:o_id}).toArray();
+  await jobCollection.deleteOne(
+  {_id:o_id}
+  )
+  res.send(result[0])
+  });
+
+
+    // user nào ứng tuyển gắn liền với job đó
+app.get("/api/applyuser/:jobJD",cors(),async(req,res)=>{
+  try {
+    const jobJD = req.params.jobJD;
+    const job = await jobCollection.findOne({ jobJD: jobJD});
+    const user = await userCollection.find({ userID: { $in: job.userID } }).toArray();
+    const applyuser ={job, user};
+  res.send(applyuser);
+} catch (err) {
+  console.error(err);
+  res.status(500).send('Server error');
+}
+})
+
+app.get("/api/getapplyuser/:company_id/:jobJD", cors(), async (req, res) => {
+  try {
+    const companyId = req.params.company_id;
+    // Find company by ID
+    const company = await companyCollection.findOne({ company_id: companyId });
+    if (!company) {
+      return res.status(404).send(`Company with ID ${companyId} not found`);
+    }
+
+    const jobJD = req.params.jobJD;
+    // Find jobs by company ID and jobJD
+    const jobs = await jobCollection.find({ company_id: companyId, jobJD: jobJD }).toArray();
+    console.log(jobs);
+
+    // Find users by jobJD
+    const regex = new RegExp(jobJD, 'i');
+    const users = await userCollection.find({ JobApply: regex }).toArray();
+    console.log(users);
+
+    const companyData = { company, jobs, users };
+    res.send(companyData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal server error');
+  }
+});
+// user apply job
+app.put('/api/applyuser', cors(), async (req, res) => {
+  const { userID, JobApply } = req.body;
+  try {
+    const user = await userCollection.findOne({ userID: userID});
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    if (!user.JobApply) {
+      user.JobApply = [];
+    }
+    const isApplied = user.JobApply.some((job) => job.JobApply === JobApply);
+    if (!isApplied) {
+      user.JobApply.push( JobApply );
+    }
+    await userCollection.updateOne({ userID: userID }, { $set: { JobApply: user.JobApply } });
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+app.get("/api/getuserapply/:userID", cors(), async(req, res) => {
+  try {
+    const userID = req.params.userID;
+    const user = await userCollection.findOne({ userID: userID });
+    const savedJobs = user.JobJD;
+    res.send(savedJobs);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});

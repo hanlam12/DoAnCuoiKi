@@ -407,3 +407,10 @@ select.form-control {
     }
   }
 
+  .cvChiTiet{
+    width: 50%;
+    margin: auto;
+  }
+  .cvChiTiet img{
+    width: 100%;
+  }

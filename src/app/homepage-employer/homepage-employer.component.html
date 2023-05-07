@@ -8,15 +8,16 @@
         <div class="leftContent">
             <div class="leftTopContent" >
                 <div class="myPost fw-bold text-upper text-blue">Việc làm đang tuyển</div>
-                <div class="figure" *ngFor="let job of companyData?.jobs">
+                <div *ngFor="let job of companyData?.jobs">
+                <div class="figure">
                   <div class="image">
-                    <a href="#">
+                    <a  [routerLink]="['job-decription', job.jobJD]">
                       <img src="{{job?.image}}">
                     </a>
                   </div>
                   <div class="figcaption">
                     <h5 class="title text-upper">
-                      <a href="#">{{job?.job_name}}</a>
+                      <a [routerLink]="['job-decription', job.jobJD]">{{job?.job_name}}</a>
                     </h5>
                     <div class="caption">
                       <p class="company-name  " style="line-height: 20px;"> {{job?.company}}</p>
@@ -26,27 +27,9 @@
                     </div>
                   </div>
                 </div>
-            </div>
-            <div class="leftBottomContent">
-                <div class="myPost fw-bold text-upper text-blue">Đơn ứng tuyển mới nhất</div>
-                <div class="figure">
-                  <div class="image">
-                    <a href="#">
-                      <img src="https://tiemanhsky.com/wp-content/uploads/2020/03/jhjh-1-768x1024.jpg">
-                    </a>
-                  </div>
-                  <div class="figcaption">
-                    <h5 class="title text-upper"> <a href="#"  >Nguyễn Trúc Quỳnh My</a> </h5>
-                    <div class="caption">
-                      <p class="job-name text-upper  ">Chuyên viên kĩ thuật</p>
-                      <p class="email">Email: quynhmy@gmail.com</p>
-                      <p class="phone">SĐT: 0932445566</p>
-                    </div>
-                  </div>
                   <div class="figNotification">
-                     <button class="btn view" (click)="status()" [hidden]="!isOn">Chưa xem</button>
-                    <button class="btn viewed" (click)="status()" [hidden]="isOn">Đã xem</button>
-                    </div>
+                  <button class="btn view" [routerLink]="['/homepageEmployer', companyData?.company?.company_id, job?.jobJD]">Xem đơn ứng tuyển</button>
+                 </div>
                 </div>
             </div>
         </div>
@@ -92,11 +75,9 @@
                 <div class="avatar" >
                   <img src="{{companyData?.company?.image}}" id="avatar-output">
                 </div>
-                <button class="btn btn-change-avatar btn-upload-avatar mt-2"  #name="ngModel" name="company_image" id="company_image"
-                [(ngModel)]="companyEdits.company_image"
-                (change)="onFileSelectedPutCompany($event,companyEdits)">
-                  <i class="fa-solid fa-camera"></i> Thay ảnh </button>
+                <input type="file" name="image" [(ngModel)]="image" id="image" (change)="onFileSelectedPutCompany($event, company)">
               </div>
+              <hr>
               <form action="post" method="POST" id="profile-form" >
                 <input type="hidden" name="_token" value="xXre87L9abHsibbHUc6qqxvGChSCOxublrJK8lbZ">
                 <div class="sub-content">
@@ -105,7 +86,7 @@
                       <label for="">Email:<span class="text-red">*</span></label>
                     </div>
                     <div class="col-md-9">
-                      <input type="text" class="form-control border-hover" placeholder="abc@.gmail.com"  value="{{companyData?.company?.company_website}}" >
+                      <input type="text" class="form-control border-hover"  name="companyweb" [(ngModel)]="companyweb" >
                     </div>
                   </div>
                   <div class="form-group row mb-3">
@@ -113,7 +94,7 @@
                       <label for="">Quy mô:</label>
                     </div>
                     <div class="col-md-9">
-                      <input type="text" class="form-control border-hover" placeholder="Nhập quy mô công ty"  value="{{companyData?.company?.company_scale}}" >
+                      <input type="text" class="form-control border-hover"  name="companyScale"  [(ngModel)]="companyScale" >
                     </div>
                   </div>
 
@@ -122,23 +103,23 @@
                       <label for="">Địa chỉ:</label>
                     </div>
                     <div class="col-md-9">
-                      <input type="text" class="form-control border-hover" placeholder="Nhập địa chỉ công ty"  value="{{companyData?.company?.company_address}}   ">
+                      <input type="text" class="form-control border-hover"name="companyAddress" [(ngModel)]="companyAddress">
                     </div>
                   </div>
                   <div class="form-group row mb-3">
-                    <div class="col-md-3 align-self-center ">
-                      <label for="" >Giới thiệu công ty</label>
+                    <div class="col-md-3 align-self-center">
+                      <label for="">Giới thiệu công ty</label>
                     </div>
                     <div class="col-md-9">
-                      <textarea class="form-control border-hover" name="note" placeholder="Giới thiệu về công ty" style="height: fit-content;" cols="30" rows="10"> {{companyData?.company?.company_intro}}   </textarea>
+                      <textarea class="form-control border-hover" name="note" placeholder="Giới thiệu về công ty" style="height: fit-content;" cols="30" rows="10"[(ngModel)]="companyIntro"></textarea>
                     </div>
                   </div>
-                  <div >
-                    <button class="btn UpdateInfor">Cập nhật thông tin</button>
+                  <div>
+                    <button class="btn UpdateInfor" (click)="onUpdateCompany()">Cập nhật thông tin</button>
                     <span class="exit">
-                      <i class="bi bi-box-arrow-right"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="exist()" >Thoát</a>
+                      <i class="bi bi-box-arrow-right"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="exit()">Thoát</a>
                     </span>
-                    </div>
+                  </div>
                   </div>
                   </form>
             </div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'workzone';
+import { Users } from 'workzone';
 import { WorkZoneService } from '../work-zone.service';
 
 @Component({
@@ -28,7 +28,7 @@ export class AppliedJobComponent {
     pageSize = 4;
     collectionSize = this.data.length;
 
-    user: User | undefined
+    user: Users | undefined
 
 
 constructor(

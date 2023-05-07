@@ -15,28 +15,28 @@
       </span>
       <input
         type="text"
-        id="job"
-        placeholder="Nhập công việc, kỹ năng,..."
+        name="job" id="job"
+        placeholder="Nhập công việc, kỹ năng,..." #job
       />
     </div>
     <div class="homepage-input">
       <span class="homepage-icon"><i class="fas fa-map-marker-alt"></i></span>
       <select name="location" id="location">
-        <option value="">Tất cả địa điểm</option>
-        <option value="">TP. Hồ Chí Minh</option>
-        <option value="">Hà Nội</option>
-        <option value="">Bình Dương</option>
-        <option value="">Hải Phòng</option>
-        <option value="">Quảng Ninh</option>
-        <option value="">Đồng Nai</option>
-        <option value="">Long An</option>
-        <option value="">Vũng Tàu</option>
-        <option value="">Cần Thơ</option>
-        <option value="">Bạc Liêu</option>
+        <option value="all" #location>Tất cả địa điểm</option>
+        <option value="hcm" #location>TP. Hồ Chí Minh</option>
+        <option value="hanoi" #location>Hà Nội</option>
+        <option value="binhduong" #location>Bình Dương</option>
+        <option value="haiphong" #location>Hải Phòng</option>
+        <option value="quangninh" #location>Quảng Ninh</option>
+        <option value="dongnai" #location>Đồng Nai</option>
+        <option value="longan" #location>Long An</option>
+        <option value="vungtau" #location>Vũng Tàu</option>
+        <option value="cantho" #location>Cần Thơ</option>
+        <option value="danang" #location>Đà Nẵng</option>
       </select>
     </div>
     <div class="homepage-input">
-      <input type="button" id="search" value="Tìm kiếm" />
+      <input (click)="getLocation()" type="button" id="search" value="Tìm kiếm" />
     </div>
   </div>
 </div>
@@ -205,7 +205,7 @@
         </div>
       </div>
       <div class="content-hot-input">
-        <button id="apply">Apply Now</button>
+        <button (click)="testLogin()" id="apply">Apply Now</button>
       </div>
     </div>
 </div>

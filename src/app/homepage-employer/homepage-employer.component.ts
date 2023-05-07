@@ -21,11 +21,16 @@ export class HomepageEmployerComponent {
     this.infor = false;
     this.change_infor = true;
   }
-  exist(){
+  exit(){
     this.infor = true;
     this.change_infor = false;
   }
   companyId: string =''
+  image: string =''
+  companyIntro: string =''
+  companyScale: string =''
+  companyAddress: string =''
+  companyweb: string =''
   companyData: any
   errMessage:string='';
 
@@ -43,24 +48,40 @@ export class HomepageEmployerComponent {
     next:(data)=>{this.companyData=data},
     error:(err)=>{this.errMessage=err}
     })
+
   }
+
   ngOnInit(): void {
     // Your code here
   }
-  companyEdits = new Company()
-  onFileSelectedPutCompany(event:any,companyEdits:Company) {
+
+  company = new Company()
+  onFileSelectedPutCompany(event:any,company:Company) {
     let me = this;
     let file = event.target.files[0];
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function () {
-    me.companyEdits.company_image=reader.result!.toString()
+    me.company.image=reader.result!.toString()
     };
     reader.onerror = function (error) {
     console.log('Error: ', error);
     };
     };
-  }
+    onUpdateCompany(): void {
+      this.companyService.updateCompany(this.companyId, this.image, this.companyIntro, this.companyScale, this.companyAddress, this.companyweb)
+        .subscribe(
+          response => {
+            console.log(response);
+            alert('Company updated successfully!');
+          },
+          error => {
+            console.error(error);
+            alert('Error occurred while updating company!');
+          }
+        );
+    }
+}
 
 
 
