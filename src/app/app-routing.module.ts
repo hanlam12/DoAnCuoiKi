@@ -66,8 +66,8 @@ const routes: Routes = [
   {path: "dangnhap", component: LoginEmployerComponent},
   {path: "sign-up-employer", component: SignUpEmployerComponent},
   {path: "company", component: CongtyComponent},
-  {path: "admin", component: AdminWZComponent}
-   {path: "company/:company_id", component: CongtyComponent}
+  {path: "admin", component: AdminWZComponent},
+   {path: "company/:company_id", component: CongtyComponent},
   {path:"login-employer", component:LoginEmployerComponent},
   {path:"sign-up-employer", component:SignUpEmployerComponent},
   {path:"payment", component:PaymentComponent}

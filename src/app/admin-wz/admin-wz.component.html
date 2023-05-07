@@ -289,14 +289,15 @@
             <th>Function</th>
             </tr>
             <tbody>
-            <tr *ngFor="let company of companies" class="tr-content" (click)="btnshowDetails(company)">
-            <td class="th-_ID" >{{company._id}} </td>
-            <td >{{company.company_id}} </td>
-            <td >{{company.company_name}}</td>
-            <td class="th-_ID" ><a href="{{company.company_website}}">{{company.company_website}}</a> </td>
+            <tr *ngFor="let company of companies" class="tr-content" 
+            >
+            <td class="th-_ID" (click)="btnshowDetails(company)" >{{company._id}} </td>
+            <td (click)="btnshowDetails(company)" >{{company.company_id}} </td>
+            <td (click)="btnshowDetails(company)" >{{company.company_name}}</td>
+            <td (click)="btnshowDetails(company)" class="th-_ID" ><a href="{{company.company_website}}">{{company.company_website}}</a> </td>
             
             <td>
-            <img src="{{company.company_image}}" width="100px" height="100px" style="padding: 8px;">
+            <img (click)="btnshowDetails(company)" src="{{company.company_image}}" width="100px" height="100px" style="padding: 8px;">
             </td>
             <td>
                 <button class="function-btn" (click)="btnshowEdit(company)" >Chỉnh sửa</button>

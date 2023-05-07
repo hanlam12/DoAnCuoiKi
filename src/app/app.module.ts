@@ -83,7 +83,7 @@ import { PaymentComponent } from './payment/payment.component';
     SavedJobComponent,
 
     AdminWZComponent,
-    NewCompanyModalComponent
+    NewCompanyModalComponent,
 
     LoginEmployerComponent,
     SignUpEmployerComponent,

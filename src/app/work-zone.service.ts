@@ -746,7 +746,19 @@ updateImage(image: string): Observable<any> {
   const headers = { Authorization: 'Bearer ' + token };
   const body = { image: image };
   return this._http.put(`${this.serverUrl}/image`, body, { headers });
-}
+};
+private apiappliedUrl = 'http://localhost:6868/api/applied-job';
+
+
+  getAppliedJob(userID: string): Observable<any> {
+    const url = `${this.apiappliedUrl}/${userID}`;
+    return this._http.get<any>(url);
+  };
+
+  createAppliedJob(appliedJob: any): Observable<any> {
+    return this._http.post<any>(`${this.serverUrl}/api/create-applied-job`, appliedJob);
+  }
+
 }
 
 

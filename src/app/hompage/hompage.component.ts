@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ComponentFactoryResolver } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ApplyCVComponent } from '../apply-cv/apply-cv.component';
 import { WorkZoneService } from '../work-zone.service';
@@ -9,7 +9,13 @@ import { Router } from '@angular/router';
   templateUrl: './hompage.component.html',
   styleUrls: ['./hompage.component.css']
 })
-export class HompageComponent {
+export class HompageComponent 
+
+{
+
+
+  user: any
+  userID = "cus00001"
   show = false;
 
   saved_jobs: any[] = [];
@@ -21,7 +27,7 @@ export class HompageComponent {
    jobs: any;
    company:any;
   modalRef!: BsModalRef;
-  constructor(public _service: WorkZoneService, private router: Router, private modalService: BsModalService) {
+  constructor(public _service: WorkZoneService, private router: Router, private modalService: BsModalService, private componentFactoryResolver: ComponentFactoryResolver) {
     this.getJobs();
     this.getCompanies();
   }
@@ -57,11 +63,29 @@ export class HompageComponent {
   }
   ngOnInit(): void {
     this._service.getJobs().subscribe(jobs => this.jobs = jobs);
+    if (this.userID) {
+      this._service.getUser(this.userID).subscribe(user => {
+        this.user = user;
+        console.log('user:', user);
+      });
+    };
   }
-
+  modalDisplay = false
+  appliedData: any
   showModal(jobTitle: string) {
-    this.selectedJob = jobTitle;
-    this.modalRef = this.modalService.show(ApplyCVComponent);
+    
+    
+    const appliedJob = {
+      jobJD: jobTitle,
+      userID: this.userID,
+      appliedDate: new Date(),
+      status: "Waiting"
+    };
+    this.modalDisplay = true
+    this.appliedData = appliedJob
+  }
+  test(){
+    console.log(this.appliedData)
   }
   luu() {
     this.show = !this.show;
@@ -180,43 +204,56 @@ removeJob(job: any): void {
   }
 
   }
-  getJobs() {
-    this._service.getJobs().subscribe({
-      next: (data) => {
-        this.jobs = data;
-        this.job6 = data.slice(0, 6);
-        this.job3 = data.slice(90, 93);
 
-      },
-      error: (err) => {
-        this.errMessage = err;
-      }
+
+  
+  createAppliedJob(appliedJob: any) { 
+    console.log(appliedJob)
+    this._service.createAppliedJob(appliedJob).subscribe(result => {
+      console.log(result);
     });
   }
-  getCompanies(){
-    this._service.getCompanies().subscribe({
-      next: (data) => {
-      this.company =data.slice(71,79)
-      },
-      error: (err) => {
-        this.errMessage = err;
-      }
-    });
-  }
-  searchJob() {
-    this.router.navigate(['search-job']);
-  }
-
-  toggle() {
-    this.getJobs();
-  }
-  ngOnInit(): void {
-    this._service.getJobs().subscribe(jobs => this.jobs = jobs);
-  }
-
-  showModal(jobTitle: string) {
-    this.selectedJob = jobTitle;
-    this.modalRef = this.modalService.show(ApplyCVComponent);
-  }
-
 }
+
+
+  
+  // getJobs() {
+  //   this._service.getJobs().subscribe({
+  //     next: (data) => {
+  //       this.jobs = data;
+  //       this.job6 = data.slice(0, 6);
+  //       this.job3 = data.slice(90, 93);
+
+  //     },
+  //     error: (err) => {
+  //       this.errMessage = err;
+  //     }
+  //   });
+  // }
+  // getCompanies(){
+  //   this._service.getCompanies().subscribe({
+  //     next: (data) => {
+  //     this.company =data.slice(71,79)
+  //     },
+  //     error: (err) => {
+  //       this.errMessage = err;
+  //     }
+  //   });
+  // }
+  // searchJob() {
+  //   this.router.navigate(['search-job']);
+  // }
+
+  // toggle() {
+  //   this.getJobs();
+  // }
+  // ngOnInit(): void {
+  //   this._service.getJobs().subscribe(jobs => this.jobs = jobs);
+  // }
+
+  // showModal(jobTitle: string) {
+  //   this.selectedJob = jobTitle;
+  //   this.modalRef = this.modalService.show(ApplyCVComponent);
+  // }
+
+

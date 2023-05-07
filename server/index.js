@@ -28,6 +28,7 @@ app.listen(port,()=>{
   jobCollection = database.collection("job");
   userCollection = database.collection("Users");
   companyCollection = database.collection("company");
+  AppliedJobCollection = database.collection("AppliedJob");
 
   const { ObjectId: objId } = require('mongodb');
   app.get("/api/job-application/:userID", cors(), async (req, res) => {
@@ -685,5 +686,35 @@ app.delete("/api/delete-job",cors(),async(req,res)=>{
   )
   res.send(result[0])
   });
+
+// applied
+
+app.get("/api/applied-job/:userID",cors(),async(req,res)=>{
+  try {
+    const userID = req.params.userID;
+
+    const userAppliedJob = await AppliedJobCollection.find({ userID: userID }).toArray();
+
+    // const AppliedJob = await jobCollection.find({ jobJD: userAppliedJob.jobJD }).toArray();
+    const jobJds = userAppliedJob.map((job) => job.jobJD);
+  const AppliedJob = await jobCollection.find({ jobJD: { $in: jobJds } }).toArray();
+
+    const AppliedJobData = { userAppliedJob, AppliedJob };
+
+    res.send(AppliedJobData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+  });
+
+// thêm 1 applied-job
+  app.post("/api/create-applied-job", cors(), async(req, res) => {
+    const appliedJob = req.body;
+    appliedJob._id = new ObjectId(); // Tạo mới ObjectId
+    await AppliedJobCollection.insertOne(appliedJob);
+    res.send(appliedJob);
+  });
+
 
 

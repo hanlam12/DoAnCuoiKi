@@ -15,6 +15,7 @@ export class LoginComponent {
   });
   password = ''
   showPassword =""
+  userLogedinData: any
 
   constructor(private lg: FormBuilder, private _loginService: WorkZoneService, private router: Router) {
     this.lgForm = this.lg.group({
@@ -42,6 +43,7 @@ export class LoginComponent {
       } else {
         alert("Đăng nhập thành công");
         console.log(data);
+        this.userLogedinData = data;
         this._loginService.navigateAfterLogin()
       }
     }

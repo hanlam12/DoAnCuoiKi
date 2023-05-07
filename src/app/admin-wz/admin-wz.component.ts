@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WorkZoneAdminService } from '../work-zone-admin.service';
 import { data } from 'jquery';
 import { Subscription } from 'rxjs';
-import { Company, Job, User } from 'workzone';
+import { Company, Job, Users } from 'workzone';
 
 @Component({
   selector: 'app-admin-wz',
@@ -85,6 +85,7 @@ export class AdminWZComponent implements OnInit {
   companyEdits = new Company()
   btnshowEdit(company: Company){
     this.showEdit = true
+    this.showDetails = false;
     this.companyEdits = company
 
   };
@@ -132,7 +133,7 @@ userDetails: any
 closeDetailsUser(){
   this.showDetailsUser = false
 }
-btnshowDetailUser(user: User){
+btnshowDetailUser(user: Users){
   this.showDetailsUser = true
   this.userDetails = user
   this.showEdit = false
@@ -140,7 +141,7 @@ btnshowDetailUser(user: User){
 userEdits: any
 userEditsT: any
 showEditUser = false
-btnshowEditUser(user: User){
+btnshowEditUser(user: Users){
   this.ngIfusers = false
   this.userEdits = user
   this.userEditsT = user

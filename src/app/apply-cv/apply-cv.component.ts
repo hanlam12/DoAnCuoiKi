@@ -12,8 +12,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class ApplyCVComponent   {
   show=false;
   errMessage:string='';
-  @Input() jobJD: string='';
-  @Input() selectedJob: string = '';
+  @Input() appliedData: any[] = []
   jobName: string='';
   job_id:string = '';
   isSubmitted = false;
@@ -22,11 +21,23 @@ export class ApplyCVComponent   {
   }
   constructor(public bsModalRef: BsModalRef, private _job: WorkZoneService, private route: ActivatedRoute,) {}
   ngOnInit() {
-    console.log(this.selectedJob);
   }
 
   cvSuccess() {
     this.isSubmitted = true;
+    console.log(this.appliedData)
+    this.createAppliedJob(this.appliedData)
+
+
+  }
+  createAppliedJob(appliedJob: any) { 
+    console.log(appliedJob)
+    this._job.createAppliedJob(appliedJob).subscribe(result => {
+      console.log(result);
+    });
+  }
+  close(){
+    location.reload()
   }
 
 }
