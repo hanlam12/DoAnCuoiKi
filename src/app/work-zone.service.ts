@@ -769,7 +769,6 @@ ApplyJob(jonId: string, userId: string, isApplied: boolean): Observable<any> {
  JobJD: jonId
  };
  let apiUrl = "/api/applyuser";
-
  return this._http.put<any>(`http://localhost:6868${apiUrl}`, body, requestOptions).pipe(
  catchError(this.handleError)
  );

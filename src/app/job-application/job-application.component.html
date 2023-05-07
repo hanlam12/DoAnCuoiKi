@@ -71,8 +71,8 @@
             <a><i class="bi bi-box-arrow-left"></i>&nbsp;&nbsp;&nbsp;Thoát</a>
           </span>
         </div>
-        <div class="cvChiTiet" *ngFor=" let u of user?.cv">
-          <img src="{{cv}}" alt="">
+        <div class="cvChiTiet" *ngFor=" let item of user?.cv">
+          <img src="{{item}}" alt="">
         </div>
       </div>
       <div id="body_left-bottom" *ngIf="hoSoDaTao" >
@@ -85,9 +85,9 @@
             <th>Tên hồ sơ</th>
             <th class="text-center ">Xem chi tiết</th>
         </tr>
-        <tr *ngFor="let c of user?.cv">
-            <td>1</td>
-            <td>Hồ sơ 1</td>
+        <tr *ngFor="let item of user?.cv; let i = index">
+            <td >{{ i + 1 }}</td>
+            <td>{{item}}</td>
             <td>  <div id="chitiet" class="text-center"><a (click)="chitiet()">Chi tiết</a></div></td>
         </tr>
     </table>

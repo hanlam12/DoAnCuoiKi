@@ -62,6 +62,7 @@ ngOnInit(): void {
   }
 }
 applied_cv: any[] = [];
+public cvCount: number = 0
 userID: string = '';
 cv: any;
 
@@ -74,6 +75,8 @@ applyCV() {
       response => {
         this.applied_cv.push(response.cv);
         console.log(`Applied CV successfully: ${response.cv}`);
+        const num_elements = this.applied_cv.length; // sử dụng hàm len() để đếm số phần tử
+        console.log(`Number of elements in applied_cv: ${num_elements}`);
       },
       error => {
         console.log(`Error applying CV: ${error}`);
