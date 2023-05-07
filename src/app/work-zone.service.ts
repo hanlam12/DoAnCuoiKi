@@ -3,23 +3,29 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from'@angular/common/http'
 import { catchError, map, Observable, of, retry, subscribeOn, tap, throwError } from 'rxjs';
 import { Job, Users  } from 'workzone';
 
+
 import { Company } from 'workzone';
 import { error } from 'jquery';
 import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class WorkZoneService {
 
+
   handleError(error:HttpErrorResponse){
     return throwError(()=>new Error(error.message))
     }
 constructor(private _http:HttpClient, private router: Router) { }
 
+
   public loggedIn = false;
   public serverUrl = 'http://localhost:6868';
   private _url:string="/entries"
+
+
 
 
     // login employee
@@ -28,12 +34,16 @@ constructor(private _http:HttpClient, private router: Router) { }
    // đây là userEmail khi đăng nhập thành công, đứa nào muốn lấy truy xuất khi login thành công thì lấy thằng này.
    public userID = localStorage.getItem('userID');
 
+
   userIdUpdated = new EventEmitter<string>();
+
 
   navigateAfterLogin(): void {
     // Điều hướng đến trang mong muốn sau khi người dùng đăng nhập thành công
     this.router.navigate(['/']);
   }
+
+
 
 
   login(email: string, password: string): Observable<any> {
@@ -43,6 +53,7 @@ constructor(private _http:HttpClient, private router: Router) { }
         localStorage.setItem('userEmail', data1.userEmail);
         localStorage.setItem('userID', data1.userID);
         localStorage.setItem('loggedIn', 'true');
+
 
         this.loggedIn = true; // set loggedIn thành true sau khi đăng nhập thành công
         this.userIdUpdated.emit(data1.userEmail);
@@ -55,9 +66,11 @@ constructor(private _http:HttpClient, private router: Router) { }
     );
   }
 
+
   isLoggedIn(): boolean {
     const token = localStorage.getItem('token');
     const isLoggedIn = localStorage.getItem('loggedIn');
+
 
     const userID = localStorage.getItem('userID');
     if (isLoggedIn) {
@@ -67,12 +80,15 @@ constructor(private _http:HttpClient, private router: Router) { }
      // trả về true nếu đã đăng nhập và loggedIn = true
   }
 
+
   // end login
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('userEmail');
     localStorage.setItem('loggedIn', 'false')
   }
+
+
 
 
  // thông tin hồ sơ xin việc
@@ -88,6 +104,10 @@ constructor(private _http:HttpClient, private router: Router) { }
 
 
 
+
+
+
+
  getGD(fGD:any):Observable<any>{
     const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
     const requestOptions:Object={
@@ -96,11 +116,15 @@ constructor(private _http:HttpClient, private router: Router) { }
     }
 
 
+
+
     return this._http.get<any>("/api/job/category/Gi%C3%A1o%20d%E1%BB%A5c%20%2F%20%C4%90%C3%A0o%20t%E1%BA%A1o",requestOptions).pipe(
       map(res=>JSON.parse(res) as Array<Job>),
       retry(3),
       catchError(this.handleError))
   }
+
+
 
 
   getTC(fGD:any):Observable<any>{
@@ -111,13 +135,18 @@ constructor(private _http:HttpClient, private router: Router) { }
     }
 
 
+
+
     return this._http.get<any>("/api/job/category/T%C3%A0i%20ch%C3%ADnh%20%2F%20%C4%90%E1%BA%A7u%20t%C6%B0",requestOptions).pipe(
+
+
 
 
       map(res=>JSON.parse(res) as Array<Job>),
       retry(3),
       catchError(this.handleError))
   }
+
 
   getNH(fNH:any):Observable<any>{
     const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
@@ -131,6 +160,7 @@ constructor(private _http:HttpClient, private router: Router) { }
       catchError(this.handleError))
   }
 
+
   getCNTT(fCNTT:any):Observable<any>{
     const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
     const requestOptions:Object={
@@ -142,6 +172,7 @@ constructor(private _http:HttpClient, private router: Router) { }
       retry(3),
       catchError(this.handleError))
   }
+
 
   getTT(fTT:any):Observable<any>{
     const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
@@ -155,6 +186,7 @@ constructor(private _http:HttpClient, private router: Router) { }
       catchError(this.handleError))
   }
 
+
   getIT(fIT:any):Observable<any>{
     const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
     const requestOptions:Object={
@@ -164,10 +196,14 @@ constructor(private _http:HttpClient, private router: Router) { }
     return this._http.get<any>("/api/job/category/CNTT%20-%20Ph%E1%BA%A7n%20m%E1%BB%81m",requestOptions).pipe(
 
 
+
+
       map(res=>JSON.parse(res) as Array<Job>),
       retry(3),
       catchError(this.handleError))
   }
+
+
 
 
 //lấy tên người dùng
@@ -179,10 +215,12 @@ getUserName() {
   return this._http.get<any>(`${this.serverUrl}/api/username`, { headers });
 }
 
+
 //lấy job của user
 getSavedJob(userID: string):  Observable<Job> {
    return this._http.get<Job>(`http://localhost:6868/api/savejob/${userID}`);
 }
+
 
 //lưu job
 SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
@@ -196,10 +234,12 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
   };
   let apiUrl = "/api/savejob";
 
+
   return this._http.put<any>(`http://localhost:6868${apiUrl}`, body, requestOptions).pipe(
   catchError(this.handleError)
   );
   }
+
 
   GetSavedJobs(userId: string): Observable<any> {
     const headers = new HttpHeaders().set("Content-Type", "application/json");
@@ -208,10 +248,12 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
     };
     let apiUrl = `/api/getsavejob/${userId}`;
 
+
     return this._http.get<any>(`http://localhost:6868${apiUrl}`, requestOptions).pipe(
       catchError(this.handleError)
     );
   }
+
 
   removeJob(userID: string, JobJD: string): Observable<any> {
     const headers = new HttpHeaders().set("Content-Type", "application/json");
@@ -224,6 +266,8 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
   }
 
 
+
+
 //thông tin công ty
   getCompany(company_id: string): Observable<Company> {
     const url = `${this.serverUrl}/api/company`;
@@ -234,6 +278,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
     const requestOptions:Object={
       headers:headers,
       responseType:"text"
+
 
     }
     return this._http.get<any>("/api/company",requestOptions).pipe(
@@ -254,12 +299,15 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
     catchError(this.handleError))
     }
 
+
  getTV(fTV:any):Observable<any>{
       const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
       const requestOptions:Object={
       headers:headers,
       responseType:"text"
       }
+
+
 
 
       return this._http.get<any>("/api/job/category/T%C6%B0%20v%E1%BA%A5n",requestOptions).pipe(
@@ -269,6 +317,8 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
     }
 
 
+
+
       getNhanVien(fNhanVien:any):Observable<any>{
         const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
         const requestOptions:Object={
@@ -276,11 +326,14 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         responseType:"text"
         }
 
+
         return this._http.get<any>("/api/job/Nh%C3%A2n%20vi%C3%AAn",requestOptions).pipe(
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
           catchError(this.handleError))
       }
+
+
 
 
       getQuanLy(fQuanLy:any):Observable<any>{
@@ -292,10 +345,13 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         return this._http.get<any>("/api/job/Qu%E1%BA%A3n%20l%C3%BD",requestOptions).pipe(
 
 
+
+
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
           catchError(this.handleError))
       }
+
 
       getTruongNhom(fTruongNhom:any):Observable<any>{
         const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
@@ -305,10 +361,12 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         }
         return this._http.get<any>("/api/job/Tr%C6%B0%E1%BB%9Fng%20nh%C3%B3m",requestOptions).pipe(
 
+
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
           catchError(this.handleError))
       }
+
 
       getQLGS(fQLGS:any):Observable<any>{
         const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
@@ -322,6 +380,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
           catchError(this.handleError))
       }
 
+
       getTruongPhong(fTruongPhong:any):Observable<any>{
         const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
         const requestOptions:Object={
@@ -330,10 +389,12 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         }
         return this._http.get<any>("/api/job/Tr%C6%B0%E1%BB%9Fng%20ph%C3%B2ng",requestOptions).pipe(
 
+
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
           catchError(this.handleError))
       }
+
 
       getTNGS(fTNGS:any):Observable<any>{
         const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
@@ -344,10 +405,13 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         return this._http.get<any>("/api/job/Tr%C6%B0%E1%BB%9Fng%20nh%C3%B3m%20%2F%20Gi%C3%A1m%20s%C3%A1t",requestOptions).pipe(
 
 
+
+
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
           catchError(this.handleError))
       }
+
 
       getVuaTN(fVuaTN:any):Observable<any>{
         const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
@@ -361,6 +425,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
           catchError(this.handleError))
       }
 
+
       getXayDung(fXayDung:any):Observable<any>{
         const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
         const requestOptions:Object={
@@ -372,6 +437,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
           retry(3),
           catchError(this.handleError))
       }
+
 
       getKiemToan(fKT:any):Observable<any>{
         const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
@@ -385,6 +451,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
           catchError(this.handleError))
       }
 
+
       getQC(fQC:any):Observable<any>{
         const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
         const requestOptions:Object={
@@ -396,6 +463,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
           retry(3),
           catchError(this.handleError))
       }
+
 
       getNHKS(fNHKS:any):Observable<any>{
         const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
@@ -409,6 +477,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
           catchError(this.handleError))
       }
 
+
       getDVKH(fDVKH:any):Observable<any>{
         const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
         const requestOptions:Object={
@@ -420,6 +489,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
           retry(3),
           catchError(this.handleError))
       }
+
 
       getBHKD(fBHKD:any):Observable<any>{
         const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
@@ -433,6 +503,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
           catchError(this.handleError))
       }
 
+
       getOTO(fOTO:any):Observable<any>{
         const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
         const requestOptions:Object={
@@ -444,6 +515,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
           retry(3),
           catchError(this.handleError))
       }
+
 
       getDT(fDT:any):Observable<any>{
         const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
@@ -457,6 +529,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
           catchError(this.handleError))
       }
 
+
       getBL(fBL:any):Observable<any>{
         const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
         const requestOptions:Object={
@@ -469,6 +542,7 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
           catchError(this.handleError))
       }
 
+
       getBH(fBH:any):Observable<any>{
         const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
         const requestOptions:Object={
@@ -477,10 +551,13 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         }
         return this._http.get<any>("/api/job/category/B%E1%BA%A3o%20hi%E1%BB%83m",requestOptions).pipe(
 
+
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
           catchError(this.handleError))
       }
+
+
 
 
       getMT(fMT:any):Observable<any>{
@@ -490,13 +567,19 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         responseType:"text"
         }
 
+
         return this._http.get<any>("/api/job/category/M%C3%B4i%20tr%C6%B0%E1%BB%9Dng",requestOptions).pipe(
+
+
 
 
           map(res=>JSON.parse(res) as Array<Job>),
           retry(3),
           catchError(this.handleError))
       }
+
+
+
 
 
 
@@ -515,8 +598,11 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
   }
 
 
+
+
    // thông tin mô tả công việc
    getjobDescription(jobJD: string): Observable<Job> {
+
 
     return this._http.get<Job>("http://localhost:6868/api/job-decription/"+jobJD)
     }
@@ -542,6 +628,7 @@ postCompany(aCompany:any):Observable<any>
 // đăng nhập employer
 apiUrl = 'http://localhost:6868/api/employer'; // Địa chỉ API đăng nhập
 public empID = localStorage.getItem('company_id');
+
 
   loginEmployer(email: string, password: string) {
     const body = { email, password };
@@ -569,6 +656,7 @@ public empID = localStorage.getItem('company_id');
   logoutEmp(): void {
     localStorage.removeItem('token');
 
+
     localStorage.setItem('loggedIn', 'false')
     this.router.navigate(['/login-employer']);
   }
@@ -591,6 +679,7 @@ public empID = localStorage.getItem('company_id');
         catchError(this.handleError))
     }
 
+
     getHCM(fHCM:any):Observable<any>{
       const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
       const requestOptions:Object={
@@ -603,6 +692,7 @@ public empID = localStorage.getItem('company_id');
         catchError(this.handleError))
     }
 
+
     getBD(fBD:any):Observable<any>{
       const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
       const requestOptions:Object={
@@ -614,6 +704,7 @@ public empID = localStorage.getItem('company_id');
         retry(3),
         catchError(this.handleError))
     }
+
 
     getHP(fHP:any):Observable<any>{
       const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
@@ -693,7 +784,9 @@ public empID = localStorage.getItem('company_id');
         catchError(this.handleError))
     }
 
+
 //put thông tin hồ sơ xin việc
+
 
 putInforCv(aUser:any): Observable<any>{
   const url = `http://localhost:6868/api/job-application/${aUser.userID}`;
@@ -704,8 +797,11 @@ putInforCv(aUser:any): Observable<any>{
       return throwError(() => new Error('An error occurred while retrieving job application'));
     })
 
+
   );
 }
+
+
 
 
 GetRecruit(company_id: string): Observable<Company> {
@@ -716,8 +812,10 @@ GetRecruit(company_id: string): Observable<Company> {
       console.error('Error', error);
       return throwError(error)})
 
+
   );
 }
+
 
 addJob(jobData: any, company_id: string):Observable<any>
 {
@@ -788,20 +886,59 @@ updateImage(image: string): Observable<any> {
   const body = { image: image };
   return this._http.put<any>(`${this.serverUrl}/api/image`, body, { headers });
 
+
 }
 // đếm số lượng job trong các component
 private savedJobCount = 0;
+
 
 getSavedJobCount(): number {
   return this.savedJobCount;
 }
 
+
 incrementSavedJobCount(): void {
   this.savedJobCount++;
 }
 
+
 decrementSavedJobCount(): void {
   this.savedJobCount--;
 }
+
+
+
+
+
+
+  // chỉnh pass
+  changePassword(oldPassword: string, newPassword: string): Observable<any> {
+    const data = { password: oldPassword, newPassword: newPassword };
+    const headers = { 'Authorization': 'Bearer ' + localStorage.getItem('token') };
+    return this._http.put<any>(`${this.serverUrl}/api/pass`, data, { headers: headers }).pipe(
+      tap(data => {
+        console.log (data)
+      }),
+      catchError(error => {
+        return of({ error: error.error });
+      })
+
+
+    );
+  }
+
+
+  findUser(email:string):Observable<any>{
+    const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
+    const requestOptions:Object={
+    headers:headers,
+    responseType:"text"
+    }
+    return this._http.get<any>("/api/users/"+email,requestOptions).pipe(
+    map(res=>JSON.parse(res) as Array<Job>),
+    retry(3),
+    catchError(this.handleError))
+    }
+
 
 }

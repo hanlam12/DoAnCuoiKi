@@ -17,9 +17,6 @@ input{
   position: absolute;
   width: 100%;
 }
-.aa{
-  margin-left: 230px;
-}
 @media screen and (max-width: 480px){
   .container{
     width: 480px;
