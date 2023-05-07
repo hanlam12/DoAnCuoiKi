@@ -24,6 +24,7 @@ export class HompageComponent {
   constructor(public _service: WorkZoneService, private router: Router, private modalService: BsModalService) {
     this.getJobs();
     this.getCompanies();
+
     }
   getJobs() {
     this._service.getJobs().subscribe({
@@ -38,6 +39,7 @@ export class HompageComponent {
       }
     });
   }
+
   getCompanies(){
     this._service.getCompanies().subscribe({
       next: (data) => {
@@ -86,11 +88,12 @@ if (userId) {
       this._service.SaveJob(userId, job.jobJD, true).subscribe(() => {
         this.saved_jobs.push(job.jobJD);
         console.log(`Đã lưu công việc ${job.jobJD}`);
+
       });
     }
   });
 }
-this._service.incrementSavedJobCount();
+
 }
 
 

@@ -179,7 +179,7 @@
     </div>
 </div>
 <div class="search-main-content-right">
-  <div class="search-filter">Đã tìm thấy {{jobs.length}} công việc</div>
+  <div  class="search-filter">Đã tìm thấy {{jobs.length}} công việc</div>
   <div class="border">
     <div class="content-hot" style="margin-top: 10px;" *ngFor="let p of jobs; let i =index">
       <div class="content-img">
@@ -205,7 +205,16 @@
         </div>
       </div>
       <div class="content-hot-input">
-        <button (click)="testLogin()" id="apply">Apply Now</button>
+        <button  (click)="showModal(p.job_name)" id="apply" >Apply Now</button>
+        <div class="container">
+          <button class="luu" [class.is-hidden]="isSaved(p)" (click)="saveJob(p)">
+            <i class="fas fa-heart"></i> Lưu
+          </button>
+
+          <button class="boluu" [class.is-hidden]="!isSaved(p)" (click)="removeJob(p)">
+            <i class="fas fa-heart"></i> Đã Lưu
+          </button>
+        </div>
       </div>
     </div>
 </div>

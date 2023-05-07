@@ -10,7 +10,7 @@
           </div>
           <div class="col-md-6">
             <ul class="nav-pc">
-              <li><a routerLink="/search-job">Đăng tuyển dụng</a></li>
+              <li><a [routerLink]="['/recruitment', empID]">Đăng tuyển dụng</a></li>
 
               <li><a routerLink="/contact">Liên hệ</a></li>
             </ul>
@@ -54,7 +54,7 @@
       <div class="border"></div>
       <li>
         <div class="menu-list-row name-account">
-          <a routerLink="/profile">
+          <a routerLink="/recruitment">
             <i class="fa-regular fa-circle-user"></i>
           </a> <span>{{person_name}}</span>
         </div>
@@ -94,7 +94,7 @@
     <div class="border"></div>
       <li>
         <div class=" name-account">
-          <a routerLink="/profile">
+          <a routerLink="/recruitment">
             <i class="fa-solid fa-buildings"></i>
             <span>{{person_name}}</span>
           </a>
@@ -105,7 +105,7 @@
 
      <div class="menu-list-row ">
        <ul class="non-nav-pc">
-         <li><a routerLink="/search-job">>Đăng tuyển dụng</a></li>
+         <li><a [routerLink]="['/recruitment', empID]">>Đăng tuyển dụng</a></li>
          <li><a routerLink="/contact">Liên hệ</a></li>
        </ul>
      </div>
@@ -140,7 +140,7 @@
           </div>
           <div class="col-md-6">
             <ul class="nav-pc">
-              <li><a routerLink="/search-job">Đăng tuyển dụng</a></li>
+              <li><a [routerLink]="['/recruitment', empID]">Đăng tuyển dụng</a></li>
               <li><a routerLink="/contact">Liên hệ</a></li>
             </ul>
           </div>
@@ -163,7 +163,7 @@
 
 
   <ul class="list-menu-mb-login" [ngClass]="{'is-left-default': isLeftDefault}">
-    <li><a routerLink="/search-job">Đăng tuyển dụng</a></li>
+    <li><a [routerLink]="['/recruitment', empID]">Đăng tuyển dụng</a></li>
     <li><a routerLink="/contact">Liên hệ</a></li>
     <a routerLink="/sign-up" class="btn-nav" role="button" aria-pressed="true">ĐĂNG KÝ</a>
     <a routerLink="/login" class="btn-nav" role="button" aria-pressed="true">ĐĂNG NHẬP</a>

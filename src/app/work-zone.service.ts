@@ -2,9 +2,9 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from'@angular/common/http';
 import { catchError, map, Observable, of, retry, subscribeOn, tap, throwError } from 'rxjs';
 import { Job, Users  } from 'workzone';
-
+import { BehaviorSubject } from 'rxjs';
 import { Company } from 'workzone';
-import { error } from 'jquery';
+
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -585,7 +585,7 @@ public empID = localStorage.getItem('company_id');
       headers:headers,
       responseType:"text"
       }
-      return this._http.get<any>("/job/address/H%C3%A0%20N%E1%BB%99i",requestOptions).pipe(
+      return this._http.get<any>("/api/job/address/H%C3%A0%20N%E1%BB%99i",requestOptions).pipe(
         map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
@@ -597,7 +597,7 @@ public empID = localStorage.getItem('company_id');
       headers:headers,
       responseType:"text"
       }
-      return this._http.get<any>("/job/address/H%E1%BB%93%20Ch%C3%AD%20Minh",requestOptions).pipe(
+      return this._http.get<any>("/api/job/address/H%E1%BB%93%20Ch%C3%AD%20Minh",requestOptions).pipe(
         map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
@@ -609,7 +609,7 @@ public empID = localStorage.getItem('company_id');
       headers:headers,
       responseType:"text"
       }
-      return this._http.get<any>("/job/address/B%C3%ACnh%20D%C6%B0%C6%A1ng",requestOptions).pipe(
+      return this._http.get<any>("/api/job/address/B%C3%ACnh%20D%C6%B0%C6%A1ng",requestOptions).pipe(
         map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
@@ -621,7 +621,7 @@ public empID = localStorage.getItem('company_id');
       headers:headers,
       responseType:"text"
       }
-      return this._http.get<any>("/job/address/H%E1%BA%A3i%20Ph%C3%B2ng",requestOptions).pipe(
+      return this._http.get<any>("/api/job/address/H%E1%BA%A3i%20Ph%C3%B2ng",requestOptions).pipe(
         map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
@@ -632,7 +632,7 @@ public empID = localStorage.getItem('company_id');
       headers:headers,
       responseType:"text"
       }
-      return this._http.get<any>("/job/address/Qu%E1%BA%A3ng%20Ninh",requestOptions).pipe(
+      return this._http.get<any>("/api/job/address/Qu%E1%BA%A3ng%20Ninh",requestOptions).pipe(
         map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
@@ -643,7 +643,7 @@ public empID = localStorage.getItem('company_id');
       headers:headers,
       responseType:"text"
       }
-      return this._http.get<any>("/job/address/%C4%90%E1%BB%93ng%20Nai",requestOptions).pipe(
+      return this._http.get<any>("/api/job/address/%C4%90%E1%BB%93ng%20Nai",requestOptions).pipe(
         map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
@@ -654,7 +654,7 @@ public empID = localStorage.getItem('company_id');
       headers:headers,
       responseType:"text"
       }
-      return this._http.get<any>("/job/address/Long%20An",requestOptions).pipe(
+      return this._http.get<any>("/api/job/address/Long%20An",requestOptions).pipe(
         map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
@@ -665,7 +665,7 @@ public empID = localStorage.getItem('company_id');
       headers:headers,
       responseType:"text"
       }
-      return this._http.get<any>("/job/address/V%C5%A9ng%20T%C3%A0u",requestOptions).pipe(
+      return this._http.get<any>("/api/job/address/V%C5%A9ng%20T%C3%A0u",requestOptions).pipe(
         map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
@@ -676,7 +676,7 @@ public empID = localStorage.getItem('company_id');
       headers:headers,
       responseType:"text"
       }
-      return this._http.get<any>("/job/address/C%E1%BA%A7n%20Th%C6%A1",requestOptions).pipe(
+      return this._http.get<any>("/api/job/address/C%E1%BA%A7n%20Th%C6%A1",requestOptions).pipe(
         map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
@@ -687,7 +687,7 @@ public empID = localStorage.getItem('company_id');
       headers:headers,
       responseType:"text"
       }
-      return this._http.get<any>("/job/address/%C4%90%C3%A0%20N%E1%BA%B5ng",requestOptions).pipe(
+      return this._http.get<any>("/api/job/address/%C4%90%C3%A0%20N%E1%BA%B5ng",requestOptions).pipe(
         map(res=>JSON.parse(res) as Array<Job>),
         retry(3),
         catchError(this.handleError))
@@ -790,18 +790,12 @@ updateImage(image: string): Observable<any> {
 
 }
 // đếm số lượng job trong các component
-private savedJobCount = 0;
 
-getSavedJobCount(): number {
-  return this.savedJobCount;
-}
+  private jobCountSource = new BehaviorSubject<number>(0);
+  jobCountChanged = this.jobCountSource.asObservable();
 
-incrementSavedJobCount(): void {
-  this.savedJobCount++;
-}
-
-decrementSavedJobCount(): void {
-  this.savedJobCount--;
+updateJobCount(jobCount: number) {
+  this.jobCountSource.next(jobCount);
 }
 
 }
