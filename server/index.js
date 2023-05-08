@@ -27,6 +27,7 @@ app.listen(port,()=>{
   userCollection = database.collection("Users");
   companyCollection = database.collection("company");
   EmployerCollection = database.collection("company");
+  AppliedJobCollection = database.collection("AppliedJob");
   const { ObjectId: objId } = require('mongodb');
   app.get("/api/job-application/:userID", cors(), async (req, res) => {
     const userId = req.params.userID;
@@ -76,25 +77,23 @@ app.listen(port,()=>{
 //     res.send(cv);
 // });
 
-// app.post("/job-application/:userID/cv", cors(), (req, res) => {
-//   const userID = req.params.userID;
-//   const obj;
-//   const cvArray = obj.cv
-// cvarray.push(newcv)
-// await userCollection.updateOne(filter,
-//   {...obj
-//    cv: cvArray
-// });
-//
-//   const newCv = req.body;
-//   const CvToUpdate = userCollection.find((cv) => cv.userID === userID);
-//   if (CvToUpdate) {
-//     CvToUpdate.cv.push(newCv);
-//     res.send(userCollection);
-//   } else {
-//     res.status(404).send("Cv not found.");
-//   }
-// });
+app.put('/api/applyCV', cors(), async (req, res) => {
+  const { userID, cv } = req.body;
+  try {
+    const user = await userCollection.findOne({ userID: userID});
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    if (!user.cv) {
+      user.cv = [];
+    }
+      user.cv.push( cv );
+    await userCollection.updateOne({ userID: userID }, { $set: { cv: user.cv } });
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
 
   app.get('/api/job-decription/:jobJD', cors(), async (req, res) => {
     try {
@@ -126,10 +125,6 @@ app.get('/api/applycv/jobJD', cors(), async (req, res) => {
     res.status(500).send('Server error');
   }
 });
-
-
-
-
   app.get("/api/job",cors(),async(req,res)=>{
     const result = await jobCollection.find({}).toArray();
     res.send(result)
@@ -442,41 +437,49 @@ app.get('/api/username', async (req, res) => {
   }
 })
 
-  app.get('/api/recruitment/:company_id', cors(), async (req, res) => {
-    try {
-      const company_id = req.params.company_id;
-      const company = await companyCollection.findOne({ company_id: company_id });
-      const job = await jobCollection.find({ company_id: company_id }).toArray(); // Updated this line
-      const companyData = { company, job };
-      res.send(companyData);
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Server error');
+
+app.post('/api/recruitment/:company_id/job', cors(), async (req, res) => {
+  try {
+    const company_id = req.params.company_id;
+    const job = req.body;
+
+    // Check if the company exists in the database
+    const company = await companyCollection.findOne({ company_id: company_id });
+    if (!company) {
+      return res.status(404).send('Company not found');
     }
+    job.company_id = company_id;
+    job.image = company.image;
+    job.company_name = company.company_name;
+    const result = await jobCollection.insertOne(job);
+    res.send(result.ops[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+
+  app.put("/api/company/:company_id", cors(), async (req, res) =>{
+    const company_id = req.params.company_id;
+    const image = req.body.image;
+    const company_intro = req.body.company_intro;
+    const company_website = req.body.company_website;
+    const company_scale = req.body.company_scale;
+    const company_address = req.body.company_address;
+    await companyCollection.updateOne(
+      { company_id: company_id },
+      { $set: {
+        "image": image,
+        "company_intro": company_intro,
+        "company_scale": company_scale,
+        "company_address": company_address,
+        "company_website": company_website,
+      }}
+    );
+    const updatedCompany = await companyCollection.findOne({ company_id: company_id });
+    res.send(updatedCompany);
   });
 
-  app.post('/api/recruitment/:company_id/job', cors(), async (req, res) => {
-    try {
-      const company_id = req.params.company_id;
-      const job = req.body;
-
-      // Check if the company exists in the database
-
-      const company = await companyCollection.findOne({ company_id: company_id });
-      if (!company) {
-        return res.status(404).send('Company not found');
-      }
-      job.company_id = company_id;
-      const image = company.comp;
-      const company_name = company.company_name;
-      const result = await jobCollection.insertOne(job);
-      jobData = { image, company_name, result }
-      res.send(jobData);
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Server error');
-    }
-  });
 
 
 
@@ -752,6 +755,36 @@ app.delete("/api/delete-job",cors(),async(req,res)=>{
   res.send(result[0])
   });
 
+// applied
+
+app.get("/api/applied-job/:userID",cors(),async(req,res)=>{
+  try {
+    const userID = req.params.userID;
+
+    const userAppliedJob = await AppliedJobCollection.find({ userID: userID }).toArray();
+
+    // const AppliedJob = await jobCollection.find({ jobJD: userAppliedJob.jobJD }).toArray();
+    const jobJds = userAppliedJob.map((job) => job.jobJD);
+  const AppliedJob = await jobCollection.find({ jobJD: { $in: jobJds } }).toArray();
+
+    const AppliedJobData = { userAppliedJob, AppliedJob };
+
+    res.send(AppliedJobData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+  });
+
+// thêm 1 applied-job
+  app.post("/api/create-applied-job", cors(), async(req, res) => {
+    const appliedJob = req.body;
+    appliedJob._id = new ObjectId(); // Tạo mới ObjectId
+    await AppliedJobCollection.insertOne(appliedJob);
+    res.send(appliedJob);
+  });
+
+
 
 // api chỉnh sửa mật khẩu
 const crypto = require('crypto');
@@ -801,3 +834,77 @@ app.put('/api/pass', async (req, res) => {
   }
 });
 
+    // user nào ứng tuyển gắn liền với job đó
+app.get("/api/applyuser/:jobJD",cors(),async(req,res)=>{
+  try {
+    const jobJD = req.params.jobJD;
+    const job = await jobCollection.findOne({ jobJD: jobJD});
+    const user = await userCollection.find({ userID: { $in: job.userID } }).toArray();
+    const applyuser ={job, user};
+  res.send(applyuser);
+} catch (err) {
+  console.error(err);
+  res.status(500).send('Server error');
+}
+})
+
+app.get("/api/getapplyuser/:company_id/:jobJD", cors(), async (req, res) => {
+  try {
+    const companyId = req.params.company_id;
+    // Find company by ID
+    const company = await companyCollection.findOne({ company_id: companyId });
+    if (!company) {
+      return res.status(404).send(`Company with ID ${companyId} not found`);
+    }
+
+    const jobJD = req.params.jobJD;
+    // Find jobs by company ID and jobJD
+    const jobs = await jobCollection.find({ company_id: companyId, jobJD: jobJD }).toArray();
+    console.log(jobs);
+
+    // Find users by jobJD
+    const regex = new RegExp(jobJD, 'i');
+    const users = await userCollection.find({ JobApply: regex }).toArray();
+    console.log(users);
+
+    const companyData = { company, jobs, users };
+    res.send(companyData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal server error');
+  }
+});
+// user apply job
+app.put('/api/applyuser', cors(), async (req, res) => {
+  const { userID, JobApply } = req.body;
+  try {
+    const user = await userCollection.findOne({ userID: userID});
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    if (!user.JobApply) {
+      user.JobApply = [];
+    }
+    const isApplied = user.JobApply.some((job) => job.JobApply === JobApply);
+    if (!isApplied) {
+      user.JobApply.push( JobApply );
+    }
+    await userCollection.updateOne({ userID: userID }, { $set: { JobApply: user.JobApply } });
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+app.get("/api/getuserapply/:userID", cors(), async(req, res) => {
+  try {
+    const userID = req.params.userID;
+    const user = await userCollection.findOne({ userID: userID });
+    const savedJobs = user.JobJD;
+    res.send(savedJobs);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});

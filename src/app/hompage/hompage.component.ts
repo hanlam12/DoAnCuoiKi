@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ComponentFactoryResolver } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ApplyCVComponent } from '../apply-cv/apply-cv.component';
 import { WorkZoneService } from '../work-zone.service';
@@ -10,7 +10,13 @@ import { Users } from 'workzone';
   templateUrl: './hompage.component.html',
   styleUrls: ['./hompage.component.css']
 })
-export class HompageComponent {
+export class HompageComponent 
+
+{
+
+
+  user: any
+  
   show = false;
   errMessage = '';
   selectedJob: string = '';
@@ -21,9 +27,13 @@ export class HompageComponent {
 
    company:any;
   modalRef!: BsModalRef;
-  constructor(public _service: WorkZoneService, private router: Router, private modalService: BsModalService) {
+  constructor(public _service: WorkZoneService, private router: Router, private modalService: BsModalService, private componentFactoryResolver: ComponentFactoryResolver) {
     this.getJobs();
     this.getCompanies();
+
+  }
+  
+
 
     }
   getJobs() {
@@ -57,14 +67,43 @@ export class HompageComponent {
   toggle() {
     this.getJobs();
   }
+  
+  
+  userID: any
+
   ngOnInit(): void {
+
+    
+    this.userID = localStorage.getItem('userID')
     this._service.getJobs().subscribe(jobs => this.jobs = jobs);
+    if (this.userID) {
+      this._service.getUser(this.userID).subscribe(user => {
+        this.user = user;
+        console.log('user:', user);
+      });
+    };
+  }
+  modalDisplay = false
+  appliedData: any
+  showModal(jobTitle: string) {
+    if(!localStorage.getItem('userID')){
+      alert('Vui lòng đăng nhập')
+      this._service.navigatetoLogin()
+    }
+    
+    const appliedJob = {
+      jobJD: jobTitle,
+      userID: this.userID,
+      appliedDate: new Date(),
+      status: "Waiting"
+    };
+    this.modalDisplay = true
+    this.appliedData = appliedJob
+  }
+  test(){
+    console.log(this.appliedData)
   }
 
-  showModal(jobTitle: string) {
-    this.selectedJob = jobTitle;
-    this.modalRef = this.modalService.show(ApplyCVComponent);
-  }
   luu() {
     this.show = !this.show;
   }
@@ -185,4 +224,11 @@ if (userId) {
   }
 
 
+  
+  
 }
+
+
+
+
+

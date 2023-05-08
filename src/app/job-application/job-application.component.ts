@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { WorkZoneService } from '../work-zone.service';
 import { ActivatedRoute } from '@angular/router';
-import {  Users } from 'workzone';
+import {  User, Users } from 'workzone';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-job-application',
@@ -19,6 +20,7 @@ export class JobApplicationComponent implements OnInit {
   taiCv = true
   showCv = false
   UpdateCv = false
+  detail = false
 
 
   toggle(){
@@ -27,23 +29,20 @@ export class JobApplicationComponent implements OnInit {
     this.showCv = true;
 
   }
-  updateCv(){
-    this.taiCv = false;
-    this.UpdateCv=true;
-    this.showCv = false;
-    this.hoSoDaTao = false
-}
+
 cancel(){
   this.taiCv = true;
   this.UpdateCv=false;
   this.showCv = false;
-  this.hoSoDaTao = true
+  this.hoSoDaTao = true;
+  this.detail = false;
 }
 chitiet(){
   this.taiCv = false;
-  this.UpdateCv=true;
+  this.UpdateCv=false;
   this.showCv = false;
-  this.hoSoDaTao = false
+  this.hoSoDaTao = false;
+  this.detail = true;
 }
 
 user: Users | undefined
@@ -63,6 +62,31 @@ ngOnInit(): void {
     });
   }
 }
+applied_cv: any[] = [];
+public cvCount: number = 0
+userID: string = '';
+cv: any;
+
+
+applyCV() {
+    this.taiCv = false;
+    this.UpdateCv=true;
+    this.showCv = false;
+    this.hoSoDaTao = false
+    this.usersService.applyCV(this.userID, this.cv).subscribe(
+      response => {
+        this.applied_cv.push(response.cv);
+        console.log(`Applied CV successfully: ${response.cv}`);
+        const num_elements = this.applied_cv.length; // sử dụng hàm len() để đếm số phần tử
+        console.log(`Number of elements in applied_cv: ${num_elements}`);
+      },
+      error => {
+        console.log(`Error applying CV: ${error}`);
+      }
+    );
+  }
+
+}
 
 
 
@@ -76,4 +100,4 @@ ngOnInit(): void {
 //   this.hoSoDaTao = true
 // }
 
-}
+

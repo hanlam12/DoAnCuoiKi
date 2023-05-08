@@ -1,11 +1,15 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from'@angular/common/http';
 import { catchError, map, Observable, of, retry, subscribeOn, tap, throwError } from 'rxjs';
-import { Job, Users  } from 'workzone';
-import { BehaviorSubject } from 'rxjs';
-import { Company } from 'workzone';
 
-import { Router } from '@angular/router';
+import { Job, User, Users  } from 'workzone';
+
+
+import { BehaviorSubject } from 'rxjs';
+
+import { Company } from 'workzone';
+import { error } from 'jquery';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -697,7 +701,7 @@ public empID = localStorage.getItem('company_id');
 
 putInforCv(aUser:any): Observable<any>{
   const url = `http://localhost:6868/api/job-application/${aUser.userID}`;
-  return this._http.post<any>(url,JSON.stringify(aUser)).pipe(
+  return this._http.put<any>(url,JSON.stringify(aUser)).pipe(
     map(result => result),
     catchError(error => {
       console.error('Error', error);
@@ -706,9 +710,16 @@ putInforCv(aUser:any): Observable<any>{
 
   );
 }
+updateCompany(companyId: string, image: string, companyIntro: string, companyScale: string, companyAddress: string, companyweb:string): Observable<any> {
+  const url = `http://localhost:6868/api/company/${companyId}`;
+  const body = { image, company_intro: companyIntro, company_scale: companyScale, company_address: companyAddress, company_website:companyweb};
+  return this._http.put(url, body);
+}
+
 
 
 GetRecruit(company_id: string): Observable<Company> {
+
   const url = `http://localhost:6868/api/recruitment/${company_id}`;
   return this._http.get<Company>(url).pipe(
     map(result => result),
@@ -731,7 +742,8 @@ addJob(jobData: any, company_id: string):Observable<any>
       map(res=>JSON.parse(res) as Job),
       catchError(this.handleError)
   )
-}
+  }
+
 // lấy profile
 getProfile() {
   const headers = new HttpHeaders({
@@ -787,6 +799,17 @@ updateImage(image: string): Observable<any> {
   const body = { image: image };
   return this._http.put<any>(`${this.serverUrl}/api/image`, body, { headers });
 }
+private apiappliedUrl = 'http://localhost:6868/api/applied-job';
+  getAppliedJob(userID: string): Observable<any> {
+    const url = `${this.apiappliedUrl}/${userID}`;
+    return this._http.get<any>(url);
+  };
+
+  createAppliedJob(appliedJob: any): Observable<any> {
+    return this._http.post<any>(`${this.serverUrl}/api/create-applied-job`, appliedJob);
+
+}
+
 // đếm số lượng job trong các component
 
   private jobCountSource = new BehaviorSubject<number>(0);
@@ -816,8 +839,78 @@ changePassword(oldPassword: string, newPassword: string): Observable<any> {
   );
 }
 
+userLoggedinData: any
+//truyền data user logged in
+
+ setUserDataLoggedin(userData: string){
+  this.userLoggedinData = localStorage.getItem('userID')
+ }
+ UserDataLoggedin(){
+  // return this.userLoggedinData
+  return localStorage.getItem('userID')
+ }
+ UserIDDataLoggedin(){
+  return localStorage.getItem('userID')
+ }
+
+ navigateToAppliedJob() {
+
+  this.router.navigate([`/applied-job/${localStorage.getItem('userID')}`]);
+}
+navigatetoLogin(){
+  this.router.navigate([`/login`]);
+}
+navigatetoHomepage(){
+  this.router.navigate([`/`]);
+}
 
 }
 
 
 
+//user apply job
+ApplyJob(jonId: string, userId: string, isApplied: boolean): Observable<any> {
+ const headers = new HttpHeaders().set("Content-Type", "application/json");
+ const requestOptions: Object = {
+ headers: headers
+ };
+ const body = {
+ userID: userId,
+ JobJD: jonId
+ };
+ let apiUrl = "/api/applyuser";
+ return this._http.put<any>(`http://localhost:6868${apiUrl}`, body, requestOptions).pipe(
+ catchError(this.handleError)
+ );
+ }
+
+ GetApplyUser(companyId:string,jobJD: string): Observable<any> {
+   const headers = new HttpHeaders().set("Content-Type", "application/json");
+   const requestOptions: Object = {
+     headers: headers
+   };
+   let apiUrl = `/api/getapplyuser/${companyId}/${jobJD}`;
+
+   return this._http.get<any>(`http://localhost:6868${apiUrl}`, requestOptions).pipe(
+     catchError(this.handleError)
+   );
+ }
+ getUserApply(userID: string):  Observable<Job> {
+  return this._http.get<Job>(`http://localhost:6868/api/getuserapply/${userID}`);
+}
+applyCV(userID: string, cv: String): Observable<any> {
+  const headers = new HttpHeaders().set("Content-Type", "application/json");
+  const requestOptions: Object = {
+  headers: headers
+  };
+  const body = {
+  userID: userID,
+  cv: cv
+  };
+  let apiUrl = "/api/applyCV";
+  return this._http.put<any>(`http://localhost:6868${apiUrl}`, body, requestOptions).pipe(
+  catchError(this.handleError)
+  );
+  }
+
+}
