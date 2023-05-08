@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Job } from 'workzone';
-
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ApplyCVComponent } from '../apply-cv/apply-cv.component';
 import { WorkZoneService } from '../work-zone.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -10,9 +11,12 @@ import { Observable } from 'rxjs';
   styleUrls: ['./search-job.component.css']
 })
 export class SearchJobComponent {
-  jobs:any
+  jobs:any=[]
   location:any
   errMessage:string=''
+  savedJobs : any[] =[];
+  modalRef!: BsModalRef;
+  selectedJob: string = '';
   showText = true;
   showText1 = true;
   showText2 = true;
@@ -22,7 +26,7 @@ export class SearchJobComponent {
     this.router.navigate(['sign-up-employer'])
   }
 
-  constructor(private _service:WorkZoneService,private router:Router){
+  constructor(private _service:WorkZoneService,private router:Router, private modalService: BsModalService){
     this._service.getJobs().subscribe({
       next:(data)=>{this.jobs=data},
       error:(err)=>{this.errMessage=err}
@@ -302,6 +306,51 @@ export class SearchJobComponent {
       error:(err)=>{this.errMessage=err}
       })
   }
+  showModal(jobTitle: string) {
+    this.selectedJob = jobTitle;
+    this.modalRef = this.modalService.show(ApplyCVComponent);
+  }
+  isSavedValue: boolean = false;
+ saved_jobs: any[] = [];
+ isSaved(job: any): boolean {
+  const userId = localStorage.getItem('userID');
+  if (userId) {
+    this.isSavedValue = this.saved_jobs.includes(job.jobJD);
+    return this.isSavedValue;
+  }
+  return false;
+}
+saveJob(job: any): void {
+const userId = localStorage.getItem('userID');
+if (userId) {
+  this._service.GetSavedJobs(userId).subscribe((savedJobs: any) => {
+    if (Array.isArray(savedJobs) && savedJobs.includes(job.jobJD)) {
+      console.log(`Công việc ${job.jobJD} đã được lưu trước đó`);
+    } else {
+      this._service.SaveJob(userId, job.jobJD, true).subscribe(() => {
+        this.saved_jobs.push(job.jobJD);
+        console.log(`Đã lưu công việc ${job.jobJD}`);
+
+      });
+    }
+  });
+}
+
+}
 
 
+
+removeJob(job: any): void {
+const userId = localStorage.getItem('userID');
+if (userId) {
+  this._service.removeJob(userId, job.jobJD).subscribe(() => {
+    const index = this.saved_jobs.findIndex((savedJob) => savedJob === job.jobJD);
+    if (index > -1) {
+      this.saved_jobs.splice(index, 1);
+    }
+  }, error => {
+    console.log(`Xóa công việc ${job.jobJD} thất bại: ${error.message}`);
+  });
+}
+}
 }

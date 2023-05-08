@@ -15,6 +15,7 @@ export class LoginComponent {
   });
   password = ''
   showPassword =""
+  userLoggedinData: any
 
   constructor(private lg: FormBuilder, private _loginService: WorkZoneService, private router: Router) {
     this.lgForm = this.lg.group({
@@ -39,9 +40,16 @@ export class LoginComponent {
         this.errMessage = "Email không tồn tại";
       } else if (data.message === 'wrong password') {
         this.errMessage = "Mật khẩu không đúng";
+
       } else {
+        
+        
+        this.userLoggedinData = data;
+        console.log("data",data)
+        console.log( "userLoggedinData" ,this.userLoggedinData)
+        this._loginService.setUserDataLoggedin(
+          this.userLoggedinData);
         alert("Đăng nhập thành công");
-        console.log(data);
         this._loginService.navigateAfterLogin()
       }
     }

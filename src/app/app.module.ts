@@ -10,8 +10,7 @@ import { DieukhoandichvuComponent } from './dieukhoandichvu/dieukhoandichvu.comp
 import { SupportComponent } from './support/support.component';
 import { ThaydoimatkhauComponent } from './thaydoimatkhau/thaydoimatkhau.component';
 import { QuenmatkhauComponent } from './quenmatkhau/quenmatkhau.component';
-import { Quenmatkhau1Component } from './quenmatkhau1/quenmatkhau1.component';
-import { Quenmatkhau2Component } from './quenmatkhau2/quenmatkhau2.component';
+
 import { Quenmatkhau3Component } from './quenmatkhau3/quenmatkhau3.component';
 import { CongtyComponent } from './congty/congty.component';
 import { ContactComponent } from './contact/contact.component';
@@ -42,8 +41,12 @@ import { NewCompanyModalComponent } from './new-company-modal/new-company-modal.
 import { LoginEmployerComponent } from './login-employer/login-employer.component';
 import { SignUpEmployerComponent } from './sign-up-employer/sign-up-employer.component';
 import { PaymentComponent } from './payment/payment.component';
+
 import { DonUngTuyenComponent } from './don-ung-tuyen/don-ung-tuyen.component';
 import { XemUngVienComponent } from './xem-ung-vien/xem-ung-vien.component';
+
+import { HeaderEmployerComponent } from './header-employer/header-employer.component';
+
 
 
 
@@ -70,8 +73,7 @@ import { XemUngVienComponent } from './xem-ung-vien/xem-ung-vien.component';
     SupportComponent,
     ThaydoimatkhauComponent,
     QuenmatkhauComponent,
-    Quenmatkhau1Component,
-    Quenmatkhau2Component,
+
     Quenmatkhau3Component,
     CongtyComponent,
     HeaderComponent,
@@ -90,8 +92,12 @@ import { XemUngVienComponent } from './xem-ung-vien/xem-ung-vien.component';
     LoginEmployerComponent,
     SignUpEmployerComponent,
     PaymentComponent,
+
     DonUngTuyenComponent,
     XemUngVienComponent,
+
+    HeaderEmployerComponent
+
 
 
 

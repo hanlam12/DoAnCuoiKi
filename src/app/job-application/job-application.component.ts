@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WorkZoneService } from '../work-zone.service';
 import { ActivatedRoute } from '@angular/router';
 import {  User, Users } from 'workzone';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -66,6 +67,7 @@ public cvCount: number = 0
 userID: string = '';
 cv: any;
 
+
 applyCV() {
     this.taiCv = false;
     this.UpdateCv=true;
@@ -85,4 +87,17 @@ applyCV() {
   }
 
 }
+
+
+
+// putInforCv(){
+//   this.usersService.putInforCv(this.newcv).subscribe({
+//     next:(data)=>{this.user=data},
+//   })
+//   this.taiCv = true;
+//   this.UpdateCv=false;
+//   this.showCv = false;
+//   this.hoSoDaTao = true
+// }
+
 

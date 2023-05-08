@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { WorkZoneService } from '../work-zone.service';
 @Component({
   selector: 'app-thong-bao-viec-lam',
   templateUrl: './thong-bao-viec-lam.component.html',

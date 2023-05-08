@@ -44,7 +44,9 @@ import { Company, Job } from 'workzone';
         }
      );
 
+
       this._Service.getCompany(this.companyId).subscribe({
+
       next:(data)=>{this.companyData=data},
       error:(err)=>{this.errMessage=err}
       })

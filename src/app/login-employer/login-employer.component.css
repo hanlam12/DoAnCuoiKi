@@ -49,9 +49,10 @@
 .ntd {
   border-radius: 12px;
   border: 1px solid rgba(36, 0, 255, 1);
-  font-size: 90%;
+  font-size: 1rem;
   font-weight: bold;
   color: #ffffff;
+  padding: 15px 10px;
   background-color: blue;
 }
 
@@ -170,6 +171,9 @@
     text-align: center;
     color:#00A9FF;
     margin-bottom: 6%;
+}
+#dangky{
+  margin-left: 5px;
 }
 #input_btn_dangnhap{
     width: 100%;

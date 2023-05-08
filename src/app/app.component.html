@@ -1,22 +1,23 @@
 <app-not-found *ngIf="currentRoute === '/404notfound'"></app-not-found>
+<div *ngIf="currentRoute !== '/404notfound' && currentRoute !== ('/homepageEmployer/' + companyId) && currentRoute !== ('/recruitment/' + companyId) && currentRoute !== ('/homepageEmployer')">
+     <ng-container *ngIf="!currentRoute.endsWith('sign-up') && !currentRoute.endsWith('login') && !currentRoute.endsWith('sign-up-employer') && !currentRoute.endsWith('login-employer')">
+      <app-header-login></app-header-login>
+    </ng-container>
+    <ng-container *ngIf="currentRoute.includes('noti') || currentRoute.includes('profile') || currentRoute.includes('applied-job') || currentRoute.includes('saved') || currentRoute.includes('job-application') || currentRoute.includes('thaydoimatkhau')">
+      <app-account-menu></app-account-menu>
+    </ng-container>
 
-<div *ngIf="currentRoute !== '/404notfound'">
-  <ng-container *ngIf="!currentRoute.endsWith('sign-up') && !currentRoute.endsWith('login') ">
-    <app-header-login></app-header-login>
-  </ng-container>
-  <ng-container *ngIf="currentRoute.endsWith('noti') || currentRoute.endsWith('profile') ||currentRoute.endsWith('applied-job') || currentRoute.endsWith('saved') || currentRoute.endsWith('job-application') ||currentRoute.endsWith('thaydoimatkhau')">
-    <app-account-menu></app-account-menu>
-  </ng-container>
   <router-outlet></router-outlet>
+  <ng-container *ngIf="!currentRoute.endsWith('quenmatkhau1') && !currentRoute.endsWith('quenmatkhau2') && !currentRoute.endsWith('quenmatkhau3')" >
+    <app-footer-not-log-in></app-footer-not-log-in>
+  </ng-container>
 
-
-
-<app-footer-not-log-in></app-footer-not-log-in>
 </div>
 
-
-
-
-
-
-
+<div *ngIf="currentRoute !== '/404notfound' && currentRoute.includes('/homepageEmployer') || currentRoute.includes('/recruitment')  ">
+  <ng-container *ngIf="currentRoute.includes('/homepageEmployer/' + companyId) || currentRoute.includes('/recruitment/' + companyId) || currentRoute.includes('/homepageEmployer') ">
+    <app-header-employer></app-header-employer>
+  </ng-container>
+  <router-outlet></router-outlet>
+  <app-footer-not-log-in></app-footer-not-log-in>
+</div>

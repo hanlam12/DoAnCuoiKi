@@ -54,6 +54,7 @@ export class Company{
     public _id:any=null,
     public company_id:string="",
     public image:string="",
+
     public company_name:string="",
     public email:string="",
     public phone:string="",

@@ -106,8 +106,8 @@
     </div>
     <div class="col-md-3 col-12">
         <div class="img-profile" id="img-profile">
-          <img src="{{user.image}}" >
-          <input type="file" [(ngModel)]="user.image" name="image" #image="ngModel" (change)="onSelectFile($event)">
+          <img src="{{user.image}}" style="width: 200px;">
+          <input  type="file" [(ngModel)]="user.image" name="image" #image="ngModel" (change)="onSelectFile($event)">
           <p>(JPEG/PNG/GIF, 1MB)</p>
         </div>
       </div>

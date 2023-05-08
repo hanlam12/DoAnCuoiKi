@@ -44,7 +44,11 @@ export class HomepageEmployerComponent {
       }
    );
 
+<<<<<<< NguyenThuHang
     this.companyService.getCompany(this.companyId).subscribe({
+=======
+    this._Service.GetRecruit(this.companyId).subscribe({
+>>>>>>> master
     next:(data)=>{this.companyData=data},
     error:(err)=>{this.errMessage=err}
     })

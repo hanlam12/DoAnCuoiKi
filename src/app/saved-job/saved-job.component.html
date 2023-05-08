@@ -27,12 +27,14 @@
               <div class="line_button">{{c?.salary}}</div> <div class="line_button">{{c?.address}}</div>
             </div>
               <div class="col-md-2">
-                <a class="btn-nav line_no-save" role="button" aria-pressed="true">Bỏ lưu</a>
-              <div class="line_save">Đã lưu: 04/11/2022 - 15:12</div>
+                <a class="btn-nav line_no-save" role="button" aria-pressed="true" (click)="removeJob(c)">Bỏ lưu</a>
+              <div class="line_save"></div>
 
             </div>
+
           </div>
         </div>
+
   </div>
 
   <div class="col-md-3 col-12">

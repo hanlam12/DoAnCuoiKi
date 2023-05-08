@@ -11,8 +11,10 @@
                 <div *ngFor="let job of companyData?.jobs">
                 <div class="figure">
                   <div class="image">
+
                     <a  [routerLink]="['job-decription', job.jobJD]">
                       <img src="{{job?.image}}">
+
                     </a>
                   </div>
                   <div class="figcaption">
@@ -61,9 +63,11 @@
                 <p>{{companyData?.company?.company_intro}}</p>
               </div>
               <hr >
+
               <div ><i class="bi bi-pencil-square text-blue" ></i>&nbsp;&nbsp;<a (click)="changeInfor()" class="change text-blue">Thay đổi thông tin tài khoản</a>
+
               <span class="exit">
-                <i class="bi bi-box-arrow-right"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" >Đăng xuất</a>
+                <i class="bi bi-box-arrow-right"></i><a routerLink="/login-employer" >Đăng xuất</a>
               </span>
               </div>
             </div>

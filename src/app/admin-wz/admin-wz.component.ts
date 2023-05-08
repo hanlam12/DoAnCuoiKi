@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { WorkZoneAdminService } from '../work-zone-admin.service';
 import { data } from 'jquery';
 import { Subscription } from 'rxjs';
-import { Company, Job, User } from 'workzone';
+import { Company, Job, Users } from 'workzone';
+import { control } from 'leaflet';
 
 @Component({
   selector: 'app-admin-wz',
   templateUrl: './admin-wz.component.html',
   styleUrls: ['./admin-wz.component.css']
 })
-export class AdminWZComponent implements OnInit {  
+export class AdminWZComponent implements OnInit {
   subscription: Subscription | undefined;
   adminData: any[] = [];
   companies: any[] = [];
@@ -19,7 +20,7 @@ export class AdminWZComponent implements OnInit {
   ngIfjobs = false;
   ngIfusers = false;
   jobsNull: any[] = []
-  
+
 
   constructor(private adminService: WorkZoneAdminService) {}
 
@@ -27,16 +28,27 @@ export class AdminWZComponent implements OnInit {
     this.subscription = this.adminService.getAdminData().subscribe((response: any) => {
       this.adminData = response; // lưu trữ dữ liệu trong mảng
       this.companies = response.companies;
-      this.jobs = response.jobs.filter((job: Job) => job.jobJD !== "");
+      this.jobs = response.jobs.filter((job: Job) => job.jobJD );
+
       this.users = response.users;
-      this.jobsNull = response.jobs.filter((job: Job) => job.jobJD === "");
+      this.jobsNull = response.jobs.filter((job: Job) => !job.jobJD );
     });
   }
+  test(){
+    console.log(this.jobsNull);
+    console.log(this.jobs);
+    }
+
+  
+  // test(){
+  //   console.log(this.jobsNull, this.jobs);
+    
+  // }
 
   ngOnDestroy() {
     this.subscription!.unsubscribe(); // hủy đăng ký subscriptions khi không còn cần thiết
   }
- 
+
   btnCompaniesList(){
     this.ngIfcompanies = true;
     this.ngIfjobs = false;
@@ -85,6 +97,7 @@ export class AdminWZComponent implements OnInit {
   companyEdits = new Company()
   btnshowEdit(company: Company){
     this.showEdit = true
+    this.showDetails = false;
     this.companyEdits = company
 
   };
@@ -118,12 +131,12 @@ putCompany() {
 };
 
 deleteCompany(company:any) {
-  if (confirm('Bạn có chắc chắn muốn xóa?')) 
+  if (confirm('Bạn có chắc chắn muốn xóa?'))
   {
     this.adminService.deleteCompany(company).subscribe({
       next: (data) => { this.companies = data, alert('Xóa thành công'), location.reload() },
       error: (err) => { this.errMessage = err }
-    }) 
+    })
   }
 };
 
@@ -132,7 +145,7 @@ userDetails: any
 closeDetailsUser(){
   this.showDetailsUser = false
 }
-btnshowDetailUser(user: User){
+btnshowDetailUser(user: Users){
   this.showDetailsUser = true
   this.userDetails = user
   this.showEdit = false
@@ -140,7 +153,7 @@ btnshowDetailUser(user: User){
 userEdits: any
 userEditsT: any
 showEditUser = false
-btnshowEditUser(user: User){
+btnshowEditUser(user: Users){
   this.ngIfusers = false
   this.userEdits = user
   this.userEditsT = user
@@ -161,12 +174,12 @@ putUser() {
 
 deleteUser(user:any) {
   console.log(user)
-  if (confirm('Bạn có chắc chắn muốn xóa?')) 
+  if (confirm('Bạn có chắc chắn muốn xóa?'))
   {
     this.adminService.deleteUser(user).subscribe({
       next: (data) => { this.users = data, alert('Xóa thành công'), location.reload() },
       error: (err) => { this.errMessage = err }
-    }) 
+    })
   }
 };
 
@@ -190,7 +203,7 @@ btnshowEditJob(job: Job){
   this.showEditJob = true
   this.showDetails = false
   this.showDetailsUser = false
-  this.showDetailsJob = false 
+  this.showDetailsJob = false
 };
 closePutJob(){
   this.showEditJob = false
@@ -204,12 +217,12 @@ putJob() {
 };
 
 deleteJob(job:any) {
-  if (confirm('Bạn có chắc chắn muốn xóa?')) 
+  if (confirm('Bạn có chắc chắn muốn xóa?'))
   {
     this.adminService.deleteJob(job).subscribe({
       next: (data) => { this.users = data, alert('Xóa thành công'), location.reload() },
       error: (err) => { this.errMessage = err }
-    }) 
+    })
   }
 };
 
@@ -228,7 +241,7 @@ btnshowEditJobNull(event: Event ,job: Job){
   this.showEditJob = true
   this.showDetails = false
   this.showDetailsUser = false
-  this.showDetailsJob = false 
+  this.showDetailsJob = false
 };
 }
 
