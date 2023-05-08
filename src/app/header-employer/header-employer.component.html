@@ -4,13 +4,13 @@
       <div class="left-main-menu">
         <div class="row">
           <div class="col-md-3">
-            <a class="logo" routerLink="#"
+            <a class="logo" [routerLink]="['/homepageEmployer', empID]"
               ><img src="assets/media/logo.png" alt="Logo"
             /></a>
           </div>
           <div class="col-md-6">
             <ul class="nav-pc">
-              <li><a routerLink="/search-job">Đăng tuyển dụng</a></li>
+              <li><a [routerLink]="['/recruitment', empID]">Đăng tuyển dụng</a></li>
 
               <li><a routerLink="/contact">Liên hệ</a></li>
             </ul>
@@ -19,7 +19,7 @@
       </div>
       <div class="right-main-menu">
         <div class="account">
-          <i class="fa-regular fa-circle-user"></i><span>{{person_name}}</span>
+          <i class="fa-regular fa-circle-user"></i><span>{{company_name}}</span>
           <a (click)="menupc()" >
             <i class="fa-solid fa-sort-down"></i>
           </a>
@@ -27,7 +27,7 @@
 
 
         </div>
-        <a routerLink="/" class="btn btn-primary btn-lg active ntd-logged" role="button" aria-pressed="true">NGƯỜI TÌM VIỆC</a>
+        <a routerLink="/login" class="btn btn-primary btn-lg active ntd-logged" role="button" aria-pressed="true">NGƯỜI TÌM VIỆC</a>
       </div>
     </div>
   </div>
@@ -54,9 +54,9 @@
       <div class="border"></div>
       <li>
         <div class="menu-list-row name-account">
-          <a routerLink="/profile">
+          <a routerLink="/recruitment">
             <i class="fa-regular fa-circle-user"></i>
-          </a> <span>{{person_name}}</span>
+          </a> <span>{{company_name}}</span>
         </div>
       </li>
       <li>
@@ -94,9 +94,9 @@
     <div class="border"></div>
       <li>
         <div class=" name-account">
-          <a routerLink="/profile">
+          <a routerLink="/recruitment">
             <i class="fa-solid fa-buildings"></i>
-            <span>{{person_name}}</span>
+            <span>{{company_name}}</span>
           </a>
         </div>
       </li>
@@ -105,7 +105,7 @@
 
      <div class="menu-list-row ">
        <ul class="non-nav-pc">
-         <li><a routerLink="/search-job">>Đăng tuyển dụng</a></li>
+         <li><a [routerLink]="['/recruitment', empID]">>Đăng tuyển dụng</a></li>
          <li><a routerLink="/contact">Liên hệ</a></li>
        </ul>
      </div>
@@ -113,10 +113,10 @@
 
      <div class="account" >
         <i class="fa-solid fa-buildings"></i>
-          <span>{{person_name}}</span>
+          <span>{{company_name}}</span>
        <a (click)="menupc()" href=""><i class="fa-solid fa-sort-down"></i></a>
       </div>
-      <a routerLink="/" class="btn-nav ntd-logged " role="button" aria-pressed="true">
+      <a routerLink="/login" class="btn-nav ntd-logged " role="button" aria-pressed="true">
         NGƯỜI TÌM VIỆC</a>
       <li>
         <div class=" log-out "><a (click)="logout()" role="button">
@@ -140,7 +140,7 @@
           </div>
           <div class="col-md-6">
             <ul class="nav-pc">
-              <li><a routerLink="/search-job">Đăng tuyển dụng</a></li>
+              <li><a [routerLink]="['/recruitment', empID]">Đăng tuyển dụng</a></li>
               <li><a routerLink="/contact">Liên hệ</a></li>
             </ul>
           </div>
@@ -149,7 +149,7 @@
       <div class="right-main-menu-1">
         <a routerLink="/sign-up-employer" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ĐĂNG KÝ</a>
         <a routerLink="/login-employer" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ĐĂNG NHẬP</a>
-        <a routerLink="/" class="btn btn-primary btn-lg active ntd" role="button" aria-pressed="true">NGƯỜI TÌM VIỆC</a>
+        <a routerLink="/login" class="btn btn-primary btn-lg active ntd" role="button" aria-pressed="true">NGƯỜI TÌM VIỆC</a>
       </div>
     </div>
   </div>
@@ -163,11 +163,11 @@
 
 
   <ul class="list-menu-mb-login" [ngClass]="{'is-left-default': isLeftDefault}">
-    <li><a routerLink="/search-job">Đăng tuyển dụng</a></li>
+    <li><a [routerLink]="['/recruitment', empID]">Đăng tuyển dụng</a></li>
     <li><a routerLink="/contact">Liên hệ</a></li>
     <a routerLink="/sign-up" class="btn-nav" role="button" aria-pressed="true">ĐĂNG KÝ</a>
     <a routerLink="/login" class="btn-nav" role="button" aria-pressed="true">ĐĂNG NHẬP</a>
-    <a routerLink="/" class="btn-nav ntd" role="button" aria-pressed="true">NGƯỜI TÌM VIỆC</a>
+    <a routerLink="/login" class="btn-nav ntd" role="button" aria-pressed="true">NGƯỜI TÌM VIỆC</a>
   </ul>
 
   </div>

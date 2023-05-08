@@ -6,9 +6,9 @@
         <div class="box-menu-pc">
           <li><a [routerLink]="['/profile', uID]">Tài khoản</a></li>
           <li><a [routerLink]="['/job-application', uID]">Hồ sơ xin việc </a></li>
-          <li><a [routerLink]="['/saved', uID]">Việc đã lưu {{savedJobCount}} </a></li>
+          <li><a [routerLink]="['/saved', uID]">Việc đã lưu ({{jobCount}})</a></li>
           <li><a [routerLink]="['/applied-job', uID]">Việc đã ứng tuyển (7)</a></li>
-          <li><a routerLink="noti">Thông báo việc làm (0)</a></li>
+          <li><a routerLink="noti">Thông báo việc làm (3)</a></li>
         </div>
 
         <div class="box-menu-mb" [ngClass]="{'is-display-none': isDisplaynone}">
@@ -16,7 +16,7 @@
           <span><a [routerLink]="['/job-application', uID]">Hồ sơ xin việc (3)</a></span>
           <span><a [routerLink]="['/saved', uID]">Việc đã lưu (5)</a></span>
           <span><a [routerLink]="['/applied-job', uID]">Việc đã ứng tuyển (7)</a></span>
-          <span><a routerLink="noti">Thông báo việc làm (0)</a></span>
+          <span><a routerLink="noti">Thông báo việc làm (3)</a></span>
         </div>
       </ul>
     </div>

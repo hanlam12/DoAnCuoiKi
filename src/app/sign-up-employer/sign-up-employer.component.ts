@@ -66,7 +66,7 @@ export class SignUpEmployerComponent {
 
 
   dangnhap(){
-    this.router.navigate(['dangnhap'])
+    this.router.navigate(['/login-employer'])
 
   }
 }

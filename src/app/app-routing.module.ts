@@ -16,8 +16,7 @@ import { DieukhoandichvuComponent } from './dieukhoandichvu/dieukhoandichvu.comp
 import { SupportComponent } from './support/support.component';
 import { ThaydoimatkhauComponent } from './thaydoimatkhau/thaydoimatkhau.component';
 import { QuenmatkhauComponent } from './quenmatkhau/quenmatkhau.component';
-import { Quenmatkhau1Component } from './quenmatkhau1/quenmatkhau1.component';
-import { Quenmatkhau2Component } from './quenmatkhau2/quenmatkhau2.component';
+
 import { Quenmatkhau3Component } from './quenmatkhau3/quenmatkhau3.component';
 import { FormsModule } from '@angular/forms';
 import { CongtyComponent } from './congty/congty.component';
@@ -64,14 +63,13 @@ const routes: Routes = [
   { path:"support", component:SupportComponent},
   { path:"thaydoimatkhau", component:ThaydoimatkhauComponent},
   { path:"quenmatkhau", component: QuenmatkhauComponent},
-  { path:"quenmatkhau1", component: Quenmatkhau1Component},
-  { path:"quenmatkhau2", component:Quenmatkhau2Component},
+
   { path:"quenmatkhau3", component:Quenmatkhau3Component},
    {path: "recruitment/:company_id", component: RecruitmentComponent},
    {path: "recruitment", component: RecruitmentComponent},
    {path: "homepageEmployer", component: HomepageEmployerComponent},
    {path: "homepageEmployer/:company_id", component: HomepageEmployerComponent},
-  {path: "dangnhap", component: LoginEmployerComponent},
+
   {path: "company", component: CongtyComponent},
   {path: "admin", component: AdminWZComponent},
    {path: "company/:company_id", component: CongtyComponent},
@@ -103,8 +101,7 @@ export const RoutingComponent={
   SupportComponent,
   ThaydoimatkhauComponent,
   QuenmatkhauComponent,
-  Quenmatkhau1Component,
-  Quenmatkhau2Component,
+
   Quenmatkhau3Component,
   CongtyComponent,
 

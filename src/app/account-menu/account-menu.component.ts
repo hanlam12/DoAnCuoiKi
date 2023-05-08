@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input   } from '@angular/core';
 import { WorkZoneService } from '../work-zone.service';
 @Component({
   selector: 'app-account-menu',
@@ -9,7 +9,7 @@ export class AccountMenuComponent {
   isDisplaynone = true;
   uID: string =''
   jobs: any
-  savedJobCount: number;
+  @Input() jobCount: number = 0;
   menupc() {
     this.isDisplaynone = !this.isDisplaynone;
   }
@@ -18,6 +18,8 @@ export class AccountMenuComponent {
     if (uID) {
       this.uID = uID;
     }
-    this.savedJobCount = _jobcount.getSavedJobCount();
+    this._jobcount.jobCountChanged.subscribe((count: number) => {
+      this.jobCount = count;
+    });
   }
 }

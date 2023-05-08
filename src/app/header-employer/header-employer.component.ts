@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./header-employer.component.css']
 })
 export class HeaderEmployerComponent {
-  public person_name: string='';
+  public company_name: string='';
+  empID:string=''
   isLeftDefault = false;
   menu() {
     this.isLeftDefault = !this.isLeftDefault;
@@ -18,10 +19,15 @@ export class HeaderEmployerComponent {
     this.isDisplaynone = !this.isDisplaynone;
   }
 
-  constructor(private login: WorkZoneService) { }
+  constructor(private login: WorkZoneService) {
+    const empID = localStorage.getItem('empID');
+    if (empID) {
+      this.empID = empID;
+    }
+  }
   ngOnInit() {
     this.login.getEmpName().subscribe(data => {
-      this.person_name = data;
+      this.company_name = data;
 
     });
   }
@@ -31,4 +37,6 @@ export class HeaderEmployerComponent {
   logout(){
   return this.login.logoutEmp()
 }
+
+
 }
