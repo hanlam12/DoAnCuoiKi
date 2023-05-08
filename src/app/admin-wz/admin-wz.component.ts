@@ -27,11 +27,16 @@ export class AdminWZComponent implements OnInit {
     this.subscription = this.adminService.getAdminData().subscribe((response: any) => {
       this.adminData = response; // lưu trữ dữ liệu trong mảng
       this.companies = response.companies;
-      this.jobs = response.jobs.filter((job: Job) => job.jobJD !== "");
+      this.jobs = response.jobs.filter((job: Job) => job.jobJD );
+
       this.users = response.users;
-      this.jobsNull = response.jobs.filter((job: Job) => job.jobJD === "");
+      this.jobsNull = response.jobs.filter((job: Job) => !job.jobJD );
     });
   }
+  test(){
+    console.log(this.jobsNull);
+    console.log(this.jobs);
+    }
 
   ngOnDestroy() {
     this.subscription!.unsubscribe(); // hủy đăng ký subscriptions khi không còn cần thiết

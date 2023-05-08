@@ -4,9 +4,6 @@ import { catchError, map, Observable, retry, subscribeOn, throwError } from 'rxj
 import { Job } from 'workzone';
 import { Users } from 'workzone';
 import { Company } from 'workzone';
-const JOB_API_URL = 'http://localhost:6868/job';
-const COMPANY_API_URL = 'http://localhost:6868/company';
-const USER_API_URL = 'http://localhost:6868/user';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +11,6 @@ const USER_API_URL = 'http://localhost:6868/user';
 export class WorkZoneAdminService {
 
   constructor(private _http:HttpClient) { }
-
-
 
   getAdminData() {
     return this._http.get<any>('http://localhost:6868/api/admin').pipe(
@@ -45,7 +40,7 @@ const requestOptions:Object={
 headers:headers,
 responseType:"text"
 }
-return this._http.put<any>("/api/put-company",JSON.stringify(company),requestOptions).pipe(
+return this._http.put<any>("http://localhost:6868/api/put-company",JSON.stringify(company),requestOptions).pipe(
 map(res=>JSON.parse(res) as Array<Company>),
 retry(3))
 };
@@ -54,7 +49,7 @@ deleteCompany(company:string):Observable<any> {
 
   const headers = new HttpHeaders().set("Content-Type", "application/json;charset=utf-8");
   return this._http.delete<any>(
-    "/api/delete-company",
+    "http://localhost:6868/api/delete-company",
     {
       headers: headers,
       body: JSON.stringify(company),
@@ -73,7 +68,7 @@ const requestOptions:Object={
 headers:headers,
 responseType:"text"
 }
-return this._http.put<any>("/api/put-user",JSON.stringify(user),requestOptions).pipe(
+return this._http.put<any>("http://localhost:6868/api/put-user",JSON.stringify(user),requestOptions).pipe(
 map(res=>JSON.parse(res) as Array<Users>),
 retry(3))
 };
@@ -81,7 +76,7 @@ retry(3))
 deleteUser(user: Users):Observable<any> {
   const headers = new HttpHeaders().set("Content-Type", "application/json;charset=utf-8");
   return this._http.delete<any>(
-    "/api/delete-user",
+    "http://localhost:6868/api/delete-user",
     {
       headers: headers,
       body: JSON.stringify(user),
@@ -101,7 +96,7 @@ const requestOptions:Object={
 headers:headers,
 responseType:"text"
 }
-return this._http.put<any>("/api/put-job",JSON.stringify(job),requestOptions).pipe(
+return this._http.put<any>("http://localhost:6868/api/put-job",JSON.stringify(job),requestOptions).pipe(
 map(res=>JSON.parse(res) as Array<Users>),
 retry(3))
 };
@@ -109,7 +104,7 @@ retry(3))
 deleteJob(user: Users):Observable<any> {
   const headers = new HttpHeaders().set("Content-Type", "application/json;charset=utf-8");
   return this._http.delete<any>(
-    "/api/delete-job",
+    "http://localhost:6868/api/delete-job",
     {
       headers: headers,
       body: JSON.stringify(user),

@@ -10,8 +10,7 @@ import { DieukhoandichvuComponent } from './dieukhoandichvu/dieukhoandichvu.comp
 import { SupportComponent } from './support/support.component';
 import { ThaydoimatkhauComponent } from './thaydoimatkhau/thaydoimatkhau.component';
 import { QuenmatkhauComponent } from './quenmatkhau/quenmatkhau.component';
-import { Quenmatkhau1Component } from './quenmatkhau1/quenmatkhau1.component';
-import { Quenmatkhau2Component } from './quenmatkhau2/quenmatkhau2.component';
+
 import { Quenmatkhau3Component } from './quenmatkhau3/quenmatkhau3.component';
 import { CongtyComponent } from './congty/congty.component';
 import { ContactComponent } from './contact/contact.component';
@@ -73,8 +72,7 @@ import { HeaderEmployerComponent } from './header-employer/header-employer.compo
     SupportComponent,
     ThaydoimatkhauComponent,
     QuenmatkhauComponent,
-    Quenmatkhau1Component,
-    Quenmatkhau2Component,
+
     Quenmatkhau3Component,
     CongtyComponent,
     HeaderComponent,

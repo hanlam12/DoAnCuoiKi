@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header-employer.component.css']
 })
 export class HeaderEmployerComponent {
-  public person_name: string='';
+  public company_name: string='';
   empID:string=''
   isLeftDefault = false;
   menu() {
@@ -27,7 +27,7 @@ export class HeaderEmployerComponent {
   }
   ngOnInit() {
     this.login.getEmpName().subscribe(data => {
-      this.person_name = data;
+      this.company_name = data;
 
     });
   }

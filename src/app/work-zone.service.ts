@@ -729,7 +729,7 @@ addJob(jobData: any, company_id: string):Observable<any>
   }
   return this._http.post<any>(url,jobData ,requestOptions).pipe(
       map(res=>JSON.parse(res) as Job),
-      retry(3),
+
       catchError(this.handleError)
   )
 }
@@ -787,7 +787,6 @@ updateImage(image: string): Observable<any> {
   const headers = { Authorization: 'Bearer ' + token };
   const body = { image: image };
   return this._http.put<any>(`${this.serverUrl}/api/image`, body, { headers });
-
 }
 // đếm số lượng job trong các component
 
@@ -797,6 +796,27 @@ updateImage(image: string): Observable<any> {
 updateJobCount(jobCount: number) {
   this.jobCountSource.next(jobCount);
 }
+// chỉnh pass
+changePassword(oldPassword: string, newPassword: string): Observable<any> {
+  const data = { password: oldPassword, newPassword: newPassword };
+  const headers = { 'Authorization': 'Bearer ' + localStorage.getItem('token') };
+  return this._http.put<any>(`${this.serverUrl}/api/pass`, data, { headers: headers }).pipe(
+    map(() => "success"), // trả về giá trị "success" khi cập nhật thành công
+    catchError((error: HttpErrorResponse) => {
+      if (error.status === 401) {
+        return throwError('Incorrect password. Please try again.');
+      } else if (error.status === 404) {
+        return throwError('User not found. Please try again.');
+      } else if (error.status === 500){
+        return throwError('Internal server error. Please try again later.');
+      } else{
+        return throwError('Failed to update password. Please try again.');
+      }
+    }),
+
+  );
+}
+
 
 }
 

@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { WorkZoneService } from '../work-zone.service';
-import { data } from 'jquery';
+
 @Component({
   selector: 'app-saved-job',
   templateUrl: './saved-job.component.html',
