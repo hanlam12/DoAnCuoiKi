@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Users } from 'workzone';
+import { Job, Users } from 'workzone';
 import { WorkZoneService } from '../work-zone.service';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-applied-job',
@@ -10,18 +12,13 @@ import { WorkZoneService } from '../work-zone.service';
 })
 export class AppliedJobComponent {
   isOn: boolean = true;
-
+  combinedJobs: any[] | undefined;
+  
   status() {
     this.isOn = !this.isOn;
   }
 
     data = [
-      { "id": "job0001", "name_company": "Frontend Developer (JavaScript, ReactJS)", "date_Created": "11/12/2022", "status":"Đang chờ"},
-      { "id": "job0002", "name_company": "CÔNG TY CỔ PHẦN CÔNG NGHIỆP WELDCOM", "date_Created": "11/12/2022", "status":"Đang chờ"},
-      { "id": "job0003", "name_company": "BIM Group", "date_Created": "11/12/2022", "status":"Đang chờ"},
-      { "id": "job0004", "name_company": "CÔNG TY CỔ PHẦN THƯƠNG MẠI TIN HỌC HƯNG LONG", "date_Created": "11/12/2022", "status":"Đang chờ"},
-      { "id": "job0005", "name_company": "CÔNG TY TNHH ECOBA CÔNG NGHỆ MÔI TRƯỜNG", "date_Created": "11/12/2022", "status":"Đang chờ"},
-      { "id": "job0006", "name_company": "CÔNG TY TNHH BẢO HIỂM NHÂN THỌ MB AGEAS", "date_Created": "11/12/2022", "status":"Đang chờ"}
     ];
 
     page = 1;
@@ -30,19 +27,51 @@ export class AppliedJobComponent {
 
     user: Users | undefined
 
+    subscription: Subscription | undefined;
+    AppliedJobData: any | undefined;
+
 
 constructor(
   private route: ActivatedRoute,
   private usersService: WorkZoneService
 ) { }
+userIDAppliedJob: any
 
 ngOnInit(): void {
-  const userID = this.route.snapshot.paramMap.get('userID');
-  if (userID) {
-    this.usersService.getUser(userID).subscribe(user => {
+  // const userID = this.usersService.UserIDDataLoggedin();
+  this.route.paramMap.subscribe(params => {
+    this.userIDAppliedJob = params.get('userID');
+    this.getAppliedJob();
+  });
+ 
+  if (this.userIDAppliedJob) {
+    this.usersService.getUser(this.userIDAppliedJob).subscribe(user => {
       this.user = user;
       console.log('user:', user);
     });
-  }
-}
+  };
+  
+};
+getAppliedJob(): void {
+  this.usersService.getAppliedJob(this.userIDAppliedJob)
+    .subscribe(data => {
+      this.AppliedJobData = data;
+      this.AppliedJob = data.AppliedJob;
+      this.userAppliedJob = data.userAppliedJob;
+      this.combinedJobs = this.AppliedJob.map(job => {
+        const matchingUserJob = this.userAppliedJob.find(userJob => userJob.jobJD === job.jobJD);
+        return { ...job, appliedDate: matchingUserJob.appliedDate, status: matchingUserJob.status };
+      });
+
+    }, error => {
+      console.error(error);
+    });
+};
+AppliedJob: any[] = []
+userAppliedJob: any[] = []
+
+
+
+
+
 }

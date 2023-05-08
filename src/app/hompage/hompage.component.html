@@ -1,3 +1,5 @@
+<app-apply-cv *ngIf="modalDisplay" [appliedData] = "appliedData"  ></app-apply-cv>
+
 <div class="homepage">
   <div class="hompage-main-banner">
     <div class="hompage-banner-image">
@@ -78,7 +80,7 @@
           </div>
         </div>
         <div class="content-hot-input">
-          <button  (click)="showModal(j.job_name)" id="apply" >Apply Now</button>
+          <button  (click)="showModal(j.jobJD)" id="apply" >Apply Now</button>
           <div class="container">
             <button class="luu" [class.is-hidden]="isSaved(j)" (click)="saveJob(j)">
               <i class="fas fa-heart"></i> Lưu

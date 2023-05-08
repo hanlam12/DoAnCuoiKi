@@ -3,6 +3,7 @@ import { WorkZoneAdminService } from '../work-zone-admin.service';
 import { data } from 'jquery';
 import { Subscription } from 'rxjs';
 import { Company, Job, Users } from 'workzone';
+import { control } from 'leaflet';
 
 @Component({
   selector: 'app-admin-wz',
@@ -37,6 +38,12 @@ export class AdminWZComponent implements OnInit {
     console.log(this.jobsNull);
     console.log(this.jobs);
     }
+
+  
+  // test(){
+  //   console.log(this.jobsNull, this.jobs);
+    
+  // }
 
   ngOnDestroy() {
     this.subscription!.unsubscribe(); // hủy đăng ký subscriptions khi không còn cần thiết
@@ -90,6 +97,7 @@ export class AdminWZComponent implements OnInit {
   companyEdits = new Company()
   btnshowEdit(company: Company){
     this.showEdit = true
+    this.showDetails = false;
     this.companyEdits = company
 
   };

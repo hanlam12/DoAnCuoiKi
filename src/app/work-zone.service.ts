@@ -4,8 +4,8 @@ import { catchError, map, Observable, of, retry, subscribeOn, tap, throwError } 
 import { Job, Users  } from 'workzone';
 import { BehaviorSubject } from 'rxjs';
 import { Company } from 'workzone';
-
-import { Router } from '@angular/router';
+import { error } from 'jquery';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -788,6 +788,17 @@ updateImage(image: string): Observable<any> {
   const body = { image: image };
   return this._http.put<any>(`${this.serverUrl}/api/image`, body, { headers });
 }
+private apiappliedUrl = 'http://localhost:6868/api/applied-job';
+  getAppliedJob(userID: string): Observable<any> {
+    const url = `${this.apiappliedUrl}/${userID}`;
+    return this._http.get<any>(url);
+  };
+
+  createAppliedJob(appliedJob: any): Observable<any> {
+    return this._http.post<any>(`${this.serverUrl}/api/create-applied-job`, appliedJob);
+
+}
+
 // đếm số lượng job trong các component
 
   private jobCountSource = new BehaviorSubject<number>(0);
@@ -817,6 +828,30 @@ changePassword(oldPassword: string, newPassword: string): Observable<any> {
   );
 }
 
+userLoggedinData: any
+//truyền data user logged in
+
+ setUserDataLoggedin(userData: string){
+  this.userLoggedinData = localStorage.getItem('userID')
+ }
+ UserDataLoggedin(){
+  // return this.userLoggedinData
+  return localStorage.getItem('userID')
+ }
+ UserIDDataLoggedin(){
+  return localStorage.getItem('userID')
+ }
+
+ navigateToAppliedJob() {
+
+  this.router.navigate([`/applied-job/${localStorage.getItem('userID')}`]);
+}
+navigatetoLogin(){
+  this.router.navigate([`/login`]);
+}
+navigatetoHomepage(){
+  this.router.navigate([`/`]);
+}
 
 }
 
