@@ -729,7 +729,6 @@ addJob(jobData: any, company_id: string):Observable<any>
   }
   return this._http.post<any>(url,jobData ,requestOptions).pipe(
       map(res=>JSON.parse(res) as Job),
-
       catchError(this.handleError)
   )
 }
