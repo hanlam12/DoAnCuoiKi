@@ -31,6 +31,10 @@ export class HompageComponent
     this.getJobs();
     this.getCompanies();
 
+  }
+  
+
+
     }
   getJobs() {
     this._service.getJobs().subscribe({
@@ -99,6 +103,7 @@ export class HompageComponent
   test(){
     console.log(this.appliedData)
   }
+
   luu() {
     this.show = !this.show;
   }

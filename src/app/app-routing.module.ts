@@ -32,6 +32,8 @@ import { AdminWZComponent } from './admin-wz/admin-wz.component';
 import { LoginEmployerComponent } from './login-employer/login-employer.component';
 import { SignUpEmployerComponent } from './sign-up-employer/sign-up-employer.component';
 import { PaymentComponent } from './payment/payment.component';
+import { DonUngTuyenComponent } from './don-ung-tuyen/don-ung-tuyen.component';
+import { XemUngVienComponent } from './xem-ung-vien/xem-ung-vien.component';
 
 
 const routes: Routes = [
@@ -72,10 +74,15 @@ const routes: Routes = [
 
   {path: "company", component: CongtyComponent},
   {path: "admin", component: AdminWZComponent},
+
    {path: "company/:company_id", component: CongtyComponent},
+
   {path:"login-employer", component:LoginEmployerComponent},
   {path:"sign-up-employer", component:SignUpEmployerComponent},
-  {path:"payment", component:PaymentComponent}
+  {path:"payment", component:PaymentComponent},
+  {path:"homepageEmployer/:company_id/:jobJD", component:DonUngTuyenComponent},
+  {path:"homepageEmployer/:company_id/:jobJD/:userID", component:XemUngVienComponent},
+
 
 ];
 

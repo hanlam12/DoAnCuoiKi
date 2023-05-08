@@ -1,0 +1,23 @@
+.container{
+  margin: auto;
+  width: 100%;
+}
+.picture{
+  width: 50%;
+  border-bottom: 1px solid #eee;
+  padding: 24px 24px 36px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: -1px 1px 6px rgba(0, 0, 0, 0.258);
+  min-width: 330px;
+  height: fit-content;
+  margin: auto;
+}
+.picture img{
+  width: 100%;
+  height: auto;
+  justify-content: center;
+}
+.exit{
+  margin-left: 50px;
+}

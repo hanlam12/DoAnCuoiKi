@@ -26,14 +26,35 @@ export class Job{
   public gender:string="",
   public recruiting_amount:string="",
   public work_form:string="",
-  public company_id:string=""
+  public company_id:string="",
+  public applyuser:Array<userID>=[]
   ){}
   }
+
+export class User{
+  constructor(
+    public _id:any=null,
+    public userID:string="",
+    public fullname:string="",
+    public email:string="",
+    public gender:string="",
+    public DOB: string="",
+    public phone:number,
+    public address:string="",
+    public district:string="",
+    public city:string="",
+    public password:string="",
+    public cv: Array<cv>,
+    public image:string=""
+    ){}
+}
 
 export class Company{
   constructor(
     public _id:any=null,
     public company_id:string="",
+    public image:string="",
+
     public company_name:string="",
     public email:string="",
     public phone:string="",
@@ -43,7 +64,7 @@ export class Company{
     public company_intro:string="",
     public company_scale:string="",
     public company_address: string ="",
-    public company_website:string=""
+    public company_website:string="",
     ){}
 }
 export interface category{
@@ -71,11 +92,12 @@ export class Users{
     public cv: Array<cv>=[],
     public city:string="",
     public image:string="",
-    public savejob: Array<jobJD>=[]
-
+    public JobJD: Array<jobJD>=[]
   ){}
 }
 export interface jobJD{
   savejobJD: string
 }
-
+export interface userID{
+  savejobJD: string
+}

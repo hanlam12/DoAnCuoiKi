@@ -1,4 +1,4 @@
-<!--
+
 
     <div id="body">
          <div class="body_right" ng-controller="myController">
@@ -37,421 +37,58 @@
           <p class="icon">
             <i class="bi bi-cloud-arrow-up" style="font-size: 50px; color: #00A9FF;"></i>
           </p>
-          <div class="not-cv" *ngIf="!newcv.CV_chinh">
+          <div class="not-cv" >
             <p>Kéo CV của bạn vào đây hoặc bấm để chọn file CV của bạn</p>
           </div>
-          <div class="is-cv" *ngIf="newcv.CV_chinh">
-            <p class="name-file">{{newcv.title}}</p>
+          <div class="is-cv" >
+            <p class="name-file"></p>
             <p>Chọn tệp khác</p>
           </div>
-          <form id="formUploadCv" action="" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="_token" value="20pu1kkykc56Qn6HmNsD1aSLoqXn4PUSjnxtNUpm">
-            <input type="file" name="file_upload_cv" class="file-upload-cv" id="file-upload-cv" (change)="onFileSelected($event, newcv)">
+          <form id="formUploadCv" action="" method="post" enctype="multipart/form-data" >
+            <input type="hidden" name="image"id="image" >
+            <input type="file"  name="cv" name="file_upload_cv" class="file-upload-cv" id="file-upload-cv" [(ngModel)]="cv" name="cv" >
           </form>
         </div>
         <div class="file-format">
           <div>File tải lên không quá: 5 MB</div>
         </div>
         <div class="box-btn-upload">
-          <button (click)="updateCv()" class="btn btn-primary-hover  btn-upload ">Tải CV lên</button>
+          <button type="submit"  (click)="applyCV()" class="btn btn-primary-hover  btn-upload ">Tải CV lên</button>
           <p class="text-highlight upload-process">Hệ thống đang xử lý CV của bạn thông thường mất từ 10 đến 15 giây, xin vui lòng đợi !!!</p>
         </div>
       </div>
       <div  id="cv-upload-list" class="box-block" *ngIf="UpdateCv">
-          <p class="title"> <b>Cập nhật thông tin để WorkZone kết nối bạn với những cơ hội việc làm phù hợp nhất</b>  </p>
-           <h4 class="text-center">Thông tin cá nhân</h4>
-        <div id="exist-avatar" class="upload-avatar d-flex">
-        <div class="avatar">
-          <img src="{{user?.image}}" id="avatar-output">
+        <div>
+          <span class="exit" (click)="cancel()" >
+            <a><i class="bi bi-box-arrow-left"></i>&nbsp;&nbsp;&nbsp;Thoát</a>
+          </span>
         </div>
-        <button class="btn btn-change-avatar btn-upload-avatar mt-2">
-          <i class="fa-solid fa-camera"></i> Thay ảnh </button>
+        <div class="text-center">Tải CV lên thành công</div>
+        <br>
       </div>
-      <form action="post" method="POST" id="profile-form" *ngFor="let c of user?.cv" [formGroup]="regForm" >
-        <input type="hidden" name="_token" value="xXre87L9abHsibbHUc6qqxvGChSCOxublrJK8lbZ">
-        <div class="sub-content">
-          <div class="form-group row mb-3">
-            <div class="col-md-3 align-self-center">
-              <label for="">Tiêu đề hồ sơ <span class="text-red">*</span></label>
-            </div>
-            <div class="col-md-9">
-              <input type="text" class="form-control border-hover" placeholder="Nhập tiêu đề hồ sơ" name="fulltitle" value="{{c?.title}}">
-            </div>
-          </div>
-          <div class="form-group row mb-3">
-            <div class="col-md-3 align-self-center">
-              <label for="">Họ và Tên <span class="text-red">*</span></label>
-            </div>
-            <div class="col-md-9">
-              <input type="text" class="form-control border-hover" placeholder="Họ và tên đầy đủ của bạn" name="fullname" value="{{user?.fullname}}">
-            </div>
-          </div>
-          <div class="form-group row mb-3">
-            <div class="col-md-3 align-self-center">
-              <label for="">Năm sinh <span class="text-red">*</span></label>
-            </div>
-            <div class="col-md-9">
-              <select type="text" class="form-control  select2-hidden-accessible" id="dob_selector" name="dob" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="YOB" [class.is-invalid]="regForm.controls['YOB'].invalid && regForm.controls['YOB'].touched">
-              <option value>{{c?.YOB}}</option>
-              <option value="1">2005</option>
-              <option value="2">2004</option>
-              <option value="3">2003</option>
-              <option value="4">2002</option>
-              <option value="5">2001</option>
-              <option value="6">2000</option>
-              <option value="7">1999</option>
-              <option value="8">1998</option>
-              <option value="9">1997</option>
-              <option value="10">1996</option>
-              <option value="11">1995</option>
-              <option value="12">1994</option>
-              <option value="13">1993</option>
-              <option value="14">1992</option>
-              <option value="15">1991</option>
-              <option value="16">1990</option>
-              <option value="17">1989</option>
-              <option value="18">1988</option>
-              <option value="19">1987</option>
-              <option value="20">1986</option>
-              <option value="21">1985</option>
-              <option value="22">1984</option>
-              <option value="23">1983</option>
-              <option value="24">1982</option>
-              <option value="25">1981</option>
-              <option value="26">1980</option>
-              <option value="27">1979</option>
-              <option value="28">1978</option>
-              <option value="29">1977</option>
-              <option value="30">1976</option>
-              <option value="31">1975</option>
-              <option value="32">1974</option>
-              <option value="33">1973</option>
-              <option value="34">1972</option>
-              <option value="35">1971</option>
-              <option value="36">1970</option>
-              <option value="37">1969</option>
-              <option value="38">1968</option>
-              <option value="39">1967</option>
-              <option value="40">1966</option>
-              <option value="41">1965</option>
-              <option value="42">1964</option>
-              <option value="43">1963</option>
-              <option value="44">1962</option>
-              <option value="45">1961</option>
-              <option value="46">1960</option>
-              <option value="47">1959</option>
-              <option value="48">1958</option>
-              <option value="49">1957</option>
-              <option value="51">1956</option>
-              <option value="52">1955</option>
-              <option value="53">1954</option>
-              <option value="54">1953</option>
-              <option value="55">1952</option>
-              <option value="56">1951</option>
-              <option value="57">1950</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row mb-3">
-            <div class="col-md-3 align-self-center">
-              <label for="">Giới tính <span class="text-red">*</span></label>
-            </div>
-            <div class="col-md-9 radio">
-              <select type="text" class="form-control  select2-hidden-accessible" id="experience" name="experience" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="gender" [class.is-invalid]="regForm.controls['gender'].invalid && regForm.controls['gender'].touched">
-                <option value="">{{user?.gender}}</option>
-                <option value="1">Nam</option>
-                <option value="2">Nữ</option>
-                <option value="3">Không xác định</option>
-                </select>
-            </div>
-          </div>
-          <div class="form-group row mb-3">
-            <div class="col-md-3 align-self-center">
-              <label for="">Ngành nghề <span class="text-red">*</span></label>
-            </div>
-            <div class="col-md-9 radio">
-              <select type="text" class="form-control  select2-hidden-accessible" id="categoy" name="categoy" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="career" [class.is-invalid]="regForm.controls['career'].invalid && regForm.controls['career'].touched">
-              <option value>{{c?.career}}</option>
-              <option value="1001">Kinh doanh / Bán hàng</option>
-              <option value="1002">Biên / Phiên dịch</option>
-              <option value="1003">Báo chí / Truyền hình</option>
-              <option value="1004">Bưu chính - Viễn thông</option>
-              <option value="1005">Bảo hiểm</option>
-              <option value="1006">Bất động sản</option>
-              <option value="1007">Chứng khoán / Vàng / Ngoại tệ</option>
-              <option value="1008">Công nghệ cao</option>
-              <option value="1009">Cơ khí / Chế tạo / Tự động hóa</option>
-              <option value="1010">Du lịch</option>
-              <option value="1011">Dầu khí/Hóa chất</option>
-              <option value="1012">Dệt may / Da giày</option>
-              <option value="1013">Dịch vụ khách hàng</option>
-              <option value="1014">Điện tử viễn thông</option>
-              <option value="1015">Điện / Điện tử / Điện lạnh</option>
-              <option value="1016">Giáo dục / Đào tạo</option>
-              <option value="1017">Hoá học / Sinh học</option>
-              <option value="1018">Hoạch định/Dự án</option>
-              <option value="1019">Hàng gia dụng</option>
-              <option value="1020">Hàng hải</option>
-              <option value="1021">Hàng không</option>
-              <option value="1022">Hành chính / Văn phòng</option>
-              <option value="1023">In ấn / Xuất bản</option>
-              <option value="1024">IT Phần cứng / Mạng/option>
-              <option value="1025">IT phần mềm</option>
-              <option value="1026">Khách sạn / Nhà hàng</option>
-              <option value="1027">Kế toán / Kiểm toán</option>
-              <option value="1028">Công nghệ Ô tô</option>
-              <option value="1029">An toàn lao động</option>
-              <option value="1030">Marketing / Truyền thông / Quảng cáo</option>
-              <option value="1031">Môi trường / Xử lý chất thải</option>
-              <option value="1032">Mỹ phẩm / Trang sức</option>
-              <option value="1033">Mỹ thuật / Nghệ thuật / Điện ảnh</option>
-              <option value="1034">Ngân hàng / Tài chính</option>
-              <option value="1035">Nhân sự</option>
-              <option value="1036">Nông / Lâm / Ngư nghiệp</option>
-              <option value="1037">Luật/Pháp lý</option>
-              <option value="1038">Quản lý chất lượng (QA/QC)</option>
-              <option value="1039">Quản lý điều hành</option>
-              <option value="1040">Thiết kế đồ họa</option>
-              <option value="1041">Thời trang</option>
-              <option value="1042">Thực phẩm / Đồ uống</option>
-              <option value="1043">Tư vấn</option>
-              <option value="1044">Tổ chức sự kiện / Quà tặng</option>
-              <option value="1045">Vận tải / Kho vận</option>
-              <option value="1046">Logistics</option>
-              <option value="1047">Xuất nhập khẩu</option>
-              <option value="1048">Xây dựng</option>
-              <option value="1049">Y tế / Dược</option>
-              <option value="1050">Bán hàng kỹ thuật</option>
-              <option value="1051">Bán lẻ / bán sỉ</option>
-              <option value="1052">Bảo trì / Sửa chữa</option>
-              <option value="1053">Dược phẩm / Công nghệ sinh học</option>
-              <option value="1054">Địa chất / Khoáng sản</option>
-              <option value="1055">Hàng cao cấp</option>
-              <option value="1056">Hàng tiêu dùng</option>
-              <option value="1057">Kiến trúc</option>
-              <option value="1058">Phi chính phủ / Phi lợi nhuận</option>
-              <option value="1059">Sản phẩm công nghiệp</option>
-              <option value="1060">Sản xuất</option>
-              <option value="1061">Tài chính / Đầu tư</option>
-              <option value="1062">Thiết kế nội thất</option>
-              <option value="1063">Thư ký / Trợ lý</option>
-              <option value="1064">Spa / Làm đẹp</option>
-              <option value="1065">Công nghệ thông tin</option>
-              <option value="1066">NGO / Phi chính phủ / Phi lợi nhuận</option>
-              <option value="1067">Ngành nghề khác</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row mb-3">
-            <div class="col-md-3 align-self-center">
-              <label for="">Kinh ngiệm <span class="text-red">*</span></label>
-            </div>
-            <div class="col-md-9">
-              <select type="text" class="form-control  select2-hidden-accessible" id="experience" name="experience" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="experience" [class.is-invalid]="regForm.controls['experience'].invalid && regForm.controls['experience'].touched">
-              <option value>{{c?.experience}}</option>
-              <option value="1">Chưa có kinh nghiệm</option>
-              <option value="2">Dưới 1 năm</option>
-              <option value="3">1 năm</option>
-              <option value="4">2 năm</option>
-              <option value="5">3 năm</option>
-              <option value="6">4 năm</option>
-              <option value="7">5 năm</option>
-              <option value="8">Trên 5 năm</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row mb-3">
-            <div class="col-md-3 align-self-center">
-              <label for="">Trình độ chuyên môn <span class="text-red">*</span></label>
-            </div>
-            <div class="col-md-9">
-              <select type="text" class="form-control  select2-hidden-accessible" id="trinhDoChuyenMon" name="trinhDoChuyenMon" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="qualification" [class.is-invalid]="regForm.controls['qualification'].invalid && regForm.controls['qualification'].touched">
-              <option value>{{c?.qualification}}</option>
-              <option value="1">Sinh viên</option>
-              <option value="2">Mới ra trường</option>
-              <option value="3">Có kinh nghiệm</option>
-              <option value="4">Trưởng nhóm</option>
-              <option value="5">Quản lý/Giám sát</option>
-              <option value="6">Chuyên gia</option>
-              <option value="7">Giám đốc</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row mb-3">
-            <div class="col-md-3 align-self-center">
-              <label for="">Trình độ tiếng anh <span class="text-red">*</span></label>
-            </div>
-            <div class="col-md-9">
-              <select type="text" class="form-control  select2-hidden-accessible" id="trinhDoEnglish" name="trinhDoEnglish" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="english_level" [class.is-invalid]="regForm.controls['english_level'].invalid && regForm.controls['english_level'].touched">
-              <option value>{{c?.english_level}}</option>
-              <option value="1">Không biết</option>
-              <option value="2">Đọc hiểu cơ bản</option>
-              <option value="3">Đọc/viết tốt tài liệu chuyên môn</option>
-              <option value="4">Giao tiếp tốt</option>
-              <option value="5">Thành thục mọi kỹ năng</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row mb-3">
-            <div class="col-md-3 align-self-center">
-              <label for="">Địa điểm làm việc <span class="text-red">*</span></label>
-            </div>
-            <div class="col-md-9">
-              <select type="text" class="form-control  select2-hidden-accessible" id="address" name="address" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="work_location" [class.is-invalid]="regForm.controls['work_location'].invalid && regForm.controls['work_location'].touched">
-              <option value="">{{c?.work_location}}</option>
-              <option value="1">Hà Nội</option>
-              <option value="2">Hồ Chí Minh</option>
-              <option value="3">Bình Dương</option>
-              <option value="4">Bắc Ninh</option>
-              <option value="5">Đồng Nai</option>
-              <option value="6">Hưng Yên</option>
-              <option value="7">Hải Dương</option>
-              <option value="8">Đà Nẵng</option>
-              <option value="9">Hải Phòng</option>
-              <option value="10">An Giang</option>
-              <option value="11">Bà Rịa-Vũng Tàu</option>
-              <option value="12">Bắc Giang</option>
-              <option value="13">Bắc Kạn</option>
-              <option value="14">Bạc Liêu</option>
-              <option value="15">Bến Tre</option>
-              <option value="16">Bình Định</option>
-              <option value="17">Bình Phước</option>
-              <option value="18">Bình Thuận</option>
-              <option value="19">Cà Mau</option>
-              <option value="20">Cần Thơ</option>
-              <option value="21">Cao Bằng</option>
-              <option value="22">Cửu Long</option>
-              <option value="23">Đắk Lắk</option>
-              <option value="24">Đắc Nông</option>
-              <option value="25">Điện Biên</option>
-              <option value="26">Đồng Tháp</option>
-              <option value="27">Gia Lai</option>
-              <option value="28">Hà Giang</option>
-              <option value="29">Hà Nam</option>
-              <option value="30">Hà Tĩnh</option>
-              <option value="31">Hậu Giang</option>
-              <option value="32">Hoà Bình</option>
-              <option value="33">Khánh Hoà</option>
-              <option value="34">Kiên Giang</option>
-              <option value="35">Kon Tum</option>
-              <option value="36">Lai Châu</option>
-              <option value="37">Lâm Đồng</option>
-              <option value="38">Lạng Sơn</option>
-              <option value="39">Lào Cai</option>
-              <option value="40">Long An</option>
-              <option value="41">Miền Bắc</option>
-              <option value="42">Miền Nam</option>
-              <option value="43">Miền Trung</option>
-              <option value="44">Nam Định</option>
-              <option value="45">Nghệ An</option>
-              <option value="46">Ninh Bình</option>
-              <option value="47">Ninh Thuận</option>
-              <option value="48">Phú Thọ</option>
-              <option value="49">Phú Yên</option>
-              <option value="50">Quảng Bình</option>
-              <option value="51">Quảng Nam</option>
-              <option value="52">Quảng Ngãi</option>
-              <option value="53">Quảng Ninh</option>
-              <option value="54">Quảng Trị</option>
-              <option value="55">Sóc Trăng</option>
-              <option value="56">Sơn La</option>
-              <option value="57">Tây Ninh</option>
-              <option value="58">Thái Bình</option>
-              <option value="59">Thái Nguyên</option>
-              <option value="61">Thanh Hoá</option>
-              <option value="62">Thừa Thiên Huế</option>
-              <option value="63">Tiền Giang</option>
-              <option value="64">Toàn Quốc</option>
-              <option value="65">Trà Vinh</option>
-              <option value="66">Tuyên Quang</option>
-              <option value="67">Vĩnh Long</option>
-              <option value="68">Vĩnh Phúc</option>
-              <option value="69">Yên Bái</option>
-              <option value="70">Nước Ngoài</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row mb-3">
-            <div class="col-md-3 align-self-center">
-              <label for="">Hình thức làm việc <span class="text-red">*</span></label>
-            </div>
-            <div class="col-md-9">
-              <select type="text" class="form-control  select2-hidden-accessible" id="hinhThucLamViec" name="hinhThucLamViec" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="working_form" [class.is-invalid]="regForm.controls['working_form'].invalid && regForm.controls['working_form'].touched">
-              <option value>{{c?.working_form}}</option>
-              <option value="1">Toàn thời gian</option>
-              <option value="2">Bán thời gian</option>
-              <option value="3">Thực tập</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row mb-3">
-            <div class="col-md-3 align-self-center">
-              <label for="">Mức lương mong muốn <span class="text-red">*</span></label>
-            </div>
-            <div class="col-md-9">
-              <select type="text" class="form-control  select2-hidden-accessible" id="mucLuongMongMuon" name="mucLuongMongMuon" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="desired_salary" [class.is-invalid]="regForm.controls['desired_salary'].invalid && regForm.controls['desired_salary'].touched">
-              <option value>{{c?.desired_salary}}</option>
-              <option value="1">Dưới 5 triệu</option>
-              <option value="2"> 5 - 10 triệu</option>
-              <option value="3">10 - 15 triệu </option>
-              <option value="4">15 - 20 triệu</option>
-              <option value="5">20 - 25 triệu</option>
-              <option value="6">25 - 30 triệu</option>
-              <option value="7">Lương thỏa thuận</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row mb-3">
-            <div class="col-md-3 align-self-center">
-              <label for="">CV chính của bạn <span class="text-red">*</span></label>
-            </div>
-            <div class="col-md-9">
-              <select type="text" class="form-control  select2-hidden-accessible" id="CVChinh" name="CVChinh" style="width: 100%"  tabindex="-1" aria-hidden="true" formControlName="CV_chinh" [class.is-invalid]="regForm.controls['CV_chinh'].invalid && regForm.controls['CV_chinh'].touched">
-              <option value>-- Chọn CV bạn muốn dùng để ứng tuyển --</option>
-              <option>{{c?.CV_chinh}}</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row mb-3">
-            <div class="col-md-3 align-self-center">
-              <label for="">Mong muốn của bạn</label>
-            </div>
-            <div class="col-md-9">
-              <textarea class="form-control border-hover" name="expectation" placeholder="Mong muốn của bạn về các cơ hội việc làm phù hợp, về môi trường công ty hoặc thông tin công ty bạn muốn ứng tuyển"  cols="30" rows="10" style="height: fit-content;">{{c?.your_wishes}} </textarea>
-            </div>
-          </div>
-          <div class="form-group row mb-3">
-            <div class="col-md-3 align-self-center">
-              <label for="">Giới thiệu về bạn</label>
-            </div>
-            <div class="col-md-9">
-              <textarea class="form-control border-hover" name="note" placeholder="Giới thiệu ngắn gọn về bàn thân để tạo ấn tượng tốt với các nhà tuyển dụng" style="height: fit-content;" cols="30" rows="10"> {{c?.introduce_yourself}} </textarea>
-            </div>
-          </div>
+      <div  id="cv-upload-list" class="box-block" *ngIf="detail">
+        <div>
+          <span class="exit" (click)="cancel()" >
+            <a><i class="bi bi-box-arrow-left"></i>&nbsp;&nbsp;&nbsp;Thoát</a>
+          </span>
         </div>
-        <div class="action text-center my-5">
-          <button (click)="cancel()" class="btn btn-cancel mx-1">Bỏ qua</button>
-          <button type="submit" class="btn btn-primary mx-1" (click)="putInforCv()">Cập nhật thông tin</button>
+        <div class="cvChiTiet" *ngFor=" let item of user?.cv">
+          <img src="{{item}}" alt="">
         </div>
-      </form>
-      </div>
       </div>
       <div id="body_left-bottom" *ngIf="hoSoDaTao" >
       <div id="content_body_left">
         <div id="file_created"> <p>Hồ sơ đã tạo</p> </div>
-        <div id="you_create_file"> <p>Bạn đã tạo 03 hồ sơ</p> </div>
-        <div >
+          <div >
         <table>
         <tr>
             <th>STT</th>
             <th>Tên hồ sơ</th>
-            <th>Ngày tạo</th>
             <th class="text-center ">Xem chi tiết</th>
         </tr>
-        <tr *ngFor="let c of user?.cv">
-            <td>1</td>
-            <td>{{c?.title}}</td>
-            <td>11/12/2022</td>
+        <tr *ngFor="let item of user?.cv; let i = index">
+            <td >{{ i + 1 }}</td>
+            <td>{{item}}</td>
             <td>  <div id="chitiet" class="text-center"><a (click)="chitiet()">Chi tiết</a></div></td>
         </tr>
     </table>

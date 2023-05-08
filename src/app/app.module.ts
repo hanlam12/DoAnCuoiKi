@@ -29,7 +29,6 @@ import { ThongBaoViecLamComponent } from './thong-bao-viec-lam/thong-bao-viec-la
 import { AccountMenuComponent } from './account-menu/account-menu.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-
 import { AdminWZComponent } from './admin-wz/admin-wz.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
@@ -38,14 +37,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SavedJobComponent } from './saved-job/saved-job.component';
 import { RecruitmentComponent } from './recruitment/recruitment.component';
 import { HomepageEmployerComponent } from './homepage-employer/homepage-employer.component';
-
 import { NewCompanyModalComponent } from './new-company-modal/new-company-modal.component';
-
 import { LoginEmployerComponent } from './login-employer/login-employer.component';
 import { SignUpEmployerComponent } from './sign-up-employer/sign-up-employer.component';
-
 import { PaymentComponent } from './payment/payment.component';
+
+import { DonUngTuyenComponent } from './don-ung-tuyen/don-ung-tuyen.component';
+import { XemUngVienComponent } from './xem-ung-vien/xem-ung-vien.component';
+
 import { HeaderEmployerComponent } from './header-employer/header-employer.component';
+
 
 
 
@@ -91,7 +92,12 @@ import { HeaderEmployerComponent } from './header-employer/header-employer.compo
     LoginEmployerComponent,
     SignUpEmployerComponent,
     PaymentComponent,
+
+    DonUngTuyenComponent,
+    XemUngVienComponent,
+
     HeaderEmployerComponent
+
 
 
 
