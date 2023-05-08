@@ -1,6 +1,6 @@
 <app-not-found *ngIf="currentRoute === '/404notfound'"></app-not-found>
-<div *ngIf="currentRoute !== '/404notfound' && currentRoute !== ('/homepageEmployer/' + companyId) && currentRoute !== ('/recruitment/' + companyId) && currentRoute !== ('/homepageEmployer')">
-     <ng-container *ngIf="!currentRoute.endsWith('sign-up') && !currentRoute.endsWith('login') && !currentRoute.endsWith('sign-up-employer') && !currentRoute.endsWith('login-employer')">
+<div *ngIf="currentRoute !== '/404notfound' && currentRoute !== ('/homepageEmployer/' + companyId) && currentRoute !== ('/recruitment/' + companyId) && !currentRoute.includes('/homepageEmployer')">
+     <ng-container *ngIf="!currentRoute.endsWith('sign-up') && !currentRoute.endsWith('login') && !currentRoute.endsWith('sign-up-employer') && !currentRoute.endsWith('login-employer') ">
       <app-header-login></app-header-login>
     </ng-container>
     <ng-container *ngIf="currentRoute.includes('noti') || currentRoute.includes('profile') || currentRoute.includes('applied-job') || currentRoute.includes('saved') || currentRoute.includes('job-application') || currentRoute.includes('thaydoimatkhau')">

@@ -718,17 +718,17 @@ updateCompany(companyId: string, image: string, companyIntro: string, companySca
 
 
 
-GetRecruit(company_id: string): Observable<Company> {
+// GetRecruit(company_id: string): Observable<Company> {
 
-  const url = `http://localhost:6868/api/recruitment/${company_id}`;
-  return this._http.get<Company>(url).pipe(
-    map(result => result),
-    catchError(error => {
-      console.error('Error', error);
-      return throwError(error)})
+//   const url = `http://localhost:6868/api/recruitment/${company_id}`;
+//   return this._http.get<Company>(url).pipe(
+//     map(result => result),
+//     catchError(error => {
+//       console.error('Error', error);
+//       return throwError(error)})
 
-  );
-}
+//   );
+// }
 
 addJob(jobData: any, company_id: string):Observable<any>
 {
@@ -818,6 +818,9 @@ private apiappliedUrl = 'http://localhost:6868/api/applied-job';
 updateJobCount(jobCount: number) {
   this.jobCountSource.next(jobCount);
 }
+
+
+
 // chỉnh pass
 changePassword(oldPassword: string, newPassword: string): Observable<any> {
   const data = { password: oldPassword, newPassword: newPassword };
@@ -863,54 +866,52 @@ navigatetoLogin(){
 navigatetoHomepage(){
   this.router.navigate([`/`]);
 }
-
-}
-
-
-
 //user apply job
 ApplyJob(jonId: string, userId: string, isApplied: boolean): Observable<any> {
- const headers = new HttpHeaders().set("Content-Type", "application/json");
- const requestOptions: Object = {
- headers: headers
- };
- const body = {
- userID: userId,
- JobJD: jonId
- };
- let apiUrl = "/api/applyuser";
- return this._http.put<any>(`http://localhost:6868${apiUrl}`, body, requestOptions).pipe(
- catchError(this.handleError)
- );
- }
-
- GetApplyUser(companyId:string,jobJD: string): Observable<any> {
-   const headers = new HttpHeaders().set("Content-Type", "application/json");
-   const requestOptions: Object = {
-     headers: headers
-   };
-   let apiUrl = `/api/getapplyuser/${companyId}/${jobJD}`;
-
-   return this._http.get<any>(`http://localhost:6868${apiUrl}`, requestOptions).pipe(
-     catchError(this.handleError)
-   );
- }
- getUserApply(userID: string):  Observable<Job> {
-  return this._http.get<Job>(`http://localhost:6868/api/getuserapply/${userID}`);
-}
-applyCV(userID: string, cv: String): Observable<any> {
   const headers = new HttpHeaders().set("Content-Type", "application/json");
   const requestOptions: Object = {
   headers: headers
   };
   const body = {
-  userID: userID,
-  cv: cv
+  userID: userId,
+  JobJD: jonId
   };
-  let apiUrl = "/api/applyCV";
+  let apiUrl = "/api/applyuser";
   return this._http.put<any>(`http://localhost:6868${apiUrl}`, body, requestOptions).pipe(
   catchError(this.handleError)
   );
   }
 
+  GetApplyUser(companyId:string,jobJD: string): Observable<any> {
+    const headers = new HttpHeaders().set("Content-Type", "application/json");
+    const requestOptions: Object = {
+      headers: headers
+    };
+    let apiUrl = `/api/getapplyuser/${companyId}/${jobJD}`;
+
+    return this._http.get<any>(`http://localhost:6868${apiUrl}`, requestOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+   applyCV(userID: string, cv: string): Observable<any> {
+   const headers = new HttpHeaders().set("Content-Type", "application/json");
+   const requestOptions: Object = {
+   headers: headers
+   };
+   const body = {
+   userID: userID,
+   cv: cv
+   };
+   let apiUrl = "/api/applyCV";
+   return this._http.put<any>(`http://localhost:6868${apiUrl}`, body, requestOptions).pipe(
+   catchError(this.handleError)
+   );
+   }
+
 }
+
+
+
+
+

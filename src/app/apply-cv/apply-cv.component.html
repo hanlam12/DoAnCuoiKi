@@ -52,7 +52,7 @@
                 <div class="mb20">
                   <label for="">Thư giới thiệu: </label>
                   <textarea name="recommendation" id="recommendation" #name="ngModel" [(ngModel)]="submitCV.recommendation"  rows="3" class="form-control" placeholder="Viết giới thiệu ngắn gọn về bản thân (điểm mạnh, điểm yếu) và nêu rõ mong muốn, lý do làm việc tại công ty này. Đây là cách gây ấn tượng với nhà tuyển dụng nếu bạn có chưa có kinh nghiệm làm việc (hoặc CV không tốt)."></textarea>
-                  
+
                 </div>
               </form>
             </div>
@@ -61,7 +61,7 @@
 
         <div class="modal-footer" >
           <button (click)="bsModalRef.hide()" class="close">Đóng lại</button>
-          <button (click)="ApplyJob(jobs)" id="myBtn2">Nộp CV</button>
+          <button (click)="cvSuccess()"  id="myBtn2">Nộp CV</button>
 
         </div>
       </div>

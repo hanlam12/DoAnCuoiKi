@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 export class AppliedJobComponent {
   isOn: boolean = true;
   combinedJobs: any[] | undefined;
-  
+  jobCount_app = 0
   status() {
     this.isOn = !this.isOn;
   }
@@ -43,14 +43,14 @@ ngOnInit(): void {
     this.userIDAppliedJob = params.get('userID');
     this.getAppliedJob();
   });
- 
+
   if (this.userIDAppliedJob) {
     this.usersService.getUser(this.userIDAppliedJob).subscribe(user => {
       this.user = user;
       console.log('user:', user);
     });
   };
-  
+
 };
 getAppliedJob(): void {
   this.usersService.getAppliedJob(this.userIDAppliedJob)
@@ -62,7 +62,8 @@ getAppliedJob(): void {
         const matchingUserJob = this.userAppliedJob.find(userJob => userJob.jobJD === job.jobJD);
         return { ...job, appliedDate: matchingUserJob.appliedDate, status: matchingUserJob.status };
       });
-
+      this.jobCount_app = this.userAppliedJob?.length;
+      this.usersService.updateJobCount(this.jobCount_app);
     }, error => {
       console.error(error);
     });

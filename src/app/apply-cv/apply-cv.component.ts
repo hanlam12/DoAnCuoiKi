@@ -10,7 +10,7 @@ interface SubmitCV {
   email?: string;
   sdt?: string;
   recommendation?: string
-} 
+}
 
 @Component({
   selector: 'app-apply-cv',
@@ -48,8 +48,8 @@ export class ApplyCVComponent   {
 
   }
   submitCV: SubmitCV ={}
-  
-  createAppliedJob(appliedJob: any) { 
+
+  createAppliedJob(appliedJob: any) {
     this._job.createAppliedJob(appliedJob).subscribe(result => {
       console.log(result);
     });
@@ -61,24 +61,5 @@ export class ApplyCVComponent   {
     this.show=false
   }
 
-  
-  
-
-
-    ApplyJob(job: any): void {
-    const userId = localStorage.getItem('userID');
-    if (userId) {
-      this.isSubmitted = true;
-      this._job.getUserApply(userId).subscribe((applied: any) => { // Specify the type of the applied parameter as an array of strings
-        if (Array.isArray(applied) && applied.includes(job.jobJD)) {
-          console.log(`Công việc ${job.jobJD} đã được apply trước đó`);
-        } else {
-          this._job.ApplyJob(userId, job.jobJD, true).subscribe(() => {
-            this.saved_jobs.push(job.jobJD);
-            console.log(`Đã apply công việc ${job.jobJD}`);
-          });
-        }
-      });
-    }
   }
-}
+

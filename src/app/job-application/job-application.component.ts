@@ -3,7 +3,7 @@ import { WorkZoneService } from '../work-zone.service';
 import { ActivatedRoute } from '@angular/router';
 import {  User, Users } from 'workzone';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-job-application',
@@ -12,7 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class JobApplicationComponent implements OnInit {
   isOn: boolean = true;
-
+  user: Users | undefined
   status() {
     this.isOn = !this.isOn;
   }
@@ -37,15 +37,20 @@ cancel(){
   this.hoSoDaTao = true;
   this.detail = false;
 }
-chitiet(){
-  this.taiCv = false;
-  this.UpdateCv=false;
-  this.showCv = false;
-  this.hoSoDaTao = false;
-  this.detail = true;
-}
+selectedIndex: number = -1;
 
-user: Users | undefined
+chitiet() {
+  if (this.selectedIndex >= 0) {
+
+    // Hiển thị chi tiết của phần tử tại chỉ mục selectedIndex
+    this.taiCv = false;
+    this.UpdateCv = false;
+    this.showCv = false;
+    this.hoSoDaTao = false;
+    this.detail = true;
+
+  }
+}
 
 
 constructor(
@@ -64,19 +69,19 @@ ngOnInit(): void {
 }
 applied_cv: any[] = [];
 public cvCount: number = 0
-userID: string = '';
+
 cv: any;
 
 
-applyCV() {
+applyCV():void {
     this.taiCv = false;
     this.UpdateCv=true;
     this.showCv = false;
     this.hoSoDaTao = false
-    this.usersService.applyCV(this.userID, this.cv).subscribe(
-      response => {
-        this.applied_cv.push(response.cv);
-        console.log(`Applied CV successfully: ${response.cv}`);
+    const userID = localStorage.getItem('userID') || '';
+    this.usersService.applyCV(userID,this.cv).subscribe(()=> {
+        this.applied_cv.push(this.cv);
+        console.log(`Applied CV successfully: ${this.cv}`);
         const num_elements = this.applied_cv.length; // sử dụng hàm len() để đếm số phần tử
         console.log(`Number of elements in applied_cv: ${num_elements}`);
       },

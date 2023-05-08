@@ -29,21 +29,21 @@
             </div>
             <div class="leftBottomContent" >
               <div class="myPost fw-bold text-upper text-blue">Đơn ứng tuyển mới nhất</div>
-              <div class="figure" *ngFor="let user of companyData?.users">
+              <div class="figure" *ngFor="let user of companyData?.appliedJob">
                 <div class="image" *ngFor="let job of companyData?.jobs">
                   <a [routerLink]="['/homepageEmployer', companyData?.company?.company_id, job?.jobJD, user?.userID]" >
-                    <img src="{{user?.image}}">
+                    <img src="{{user?.user.image}}">
                   </a>
                 </div>
                 <div class="figcaption" *ngFor="let job of companyData?.jobs">
-                  <h5 class="title text-upper"> <a [routerLink]="['/homepageEmployer', companyData?.company?.company_id, job?.jobJD, user?.userID]"  >{{user?.fullname}}</a> </h5>
+                  <h5 class="title text-upper"> <a [routerLink]="['/homepageEmployer', companyData?.company?.company_id, job?.jobJD, user?.user.userID]"  >{{user?.user.fullname}}</a> </h5>
                   <div class="caption">
-                    <p class="email">Email: {{user?.email}}</p>
-                    <p class="phone">SĐT: {{user?.phone}}</p>
+                    <p class="email">Email: {{user?.user.email}}</p>
+                    <p class="phone">SĐT: {{user?.user.phone}}</p>
                   </div>
                 </div>
                 <div class="figNotification" *ngFor="let job of companyData?.jobs">
-                  <button class="btn view" (click)="status(); isOn = true;" [hidden]="isOn" [routerLink]="['/homepageEmployer', companyData?.company?.company_id, job?.jobJD, user?.userID]">Xem</button>
+                  <button class="btn view" (click)="status(); isOn = true;" [hidden]="isOn" [routerLink]="['/homepageEmployer', companyData?.company?.company_id, job?.jobJD, user?.user.userID]">Xem</button>
                   <button class="btn viewed" (click)="status(); isOn = false;" [hidden]="!isOn">Đã xem</button>
                 </div>
               </div>

@@ -68,14 +68,6 @@ app.listen(port,()=>{
     res.send(updatedUser);
   });
 
-//   app.post("/job-application/:userID", cors(), async(req, res) => {
-//     const userID = req.params.userID;
-//     const cv = req.body;
-//     const filter = { _id: ObjectId(userID) };
-//     const update = { $push: { cv: cv } };
-//     await userCollection.updateOne(filter, update);
-//     res.send(cv);
-// });
 
 app.put('/api/applyCV', cors(), async (req, res) => {
   const { userID, cv } = req.body;
@@ -87,7 +79,7 @@ app.put('/api/applyCV', cors(), async (req, res) => {
     if (!user.cv) {
       user.cv = [];
     }
-      user.cv.push( cv );
+      user.cv.push(cv);
     await userCollection.updateOne({ userID: userID }, { $set: { cv: user.cv } });
     res.status(200).json(user);
   } catch (error) {
@@ -243,20 +235,6 @@ app.get("/api/job/category/:categories", cors(), async (req, res) => {
   const result = await jobCollection.find({ category: { $in: categories } }).toArray();
   res.send(result);
 });
-
-// app.get("/job/:result", cors(), async (req, res) => {
-//   const position = req.params.position;
-//   const categories = req.params.categories.split(",");
-//   const result = await jobCollection.find({ position: position, category: { $in: categories } }).toArray();
-//   res.send(result);
-// });
-
-// TODO
-// app.get("/user",cors(),async(req,res)=>{
-//   const result = await userCollection.find({}).toArray();
-//   res.send(result)
-// })
-
 
 //api đăng kí user
 app.post("/api/users",cors(),async(req,res)=>{
@@ -762,8 +740,6 @@ app.get("/api/applied-job/:userID",cors(),async(req,res)=>{
     const userID = req.params.userID;
 
     const userAppliedJob = await AppliedJobCollection.find({ userID: userID }).toArray();
-
-    // const AppliedJob = await jobCollection.find({ jobJD: userAppliedJob.jobJD }).toArray();
     const jobJds = userAppliedJob.map((job) => job.jobJD);
   const AppliedJob = await jobCollection.find({ jobJD: { $in: jobJds } }).toArray();
 
@@ -834,19 +810,7 @@ app.put('/api/pass', async (req, res) => {
   }
 });
 
-    // user nào ứng tuyển gắn liền với job đó
-app.get("/api/applyuser/:jobJD",cors(),async(req,res)=>{
-  try {
-    const jobJD = req.params.jobJD;
-    const job = await jobCollection.findOne({ jobJD: jobJD});
-    const user = await userCollection.find({ userID: { $in: job.userID } }).toArray();
-    const applyuser ={job, user};
-  res.send(applyuser);
-} catch (err) {
-  console.error(err);
-  res.status(500).send('Server error');
-}
-})
+
 
 app.get("/api/getapplyuser/:company_id/:jobJD", cors(), async (req, res) => {
   try {
@@ -854,24 +818,27 @@ app.get("/api/getapplyuser/:company_id/:jobJD", cors(), async (req, res) => {
     // Find company by ID
     const company = await companyCollection.findOne({ company_id: companyId });
     if (!company) {
-      return res.status(404).send(`Company with ID ${companyId} not found`);
+      return res.status(404).send('Company with ID ' + companyId + ' not found');
     }
 
     const jobJD = req.params.jobJD;
     // Find jobs by company ID and jobJD
-    const jobs = await jobCollection.find({ company_id: companyId, jobJD: jobJD }).toArray();
-    console.log(jobs);
-
-    // Find users by jobJD
-    const regex = new RegExp(jobJD, 'i');
-    const users = await userCollection.find({ JobApply: regex }).toArray();
-    console.log(users);
-
-    const companyData = { company, jobs, users };
+    const jobs = await jobCollection.find({ jobJD: jobJD }).toArray();
+    const appliedJob = await AppliedJobCollection.find({jobJD: jobJD}).toArray()
+    for (let i = 0; i < appliedJob.length; i++) {
+      const userID = appliedJob[i].userID;
+      const user = await userCollection.findOne({userID: userID});
+      console.log(user)
+      await AppliedJobCollection.updateOne(
+        { _id: appliedJob[i]._id },
+        { $set: { user: user } }
+      );
+    }
+    const companyData = { company, jobs, appliedJob };
     res.send(companyData);
   } catch (err) {
     console.error(err);
-    res.status(500).send('Internal server error');
+    res.status(500).send('Server error');
   }
 });
 // user apply job
@@ -897,14 +864,3 @@ app.put('/api/applyuser', cors(), async (req, res) => {
   }
 });
 
-app.get("/api/getuserapply/:userID", cors(), async(req, res) => {
-  try {
-    const userID = req.params.userID;
-    const user = await userCollection.findOne({ userID: userID });
-    const savedJobs = user.JobJD;
-    res.send(savedJobs);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Server error');
-  }
-});

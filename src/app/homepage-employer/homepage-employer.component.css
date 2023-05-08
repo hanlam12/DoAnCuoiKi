@@ -85,9 +85,9 @@ margin-right: 10px;
 }
 .figNotification{
   flex: 0 0 100px;
-  max-width: 170px;
+  max-width: 100%;
     height: auto;
-   margin: auto;
+   margin: 0 33%;
    text-align: center;
 }
 

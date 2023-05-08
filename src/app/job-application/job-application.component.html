@@ -45,7 +45,7 @@
             <p>Chọn tệp khác</p>
           </div>
           <form id="formUploadCv" action="" method="post" enctype="multipart/form-data" >
-            <input type="hidden" name="image"id="image" >
+            <input type="hidden" name="image" id="image" >
             <input type="file"  name="cv" name="file_upload_cv" class="file-upload-cv" id="file-upload-cv" [(ngModel)]="cv" name="cv" >
           </form>
         </div>
@@ -72,8 +72,8 @@
             <a><i class="bi bi-box-arrow-left"></i>&nbsp;&nbsp;&nbsp;Thoát</a>
           </span>
         </div>
-        <div class="cvChiTiet" *ngFor=" let item of user?.cv">
-          <img src="{{item}}" alt="">
+        <div class="cvChiTiet" *ngIf="selectedIndex >= 0">
+          <img src="{{user && user.cv && user.cv[selectedIndex]}}" alt="">
         </div>
       </div>
       <div id="body_left-bottom" *ngIf="hoSoDaTao" >
@@ -87,10 +87,15 @@
             <th class="text-center ">Xem chi tiết</th>
         </tr>
         <tr *ngFor="let item of user?.cv; let i = index">
-            <td >{{ i + 1 }}</td>
-            <td>{{item}}</td>
-            <td>  <div id="chitiet" class="text-center"><a (click)="chitiet()">Chi tiết</a></div></td>
+          <td>{{ i + 1 }}</td>
+          <td>{{ item }}</td>
+          <td>
+            <div id="chitiet" class="text-center">
+              <a (click)="selectedIndex = i;chitiet()">Chi tiết</a>
+            </div>
+          </td>
         </tr>
+
     </table>
     </div>
     </div>
@@ -98,4 +103,4 @@
     </div>
     </div>
 
- -->
+

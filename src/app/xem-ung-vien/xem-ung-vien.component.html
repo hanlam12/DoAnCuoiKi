@@ -4,8 +4,8 @@
     <a [routerLink]="['/homepageEmployer', companyData?.company?.company_id, job?.jobJD]"><i class="bi bi-box-arrow-left"></i>&nbsp;&nbsp;&nbsp;Thoát</a>
   </span>
 </div>
- <div class="picture" *ngFor="let user of companyData?.users">
-  <img src="{{user?.cv}}">
+ <div class="picture" *ngFor="let user of companyData?.appliedJob">
+  <img src="{{user?.user.cv}}">
  </div>
 
 </div>

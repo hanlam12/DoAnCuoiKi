@@ -10,13 +10,13 @@ import { Users } from 'workzone';
   templateUrl: './hompage.component.html',
   styleUrls: ['./hompage.component.css']
 })
-export class HompageComponent 
+export class HompageComponent
 
 {
 
 
   user: any
-  
+
   show = false;
   errMessage = '';
   selectedJob: string = '';
@@ -32,10 +32,7 @@ export class HompageComponent
     this.getCompanies();
 
   }
-  
 
-
-    }
   getJobs() {
     this._service.getJobs().subscribe({
       next: (data) => {
@@ -67,13 +64,13 @@ export class HompageComponent
   toggle() {
     this.getJobs();
   }
-  
-  
+
+
   userID: any
 
   ngOnInit(): void {
 
-    
+
     this.userID = localStorage.getItem('userID')
     this._service.getJobs().subscribe(jobs => this.jobs = jobs);
     if (this.userID) {
@@ -90,7 +87,7 @@ export class HompageComponent
       alert('Vui lòng đăng nhập')
       this._service.navigatetoLogin()
     }
-    
+
     const appliedJob = {
       jobJD: jobTitle,
       userID: this.userID,
@@ -220,15 +217,5 @@ if (userId) {
       error:(err)=>{this.errMessage=err}
     });
   }
-
   }
-
-
-  
-  
 }
-
-
-
-
-
