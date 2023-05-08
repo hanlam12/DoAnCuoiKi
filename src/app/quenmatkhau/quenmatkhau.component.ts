@@ -15,13 +15,14 @@ export class QuenmatkhauComponent {
   openPage(email:string){
     this._S.findUser(email).subscribe({
       next:(data)=>{
-        if (data.message === 'User not found') {
-          this.errMessage = "User not found";
-        }
-        else
-        this.router.navigate(['quenmatkhau1']);
+        // if (data.message === 'User not found') {
+        //   this.errMessage = "User not found";
+        // }
+        // else
+        this.router.navigate(['quenmatkhau1',email]);
       },
       error :()=>{this.errMessage="User not found"}
     })
   }
+
 }

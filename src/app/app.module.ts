@@ -44,6 +44,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { RecruitmentComponent } from './recruitment/recruitment.component';
 import { HomepageEmployerComponent } from './homepage-employer/homepage-employer.component';
 import { AdminWZComponent } from './admin-wz/admin-wz.component';
+import { HeaderEmployerComponent } from './header-employer/header-employer.component';
 
 
 
@@ -85,7 +86,8 @@ import { AdminWZComponent } from './admin-wz/admin-wz.component';
     PaymentComponent,
     RecruitmentComponent,
     HomepageEmployerComponent,
-    AdminWZComponent
+    AdminWZComponent,
+    HeaderEmployerComponent
 
 
   ],

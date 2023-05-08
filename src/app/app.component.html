@@ -9,7 +9,7 @@
 
 
   <router-outlet></router-outlet>
-  <ng-container *ngIf="!currentRoute.endsWith('quenmatkhau') &&!currentRoute.endsWith('quenmatkhau1') && !currentRoute.endsWith('quenmatkhau2') && !currentRoute.endsWith('quenmatkhau3')" >
+  <ng-container *ngIf="!currentRoute.includes('quenmatkhau') &&!currentRoute.includes('quenmatkhau1') && !currentRoute.includes('quenmatkhau2') && !currentRoute.includes('quenmatkhau3')" >
     <app-footer-not-log-in></app-footer-not-log-in>
   </ng-container>
 </div>

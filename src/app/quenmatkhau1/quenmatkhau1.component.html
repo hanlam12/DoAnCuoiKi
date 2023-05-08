@@ -9,22 +9,22 @@
           <input class="form-check-input" type="radio" name="input" id="radio-email" checked>
           <label class="form-check-label" for="radio-email">
             Gửi mã qua email
-            <p>*****@*******</p>
+            <p>{{user.email}}</p>
           </label>
         </div>
         <div class="form-check">
           <input class="form-check-input" type="radio" name="input" id="radio-sms">
           <label class="form-check-label" for="radio-sms">
             Gửi mã qua SMS
-            <p>+84123456789</p>
+            <p>{{user.phone}}</p>
           </label>
         </div>
       </div>
       <div class="rec30-2">
-        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 100px;"
+        <img src="{{user.image}}" class="rounded-circle" style="width: 100px;"
   alt="Avatar" />
-        <p>User name</p>
-        <p>Người dùng WorkZone</p>
+        <p>{{user.fullname}}</p>
+        <p>Người tìm việc của WorkZone</p>
       </div>
     </div>
     <hr/>

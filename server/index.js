@@ -887,11 +887,7 @@ app.put('/api/pass', async (req, res) => {
     const result = await userCollection.updateOne({ email }, { $set: { password: newPassword, salt: newSalt } });
     if (result.modifiedCount !== 1) {
       res.send({"message":"Failed to update user password"})
-
-
     }
-
-
     res.send({"message":'Password updated successfully'});
   } catch (error) {
     console.error(error);
@@ -901,7 +897,7 @@ app.put('/api/pass', async (req, res) => {
 
 
 
-
+// api dựa vào email get user
 app.get('/api/users/:email', cors(), async (req, res) => {
   const email = req.params.email;
   const result = await userCollection.findOne({ email: email });
@@ -911,3 +907,32 @@ app.get('/api/users/:email', cors(), async (req, res) => {
     res.json(result);
   }
 });
+
+
+// api quên mật khẩu
+app.put("/api/savepass",cors(),async(req,res)=>{
+  var crypto = require('crypto');
+  salt = crypto.randomBytes(16).toString('hex');
+
+
+  user=req.body
+  var existingUser = await userCollection.findOne({email: user.email });
+  // Kiểm tra từng thông tin để trả về thông báo cụ thể cho người dùng
+  if (!existingUser) {
+    return res.status(404).send({ message: "Địa chỉ email không tồn tại" });
+  }
+  hash = crypto.pbkdf2Sync(user.password, salt, 1000, 64, `sha512`).toString(`hex`);
+  user.password=hash
+  user.salt=salt
+  const result = await userCollection.findOneAndUpdate(
+    { email: user.email },
+    { $set: { password: user.password, salt: user.salt } }
+  );
+  if (!result.value) {
+    res.status(500).send({ message: "Lỗi khi cập nhật mật khẩu." });
+    return;
+  }
+
+  res.status(200).send({ message: "Mật khẩu đã được cập nhật thành công." });
+  })
+

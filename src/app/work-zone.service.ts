@@ -928,17 +928,23 @@ decrementSavedJobCount(): void {
   }
 
 
-  findUser(email:string):Observable<any>{
-    const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
-    const requestOptions:Object={
-    headers:headers,
-    responseType:"text"
-    }
-    return this._http.get<any>("/api/users/"+email,requestOptions).pipe(
-    map(res=>JSON.parse(res) as Array<Job>),
-    retry(3),
-    catchError(this.handleError))
-    }
+  // get user = email
+  findUser(email: string): Observable<Users> {
+    return this._http.get<Users>("http://localhost:6868/api/users/"+email);
+  }
 
 
+  // save pass
+  savePassword(email: string, password: string): Observable<any> {
+    const data = { email, password };
+    return this._http.put<any>(`${this.serverUrl}/api/savepass`, data).pipe(
+      tap(data => {
+        console.log (data)
+      }),
+      catchError(error => {
+        return of({ error: error.error });
+      })
+
+    );
+  }
 }
