@@ -812,11 +812,24 @@ private apiappliedUrl = 'http://localhost:6868/api/applied-job';
 
 // đếm số lượng job trong các component
 
-  private jobCountSource = new BehaviorSubject<number>(0);
-  jobCountChanged = this.jobCountSource.asObservable();
+private jobCountSavedSource = new BehaviorSubject<number>(0);
+jobCountSavedChanged = this.jobCountSavedSource.asObservable();
 
-updateJobCount(jobCount: number) {
-  this.jobCountSource.next(jobCount);
+private jobCountAppliedSource = new BehaviorSubject<number>(0);
+jobCountAppliedChanged = this.jobCountAppliedSource.asObservable();
+
+private jobcvSource = new BehaviorSubject<number>(0);
+jobCvChanged = this.jobcvSource.asObservable();
+
+updateJobCountSaved(jobCount: number) {
+  this.jobCountSavedSource.next(jobCount);
+}
+
+updateJobCountApplied(jobCount: number) {
+  this.jobCountAppliedSource.next(jobCount);
+}
+updateJobCountCv(jobCount: number) {
+  this.jobcvSource.next(jobCount);
 }
 
 
@@ -841,6 +854,24 @@ changePassword(oldPassword: string, newPassword: string): Observable<any> {
 
   );
 }
+ // get user = email
+ findUser(email: string): Observable<Users> {
+  return this._http.get<Users>("http://localhost:6868/api/users/"+email);
+}
+
+// save pass
+savePassword(email: string, password: string): Observable<any> {
+  const data = { email, password };
+  return this._http.put<any>(`${this.serverUrl}/api/savepass`, data).pipe(
+    tap(data => {
+      console.log (data)
+    }),
+    catchError(error => {
+      return of({ error: error.error });
+    })
+  );
+}
+
 
 userLoggedinData: any
 //truyền data user logged in
@@ -857,7 +888,6 @@ userLoggedinData: any
  }
 
  navigateToAppliedJob() {
-
   this.router.navigate([`/applied-job/${localStorage.getItem('userID')}`]);
 }
 navigatetoLogin(){
@@ -908,7 +938,9 @@ ApplyJob(jonId: string, userId: string, isApplied: boolean): Observable<any> {
    catchError(this.handleError)
    );
    }
-
+   getcvUser(userID: string):  Observable<Job> {
+    return this._http.get<Job>(`http://localhost:6868/api/getcv/${userID}`);
+ }
 }
 
 

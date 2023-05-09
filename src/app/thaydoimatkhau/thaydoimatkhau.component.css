@@ -24,6 +24,7 @@
   font-weight: bold;
 }
 
+
 .check {
   width: 16px;
   height: 16px;
@@ -53,6 +54,7 @@ label:first-child{
   font-weight: 700;
 }
 
+
 #matkhau{
 margin-top: 5% ;
 }
@@ -73,6 +75,7 @@ margin-top: 5% ;
 .method > span {
   font-size: 10px;
 }
+
 
 .red{
   color: red;

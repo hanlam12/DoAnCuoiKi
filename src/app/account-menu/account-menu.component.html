@@ -5,9 +5,9 @@
       <ul class="emp-menu">
         <div class="box-menu-pc">
           <li><a [routerLink]="['/profile', uID]">Tài khoản</a></li>
-          <li><a [routerLink]="['/job-application', uID]">Hồ sơ xin việc  </a></li>
+          <li><a [routerLink]="['/job-application', uID]">Hồ sơ xin việc ({{jobCount_cv}})  </a></li>
           <li><a [routerLink]="['/saved', uID]">Việc đã lưu ({{jobCount}})</a></li>
-          <li><a [routerLink]="['/applied-job', uID]">Việc đã ứng tuyển ({{jobCount}})</a></li>
+          <li><a [routerLink]="['/applied-job', uID]">Việc đã ứng tuyển ({{jobCount_app}})</a></li>
           <li><a routerLink="noti">Thông báo việc làm (3)</a></li>
         </div>
 

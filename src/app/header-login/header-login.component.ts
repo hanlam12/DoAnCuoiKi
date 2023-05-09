@@ -19,7 +19,7 @@ export class HeaderLoginComponent implements OnInit {
     this.isDisplaynone = !this.isDisplaynone;
   }
 
-  constructor(private login: WorkZoneService) {
+  constructor(private login: WorkZoneService, private router: Router) {
     const uID = localStorage.getItem('userID');
     if (uID) {
       this.uID = uID;
@@ -38,5 +38,25 @@ export class HeaderLoginComponent implements OnInit {
   logout(){
   return this.login.logout()
 
+}
+profile(){
+  this.router.navigate(['profile',this.uID]).then(() => {
+   location.reload();
+  });
+}
+job_application(){
+  this.router.navigate(['job-application',this.uID]).then(() => {
+    location.reload();
+  });
+}
+saved(){
+  this.router.navigate(['saved',this.uID]).then(() => {
+    location.reload();
+  });
+}
+applied_job(){
+  this.router.navigate(['applied-job',this.uID]).then(() => {
+    location.reload();
+  });
 }
 }

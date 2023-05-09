@@ -5,21 +5,12 @@
     <p>Vui lòng nhập mật khẩu mới</p>
     <div class="input-">
       <input class="form-control" type="password" name="newPassword" placeholder="Nhập mật khẩu mới" id="newPassword" required minlength="5"
-      [(ngModel)]="newPass" name="newpassword"
-      #newpassword="ngModel">
-      <div class="text" [hidden]="!newpassword.hasError('minlength')">Password must contain at least 5 characters</div>
-    <div class="text" [hidden]="newpassword.valid || newpassword.pristine">
-      Password is required
-   </div>
+      [(ngModel)]="newPass" name="newpassword">
     </div>
     <br/>
     <p>Vui lòng nhập lại mật khẩu mới lần nữa</p>
     <div class="input-">
-      <input class="form-control" type="password" name="retypepassword" id="retypepassword" required [(ngModel)]="retypePass"
-      #retypepassword="ngModel" placeholder="Hãy nhập lại mật khẩu mới">
-      <div class="text" [hidden]="retypepassword.valid || retypepassword.pristine">
-        Password is required
-     </div>
+      <input class="form-control" type="password" name="retypepassword" id="retypepassword" required [(ngModel)]="retypePass" placeholder="Hãy nhập lại mật khẩu mới">
     </div>
     <hr/>
     <button (click)="goBack()" class="btn btn-secondary aa">Hủy</button>&nbsp;

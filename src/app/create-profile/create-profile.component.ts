@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { WorkZoneService } from '../work-zone.service';
 import { Users } from 'workzone';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-profile',
@@ -9,12 +10,19 @@ import { Users } from 'workzone';
 })
 export class CreateProfileComponent {
   user = new Users();
+  uID: string ='';
 
-
-  constructor(private login: WorkZoneService) { }
+  constructor(private login: WorkZoneService,private router:Router) {
+    const uID = localStorage.getItem('userID');
+    if (uID) {
+      this.uID = uID;
+    }
+   }
 
   errMessage:string=''
-
+  changepass(){
+    this.router.navigate(['/thaydoimatkhau/',this.uID])
+  }
   onSelectFile(event:any) {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -31,16 +39,6 @@ export class CreateProfileComponent {
     };
   }
 
-  // saveImage() {
-  //   this.login.updateImage(this.user.image).subscribe(
-  //     response => {
-  //       console.log('Lưu hình ảnh thành công!');
-  //     },
-  //     error => {
-  //       console.log('Lỗi khi lưu hình ảnh: ' + error.message);
-  //     }
-  //   );
-  // }
 
   ngOnInit() {
     this.login.getProfile().subscribe(data => {

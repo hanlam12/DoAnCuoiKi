@@ -46,6 +46,7 @@ import { DonUngTuyenComponent } from './don-ung-tuyen/don-ung-tuyen.component';
 import { XemUngVienComponent } from './xem-ung-vien/xem-ung-vien.component';
 
 import { HeaderEmployerComponent } from './header-employer/header-employer.component';
+import { Quenmatkhau1Component } from './quenmatkhau1/quenmatkhau1.component';
 
 
 
@@ -96,7 +97,8 @@ import { HeaderEmployerComponent } from './header-employer/header-employer.compo
     DonUngTuyenComponent,
     XemUngVienComponent,
 
-    HeaderEmployerComponent
+    HeaderEmployerComponent,
+      Quenmatkhau1Component
 
 
 

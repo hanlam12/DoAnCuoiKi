@@ -10,13 +10,8 @@ import { Users } from 'workzone';
   templateUrl: './hompage.component.html',
   styleUrls: ['./hompage.component.css']
 })
-export class HompageComponent
-
-{
-
-
+export class HompageComponent{
   user: any
-
   show = false;
   errMessage = '';
   selectedJob: string = '';
@@ -131,8 +126,6 @@ if (userId) {
 }
 
 }
-
-
 
 removeJob(job: any): void {
 const userId = localStorage.getItem('userID');

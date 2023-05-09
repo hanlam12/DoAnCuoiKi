@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Password } from 'src/assets/thaymatkhau';
 import { WorkZoneService } from '../work-zone.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Users } from 'workzone';
+
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-thaydoimatkhau',
@@ -14,41 +14,64 @@ export class ThaydoimatkhauComponent  {
   newPassword: string;
   confirmPassword: string;
   errorMessage:string=''
-  constructor(private apiService: WorkZoneService) {
+  errMessage :string='';
+  existingUserErrors:string[] = [];
+  uID:string=''
+
+
+
+  password: string = '';
+  passwordType: string = 'password';
+  togglePassword() {
+    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+  }
+
+
+  constructor(private apiService: WorkZoneService,private router:Router) {
     this.oldPassword = '';
     this.newPassword = '';
     this.confirmPassword = '';
+    const uID = localStorage.getItem('userID');
+    if (uID) {
+      this.uID = uID;
+    }
   }
 
+profile(){
+  this.router.navigate(['profile', this.uID])
+}
  changePassword() {
   if (this.newPassword !== this.confirmPassword) {
     console.log('New password and confirm password do not match');
+    this.errMessage="New password and confirm password do not match"
     return;
   }
 
+
   this.apiService.changePassword(this.oldPassword, this.newPassword)
   .subscribe(
-    (result) => {
-      if (result === 'success') {
-        console.log('Password updated successfully');
-        // Hiển thị thông báo thành công trên giao diện
-      } else {
-        console.log('Failed to update password. Please try again.');
+    data => {
+      if (data.message === 'Unauthorized') {
+        this.errMessage = "Unauthorized";
+      } else if (data.message === 'User not found') {
+        this.errMessage = "User not found";
       }
-    },
-    (error) => {
-      this.errorMessage = error;
-      if (error === 'Incorrect password. Please try again.') {
-        console.log('Incorrect password. Please try again.');
-      } else if (error === 'User not found. Please try again.') {
-        console.log('User not found. Please try again.');
-      } else if (error === 'Internal server error. Please try again later.') {
-        console.log('Internal server error. Please try again later.');
-      } else {
-        console.log('Failed to update password. Please try again.');
+      else if (data.message === 'Invalid password') {
+        this.errMessage = "Invalid password";
+      }
+      else if (data.message === 'Failed to update user password') {
+        this.errMessage = "Failed to update user password";
+      }
+      else if (data.message === 'Internal server error') {
+        this.errMessage = "Internal server error";
+      }
+       else {
+        this.errMessage = "Password updated successfully";
+        alert("Password updated successfully")
+
+
       }
     }
   );
   }
 }
-

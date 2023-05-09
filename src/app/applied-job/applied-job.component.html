@@ -14,7 +14,7 @@
  <div id="body_left">
    <div id="content_body_left">
      <div id="file_created"> <p>Công việc đã ứng tuyển</p> </div>
-     <div id="you_create_file"> <p>Bạn đã ứng tuyển 7 công việc</p> </div>
+     <div id="you_create_file"> <p>Bạn đã ứng tuyển {{jobCount_app}} công việc</p> </div>
      <div id="xapsep"> <p>Sắp xếp theo:
        <input id="gandaynhat" name="sapxep" type="radio">
        <label for="gandaynhat">Gần đây nhất</label>
@@ -33,14 +33,14 @@
          <th class="text-center ">Trạng thái</th>
      </tr>
      <tr *ngFor="let item of combinedJobs">
-         <td class="picture_company image"><img src="{{item.image}}" alt="Picture of Company" width="100%" ></td>
+         <td class="picture_company image"><img src="{{item.image}}" alt="Picture of Company" width="100px" height="100px" ></td>
          <td >{{item.job_name}}</td>
          <td >{{item.appliedDate}}</td>
          <td> <div id="chitiet" class="text-center ">{{item.status}}</div></td>
      </tr>
  </table>
 
- 
+
  </div>
  </div>
  </div>

@@ -59,19 +59,31 @@ constructor(
 ) { }
 
 ngOnInit(): void {
-  const userID = this.route.snapshot.paramMap.get('userID');
+  const userID = this.route.snapshot.paramMap.get('userID')||'';
   if (userID) {
     this.usersService.getUser(userID).subscribe(user => {
       this.user = user;
       console.log('user:', user);
     });
   }
+  this.usersService.getcvUser(userID).subscribe({
+    next: (data) => {
+      this.CvApply = data;
+      this.cvCount = this.CvApply.length;
+
+      this.usersService.updateJobCountCv(this.cvCount);
+
+    },
+    error: (err) => {
+      this.errMessage = err;
+    }
+  })
 }
 applied_cv: any[] = [];
-public cvCount: number = 0
-
+cvCount: number = 0
+CvApply: any
 cv: any;
-
+errMessage:string='';
 
 applyCV():void {
     this.taiCv = false;
@@ -84,11 +96,14 @@ applyCV():void {
         console.log(`Applied CV successfully: ${this.cv}`);
         const num_elements = this.applied_cv.length; // sử dụng hàm len() để đếm số phần tử
         console.log(`Number of elements in applied_cv: ${num_elements}`);
+
       },
       error => {
         console.log(`Error applying CV: ${error}`);
       }
     );
+
+
   }
 
 }

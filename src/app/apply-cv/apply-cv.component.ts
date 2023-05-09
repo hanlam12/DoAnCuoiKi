@@ -44,8 +44,6 @@ export class ApplyCVComponent   {
   cvSuccess() {
     this.isSubmitted = true;
     this.createAppliedJob(this.appliedData)
-
-
   }
   submitCV: SubmitCV ={}
 
@@ -56,6 +54,7 @@ export class ApplyCVComponent   {
   }
   navigateToAppliedJob(){
     this._job.navigateToAppliedJob()
+
   }
   close(){
     this.show=false

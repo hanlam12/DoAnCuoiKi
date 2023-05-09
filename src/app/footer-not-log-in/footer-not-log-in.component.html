@@ -4,7 +4,7 @@
         <div class="row background">
           <div class="col-md-12 col-sm-12 col-12">
             <div class="logo-footer">
-              <a class="logo" href="trangchu_nguoitimviec.html"
+              <a class="logo" routerLink="/"
                 ><img src="assets/media/logo.png" alt="Logo"
               /></a>
             </div>
@@ -81,7 +81,7 @@
             <div class="content_3">
               <h3>About us</h3>
               <p class="hover">
-                <a href="thongtin.html"
+                <a (click)="thongtin()"
                   >Thông tin về <span class="blue">Work</span>Z<span
                     class="blue"
                     >one</span
@@ -89,7 +89,7 @@
                 >
               </p>
               <p class="hover">
-                <a href="dieukhoandichvu.html">Điều khoản và dịch vụ</a>
+                <a (click)="dieukhoan()">Điều khoản và dịch vụ</a>
               </p>
               <div class="content1_2">
                 <h3>Chứng nhận bởi</h3>
@@ -102,8 +102,8 @@
           <div class="col-md-2 col-sm-6 col-12 pd-left">
             <div class="content_4">
               <h3>Liên hệ</h3>
-              <p class="hover"><a href="lienhe.html">Liên hệ ngay</a></p>
-              <p class="hover"><a href="hotro.html">Hỗ trợ</a></p>
+              <p class="hover"><a (click)="lienhe()">Liên hệ ngay</a></p>
+              <p class="hover"><a (click)="hotro()">Hỗ trợ</a></p>
             </div>
           </div>
           <div class="col-md-12 col-sm-12 col-12">

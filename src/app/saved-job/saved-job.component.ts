@@ -28,7 +28,7 @@ export class SavedJobComponent {
       next: (data) => {
         this.userData = data;
         this.jobCount = this.userData?.job.length;
-        this._savejob.updateJobCount(this.jobCount);
+        this._savejob.updateJobCountSaved(this.jobCount);
 
       },
       error: (err) => {

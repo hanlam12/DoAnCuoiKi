@@ -22,6 +22,20 @@ export class SearchJobComponent {
   showText2 = true;
   showText3 = true;
   showText4 = true;
+  modalDisplay = false
+  appliedData: any
+  userID=localStorage.getItem('userID')
+  showModal(jobTitle: string) {
+
+    const appliedJob = {
+      jobJD: jobTitle,
+      userID: this.userID,
+      appliedDate: new Date(),
+      status: "Waiting"
+    };
+    this.modalDisplay = true
+    this.appliedData = appliedJob
+  }
   testLogin(){
     this.router.navigate(['sign-up-employer'])
   }
@@ -306,10 +320,7 @@ export class SearchJobComponent {
       error:(err)=>{this.errMessage=err}
       })
   }
-  showModal(jobTitle: string) {
-    this.selectedJob = jobTitle;
-    this.modalRef = this.modalService.show(ApplyCVComponent);
-  }
+
   isSavedValue: boolean = false;
  saved_jobs: any[] = [];
  isSaved(job: any): boolean {

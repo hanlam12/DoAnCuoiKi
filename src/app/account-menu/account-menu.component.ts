@@ -9,7 +9,9 @@ export class AccountMenuComponent {
   isDisplaynone = true;
   uID: string =''
   jobs: any
-  @Input() jobCount: number = 0;
+  jobCount: number = 0;
+  jobCount_app: number = 0;
+  jobCount_cv: number = 0;
 
   menupc() {
     this.isDisplaynone = !this.isDisplaynone;
@@ -19,10 +21,14 @@ export class AccountMenuComponent {
     if (uID) {
       this.uID = uID;
     }
-    this._jobcount.jobCountChanged.subscribe((counts: number) => {
+    this._jobcount.jobCountSavedChanged.subscribe((counts: number) => {
       this.jobCount = counts;
     });
-
-
+    this._jobcount.jobCountAppliedChanged.subscribe((counts: number) => {
+      this.jobCount_app = counts;
+    });
+    this._jobcount.jobCvChanged.subscribe((counts: number) => {
+      this.jobCount_cv = counts;
+    });
   }
 }

@@ -2,80 +2,79 @@
   <div class="row">
   <div class="col-md-4 col-12">
     <div class="taikhoan" id="taikhoan">
-      <button class="method" routerLink="/profile">
+      <button class="method" (click)="profile()">
         <h5>Tài khoản</h5>
         <span>Tùy chỉnh thông tin cá nhân</span>
       </button>
     </div>
     <div class="taikhoan matkhau" id="matkhau">
-      <button class="method " routerLink="/thaydoimatkhau">
+      <button class="method " >
         <h5>Đổi mật khẩu</h5>
         <span>Đổi mật khẩu đăng nhập</span>
       </button>
     </div>
    </div>
-  <div class="col-md-8 col-12">
-  <!-- <form class="form-change-pass is-display-none" id="form-change-pass">
-    <div class="header-change-pass">
-      <h1>Thay đổi mật khẩu</h1>
-    </div>
-    <div class="row-pass">
-      <div class="name-pass">
-      <label>Mật khẩu hiện tại</label><span class="red">&nbsp;*</span>
-      </div>
-      <input type="{{showPassword ? 'text' : 'password'}}" class="input form-control" name="password" id="password" required minlength="5"
-      [(ngModel)]="currentPassword" name="currentPassword"
-      #currentpassword="ngModel"/>
-      <div class="text" [hidden]="!currentpassword.hasError('minlength')">Password must contain at least 5 characters</div>
-      <div class="text" [hidden]="currentpassword.valid || currentpassword.pristine">
-        Password is required
-     </div>
-    </div>
-    <div class="row-pass">
-      <div class="name-pass">
-       <label>Mật khẩu mới</label>  <span class="red">&nbsp;*</span>
-      </div>
-      <input type="password" class="input form-control" name="newPassword" id="newPassword" required minlength="5"
-      [(ngModel)]="newPassword" name="newPassword"
-      #newPassword="ngModel"/>
-      <div class="text" [hidden]="!newPassword.hasError('minlength')">Password must contain at least 5 characters</div>
-      <div class="text" [hidden]="newPassword.valid || newPassword.pristine">
-        Password is required
-     </div>
-    </div>
-    <div class="row-pass">
-      <div class="name-pass">
-       <label>Nhập lại mật khẩu mới</label>  <span class="red">&nbsp;*</span>
-      </div>
-      <input type="password" class="input form-control" name="retypepassword" id="retypepassword" required [(ngModel)]="retypePass"
-      #retypepassword="ngModel"/>
-      <div class="text" [hidden]="retypepassword.valid || retypepassword.pristine">
-        Password is required
-     </div>
-    </div>
-    <div class="row-pass relative">
-      <input type="checkbox" class="check" [(ngModel)]="showPassword"/>&nbsp;&nbsp;Hiển thị mật khẩu
-    </div>
-    <button class="btn-mk" type="submit" (click)="changePassword(currentPassword,newPassword)">Cập nhật mật khẩu</button>
-  </form> -->
-  </div>
+
+
+
 
   <div class="col-md-8 col-12">
+
+
     <form (ngSubmit)="changePassword()">
-      <div>
-        <label for="oldPassword">Old password:</label>
-        <input type="password" id="oldPassword" [(ngModel)]="oldPassword" name="oldPassword" required>
+      <div class="header-change-pass">
+        <h1>Thay đổi mật khẩu</h1>
       </div>
-      <div>
-        <label for="newPassword">New password:</label>
-        <input type="password" id="newPassword" [(ngModel)]="newPassword" name="newPassword" required>
+
+
+      <div class="row-pass">
+        <div class="name-pass">
+        <label>Mật khẩu hiện tại</label><span class="red">&nbsp;*</span>
+        </div>
+        <input class="input form-control" type="{{passwordType}}" id="oldPassword" [(ngModel)]="oldPassword" name="oldPassword" required name="password" minlength="5" >
+
+
       </div>
-      <div>
-        <label for="confirmPassword">Confirm new password:</label>
-        <input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+
+
+      <div class="row-pass">
+        <div class="name-pass">
+         <label>Mật khẩu mới</label>  <span class="red">&nbsp;*</span>
+        </div>
+        <input type="{{passwordType}}" class="input form-control" id="newPassword" [(ngModel)]="newPassword" name="newPassword" required [(ngModel)]="newPassword" name="newPassword"
+       >
+
+
       </div>
-      <button type="submit">Change password</button>
+
+
+
+
+      <div class="row-pass">
+        <div class="name-pass">
+         <label>Nhập lại mật khẩu mới</label>  <span class="red">&nbsp;*</span>
+        </div>
+        <input type="{{passwordType}}" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" required class="input form-control" #retypepassword="ngModel">
+
+
+      </div>
+
+
+      <div class="row-pass relative">
+        <input type="checkbox" class="check" (click)="togglePassword()"/>&nbsp;&nbsp;Hiển thị mật khẩu
+      </div>
+      <div *ngIf="errMessage" class="alert alert-danger" style="width: 50%;">
+        {{errMessage}}
+        <ul *ngIf="existingUserErrors">
+          <li *ngFor="let error of existingUserErrors">{{error}}</li>
+        </ul>
+
+
+      </div>
+      <button type="submit" class="btn-mk" >Cập nhật mật khẩu</button>
     </form>
+
+
   </div>
   </div>
   </div>

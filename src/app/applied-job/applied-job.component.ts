@@ -14,28 +14,23 @@ export class AppliedJobComponent {
   isOn: boolean = true;
   combinedJobs: any[] | undefined;
   jobCount_app = 0
+  userIDAppliedJob: any
+AppliedJob: any[] = []
+userAppliedJob: any[] = []
   status() {
     this.isOn = !this.isOn;
   }
-
-    data = [
-    ];
-
+    data = [];
     page = 1;
     pageSize = 4;
     collectionSize = this.data.length;
-
     user: Users | undefined
-
     subscription: Subscription | undefined;
     AppliedJobData: any | undefined;
-
-
 constructor(
   private route: ActivatedRoute,
   private usersService: WorkZoneService
 ) { }
-userIDAppliedJob: any
 
 ngOnInit(): void {
   // const userID = this.usersService.UserIDDataLoggedin();
@@ -62,17 +57,10 @@ getAppliedJob(): void {
         const matchingUserJob = this.userAppliedJob.find(userJob => userJob.jobJD === job.jobJD);
         return { ...job, appliedDate: matchingUserJob.appliedDate, status: matchingUserJob.status };
       });
-      this.jobCount_app = this.userAppliedJob?.length;
-      this.usersService.updateJobCount(this.jobCount_app);
+      this.jobCount_app = this.userAppliedJob?.length
+      this.usersService.updateJobCountApplied(this.jobCount_app);
     }, error => {
       console.error(error);
     });
 };
-AppliedJob: any[] = []
-userAppliedJob: any[] = []
-
-
-
-
-
 }

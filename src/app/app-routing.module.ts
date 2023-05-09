@@ -34,6 +34,7 @@ import { SignUpEmployerComponent } from './sign-up-employer/sign-up-employer.com
 import { PaymentComponent } from './payment/payment.component';
 import { DonUngTuyenComponent } from './don-ung-tuyen/don-ung-tuyen.component';
 import { XemUngVienComponent } from './xem-ung-vien/xem-ung-vien.component';
+import { Quenmatkhau1Component } from './quenmatkhau1/quenmatkhau1.component';
 
 
 const routes: Routes = [
@@ -63,10 +64,10 @@ const routes: Routes = [
  {path: "login", component:LoginComponent},
   {path: "dieukhoandichvu", component: DieukhoandichvuComponent},
   { path:"support", component:SupportComponent},
-  { path:"thaydoimatkhau", component:ThaydoimatkhauComponent},
+  { path:"thaydoimatkhau/:userID", component:ThaydoimatkhauComponent},
   { path:"quenmatkhau", component: QuenmatkhauComponent},
-
-  { path:"quenmatkhau3", component:Quenmatkhau3Component},
+{path: "quenmatkhau1/:email",component:Quenmatkhau1Component},
+  { path:"quenmatkhau3/:email", component:Quenmatkhau3Component},
    {path: "recruitment/:company_id", component: RecruitmentComponent},
    {path: "recruitment", component: RecruitmentComponent},
    {path: "homepageEmployer", component: HomepageEmployerComponent},
