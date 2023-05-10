@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Password } from 'src/assets/thaymatkhau';
 import { WorkZoneService } from '../work-zone.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Users } from 'workzone';
 
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-thaydoimatkhau',
@@ -16,7 +17,7 @@ export class ThaydoimatkhauComponent  {
   errorMessage:string=''
   errMessage :string='';
   existingUserErrors:string[] = [];
-  uID:string=''
+
 
 
 
@@ -27,19 +28,13 @@ export class ThaydoimatkhauComponent  {
   }
 
 
-  constructor(private apiService: WorkZoneService,private router:Router) {
+  constructor(private apiService: WorkZoneService) {
     this.oldPassword = '';
     this.newPassword = '';
     this.confirmPassword = '';
-    const uID = localStorage.getItem('userID');
-    if (uID) {
-      this.uID = uID;
-    }
   }
 
-profile(){
-  this.router.navigate(['profile', this.uID])
-}
+
  changePassword() {
   if (this.newPassword !== this.confirmPassword) {
     console.log('New password and confirm password do not match');
@@ -68,7 +63,7 @@ profile(){
        else {
         this.errMessage = "Password updated successfully";
         alert("Password updated successfully")
-
+      location.reload()
 
       }
     }

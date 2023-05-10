@@ -825,32 +825,23 @@ updateJobCountCv(jobCount: number) {
 }
 
 
-
 // chỉnh pass
 changePassword(oldPassword: string, newPassword: string): Observable<any> {
   const data = { password: oldPassword, newPassword: newPassword };
   const headers = { 'Authorization': 'Bearer ' + localStorage.getItem('token') };
   return this._http.put<any>(`${this.serverUrl}/api/pass`, data, { headers: headers }).pipe(
-    map(() => "success"), // trả về giá trị "success" khi cập nhật thành công
-    catchError((error: HttpErrorResponse) => {
-      if (error.status === 401) {
-        return throwError('Incorrect password. Please try again.');
-      } else if (error.status === 404) {
-        return throwError('User not found. Please try again.');
-      } else if (error.status === 500){
-        return throwError('Internal server error. Please try again later.');
-      } else{
-        return throwError('Failed to update password. Please try again.');
-      }
+    tap(data => {
+      console.log (data)
     }),
-
+    catchError(error => {
+      return of({ error: error.error });
+    })
   );
 }
- // get user = email
- findUser(email: string): Observable<Users> {
+// get user = email
+findUser(email: string): Observable<Users> {
   return this._http.get<Users>("http://localhost:6868/api/users/"+email);
 }
-
 // save pass
 savePassword(email: string, password: string): Observable<any> {
   const data = { email, password };
@@ -863,6 +854,7 @@ savePassword(email: string, password: string): Observable<any> {
     })
   );
 }
+
 
 
 userLoggedinData: any

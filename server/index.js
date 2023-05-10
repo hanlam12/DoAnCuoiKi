@@ -631,7 +631,7 @@ app.get("/api/company",cors(),async(req,res)=>{
       const company = await companyCollection.findOne({ company_id: companyId });
 
       // Find jobs by company name
-      const jobs = await jobCollection.find({ company_name: company.company_name, jobJD: {$exists: true} }).toArray();
+      const jobs = await jobCollection.find({ company: company.company_name, jobJD: {$exists: true} }).toArray();
 
       const companyData = { company, jobs };
 
@@ -787,44 +787,53 @@ app.put('/api/pass', async (req, res) => {
     // Lấy token từ header
     const token = req.headers.authorization.split(' ')[1];
     if (!token) {
-      return res.status(401).send('Unauthorized');
+      res.send({"message":"Unauthorized"})
     }
-
     // Giải mã token để lấy email của người dùng
     const decodedToken = jwt.verify(token, secretKey);
     const email = decodedToken.email;
-
     // Tìm người dùng trong cơ sở dữ liệu
     const user = await userCollection.findOne({ email });
     if (!user) {
-      return res.status(404).send('User not found');
+      res.send({"message":"User not found"})
     }
-
     // Xác thực mật khẩu cũ của người dùng
     const salt = user.salt;
-    console.log (user.password)
     const hash = crypto.pbkdf2Sync(req.body.password, salt, 1000, 64, 'sha512').toString('hex');
     if (hash !== user.password) {
-      return res.status(401).send('Invalid password')
-     ;
+      res.send({"message":"Invalid password"})
     }
-
     // Tạo salt mới để mã hóa mật khẩu mới
     const newSalt = crypto.randomBytes(16).toString('hex');
     const newPassword = crypto.pbkdf2Sync(req.body.newPassword, newSalt, 1000, 64, 'sha512').toString('hex');
-
     // Cập nhật mật khẩu mới cho người dùng
     const result = await userCollection.updateOne({ email }, { $set: { password: newPassword, salt: newSalt } });
     if (result.modifiedCount !== 1) {
-      throw new Error('Failed to update user password');
+      res.send({"message":"Failed to update user password"})
     }
-
-    res.send('Password updated successfully');
+    res.send({"message":'Password updated successfully'});
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal server error');
   }
 });
+
+
+
+
+
+
+// api dựa vào email get user
+app.get('/api/users/:email', cors(), async (req, res) => {
+  const email = req.params.email;
+  const result = await userCollection.findOne({ email: email });
+  if (!result) {
+    res.status(404).json({ "message": 'User not found' });
+  } else {
+    res.json(result);
+  }
+});
+
 
 // api dựa vào email get user
 app.get('/api/users/:email', cors(), async (req, res) => {
