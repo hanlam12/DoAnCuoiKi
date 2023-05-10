@@ -19,6 +19,7 @@ interface SubmitCV {
 })
 export class ApplyCVComponent   {
   show=false;
+  isComponentVisible: boolean = true
   errMessage:string='';
   @Input() appliedData: any
   jobName: string='';
@@ -57,7 +58,8 @@ export class ApplyCVComponent   {
 
   }
   close(){
-    this.show=false
+    this.show = false
+    this.isComponentVisible = false
   }
 
   }

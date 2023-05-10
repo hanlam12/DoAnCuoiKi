@@ -64,7 +64,7 @@ import { Company, Job } from 'workzone';
       this.companyData.company_id = this.companyId;
       this._Service.addJob(jobData, this.companyId).subscribe(() => {
         // Thêm công việc thành công
-        this.router.navigate(['/hompageEmployer'], { queryParams: { company: JSON.stringify(this.companyData) } });
+        this.router.navigate(['/homepageEmployer/'+this.companyId])
       }, error => {
         console.log(error);
       });

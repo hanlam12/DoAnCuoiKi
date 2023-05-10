@@ -19,7 +19,7 @@ export class HeaderEmployerComponent {
     this.isDisplaynone = !this.isDisplaynone;
   }
 
-  constructor(private login: WorkZoneService) {
+  constructor(private login: WorkZoneService, private router:Router) {
     const empID = localStorage.getItem('empID');
     if (empID) {
       this.empID = empID;
@@ -37,6 +37,11 @@ export class HeaderEmployerComponent {
   logout(){
   return this.login.logoutEmp()
 }
+quanly(){
+  this.router.navigate(['/homepageEmployer/'+this.empID])
 
-
+}
+payment(){
+  this.router.navigate(['payment'])
+}
 }

@@ -36,7 +36,7 @@
     <ul class="list-menu-pc " [ngClass]="{'is-display-none': isDisplaynone}" id="list-menu-pc">
       <li>
         <div class="menu-list-row" >
-          <a routerLink="/job-application">
+          <a role="button" (click)="quanly()">
             <i class="fa-solid fa-id-card"></i>
           <span> Quản lý hồ sơ</span>
           </a>
@@ -44,8 +44,8 @@
       </li>
       <li>
         <div class="menu-list-row">
-          <a routerLink="/saved">
-            <i class="fa-solid fa-heart"></i>
+          <a role="button" (click)="payment()">
+            <i class="fa-regular fa-credit-card"></i>
             <span> Thanh toán</span>
           </a>
         </div>
@@ -79,14 +79,14 @@
   </div>
   <ul id="list-menu-mb-login" [ngClass]="{'is-left-default': isLeftDefault}" class="list-menu-mb-login">
     <li> <div class="menu-list-row" >
-          <a routerLink="/job-application">
+          <a role="button" (click)="quanly()">
             <i class="fa-solid fa-id-card"></i>
           <span> Quản lý hồ sơ </span>
           </a>
         </div></li>
         <li> <div class="menu-list-row" >
-         <a routerLink="/saved">
-          <i class="fa-solid fa-heart"></i>
+         <a role="button" (click)="quanly()">
+          <i class="fa-regular fa-credit-card"></i>
          <span> Thanh toán </span>
          </a>
        </div></li>

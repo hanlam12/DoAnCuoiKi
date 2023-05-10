@@ -33,7 +33,7 @@ export class HompageComponent{
       next: (data) => {
         this.jobs = data;
         this.job6 = data.slice(0, 6);
-        this.job3 = data.slice(90, 93);
+        this.job3 = data.slice(20, 23);
 
       },
       error: (err) => {
@@ -45,7 +45,7 @@ export class HompageComponent{
   getCompanies(){
     this._service.getCompanies().subscribe({
       next: (data) => {
-      this.company =data.slice(71,79)
+      this.company =data.slice(0,8)
       },
       error: (err) => {
         this.errMessage = err;
@@ -110,6 +110,10 @@ export class HompageComponent{
   return false;
 }
 saveJob(job: any): void {
+  if(!localStorage.getItem('userID')){
+    alert('Vui lòng đăng nhập')
+    this._service.navigatetoLogin()
+  }
 const userId = localStorage.getItem('userID');
 if (userId) {
   this._service.GetSavedJobs(userId).subscribe((savedJobs: any) => {

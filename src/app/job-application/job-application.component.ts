@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WorkZoneService } from '../work-zone.service';
 import { ActivatedRoute } from '@angular/router';
-import {  User, Users } from 'workzone';
+import {   Users } from 'workzone';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -36,6 +36,7 @@ cancel(){
   this.showCv = false;
   this.hoSoDaTao = true;
   this.detail = false;
+
 }
 selectedIndex: number = -1;
 
@@ -82,9 +83,20 @@ ngOnInit(): void {
 applied_cv: any[] = [];
 cvCount: number = 0
 CvApply: any
-cv: any;
+cv: string='';
 errMessage:string='';
+onFileSelectedPutCompany(event:any) {
+  let file = event.target.files[0];
+  let reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload =  () =>{
+     this.cv= reader.result as string;
 
+  };
+  reader.onerror = function (error) {
+  console.log('Error: ', error);
+  };
+  };
 applyCV():void {
     this.taiCv = false;
     this.UpdateCv=true;
@@ -96,7 +108,7 @@ applyCV():void {
         console.log(`Applied CV successfully: ${this.cv}`);
         const num_elements = this.applied_cv.length; // sử dụng hàm len() để đếm số phần tử
         console.log(`Number of elements in applied_cv: ${num_elements}`);
-
+        location.reload()
       },
       error => {
         console.log(`Error applying CV: ${error}`);
@@ -109,15 +121,5 @@ applyCV():void {
 }
 
 
-
-// putInforCv(){
-//   this.usersService.putInforCv(this.newcv).subscribe({
-//     next:(data)=>{this.user=data},
-//   })
-//   this.taiCv = true;
-//   this.UpdateCv=false;
-//   this.showCv = false;
-//   this.hoSoDaTao = true
-// }
 
 

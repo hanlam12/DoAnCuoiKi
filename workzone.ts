@@ -1,6 +1,3 @@
-
-
-
 export class Job{
   static job_name: any
   constructor(
@@ -31,30 +28,11 @@ export class Job{
   ){}
   }
 
-export class User{
-  constructor(
-    public _id:any=null,
-    public userID:string="",
-    public fullname:string="",
-    public email:string="",
-    public gender:string="",
-    public DOB: string="",
-    public phone:number,
-    public address:string="",
-    public district:string="",
-    public city:string="",
-    public password:string="",
-    public cv: Array<cv>,
-    public image:string=""
-    ){}
-}
 
 export class Company{
   constructor(
     public _id:any=null,
     public company_id:string="",
-    public image:string="",
-
     public company_name:string="",
     public email:string="",
     public phone:string="",
@@ -89,7 +67,7 @@ export class Users{
     public DOB: string="",
     public address:string="",
     public district:string="",
-    public cv: Array<cv>=[],
+    public cv: string="",
     public city:string="",
     public image:string="",
     public JobJD: Array<jobJD>=[]

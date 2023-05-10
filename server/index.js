@@ -91,7 +91,7 @@ app.put('/api/applyCV', cors(), async (req, res) => {
     if (!user.cv) {
       user.cv = [];
     }
-      user.cv.push(cv);
+    user.cv.push(cv);
     await userCollection.updateOne({ userID: userID }, { $set: { cv: user.cv } });
     res.status(200).json(user);
   } catch (error) {
@@ -272,6 +272,9 @@ if (existingUser) {
   res.status(409).send({ error: errorMessages });
   return;
 }
+var count = await userCollection.countDocuments();
+var userID = `cus0${count + 1}`;
+user.userID = userID;
 hash = crypto.pbkdf2Sync(user.password, salt, 1000, 64, `sha512`).toString(`hex`);
 user.password=hash
 user.salt=salt
@@ -305,13 +308,11 @@ app.post("/api/login",cors(),async(req,res)=>{
 app.post("/api/register",cors(),async(req,res)=>{
   var crypto = require('crypto');
   salt = crypto.randomBytes(16).toString('hex');
-
   employer=req.body
   var existingEmployer = await EmployerCollection.findOne({
     $or: [
       { email: employer.email },
       { phone: employer.phone },
-
     ],
   });
   // Kiểm tra từng thông tin để trả về thông báo cụ thể cho người dùng
@@ -327,6 +328,9 @@ app.post("/api/register",cors(),async(req,res)=>{
     res.status(409).send({ error: errorMessages });
     return;
   }
+  var count = await EmployerCollection.countDocuments();
+  var empID = `company0${count + 1}`;
+  employer.company_id = empID;
   hash = crypto.pbkdf2Sync(employer.password, salt, 1000, 64, `sha512`).toString(`hex`);
   employer.password=hash
   employer.salt=salt
@@ -408,9 +412,9 @@ app.get('/api/employername', async (req, res) => {
 // API lấy tên người dùng
 app.get('/api/username', async (req, res) => {
   const token = req.headers.authorization.split(' ')[1]
-  // if (!token) {
-  //   return res.status(401).send('Unauthorized');
-  // }
+  if (!token) {
+    return res.status(401).send('Unauthorized');
+  }
   try {
     const decodedToken = jwt.verify(token, secretKey);
     const email = decodedToken.email;
@@ -442,7 +446,7 @@ app.post('/api/recruitment/:company_id/job', cors(), async (req, res) => {
     job.image = company.image;
     job.company_name = company.company_name;
     const result = await jobCollection.insertOne(job);
-    res.send(result.ops[0]);
+    res.send(result);
   } catch (err) {
     console.error(err);
     res.status(500).send('Server error');
@@ -451,7 +455,7 @@ app.post('/api/recruitment/:company_id/job', cors(), async (req, res) => {
 
   app.put("/api/company/:company_id", cors(), async (req, res) =>{
     const company_id = req.params.company_id;
-    const image = req.body.image;
+    const image = req.body.company_image;
     const company_intro = req.body.company_intro;
     const company_website = req.body.company_website;
     const company_scale = req.body.company_scale;
@@ -459,7 +463,7 @@ app.post('/api/recruitment/:company_id/job', cors(), async (req, res) => {
     await companyCollection.updateOne(
       { company_id: company_id },
       { $set: {
-        "image": image,
+        "company_image": image,
         "company_intro": company_intro,
         "company_scale": company_scale,
         "company_address": company_address,
@@ -627,7 +631,7 @@ app.get("/api/company",cors(),async(req,res)=>{
       const company = await companyCollection.findOne({ company_id: companyId });
 
       // Find jobs by company name
-      const jobs = await jobCollection.find({ company: company.company_name }).toArray();
+      const jobs = await jobCollection.find({ company_name: company.company_name, jobJD: {$exists: true} }).toArray();
 
       const companyData = { company, jobs };
 

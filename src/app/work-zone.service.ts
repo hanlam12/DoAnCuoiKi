@@ -1,12 +1,8 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from'@angular/common/http';
 import { catchError, map, Observable, of, retry, subscribeOn, tap, throwError } from 'rxjs';
-
-import { Job, User, Users  } from 'workzone';
-
-
+import { Job, Users  } from 'workzone';
 import { BehaviorSubject } from 'rxjs';
-
 import { Company } from 'workzone';
 import { error } from 'jquery';
 import { NavigationExtras, Router } from '@angular/router';
@@ -50,8 +46,7 @@ constructor(private _http:HttpClient, private router: Router) { }
 
         this.loggedIn = true; // set loggedIn thành true sau khi đăng nhập thành công
         this.userIdUpdated.emit(data1.userEmail);
-        console.log (data1)
-        console.log(data1.save_jobs)
+
       }),
       catchError(error => {
         return of({ error: error.error });
@@ -517,8 +512,6 @@ SaveJob(userId: string, jobID: string, isSaved: boolean): Observable<any> {
         catchError(this.handleError)
     )
   }
-
-
    // thông tin mô tả công việc
    getjobDescription(jobJD: string): Observable<Job> {
 
@@ -537,9 +530,8 @@ postCompany(aCompany:any):Observable<any>
     headers:headers,
     responseType:"text"
   }
-  return this._http.post<any>("/register",JSON.stringify(aCompany),requestOptions).pipe(
+  return this._http.post<any>("/api/register",JSON.stringify(aCompany),requestOptions).pipe(
       map(res=>JSON.parse(res) as Company),
-      retry(3),
       catchError(this.handleError)
   )
 }
@@ -710,9 +702,9 @@ putInforCv(aUser:any): Observable<any>{
 
   );
 }
-updateCompany(companyId: string, image: string, companyIntro: string, companyScale: string, companyAddress: string, companyweb:string): Observable<any> {
+updateCompany(companyId: string, company_image: string, companyIntro: string, companyScale: string, companyAddress: string, companyweb:string): Observable<any> {
   const url = `http://localhost:6868/api/company/${companyId}`;
-  const body = { image, company_intro: companyIntro, company_scale: companyScale, company_address: companyAddress, company_website:companyweb};
+  const body = { company_image, company_intro: companyIntro, company_scale: companyScale, company_address: companyAddress, company_website:companyweb};
   return this._http.put(url, body);
 }
 

@@ -34,19 +34,13 @@ export class AdminWZComponent implements OnInit {
       this.jobsNull = response.jobs.filter((job: Job) => !job.jobJD );
     });
   }
-  test(){
-    console.log(this.jobsNull);
-    console.log(this.jobs);
-    }
 
-  
-  // test(){
-  //   console.log(this.jobsNull, this.jobs);
-    
-  // }
+
 
   ngOnDestroy() {
-    this.subscription!.unsubscribe(); // hủy đăng ký subscriptions khi không còn cần thiết
+    if (this.subscription) {
+      this.subscription.unsubscribe(); // hủy đăng ký subscriptions khi không còn cần thiết
+    } // hủy đăng ký subscriptions khi không còn cần thiết
   }
 
   btnCompaniesList(){

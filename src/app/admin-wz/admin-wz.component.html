@@ -1,4 +1,13 @@
 <div class="container">
+  <div class="main-menu">
+    <div class="left-main-menu">
+      <div class="row">
+        <div class="col-md-3">
+          <a class="logo"
+            ><img src="assets/media/logo.png" alt="Logo"
+          /></a>
+        </div>
+<div class="container">
 
     <div class="function" >
         <button class="button" (click)="btnCompaniesList()" >Danh Sách Công ty</button>
@@ -291,7 +300,7 @@
             </tr>
             <tbody>
 
-            <tr *ngFor="let company of companies" class="tr-content" 
+            <tr *ngFor="let company of companies" class="tr-content"
             >
             <td class="th-_ID" (click)="btnshowDetails(company)" >{{company._id}} </td>
             <td (click)="btnshowDetails(company)" >{{company.company_id}} </td>

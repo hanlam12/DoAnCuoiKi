@@ -2,7 +2,7 @@
   <!-- body -->
   <div id="body" class="container">
     <div class="hinhAnh">
-        <img src="{{companyData?.company?.company_image}}" style="padding-left: 5px; float: left;">
+        <img src="https://images.careerbuilder.vn/content/news/1.jpg" style="padding-left: 5px; float: left;">
     </div>
     <div id="contentBody">
         <div class="leftContent">
@@ -42,7 +42,7 @@
                 <div class="figure">
               <div class="image"  >
                 <a >
-                <img src="{{companyData?.company?.image}}">
+                <img src="{{companyData?.company?.company_image}}">
               </a></div>
               <span>
                 <div style="margin-left: 5%; width: 100%; margin-top: 30px;" ><strong class="text-upper">Thông tin công ty</strong>
@@ -64,7 +64,7 @@
               </div>
               <hr >
 
-              <div ><i class="bi bi-pencil-square text-blue" ></i>&nbsp;&nbsp;<a (click)="changeInfor()" class="change text-blue">Thay đổi thông tin tài khoản</a>
+              <div style="position: relative;" ><i class="bi bi-pencil-square text-blue" ></i>&nbsp;&nbsp;<a (click)="changeInfor()" class="change text-blue">Thay đổi thông tin tài khoản</a>
 
               <span class="exit">
                 <i class="bi bi-box-arrow-right"></i><a routerLink="/login-employer" >Đăng xuất</a>
@@ -77,9 +77,9 @@
               <h2 class="nameCompany fw-bold text-upper text-center text-blue">{{companyData?.company?.company_name}}</h2>
               <div id="exist-avatar" class="upload-avatar d-flex">
                 <div class="avatar" >
-                  <img src="{{companyData?.company?.image}}" id="avatar-output">
+                  <img src="{{companyData?.company?.company_image}}" id="avatar-output">
                 </div>
-                <input type="file" name="image" [(ngModel)]="image" id="image" (change)="onFileSelectedPutCompany($event, company)">
+                <input type="file" name="image" [(ngModel)]="company_image" id="image" (change)="onFileSelectedPutCompany($event,company)">
               </div>
               <hr>
               <form action="post" method="POST" id="profile-form" >
@@ -118,7 +118,7 @@
                       <textarea class="form-control border-hover" name="note" placeholder="Giới thiệu về công ty" style="height: fit-content;" cols="30" rows="10"[(ngModel)]="companyIntro"></textarea>
                     </div>
                   </div>
-                  <div>
+                  <div style="position: relative;">
                     <button class="btn UpdateInfor" (click)="onUpdateCompany()">Cập nhật thông tin</button>
                     <span class="exit">
                       <i class="bi bi-box-arrow-right"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="exit()">Thoát</a>

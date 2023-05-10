@@ -46,7 +46,7 @@
           </div>
           <form id="formUploadCv" action="" method="post" enctype="multipart/form-data" >
             <input type="hidden" name="image" id="image" >
-            <input type="file"  name="cv" name="file_upload_cv" class="file-upload-cv" id="file-upload-cv" [(ngModel)]="cv" name="cv" >
+            <input type="file"  name="cv" name="file_upload_cv" class="file-upload-cv" id="file-upload-cv" [(ngModel)]="cv" name="cv" (change)="onFileSelectedPutCompany($event)">
           </form>
         </div>
         <div class="file-format">
@@ -88,7 +88,7 @@
         </tr>
         <tr *ngFor="let item of user?.cv; let i = index">
           <td>{{ i + 1 }}</td>
-          <td>{{ item }}</td>
+          <td > Hồ sơ {{i+1 }}</td>
           <td>
             <div id="chitiet" class="text-center">
               <a (click)="selectedIndex = i;chitiet()">Chi tiết</a>

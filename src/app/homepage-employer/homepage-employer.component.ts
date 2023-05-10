@@ -26,7 +26,7 @@ export class HomepageEmployerComponent {
     this.change_infor = false;
   }
   companyId: string =''
-  image: string =''
+  company_image: string =''
   companyIntro: string =''
   companyScale: string =''
   companyAddress: string =''
@@ -36,7 +36,8 @@ export class HomepageEmployerComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private companyService: WorkZoneService
+    private companyService: WorkZoneService,
+    private router:Router
   ) {
     this.route.params.subscribe(
       (params: Params) => {
@@ -61,19 +62,20 @@ export class HomepageEmployerComponent {
     let file = event.target.files[0];
     let reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = function () {
-    me.company.image=reader.result!.toString()
+    reader.onload =  () =>{
+      this.company.company_image = reader.result as string;
     };
     reader.onerror = function (error) {
     console.log('Error: ', error);
     };
     };
     onUpdateCompany(): void {
-      this.companyService.updateCompany(this.companyId, this.image, this.companyIntro, this.companyScale, this.companyAddress, this.companyweb)
+      this.companyService.updateCompany(this.companyId, this.company.company_image, this.companyIntro, this.companyScale, this.companyAddress, this.companyweb)
         .subscribe(
           response => {
             console.log(response);
             alert('Company updated successfully!');
+            this.router.navigate(['/companies/',this.companyId])
           },
           error => {
             console.error(error);

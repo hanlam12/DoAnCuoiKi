@@ -17,16 +17,12 @@ export class AppliedJobComponent {
   userIDAppliedJob: any
 AppliedJob: any[] = []
 userAppliedJob: any[] = []
+user: Users | undefined
+AppliedJobData: any | undefined;
   status() {
     this.isOn = !this.isOn;
   }
-    data = [];
-    page = 1;
-    pageSize = 4;
-    collectionSize = this.data.length;
-    user: Users | undefined
-    subscription: Subscription | undefined;
-    AppliedJobData: any | undefined;
+
 constructor(
   private route: ActivatedRoute,
   private usersService: WorkZoneService

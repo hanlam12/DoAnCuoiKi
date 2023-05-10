@@ -1,7 +1,7 @@
-
-    <div  id="myModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModal">
+<ng-container *ngIf="isComponentVisible">
+    <div id="myModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModal">
       <!-- Modal content -->
-      <div   class="modal-content">
+      <div class="modal-content">
         <div class="modal-header">
           <h5>
             Ứng tuyển
@@ -60,9 +60,8 @@
         </div>
 
         <div class="modal-footer" >
-          <button (click)="bsModalRef.hide()" class="close">Đóng lại</button>
+          <button (click)="close()" class="close">Đóng lại</button>
           <button (click)="cvSuccess()"  id="myBtn2">Nộp CV</button>
-
         </div>
       </div>
     </div>
@@ -79,3 +78,4 @@
 
 
 
+  </ng-container>

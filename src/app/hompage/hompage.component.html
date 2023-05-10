@@ -95,7 +95,7 @@
 
       </div>
       <hr />
-     <a (click)="searchJob()"
+     <a role="button" (click)="searchJob()"
         ><div class="more">Xem tất cả <i class="bi bi-box-arrow-right"></i></div></a>
 
       <br />
@@ -104,7 +104,7 @@
       <div class="box-content_right_top">
         <div class="head">TỪ KHÓA TÌM KIẾM</div>
         <div class="catelog-list">
-          <a (click)="searchJob()">
+          <a role="button" (click)="searchJob()">
             <div >
               <div class="cate-left">Kế toán / Kiểm toán</div
               ><div class="cate-right">(3)</div>
@@ -112,7 +112,7 @@
           </a>
         </div>
         <div class="catelog-list">
-          <a (click)="searchJob()">
+          <a role="button" (click)="searchJob()">
             <div >
               <div class="cate-left">Quản lý chất lượng (QA/QC)</div
               ><div class="cate-right">(6)</div>
@@ -120,7 +120,7 @@
           </a>
         </div>
         <div class="catelog-list">
-          <a (click)="searchJob()" >
+          <a role="button" (click)="searchJob()" >
             <div >
               <div class="cate-left">Nhà hàng / Khách sạn</div
               ><div class="cate-right">(2)</div>
@@ -128,7 +128,7 @@
           </a>
         </div>
         <div class="catelog-list">
-          <a (click)="searchJob()" >
+          <a role="button" (click)="searchJob()" >
             <div >
               <div class="cate-left">Dịch vụ khách hàng</div
               ><div class="cate-right">(9)</div>
@@ -136,7 +136,7 @@
           </a>
         </div>
         <div class="catelog-list">
-          <a (click)="searchJob()" >
+          <a role="button" (click)="searchJob()" >
             <div >
               <div class="cate-left">Bán hàng / Kinh doanh</div
               ><div class="cate-right">(6)</div>
@@ -144,7 +144,7 @@
           </a>
         </div>
         <div class="catelog-list">
-          <a (click)="searchJob()" >
+          <a role="button" (click)="searchJob()" >
             <div >
               <div class="cate-left">Cơ khí / Ô tô / Tự động hóa</div
               ><div class="cate-right">(4)</div>
@@ -152,7 +152,7 @@
           </a>
         </div>
         <div class="catelog-list">
-          <a (click)="searchJob()" >
+          <a role="button" (click)="searchJob()" >
             <div >
               <div class="cate-left">Điện / Điện tử / Điện lạnh</div
               ><div class="cate-right">(6)</div>
@@ -160,7 +160,7 @@
           </a>
         </div>
         <p>
-          <button  id="myBtn" (click)="searchJob()">
+          <button  id="myBtn" role="button" (click)="searchJob()">
             Xem thêm <i class="bi bi-box-arrow-right"></i>
           </button>
         </p>
@@ -214,7 +214,7 @@
             <div class="img">
               <img src="{{c.company_image}}"  alt="FPT-logo" />
             </div>
-            <div>{{c.company_name}}</div></a
+            <div style="text-transform: uppercase; font-size: 13px;">{{c.company_name}}</div></a
           >
         </div>
       </div>

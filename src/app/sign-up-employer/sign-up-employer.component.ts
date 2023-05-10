@@ -22,12 +22,8 @@ export class SignUpEmployerComponent {
   togglePassword() {
     this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
   }
-
-
   constructor(private _service:WorkZoneService,private router:Router){}
-
   errorOccurred:boolean=false;
-
   postCompany(){
     if(
       this.company.person_name !='' &&
@@ -43,10 +39,9 @@ export class SignUpEmployerComponent {
             this.company = data;
             alert('Đăng ký tài khoản thành công')
             console.log('Post user success:', data);
-             this.router.navigate(['dangnhap'])
+             this.router.navigate(['login-employer'])
           },
           (err) => {
-
             console.error('Post user error:', err);
             if (err.status === 409 && err.error && err.error.error) {
               this.existingUserErrors = err.error.error;
