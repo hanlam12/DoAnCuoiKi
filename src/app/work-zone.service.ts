@@ -34,7 +34,10 @@ constructor(private _http:HttpClient, private router: Router) { }
     // Điều hướng đến trang mong muốn sau khi người dùng đăng nhập thành công
     this.router.navigate(['/']);
   }
-
+  navigateAdmin(): void {
+    // Điều hướng đến trang mong muốn sau khi người dùng đăng nhập thành công
+    this.router.navigate(['/admin']);
+  }
 
   login(email: string, password: string): Observable<any> {
     return this._http.post<any>(this.loginUrl, { email: email, password: password }).pipe(
