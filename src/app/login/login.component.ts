@@ -50,7 +50,12 @@ export class LoginComponent {
         this._loginService.setUserDataLoggedin(
           this.userLoggedinData);
         alert("Đăng nhập thành công");
-        this._loginService.navigateAfterLogin()
+        if (localStorage.getItem('userID') == 'admin'){
+          this._loginService.navigateAdmin()
+        }
+        else{
+          this._loginService.navigateAfterLogin()
+        }
       }
     }
     );
